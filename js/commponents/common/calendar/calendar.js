@@ -1,65 +1,18 @@
-//然后计算当前年的 1月1日是星期几
-//再计算当前月的1日是什么是星期几
-//计算闰年
-function isLeapYear(year) {
-  //4的倍数但不是100的倍数 或者400的倍数
-  if ((year % 4) == 0 && (year % 100) != 0 || (year % 400) == 0) {
-    return 1;
-  }
-  return 0;
-}
-//平年和闰年的月的天数
-let months = [[0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-[0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]];
+"use strict";
 
-var base_year = 2000;
-var base_week = 6;
+import getCalendar from './util.js'
 
-function getCalendar(year, month) {
-
-  var totalDay_year = 0;
-  for (var i = base_year; i < year; i++) {
-    totalDay_year += (365 + isLeapYear(i));
-  }
-  //计算当前年的1月1日的是星期几
-  var year_first = (totalDay_year + base_week) % 7;
-  // console.log(year_first);
-
-  //计算当前月1号是星期几
-  var totalDay_month = 0;
-  for (var i = 1; i < month; i++) {
-    totalDay_month += months[isLeapYear(year)][i];
-  }
-  var month_first = (totalDay_month + year_first) % 7;
-
-  // console.log(month_first);
-  //6行7列
-  var calendar = [[], [], [], [], [], []];
-  var nextPostion = 0;
-  for (var i = 0; i < month_first; i++) {
-    calendar[0][i] = "";
-    nextPostion++;
-  }
-  //填日数
-  for (var day = 1; day <= months[isLeapYear(year)][month]; day++) {
-    //求出下一个填充的位置
-    var row = Math.floor(nextPostion / 7);
-    var column = nextPostion % 7;
-    calendar[row][column] = day;
-    nextPostion++;
-  }
-  return calendar;
-}
+// 设置样式
 function setCalendar(year, month) {//设置展示样式
-  var calendar = getCalendar(year, month);//日历数据
-  var date_now = new Date();//用来判断是不是当前月
-  var row = $("table .day");
-  var table = [];
-  for (var i = 0; i < row.length; i++) {
+  const calendar = getCalendar(year, month);//日历数据
+  let date_now = new Date();//用来判断是不是当前月
+  let row = $("table .day");
+  let table = [];
+  for (let i = 0; i < row.length; i++) {
     table[i] = $(row[i]).children();
   }
-  for (var i = 0; i < 6; i++) {
-    for (var j = 0; j < 7; j++) {
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 7; j++) {
       $(table[i][j]).removeClass("fill");
       $(table[i][j]).removeClass("today");
 
@@ -85,19 +38,19 @@ function setCalendar(year, month) {//设置展示样式
 
   // if(date_now.getFullYear()==year && (date_now.getMonth()+1)==month){
   //     console.log("相同")
-  //     for(var i=0; i<6; i++){
-  //         for(var j=0; j<7; j++){
+  //     for(let i=0; i<6; i++){
+  //         for(let j=0; j<7; j++){
 
   //         }
   //     }
   // }
   // console.log(table);
 }
-var date = new Date();
+let date = new Date();
 // console.log(date);
-var nowYear = date.getFullYear();
-// var 
-var nowMonth = date.getMonth() + 1;
+let nowYear = date.getFullYear();
+// let 
+let nowMonth = date.getMonth() + 1;
 setYearMonth();
 
 function setYearMonth() {
