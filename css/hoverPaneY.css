@@ -1,0 +1,1343 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 盒子 ,用了border-box*/
+
+.hoverBox {
+    /* position: absolute; */
+    /* padding: 10px; */
+    /* top: 50%; */
+    /* left: 50%; */
+    padding: 35px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+    /* transform: translate(-50%, -50%); */
+    background-color: #fff;
+    border-radius: 22px;
+    font-family: 'Arial Normal', 'Arial', 'sans-serif';
+    color: #666;
+    box-sizing: border-box;
+    font-size: 13px;
+    box-shadow: -5px 0 20px 0 rgba(43, 51, 59, 0.08);
+    border:1px solid #5ec4cd
+}   
+
+
+/* 标题 */
+
+.hoverBox .title {
+    width: 100%;
+    color: #028e9b;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    cursor: default;
+}
+
+
+/* 切换选项 */
+
+.hoverBox .mode_selection {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    /* font-size: 18px; */
+}
+
+
+/* 选项 */
+
+.hoverBox .mode_selection .mode {
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 24px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.hoverBox .mode_selection #hoverBox_request {
+    left: 37px;
+    font-size: 27px;
+}
+
+.hoverBox .mode_selection #hoverBox_answer {
+    right: 37px;
+    font-size: 27px;
+}
+
+
+/* 当前选中 */
+
+.hoverBox .mode_selection .active {
+    font-weight: 700;
+}
+
+.hoverBox .mode_selection .activeLine {
+    position: absolute;
+    bottom: 10px;
+    transition: all ease-in 0.2s;
+    display: block;
+    width: 130px;
+    height: 4px;
+    border-radius: 100px/10px;
+    background-color: #028e9b;
+}
+
+
+
+.hoverBox .mode_selection .toLeft {
+    left: 47px;
+}
+
+.hoverBox .mode_selection .toRight {
+    left: 247px;
+}
+
+
+/* 内容区,设置了border-box */
+
+
+/*滚动区 滚动条 */
+
+.hoverBox .itemList_box {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    scrollbar-color: #797979;
+    scrollbar-width: thin;
+    position: relative;
+}
+
+.hoverBox .itemList_box::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.hoverBox .itemList_box::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.hoverBox .itemList_box::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.hoverBox .itemList {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+/* 内容区item */
+
+
+/* .hoverBox .itemList .item {
+    margin-top: 5px;
+    border-bottom: 2px solid #eee;
+} */
+
+.hoverBox .itemList .item:hover {
+    border-bottom-color: #028e9b;
+    background-color: #f6f6f6;
+}
+
+.hoverBox .contentBox_request .itemList .item a,
+.hoverBox .contentBox_collection .itemList .item a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 0 5px 5px 5px;
+    box-sizing: border-box;
+    color: #666;
+}
+
+
+/* .hoverBox .contentBox_collection .itemList .item a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 68px;
+    text-decoration: none;
+    padding: 0 5px 5px 5px;
+    box-sizing: border-box;
+    color: #333;
+} */
+
+.hoverBox .item .problem_title {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 300px;
+    /* line-height: 35px; */
+    font-weight: 700;
+    font-size: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.hoverBox .item .problem_remark_answer {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 250px;
+    /* line-height: 25px; */
+    font-size: 22px;
+    height: 35px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.hoverBox .item .problem_lable_box {
+    position: absolute;
+    display: none;
+    right: 0;
+    top: 0;
+    font-size: 14px;
+    width: 80px;
+}
+
+.hoverBox .item .problem_lable_box .lable {
+    display: inline-block;
+    position: relative;
+    text-indent: 3px;
+    width: 72px;
+    line-height: 20px;
+    background-color: #999;
+    color: #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.hoverBox .item .problem_lable_box .lable::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    display: inline-block;
+    border: 10px solid #fff;
+    border-left: none;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.hoverBox .item .time_box {
+    position: absolute;
+    width: 90px;
+    right: 5px;
+    /* text-indent: 1em; */
+    text-align: left;
+    bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hoverBox .item .time_box .time {
+    font-size: 18px;
+    color: #999;
+    font-size: 20px;
+}
+
+
+/* 脚部搜索 */
+
+
+/* .foot{
+    border:1px solid #999;
+    margin-top:20px;
+}
+.foot .search_btn{
+    width:60px;
+    color:#fff;
+   display: none;
+    line-height: 28px;
+    background-color: #028e9b;
+    border-radius: 4px;
+}
+.foot .search_btn svg{
+    position: relative;
+    top:4px;
+    left:17px;
+} */
+
+
+/* 提问悬框 */
+
+.hoverBox .contentBox_request {
+    margin: 10px auto 0;
+    width: 92%;
+    height: 425px;
+    padding: 10px 0 5px 20px;
+    border: 2px #ccc solid;
+    /* border-top: 4px solid #ccc; */
+    /* border-bottom: 4px solid #ccc; */
+    border-radius: 12px;
+}
+
+
+/* 我的收藏悬框 */
+
+.hoverBox .contentBox_collection {
+    margin: 10px auto 0;
+    width: 92%;
+    height: 485px;
+    padding: 10px 0 5px 20px;
+    border: 2px #ccc solid;
+    /* border-top: 4px solid #ccc; */
+    /* border-bottom: 4px solid #ccc; */
+    border-radius: 12px;
+}
+
+
+/* 我的关注悬框 */
+
+.hoverBox .contentBox_subscribe {
+    margin: 10px auto 0;
+    width: 92%;
+    height: 425px;
+    padding: 10px 0 5px 20px;
+    border: 2px #ccc solid;
+    /* border-top: 4px solid #ccc; */
+    /* border-bottom: 4px solid #ccc; */
+    border-radius: 22px;
+}
+
+.hoverBox .mode_selection #hoverBox_interest {
+    left: 37px;
+    font-size: 27px;
+}
+
+.hoverBox .mode_selection #hoverBox_fans {
+    right: 37px;
+    font-size: 27px;
+}
+
+
+/* 内容区item */
+
+.hoverBox .itemList .item {
+    margin-top: 5px;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100px;
+    text-decoration: none;
+    padding: 0 5px 5px 5px;
+    box-sizing: border-box;
+    color: #333;
+    cursor: default;
+    /* margin-top: 5px; */
+    border-bottom: 2px solid #eee;
+}
+
+
+/* 头像 */
+
+.hoverBox .contentBox_subscribe .item .img_link {
+    position: absolute;
+    /* top: 5px; */
+    /* left: 5px; */
+    display: block;
+    height: 80px;
+    width: 80px;
+    text-decoration: none;
+}
+
+.hoverBox .contentBox_subscribe .item .img_link:hover img {
+    top: -5px;
+}
+
+.hoverBox .contentBox_subscribe .item .img_link img {
+    position: absolute;
+    border-radius: 4px;
+    top: 10px;
+    width: 100%;
+    height: 100%;
+    transition: all ease 0.2s;
+    border-radius: 80px;
+}
+
+
+/* 用户名 身份 性别 */
+
+.hoverBox .contentBox_subscribe .item .userName {
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 95px;
+    width: 135px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color:#666;
+}
+
+.hoverBox .contentBox_subscribe .item .status {
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 265px;
+    /* width: 40px; */
+    font-size: 20px;
+    color: #666;
+    line-height: 28px;
+}
+.logonHeadPortrait .headPortrait .hpSecond  .hpPersonalAttributes em b{
+    color:#666;
+}
+
+
+
+
+
+
+
+/* 学校信息 */
+
+.hoverBox .contentBox_subscribe .item .school_info {
+    position: absolute;
+    display: block;
+    bottom: 12px;
+    left: 95px;
+    width: 160px;
+    /* height: 22px; */
+    /* line-height: 22px; */
+    font-size: 20px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* 关注 */
+
+.hoverBox .contentBox_subscribe .item .subscribe {
+    position: absolute;
+    display: block;
+    bottom: 12px;
+    left: 270px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    /* line-height: 23px; */
+}
+.hoverBox .contentBox_subscribe .item .subscribe svg{
+    height: 26px;
+    width:26px
+}
+.hoverBox .contentBox_subscribe .item .sendText svg{
+    width: 29px;
+    height:29px;
+}
+
+
+
+/* 已关注状态 */
+.hoverBox .contentBox_subscribe .item .subscribe_on path{
+    fill:#ff7800;
+}
+/* 未关注状态 */
+.hoverBox .contentBox_subscribe .item .subscribe_off path{
+    fill:#ccc;
+}
+
+
+
+/* 私信 */
+
+.hoverBox .contentBox_subscribe .item .sendText {
+    position: absolute;
+    display: block;
+    bottom: 12px;
+    right: 32px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    /* line-height: 23px; */
+    cursor: pointer;
+}
+
+
+/* .hoverBox .item .subscribe:hover .do_subscribe path{
+    fill:#d6204b;
+} */
+
+.hoverBox .contentBox_subscribe .item .sendText:hover path {
+    fill: #5ec4cd;
+}
+
+
+/* 私信 */
+
+.hoverBox .contentBox_collection .item .sendText {
+    position: absolute;
+    display: block;
+    bottom: 5px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+    overflow: hidden;
+    line-height: 23px;
+    cursor: pointer;
+}
+
+.hoverBox .contentBox_collection .item .sendText:hover path {
+    fill: #17abe3;
+}
+
+
+/* 消息通知 */
+
+.hoverBox .contentBox_information {
+    margin: 15px auto 0;
+    width: 92%;
+    height: 400px;
+    padding: 10px 0 5px 10px;
+    border: 2px #ccc solid;
+    border-radius: 22px;
+}
+
+
+/* 
+.hoverBox .contentBox_information .item {
+    margin-top: 5px;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 58px;
+    text-decoration: none;
+    padding: 0 5px 5px 5px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+} */
+
+
+/* 头像 */
+
+.hoverBox .contentBox_information .item img {
+    position: relative;
+    top: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    transition: all 0.3s;
+}
+
+.hoverBox .contentBox_information .item img:hover {
+    top: 5px;
+}
+
+
+/* 小点点 */
+
+.hoverBox .contentBox_information .item .info_point {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+
+/*用户名*/
+
+.hoverBox .contentBox_information .item .itemTitle {
+    position: absolute;
+    display: block;
+    top: 10px;
+    left: 95px;
+    width: 135px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color:#666;
+}
+
+
+/* 消息内容 */
+
+
+/* 消息通知模式切换按钮 */
+.hoverBox .mode_selection #hoverBox_dynamicMessage {
+    left: 37px;
+    font-size: 27px;
+    color:#666;
+}
+
+.hoverBox .mode_selection #hoverBox_privateMessage {
+    right: 37px;
+    font-size: 27px;
+    color:#666;
+}
+
+
+
+
+
+.hoverBox .contentBox_information .item .item_info {
+    position: absolute;
+    display: block;
+    bottom: 12px;
+    left: 95px;
+    width: 208px;
+    /* height: 22px; */
+    /* line-height: 22px; */
+    font-size: 20px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* 时间 */
+
+.hoverBox .contentBox_information .item .time {
+    position: absolute;
+    display: block;
+    width: 105px;
+    right: 10px;
+    text-indent: 1em;
+    text-align: right;
+    bottom: 12px;
+    color: #999;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* 一键已读 */
+
+.hoverBox .foot {
+    position: relative;
+    margin: 5px auto 0;
+    width: 92%;
+    height: 25px;
+}
+
+.hoverBox .foot .clearAllPoint {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* 70% */
+@media(max-width:1960px){
+    .hoverBox .mode_selection{
+        height: 65px;
+    }
+    .hoverBox .mode_selection .mode{
+        top:13px;
+    }
+    .hoverBox .mode_selection #hoverBox_dynamicMessage{
+        font-size:23px;
+    }
+    .hoverBox .mode_selection #hoverBox_privateMessage{
+        font-size:23px;
+    }
+    .hoverBox .mode_selection #hoverBox_interest{
+        font-size:23px;
+    }
+    .hoverBox .mode_selection #hoverBox_fans{
+        font-size:23px;
+    }
+    .hoverBox .mode_selection #hoverBox_request{
+        font-size:23px;
+    }
+     .hoverBox .mode_selection #hoverBox_answer{
+        font-size:23px;
+    }
+    .hoverBox .contentBox_subscribe{
+        border-width:1px;
+        width:90%;
+        height:321px;
+        margin-top:0;
+        border-radius: 11px;
+        padding:5px 0 5px 8px;
+    }
+    .hoverBox .contentBox_request {
+        height: 321px;
+        border-width:1px;
+        width:90%;
+        margin-top:0;
+        padding:5px 0 5px 8px;
+        border-radius: 11px;
+    }
+    .hoverBox .contentBox_collection{
+        height: 380px;
+        border-width:1px;
+        width:90%;
+        padding:5px 0 5px 8px;
+        
+    }
+    .hpSecond .hoverBox .itemList .item{
+        height: 85px;
+    }
+    .hpSecond .hoverBox .item .problem_title{
+        font-size:19px;
+        width:276px;
+    }
+    .hpSecond .hoverBox .item .problem_remark_answer{
+        font-size:17px;
+        bottom:0;
+        width:215px;
+    }
+    .hpSecond .hoverBox .item .time_box .time{
+        font-size:17px;
+    }
+    .hpSecond .hpSecond .hoverBox .item .time_box{
+        width:60px;
+    }
+    .hoverBox .contentBox_information{
+        height:426px;
+    }
+    .hoverBox .contentBox_information
+
+
+    /* 消息通知面板 */
+    .messageNotification .hoverBox .contentBox_information .item img{
+        width:68px;
+        height: 68px;
+    }
+    .hoverBox .contentBox_information .item .itemTitle{
+        left:87px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        left:87px;
+    }
+
+
+    /* 消息通知 */
+        .messageNotification .hoverBox .mode_selection .activeLine{
+            width:110px;
+        }
+        .messageNotification .hoverBox .mode_selection .toLeft{
+            left:57px;
+        }
+        .messageNotification .hoverBox .mode_selection .toRight{
+            left:233px;
+        }
+
+        /* 二级面板 */
+        .hpSecond .hoverBox .mode_selection .activeLine{
+            width:110px;
+        }
+        .hpSecond .hoverBox .mode_selection .toLeft{
+            left:57px;
+        }
+        .hpSecond .hoverBox .mode_selection .toRight{
+            left:212px;
+        }
+
+        .hoverBox .contentBox_subscribe .item .img_link{
+            width:65px;
+            height: 65px;
+        }
+        .hoverBox .contentBox_subscribe .item .userName{
+            left:84px;
+        }
+        .hoverBox .contentBox_subscribe .item .school_info{
+            left:84px;
+            width:150px;
+            font-size:18px;
+        }
+        .hoverBox .contentBox_subscribe .item .subscribe svg{
+            height: 24px;
+            width:24px
+        }
+        .hoverBox .contentBox_subscribe .item .subscribe {
+            left:250px;
+        }
+        .hoverBox .contentBox_subscribe .item .status{
+            left:286px;
+            font-size:18px
+        }
+        .hoverBox .contentBox_subscribe .item .sendText svg{
+            width: 26px;
+            height:26px;
+        }
+        .hoverBox .contentBox_subscribe .item .sendText{
+            right:10px
+        }
+
+
+}
+/* 80% */
+@media(max-width:1789px){
+
+    .hoverBox .title{
+        font-size:26px;
+    }
+    .hoverBox .mode_selection #hoverBox_dynamicMessage{
+        font-size:20px;
+    }
+    .hoverBox .mode_selection #hoverBox_privateMessage{
+        font-size:20px;
+    }
+    .hoverBox .mode_selection #hoverBox_interest{
+        font-size:20px;
+    }
+    .hoverBox .mode_selection #hoverBox_fans{
+        font-size:20px;
+    }
+    .hoverBox .mode_selection #hoverBox_request{
+        font-size:20px;
+    }
+    .hoverBox .mode_selection #hoverBox_answer{
+        font-size:20px;
+    }
+   
+    .hpSecond .hoverBox{
+        padding:15px 10px 10px 10px;
+    }
+    .hoverBox .mode_selection{
+        height:56px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item img{
+        width:62px;
+        height: 62px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
+        font-size:18px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .item_info{
+        font-size:16px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .time{
+        font-size:16px;
+    }
+    .hpSecond .hoverBox .itemList_box::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+    }
+    
+    .hpSecond .hoverBox .itemList_box::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    .hpSecond .hoverBox .itemList_box::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: transparent;
+    }
+    .hpSecond .hoverBox .itemList .item{
+        height: 83px;
+    }
+   .hoverBox .contentBox_information{
+        height: 352px;
+        border-width:1px;
+        border-radius: 18px;
+        margin-top:0;
+    }
+    .hoverBox .contentBox_subscribe{
+        width:85%;
+        height:324px;
+       
+    }
+    .hoverBox .contentBox_request {
+        height: 324px;
+        width:85%;
+        
+    }
+    .hoverBox .contentBox_collection{
+        height: 313px;
+        width:85%;
+        padding:3px 0 3px 6px;
+    }
+    .hoverBox .item .problem_title{
+        font-size:20px;
+        width:257px;
+    }
+    .hoverBox .item .problem_remark_answer{
+        font-size:16px;
+        height: 29px;
+        width: 210px;
+    }
+    .hpSecond .hoverBox .itemList .item{
+        height: 75px;
+    }
+    .hpSecond .hoverBox .item .time_box .time{
+        font-size:15px;
+    }
+
+    /* 消息通知面板 */
+    
+    .hoverBox .contentBox_information .item .item_info{
+        font-size:18px;
+    }
+    .messageNotification .hoverBox .contentBox_information .item img{
+        width:63px;
+        height: 63px;
+    }
+   
+    .hoverBox .contentBox_information .item .time{
+        font-size:18px;
+    }
+    .hoverBox .contentBox_information .itemList .item{
+        height: 83px;
+    }
+    .hoverBox .contentBox_information .item .itemTitle{
+        font-size:19px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        font-size:17px;
+    }
+    .hoverBox .contentBox_information .item .time{
+        font-size:17px;
+    }
+
+    .hoverBox .contentBox_information .item .itemTitle{
+        left:80px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        left:80px;
+    }
+
+    .messageNotification .hoverBox .mode_selection .activeLine{
+        width:110px;
+    }
+    .messageNotification .hoverBox .mode_selection .toLeft{
+        left:53px;
+    }
+    .messageNotification .hoverBox .mode_selection .toRight{
+        left:201px;
+    }
+
+      /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine{
+        width:100px;
+    }
+    .hpSecond .hoverBox .mode_selection .toLeft{
+        left:62px;
+    }
+    .hpSecond .hoverBox .mode_selection .toRight{
+        left:207px;
+    }
+    .hoverBox .mode_selection .activeLine{
+        height:3px;
+    }
+    
+
+    /* 我的关注 */
+    .hoverBox .contentBox_subscribe .item .img_link{
+        width:60px;
+        height: 60px;
+    }
+    .hoverBox .contentBox_subscribe .item .userName{
+        left:80px;
+    }
+    .hoverBox .contentBox_subscribe .item .school_info{
+        left:80px;
+        width:130px;
+        font-size:16px;
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe svg{
+        height: 22px;
+        width:22px
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe {
+        left:230px;
+        bottom:5px;
+    }
+    .hoverBox .contentBox_subscribe .item .status{
+        left:267px;
+        font-size:16px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText svg{
+        width: 24px;
+        height:24px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText{
+        right:8px;
+        bottom:5px;
+    }
+
+     
+    
+
+   
+
+}
+/* 90% */
+@media(max-width:1549px){
+    .hoverBox .title{
+        font-size:23px;
+    }
+    .hoverBox .mode_selection #hoverBox_dynamicMessage{
+        font-size:18px;
+    }
+    .hoverBox .mode_selection #hoverBox_privateMessage{
+        font-size:18px;
+    }
+  
+    .hoverBox .mode_selection #hoverBox_interest{
+        font-size:18px;
+    }
+    .hoverBox .mode_selection #hoverBox_fans{
+        font-size:18px;
+    }
+    .hoverBox .mode_selection #hoverBox_request{
+        font-size:18px;
+    }
+    .hoverBox .mode_selection #hoverBox_answer{
+        font-size:18px;
+    }
+    .hoverBox{
+        padding:13px 8px 8px 8px;
+    }
+  
+    .hpSecond .hoverBox .contentBox_information .item img{
+        width:52px;
+        height: 52px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
+        font-size:16px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .item_info{
+        font-size:15px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .time{
+        font-size:14px;
+    }
+    .hpSecond .hoverBox .itemList .item{
+        height: 70px;
+    }
+    .hoverBox .contentBox_information{
+        height: 337px;
+    }
+   
+    .hoverBox .contentBox_subscribe{
+        width:82%;
+        height:301px;
+    }
+    .hoverBox .contentBox_request {
+        height: 301px;
+        width:82%;
+    }
+    .hoverBox .contentBox_collection{
+        height: 349px;
+        width:82%;
+    }
+
+    .hpSecond .hoverBox .item .problem_title{
+        font-size:15px;
+        width:228px;
+    }
+    .hpSecond .hoverBox .item .problem_remark_answer{
+        font-size:13px;
+        height: 26px;
+        width: 190px;
+    }
+   
+    .hpSecond .hoverBox .item .time_box .time{
+        font-size:13px;
+    }
+    .hpSecond .hoverBox .item .time_box{
+        width:48px;
+    }
+    .messageNotification .hoverBox .contentBox_information .item img{
+        width:58px;
+        height: 58px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        left:73px;
+        font-size:16px;
+    }
+    .hoverBox .contentBox_information .item .itemTitle{
+        font-size:18px;
+        left:73px;
+    }
+    .hoverBox .mode_selection .toLeft{
+        height: 3px;
+    }
+    .hoverBox .mode_selection .toRight{
+        height: 3px;
+    }
+    .hoverBox .contentBox_information .item .time{
+        font-size:16px;
+    }
+    .hoverBox .contentBox_information .itemList .item{
+        height: 79px;
+    }
+
+    .messageNotification .hoverBox .mode_selection .activeLine{
+        width:95px;
+    }
+    .messageNotification .hoverBox .mode_selection .toLeft{
+        left:66px;
+    }
+    .messageNotification .hoverBox .mode_selection .toRight{
+        left:204px;
+    }
+
+      /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine{
+        width:90px;
+    }
+    .hpSecond .hoverBox .mode_selection .toLeft{
+        left:67px;
+    }
+    .hpSecond .hoverBox .mode_selection .toRight{
+        left:180px;
+    }
+
+    /* 我的关注 */
+    .hoverBox .contentBox_subscribe .item .img_link{
+        width:54px;
+        height: 54px;
+    }
+    .hoverBox .contentBox_subscribe .item .userName{
+        left:74px;
+        font-size:17px;
+    }
+    .hoverBox .contentBox_subscribe .item .school_info{
+        left:74px;
+        width:110px;
+        font-size:15px;
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe svg{
+        height: 20px;
+        width:20px
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe {
+        left:200px;
+        bottom:5px;
+    }
+    .hoverBox .contentBox_subscribe .item .status{
+        left:230px;
+        font-size:15px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText svg{
+        width: 22px;
+        height:22px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText{
+        right:8px;
+        bottom:5px;
+    }
+
+
+
+   
+   
+    
+}
+/* 100% */
+@media(max-width:1280px){
+    .hoverBox .title{
+        font-size:21px;
+    }
+    .hoverBox .mode_selection #hoverBox_dynamicMessage{
+        font-size:17px;
+    }
+    .hoverBox .mode_selection #hoverBox_privateMessage{
+        font-size:17px;
+    }
+    .hoverBox .mode_selection #hoverBox_interest{
+        font-size:17px;
+    }
+    .hoverBox .mode_selection #hoverBox_fans{
+        font-size:17px;
+    }
+    .hoverBox .mode_selection #hoverBox_request{
+        font-size:17px;
+    }
+    .hoverBox .mode_selection #hoverBox_answer{
+        font-size:17px;
+    }
+    .hoverBox{
+        padding:7px 3px 3px 3px;
+    }
+  
+    .hpSecond .hoverBox .contentBox_information .item img{
+        width:46px;
+        height: 46px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
+        font-size:15px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .item_info{
+        font-size:14px;
+    }
+    .hpSecond .hoverBox .contentBox_information .item .time{
+        font-size:13px;
+    }
+    
+    
+    .hoverBox .contentBox_information{
+        margin-top:0px;
+        width:89%;
+        border-width:1px ;
+        border-radius: 6px;
+        height:308px;
+    }
+    .hoverBox .mode_selection .mode{
+        width:125px;
+    }
+    .hoverBox .mode_selection .activeLine{
+        height: 3px;
+    }
+    .hoverBox .mode_selection .mode{
+        top:19px;
+    }
+    .hoverBox .contentBox_information .item .info_point{
+        height:8px;
+    }
+    .hoverBox .contentBox_subscribe{
+        width:80%;
+        height:241px;
+        padding:3px 0 3px 6px;
+    }
+    .hoverBox .contentBox_request {
+        height: 241px;
+        width:80%;
+        padding:3px 0 3px 6px;
+    }
+    .hoverBox .contentBox_collection{
+        height: 291px;
+        width:80%;
+    }
+
+    .hoverBox .item .problem_title{
+        font-size:15px;
+        width:228px;
+    }
+    .hoverBox .item .problem_remark_answer{
+        font-size:13px;
+        height: 26px;
+        width: 188px;
+    }
+    .hpSecond .hoverBox .itemList .item{
+        height: 55px;
+        padding:0;
+        
+    }
+    .hoverBox .itemList .item{
+        border-width: 1px;
+    }
+    .hpSecond .hoverBox .item .time_box .time{
+        font-size:13px;
+    }
+    .hpSecond .hoverBox .item .time_box{
+        width:48px;
+    }
+    .hoverBox .mode_selection #hoverBox_request{
+        font-size:17px;
+    }
+
+
+    .messageNotification .hoverBox .contentBox_information .item img{
+        width:52px;
+        height:52px;
+    }
+    .hoverBox .contentBox_information .item .itemTitle{
+        font-size:17px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        font-size:14px;
+        width:180px;
+    }
+    .hoverBox .contentBox_information .item .time{
+        font-size:14px;
+    }
+    .hoverBox .contentBox_information .item .itemTitle{
+        left:60px;
+    }
+    .hoverBox .contentBox_information .item .item_info{
+        left:60px;
+    }
+    .hoverBox .contentBox_information .itemList .item{
+        height: 72px;;
+    }
+
+    .messageNotification .hoverBox .mode_selection .activeLine{
+        width:80px;
+    }
+    .messageNotification .hoverBox .mode_selection .toLeft{
+        left:59px;
+    }
+    .messageNotification .hoverBox .mode_selection .toRight{
+        left:191px;
+    }
+    .hoverBox .mode_selection .activeLine{
+        height: 2px;
+    }
+
+      /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine{
+        width:85px;
+    }
+    .hpSecond .hoverBox .mode_selection .toLeft{
+        left:57px;
+    }
+    .hpSecond .hoverBox .mode_selection .toRight{
+        left:167px;
+    }
+
+    /* 我的关注 */
+    .hoverBox .contentBox_subscribe .item .img_link{
+        width:48px;
+        height: 48px;
+    }
+    .hoverBox .contentBox_subscribe .item .userName{
+        left:60px;
+        font-size:16px;
+        line-height: 16px;
+    }
+    .hoverBox .contentBox_subscribe .item .school_info{
+        left:60px;
+        width:100px;
+        font-size:13px;
+        bottom:3px;
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe svg{
+        height: 17px;
+        width:17px
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe {
+        left:170px;
+        bottom:-5px;
+    }
+    .hoverBox .contentBox_subscribe .item .status{
+        left:200px;
+        font-size:14px;
+        top:3px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText svg{
+        width: 19px;
+        height:19px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText{
+        right:12px;
+        bottom:-5px;
+    }
+    .hoverBox .contentBox_subscribe .item .img_link img{
+        top:0;
+    }
+  
+}
+

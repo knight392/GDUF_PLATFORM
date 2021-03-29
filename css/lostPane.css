@@ -1,0 +1,688 @@
+.modal_bg_lost{
+    width:100%;
+    height: 100%;
+    position: fixed;
+    display:none;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0; 
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal_lost{
+    position: absolute;
+    top:50%;
+    left:50%;
+    padding:20px;
+    transform: translate(-50%,-50%);
+    height: 750px;
+    border-radius: 14px;
+    width:1300px;
+    z-index:1000;
+    background-color: rgb(247, 247, 247);
+}
+.modal_bg_lost .fadeout_lostModal{
+    position: absolute;
+    display: block;
+    top:0px;
+    right:20px;
+    background-color: transparent;
+    font-size:50px;
+    color:#ccc;
+    border:none;
+    cursor: pointer;
+    outline: none;
+}
+.modal_bg_lost .fadeout_lostModal:hover{
+    color:tomato;
+}
+.modal_bg_lost .modal_content_lost{
+    display: flex;
+    justify-content: space-between;
+}
+.modal_bg_lost .modal_content_lost input,.modal_bg_lost .modal_content_lost textarea{
+    border:none;
+    outline: none;
+}
+.modal_bg_lost .leftBox{
+    width:45%;
+    height: 750px;
+}
+.modal_bg_lost  .row{
+    height: 100px;
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+}
+.modal_bg_lost  .tip{
+    font-size:26px;
+    color:#666;
+    font-weight: 700;
+}
+.modal_bg_lost  .row .value{
+    display: inline-block;
+    font-size:24px;
+    width:430px;
+    height: 60px;
+    color:#666;
+    letter-spacing: 2px;
+    background-color: transparent;
+    border-bottom:1px solid #666;
+}
+.modal_bg_lost  .value_box{
+    width:90%;
+    height:180px;
+    margin-top:20px;
+    border-radius: 14px;
+    resize: none;
+    padding:15px;
+    font-size:22px;
+    letter-spacing: 3px;
+    color:#666;
+    background-color:#fff;
+}
+.modal_bg_lost .objClass{
+    position: relative;
+}
+.modal_bg_lost .objClass .value .text{
+    position: relative;
+    top:16px;
+    font-size:26px;
+    left:5px;
+}
+.modal_bg_lost .objClass_entrance svg{
+    cursor: pointer;
+}
+.modal_bg_lost .objClass_entrance{
+    position: absolute;
+    top:35px;
+    right:38px;
+}
+.modal_bg_lost .objClass_entrance:hover svg path{
+    fill:#35c0cd
+}
+.modal_bg_lost .objClass_entrance .objClassPane{
+    overflow: visible;
+    top:-70px;
+    position: absolute;
+    left:50px;
+    height:580px;
+}
+.modal_bg_lost .objClass_entrance .objClassPane::after{
+    display: block;
+    content: "";
+    width:100px;
+    height: 150px;
+    top:0;
+    left:-50px;
+    position: absolute;
+    /* background-color: #000; */
+    background-color: transparent;
+}
+
+.modal_bg_lost .objClassPane .row_objClass .item{
+    cursor: pointer;
+}
+
+.modal_bg_lost .objDetail{
+    margin-top:20px;
+}
+.modal_bg_lost .pictureBox{
+    width:100%;
+    height: 200px;
+}
+.modal_bg_lost .award{
+    margin-top:40px;
+}
+
+.modal_bg_lost .rightBox{
+    width:45%;
+    height: 750px;
+}
+
+/* 日期悬浮框 */
+
+.modal_bg_lost .lostTime {
+    position: relative;
+}
+.modal_bg_lost .lostTime .time_display{
+    position: relative;
+    display: none;
+    left:5px;
+    top:18px;
+    max-width: 65%;
+}
+
+.lostTime .time_display .num{
+    font-size:26px;
+    font-weight: 700;
+    color:#666;
+    height:35px;
+    min-width: 25px;
+    display: inline-block;
+}
+
+.modal_bg_lost .calendar_entrance{
+    position: absolute;
+    height: 65px;
+    /* border:1px solid #000; */
+    top:35px;
+    right:38px;
+    display: flex;
+    justify-content: center;
+}
+.modal_bg_lost .calendar_entrance svg{
+    cursor: pointer;
+}
+.modal_bg_lost .calendar_entrance:hover svg path{
+    fill:#35c0cd;
+}
+
+.modal_bg_lost .calendar{
+    display: none;
+    position: absolute;
+    top:-30px;
+    left:40px;
+    z-index:100;
+    width:630px;
+    color:#fff;
+    border-radius: 14px;
+    background-color: #35c0cd;
+    box-shadow: 10px 10px 35px 1px rgba(0, 0, 0, 0.5);
+}
+.modal_bg_lost .calendar::before{
+    content: "";
+    display: block;
+    height:60px;
+    width:50px;
+    background-color: transparent;
+    position: absolute;
+    /* background-color: #000; */
+    top:0;
+    left:-40px;
+}
+.modal_bg_lost .calendar tr{
+    width: 100%;
+}
+
+.modal_bg_lost .calendar td{
+    font-size:20px;
+    width:90px;
+    height: 40px;
+    cursor: default;
+    text-align: center;
+}
+.modal_bg_lost .calendar th{
+    font-size:26px;
+    line-height: 45px;
+    position: relative;
+
+}
+.modal_bg_lost .calendar .day td{
+    font-size:22px;
+    font-weight: 550;
+    cursor: pointer;
+}
+/* .calendar .day .fill{
+    background-color: rgba(255, 255, 255, 0.657);
+} */
+.modal_bg_lost .calendar .day .today{
+    background-color: rgba(255,255,255,0.3);
+}
+.modal_bg_lost .calendar .day .fill:hover{
+    background-color:  rgba(255,255,255,0.3);
+}
+.modal_bg_lost .calendar .switch_btn_calendar{
+    position: absolute;
+    width: 100px;
+    display: flex;
+    right:30px;
+    top:50%;
+    transform: translate(0,-50%);
+    justify-content: space-between;
+    align-items: center;
+}
+.modal_bg_lost .calendar .switch_btn_calendar i{
+    cursor: pointer;
+    font-size:20px;
+}
+ .modal_bg_lost .sendBox{
+    margin-top:50px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal_bg_lost .sendBox .sendBtn{
+    color:#fff;
+    background-color:#35c0cd;
+    height: 60px;
+    width:300px;
+    font-size:24px;
+    border:none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.modal_bg_lost .sendBox .sendBtn:hover{
+    background-color: #028e9b;
+}
+
+.modal_bg_lost .lostArea{
+    position: relative;
+}
+.modal_bg_lost .lostArea .value .text{
+    position: relative;
+    top:18px;
+    left:5px;
+}
+.modal_bg_lost .lostArea .value .areaDetail{
+    display: none;
+    font-size:24px;
+    color:#666;
+    position: relative;
+    top:18px;
+    left:5px;
+    background-color: transparent;
+}
+/* 地点 */
+.modal_bg_lost .area{
+    width:70px;
+    height:40px;
+    position: absolute;
+    cursor: pointer;
+    top:35px;
+    right:20px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal_bg_lost .area:hover .icon path{
+    fill:#35c0cd;
+}
+.modal_bg_lost .area_objClassPane{
+    display: none;
+    border-radius: 14px;
+    position: absolute;
+    bottom:-200px;
+    left:70px;
+    width:680px;
+    height: 500px;
+    padding:20px;
+    background-color: #fff;
+    overflow:auto;
+    box-shadow: 10px 10px 35px 1px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc;
+}
+
+.modal_bg_lost .area_objClassPane .row_area_classPane:nth-child(1){
+    margin-top: 0px;
+}
+.modal_bg_lost .area_objClassPane .row_area_classPane{
+    margin-top:20px;
+}
+.modal_bg_lost .area_objClassPane .title_row{
+    font-size:24px;
+    color:#555;
+    font-weight:600;
+    width: 100%;
+}
+
+.modal_bg_lost .area_objClassPane .itemBox{
+    margin-top:10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.modal_bg_lost .area_objClassPane .itemBox .item{
+    display:inline-block;
+    line-height: 30px;
+    padding:3px 9px;
+    background-color: #f3f3f3;
+    margin:5px 10px;
+    border-radius: 15px;
+    font-size:20px;
+    /* border:1px solid #000; */
+}
+.modal_bg_lost .area_objClassPane .itemBox .item:hover{
+    background-color:#35c0cd;
+    color:#fff;
+}
+
+/* 物品类别 */
+
+/* 添加图片 */
+
+.modal_bg_lost .addPic .imgBox{
+    
+    float: left;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+}
+.modal_bg_lost .addPic .imgBox .imgItem{
+    margin-right:20px;
+    float: left;
+    width:130px;
+    height: 130px;
+    border-radius: 14px;
+    overflow: hidden;
+    border:1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal_bg_lost .addPic .imgBox .imgItem img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.modal_bg_lost .addPic .addBtn{
+    border:1px solid #999;
+    margin-top:20px;
+    border-radius: 14px;
+    width:130px;
+    height: 130px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+.modal_bg_lost .addPic .addBtn:hover{
+    border-color:#028e9b;
+}
+.modal_bg_lost .addPic .addBtn:hover path{
+    fill:#028e9b
+}
+
+.modal_bg_lost .search_display{
+    position: absolute;
+    display: none;
+    top:100px;
+    left:600px;
+    padding:0px 15px 15px 15px;
+    width:580px;
+    height:635px;
+    border-radius:14px;
+    background-color:#fff;
+    box-shadow: 10px 10px 35px 1px rgba(0, 0, 0, 0.5);
+    z-index:1000;
+}
+.modal_bg_lost .search_display .title{
+    height: 60px;
+    font-size:28px;
+    color:#666;
+    text-align: center;
+    font-weight: 700;
+    line-height: 60px;
+    border-bottom: 1px solid #999;
+}
+.modal_bg_lost .search_display ul{
+    list-style: none;
+    overflow-y: auto;
+    height: 570px;
+    scrollbar-width:thin;
+    scrollbar-color: #ccc ;
+}
+.modal_bg_lost .search_display ul::-webkit-scrollbar{
+    width:5px;
+    height: 5px;
+}
+.modal_bg_lost .search_display ul::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #ccc;
+}
+.modal_bg_lost .search_display ul::-webkit-scrollbar-track{
+    border-radius: 0;
+    background-color:transparent;
+}
+
+.modal_bg_lost .search_display ul li{
+    margin-top:10px;
+    position: relative;
+    height:130px;
+    border-bottom:1px solid #35c0cd;
+}
+.modal_bg_lost .search_display ul li img{
+    position: absolute;
+    top:5px;
+    border-radius: 8px;
+    width:120px;
+    height: 120px;
+}
+.modal_bg_lost .search_display ul li .name{
+    font-size:26px;
+    color:#555;
+    position: absolute;
+    top:5px;
+    left:140px;
+    line-height: 30px;
+    font-weight: 700;
+    max-width:300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.modal_bg_lost .search_display ul li .type{
+    background-color: #35c0cd;
+    color:#fff;
+    font-size: 20px;
+    line-height: 28px;
+    padding:0 20px;
+    display: inline-block;
+    border-radius: 14px;
+    position: absolute;
+    top:6px;
+    right:10px;
+}
+.modal_bg_lost .search_display ul li a{
+    text-decoration: none;
+    color:#666;
+    display: block;
+    height: 100%;
+}
+.modal_bg_lost .search_display ul li .detail{
+    font-size:22px;
+    color:#666;
+    position: absolute;
+    top:60px;
+    left:140px;
+    display: -webkit-box;   
+    -webkit-box-orient: vertical;   
+    -webkit-line-clamp: 2;   
+    overflow: hidden;
+}
+/* 70% */
+@media(max-width:1960px){
+    
+}
+/* 80% */
+@media(max-width:1789px){
+    .modal_bg_lost .row{
+        height: 56px;
+        justify-content: space-between;
+    }
+    .modal_bg_lost .leftBox .row{
+        margin-top:16px;
+    }
+    .modal_bg_lost .leftBox .row:first-of-type{
+        margin-top: 0;
+    }
+    .modal_bg_lost .tip{
+        font-size:16px;
+        width:24%;
+    }
+    .modal_bg_lost .row .value{
+        font-size:14px;
+        height: 34px;
+        width:74%;
+    }
+    .modal_bg_lost .fadeout_lostModal{
+        font-size:30px;
+        top:0px;
+        right:10px;
+    }
+    .modal_bg_lost .objClass .value .text{
+        font-size:16px;
+        top:9px;
+    }
+    .lostTime .time_display .num{
+        font-size:16px;
+    }
+    .modal_bg_lost .value_box{
+        font-size:14px;
+        margin-top:10px;
+    }
+    .modal_bg_lost .leftBox .row svg{
+        height: 20px;
+    }
+    .modal_bg_lost .addPic .addBtn svg{
+        height: 34px;
+    }
+    .modal_bg_lost .addPic .addBtn{
+        width:80px;
+        height: 80px;
+    }
+    .modal_lost{
+        width:835px;
+        height: 410px;
+    }
+    .modal_bg_lost .sendBox{
+        margin-top:26px;
+    }
+   
+    .modal_bg_lost .value_box{
+        height:48px;
+    }
+    .modal_bg_lost .pictureBox{
+        height: 120px;
+    }
+    .modal_bg_lost .sendBox .sendBtn{
+        height: 35px;
+        width:222px;
+        font-size:18px;
+    }
+    .modal_bg_lost .addPic .imgBox{
+        height:80px;
+    }
+    .modal_bg_lost .addPic .imgBox .imgItem{
+        width:80px;
+        height: 80px;
+    }
+    .modal_bg_lost .objClass_entrance{
+        top:20px;
+        right:0;
+    }
+    .modal_bg_lost .calendar_entrance{
+        top:20px;
+        right:-3px;
+    }
+    .modal_bg_lost .area{
+        top:20px;
+        right:-22px;
+    }
+    .modal_bg_lost .sendBox{
+        bottom:0;
+    }
+    .modal_bg_lost .lostTime .time_display{
+        max-width: 72%;
+        top:9px;
+    }
+    .modal_bg_lost .lostArea .value .text{
+        top:9px;
+    }
+    .modal_bg_lost .lostArea .value .areaDetail{
+        font-size:16px;
+        top:9px;
+    }
+    .modal_bg_lost .area_objClassPane .title_row{
+        font-size:16px;
+    }
+    .modal_bg_lost .area_objClassPane .itemBox .item{
+        font-size:14px;
+        line-height: 16px;
+        border-radius: 8px;
+        padding:3px 18px;
+        margin:2.5px 5px;
+    }
+    .modal_bg_lost .objClass_entrance .objClassPane{
+        width: 410px;
+        height: 380px;
+        left:37px;
+        top:-95px;
+        overflow-y: auto;
+    }
+    .modal_bg_lost .area .areaPane{
+        width: 410px;
+        height: 380px;
+        left:60px;
+       bottom:-138px;
+        overflow-y: auto;
+    }
+    .modal_bg_lost .calendar th{
+        font-size:18px;
+    }
+    .calendar th span{
+        font-size:20px;
+    }
+    .modal_bg_lost .calendar .day td{
+        font-size:16px;
+    }
+    .modal_bg_lost .calendar td{
+        font-size:16px;
+        width:60px;
+        height: 30px;
+    }
+    .modal_bg_lost .calendar{
+        width: 430px;
+    }
+    .modal_bg_lost .calendar .switch_btn_calendar{
+        width: 70px;
+    }
+
+    /* 物品临时展示框 */
+    .modal_bg_lost .search_display{
+        top:0px;
+        left:440px;
+        width:404px;
+        height: 433px;
+    }
+    .modal_bg_lost .search_display .title{
+        font-size:20px;
+    }
+    .modal_bg_lost .search_display ul li img{
+        width:85px;
+        height: 85px;
+    }
+    .modal_bg_lost .search_display ul li .name{
+        font-size:20px;
+        left:100px;
+    }
+    .modal_bg_lost .search_display ul li .detail{
+        font-size:16px;
+        left:100px;
+        top:40px;
+    }
+    .modal_bg_lost .search_display ul li .type{
+        font-size:16px;
+    }
+    .modal_bg_lost .search_display ul li{
+        height: 97px;
+    }
+    
+}
+/* 90% */
+@media(max-width:1549px){
+    
+    
+}
+/* 100% */
+@media(max-width:1280px){
+    
+}
+
+
+

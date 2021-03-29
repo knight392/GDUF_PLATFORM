@@ -1,0 +1,1200 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "微软雅黑", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", PingHei, STHeiti;
+    /* font-family: 'Microsoft YaHei', 'iconfont'!important; */
+}
+
+b,
+i,
+em,
+h2,
+h3 {
+    /*font-size: 14px;*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: 0;
+}
+
+input {
+    outline: none;
+    /* bottom: 0; */
+    border: 0;
+}
+
+.w {
+    margin: 0 auto;
+}
+
+
+/* .iconfont {
+    font-size: 14px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+} */
+
+
+/* #region                             导航栏                                     */
+
+.nav {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 120px;
+    background-color: #028e9b;
+    /* background-color: #02A7BE; */
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 12px 3px rgba(25, 24, 40, .35);
+}
+
+.nav .w {
+    width: 1790px;
+    height: 100%;
+    position: relative;
+}
+
+
+/* #region 校徽   */
+
+.nav .logo {
+    position: relative;
+    float: left;
+    height: 100%;
+    line-height: 100%;
+    width: 300px;
+}
+
+.nav .logo img {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 0;
+    height: 65px;
+}
+
+
+/* #endregion */
+
+
+/* #region 首页+校区互通+失物招领+提问 功能导航 */
+
+.nav .functionNav {
+    /* display: none; */
+    float: left;
+    width: 480px;
+    position: relative;
+    height: 100%;
+    /* margin-left: 38px; */
+}
+
+.nav .functionNav ul {
+    position: absolute;
+    height: 50px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.nav .functionNav li {
+    float: left;
+    top: 0;
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    padding: 0 10px;
+    margin: 0 22px 0 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.1s;
+    letter-spacing: 2px;
+}
+
+.nav .functionNav li:hover {
+    top: -15px;
+}
+
+
+/* #endregion */
+
+
+/* #region 搜索框 */
+
+.nav .search {
+    position: absolute;
+    width: 600px;
+    height: 100%;
+    position: absolute;
+    left: 53%;
+    transform: translate(-50%, 0);
+    float: left;
+    transition: all 0.2s;
+}
+
+.nav .search form {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 100%;
+    height: 60px;
+}
+
+.nav .search input.searchBar {
+    float: left;
+    border-radius: 40px 0 0 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 380px;
+    height: 100%;
+    font-size: 20px;
+    padding: 0 60px;
+    transition: all 0.3s;
+    color: #444;
+}
+
+.nav .search .searchBtn {
+    float: left;
+    position: relative;
+    width: 100px;
+    height: 100%;
+    border-radius: 0 40px 40px 0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav .search .iconsousuo {
+    position: absolute;
+    top: 6px;
+    right: 28px;
+    font-size: 45px;
+    color: #028e9b;
+    cursor: pointer;
+}
+
+.nav .search .searchBtn:hover .iconsousuo {
+    color: #1a237e;
+}
+
+.nav .search .iconsousuo:hover {
+    color: #1a237e;
+}
+
+
+/* #region 联想词内容*/
+
+.nav .searchContent {
+    position: absolute;
+    width: 100%;
+    /* height: 350px; */
+    background-color: #fff;
+    top: 62px;
+    /* left: 17px; */
+    border-radius: 0 0 16px 16px;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px 20px rgba(43, 51, 59, 0.08);
+}
+
+.nav .searchContent li {
+    width: 95%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+    color: #777;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* border-bottom: 2px #777 solid; */
+    background-color: #fff;
+    border-radius: 16px;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.nav .searchContent li a {
+    font-size: 20px;
+    color: #777;
+}
+
+.nav .searchContent li:hover {
+    color: #333;
+    box-shadow: 0 0 10px 10px rgba(90, 101, 112, 0.08);
+}
+
+.nav .searchContent li span {
+    text-align: center;
+    width: 35px;
+    height: 40px;
+    float: left;
+    /* background-color: #81d4fa; */
+    margin: 0 5px 0 0px;
+    border-radius: 16px;
+}
+
+.nav .searchContent li span .iconfont {
+    font-size: 30px;
+    color: #028e9b;
+    text-align: center;
+    line-height: 50px;
+}
+
+.nav .searchContent>li>em {
+    font-size: 20px;
+    /* font-weight: 700; */
+    /* color: #1a237e; */
+    /* color: #304ffe; */
+}
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #region 提问 + 消息 */
+
+
+/* #region 提问 */
+
+.quizModal_bg {
+    display: none;
+    background-color: #00000066;
+    /* position: absolute; */
+    position: fixed;
+    /* width: 100%; */
+    /* height: 100%;     */
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+}
+
+.quizModal {
+    background-color: #F2F2F2;
+    border-radius: 30px;
+    width: 730px;
+    height: 900px;
+    position: absolute;
+    /* border: 2px solid #028e9b; */
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    transition: all ease 0.5s;
+    transform: translate(-50%, -50%) scale(0.7);
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2);
+}
+
+.quizModal_bg .fadeout {
+    float: right;
+}
+
+.quizModal_bg .active_line {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 51%;
+    transform: translate(-50%, 0);
+    z-index: 4;
+    height: 1px;
+    background-color: #028e9b;
+    box-shadow: 0 0 3px #028e9b;
+    width: 0px;
+    border-radius: 20px;
+    transition: width, ease-in 0.3s;
+}
+
+.quizModal_bg .value:hover .active_line {
+    width: 271px;
+}
+
+
+/* #endregion */
+
+
+/* #region 消息 */
+
+.QAndM {
+    float: right;
+    width: 274px;
+    height: 100%;
+    float: right;
+    /* margin-right: 30px; */
+    transition: all 0.3s;
+}
+
+.QAndM>.cueY {
+    margin-right: 150px;
+    border: 2px solid #fff;
+    padding: 0 10px 0 30px;
+    border-radius: 16px;
+}
+
+.QAndM>.cueY>.fadeinQuiz {
+    font-size: 21px;
+    width: 50px;
+    position: relative;
+}
+
+.QAndM>.cueY>.fadeinQuiz>.iconyumao {
+    position: absolute;
+    left: -26px;
+    font-size: 31px;
+}
+
+.QAndM span.message,
+.QAndM span.cueY {
+    float: left;
+    width: 40px;
+    height: 41px;
+    /* margin-right: 35px; */
+    /* line-height: 120px; */
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    line-height: 40px;
+}
+
+.QAndM .message .iconfont,
+.QAndM .cueY .iconfont {
+    /* font-size: 40px; */
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    transition: all 0.15s;
+}
+
+.QAndM .message .iconfont {
+    font-size: 40px;
+}
+
+.QAndM .message>.icondian {
+    color: brown;
+    font-size: 50px;
+    display: none;
+    /* position: relative; */
+}
+
+.QAndM .message:hover .iconfont {
+    top: -10px;
+    /* margin-top: -10px; */
+}
+
+.QAndM .message>.icondian {
+    color: brown;
+    font-size: 40px;
+    /* position: relative; */
+    top: -13px;
+    right: -11px;
+}
+
+.QAndM .message:hover .icondian {
+    top: -23px;
+}
+
+.QAndM .message .messageNotification {
+    display: none;
+    width: 465px;
+    height: 640px;
+    position: absolute;
+    top: 74px;
+    right: -210px;
+}
+
+.QAndM .message .messageNotification::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -13px;
+    right: 211.5px;
+    border: 16px solid #fff;
+    border-top: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.QAndM .message .messageNotification::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: -95px;
+    left: 0;
+    background-color: transparent;
+}
+
+.QAndM .message .foot .clearAllPoint {
+    font-size: 18px;
+    color: #999;
+}
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #region 登录注册按钮 */
+
+.nav .personal {
+    display: none;
+    /* margin-right: 50px; */
+    width: 145px;
+    float: right;
+    height: 100%;
+}
+
+.nav .personal .signUpBtn {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 145px;
+    height: 50px;
+    color: #028e9b;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 38px;
+    /* transition: all 0.3s; */
+    border: #fff 1px solid;
+    line-height: 50px;
+}
+
+
+/* .nav .personal .signUpBtn:hover {
+    background-color: #028e9b;
+    color: #fff;
+} */
+
+.nav .personal .signUpBtn em {
+    float: right;
+    color: #028e9b;
+    font-size: 22px;
+    width: 3em;
+    position: relative;
+    transition: all 0.3s;
+    border-radius: 0 38px 38px 0;
+    /* top: 1px; */
+    text-align: center;
+}
+
+.nav .personal .signUpBtn em.fadein {
+    float: left;
+    /* left: 1px; */
+    border-radius: 38px 0 0 38px;
+}
+
+.nav .personal .signUpBtn em:hover {
+    color: #fff;
+    /* right: 1px; */
+    background-color: #028e9b;
+}
+
+
+/* #endregion */
+
+
+/* #region 头像 */
+
+.logonHeadPortrait {
+    display: none;
+    margin-top: 19px;
+    width: 85px;
+    float: right;
+    height: 90px;
+    box-sizing: border-box;
+}
+
+
+/* #region 头像 */
+
+.logonHeadPortrait .headPortrait {
+    float: right;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    position: relative;
+}
+
+.logonHeadPortrait .headPortrait img {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+}
+
+
+/* #region 头像二级导航 */
+
+.logonHeadPortrait .headPortrait .hpSecond {
+    display: none;
+    position: absolute;
+    top: 85px;
+    right: -130px;
+    background-color: #fff;
+    width: 465px;
+    box-shadow: -5px 0 20px 0 rgba(43, 51, 59, 0.08);
+    height: 640px;
+    z-index: 100;
+    box-sizing: border-box;
+    border-radius: 22px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond::before {
+    content: "";
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    top: -100px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general {
+    width: 100%;
+    padding: 35px;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 22px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMessagePojoMajor {
+    font-size: 18px;
+}
+
+.logonHeadPortrait .headPortrait:hover .hpSecond {
+    display: block;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
+    height: 85px;
+    transition: all 0.1s;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) {
+    height: 150px;
+    cursor: default;
+}
+
+
+/* .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1):hover {
+   
+    color: #000;
+} */
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-last-of-type(1) {
+    border-bottom: 0;
+    width: 170px;
+    float: right;
+}
+
+
+/* .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:hover {
+   
+    color: #0d47a1;
+} */
+
+.logonHeadPortrait .headPortrait .hpSecond .triangle {
+    width: 0;
+    height: 0;
+    border: 16px solid transparent;
+    border-bottom-color: #fff;
+    z-index: 999;
+    position: absolute;
+    top: -27px;
+    left: 287px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes>img {
+    width: 130px;
+    height: 130px;
+    border-radius: 130px;
+    float: left;
+    margin-right: 25px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div em {
+    font-size: 24px;
+    line-height: 85px;
+    padding-right: 10px;
+    color: #666;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) em {
+    line-height: 45px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:hover em {
+    color: #028e9b;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em {
+    float: left;
+    line-height: 1.8em;
+    /* margin-bottom: 17px; */
+    width: 225px;
+    /* margin-top: 16px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResUserName {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMarkNumber {
+    font-size: 20px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:hover {
+    color: #028e9b
+}
+
+
+/* #region 我的关注 问答 收藏 的二级导航 */
+
+.nav .hpSecondSecond {
+    position: absolute;
+    width: 465px;
+    height: 100%;
+    /* background-color: #aaa; */
+    top: 0px;
+    right: 0;
+    display: none;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #5ec4cd;
+    border-right: none;
+    /* transition: all 0.5s; */
+}
+
+.logonHeadPortrait .headPortrait .hpSecondSecond .hoverBox {
+    border-right: none;
+}
+
+.nav .hpSecondSecond::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 90%;
+    width: 1px;
+    background-color: #ccc;
+}
+
+
+/* .hpSecond>div:hover .hpSecondSecond {
+    right: 465px;
+    z-index: 999;
+} */
+
+
+/* #endregion */
+
+
+/* #region 二级导航的 icon */
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:hover .iconfont {
+    color: #028e9b;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconfont {
+    font-size: 45px;
+    position: relative;
+    top: 7px;
+    margin-right: 10px;
+    color: #999;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconwodeguanzhu {
+    top: 1px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconV {
+    top: 7px;
+    font-size: 50px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconwodeshoucang {
+    top: 0px;
+    left: 8px;
+    margin-right: 20px;
+    font-size: 37px;
+}
+
+.logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .icontuichudenglu {
+    margin-right: 0px;
+}
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* #endregion */
+
+
+/* 多媒体查询 */
+
+
+/* 70% */
+
+@media(max-width:1960px) {
+    .nav .w {
+        width: 1618px;
+    }
+    /* 个人信息面板 */
+    .logonHeadPortrait .headPortrait .hpSecond {
+        right: -65px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes>img {
+        width: 115px;
+        height: 115px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond_general {
+        padding: 25px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div em {
+        font-size: 21px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconfont {
+        font-size: 40px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) {
+        height: 125px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
+        height: 65px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em {
+        width: 190px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond {
+        height: 507px;
+        width: 420px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .myCollY .iconfont {
+        font-size: 30px
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .triangle {
+        top: -26px;
+        left: 310px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) em {
+        line-height: 40px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div.myCollY .iconfont {
+        font-size: 30px;
+    }
+    /* 二级面板的样式 */
+    .nav .hpSecondSecond {
+        width: 420px;
+    }
+    .QAndM .message .messageNotification {
+        width: 440px;
+    }
+}
+
+
+/* 80% */
+
+@media(max-width:1789px) {
+    .nav .w {
+        width: 1470px;
+    }
+    .nav .functionNav {
+        width: 180px;
+    }
+    .nav .functionNav li {
+        font-size: 18px;
+    }
+    .nav .search form {
+        height: 50px;
+    }
+    .nav .search input.searchBar {
+        width: 360px;
+        padding: 0 30px;
+    }
+    .nav .search .searchBtn {
+        width: 80px;
+    }
+    .nav .search .iconsousuo {
+        font-size: 35px;
+    }
+    .nav .search {
+        width: 502px;
+    }
+    /*消息通知  */
+    .QAndM .message .messageNotification {
+        width: 409PX;
+        height: 547px;
+        right: -96px;
+    }
+    .QAndM .message .foot .clearAllPoint {
+        font-size: 16px;
+    }
+    .QAndM .message .foot .clearAllPoint svg {
+        height: 19px;
+        margin-top: 3px;
+    }
+    /* 个人信息面板 */
+    .logonHeadPortrait .headPortrait .hpSecond {
+        right: -30px;
+        top: 82px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes>img {
+        width: 100px;
+        height: 100px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond_general {
+        padding: 20px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div em {
+        font-size: 20px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconfont {
+        font-size: 36px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) {
+        height: 111px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
+        height: 58px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em {
+        width: 170px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond {
+        height: 470px;
+        width: 390px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .myCollY .iconfont {
+        font-size: 26px
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-last-of-type(1) {
+        width: 130px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) em {
+        line-height: 35px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResUserName {
+        font-size: 23px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMarkNumber {
+        font-size: 18px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMessagePojoMajor {
+        font-size: 15px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div.myCollY .iconfont {
+        font-size: 26px;
+    }
+    /* 二级面板的样式 */
+    .nav .hpSecondSecond {
+        width: 390px;
+    }
+    .QAndM .message .messageNotification::after {
+        top: -12px;
+        right: 99.5px;
+    }
+    .logonHeadPortrait .headPortrait img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+
+/* 90% */
+
+@media(max-width:1549px) {
+    .nav {
+        height: 80px;
+    }
+    .nav .w {
+        width: 1290px;
+    }
+    .nav .logo {
+        width: 255px;
+    }
+    .nav .logo img {
+        height: 55px;
+    }
+    .nav .search form {
+        height: 45px;
+    }
+    .nav .functionNav li {
+        margin: 0 5px;
+    }
+    .nav .search input.searchBar {
+        padding: 0 20px;
+        width: 325px;
+    }
+    .nav .search .searchBtn {
+        width: 62px;
+    }
+    .nav .search .iconsousuo {
+        font-size: 32px;
+        right: 20px;
+    }
+    .QAndM {
+        margin-right: 0;
+    }
+    /* .QAndM .message .iconfont,
+    .QAndM .cueY .iconfont {
+        font-size: 35px;
+    } */
+    .nav .personal .signUpBtn {
+        height: 45px;
+        width: 130px;
+        line-height: 45px;
+    }
+    .nav .personal .signUpBtn em {
+        font-size: 16px;
+    }
+    .nav .search {
+        width: 429px;
+    }
+    .QAndM .message .messageNotification {
+        width: 379PX;
+        height: 490px;
+        right: -96px;
+        top: 63px
+    }
+    .QAndM .message .foot .clearAllPoint {
+        font-size: 14px;
+    }
+    .QAndM .message .foot .clearAllPoint svg {
+        height: 19px;
+        margin-top: 3px;
+    }
+    .logonHeadPortrait .headPortrait img {
+        width: 48px;
+        height: 48px;
+        margin-top: -4px;
+    }
+    /* 个人信息面板 */
+    .logonHeadPortrait .headPortrait .hpSecond {
+        right: -30px;
+        top: 62px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes>img {
+        width: 90px;
+        height: 90px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond_general {
+        padding: 15px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div em {
+        font-size: 18px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconfont {
+        font-size: 30px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) {
+        height: 105px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
+        height: 50px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em {
+        width: 150px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond {
+        height: 440px;
+        width: 360px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .myCollY .iconfont {
+        font-size: 20px
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-last-of-type(1) {
+        width: 120px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .triangle {
+        top: -24px;
+        left: 271px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) em {
+        line-height: 30px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResUserName {
+        font-size: 22px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMarkNumber {
+        font-size: 17px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMessagePojoMajor {
+        font-size: 14px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div.myCollY .iconfont {
+        font-size: 23px;
+    }
+    /* 二级面板的样式 */
+    .nav .hpSecondSecond {
+        width: 360px;
+    }
+    .QAndM .message .messageNotification::after {
+        top: -8px;
+        right: 102.5px;
+    }
+}
+
+
+/* 100% */
+
+@media(max-width:1280px) {
+    .nav {
+        height: 90px;
+    }
+    .nav .w {
+        width: 1158px;
+    }
+    .nav .search input.searchBar {
+        width: 248px;
+    }
+    .nav .search .searchBtn {
+        width: 50px;
+    }
+    .bottomRightSidebar {
+        right: 3px;
+        bottom: 28px;
+    }
+    .bottomRightSidebar li {
+        width: 55px;
+        height: 55px;
+        border-radius: 12px;
+    }
+    .bottomRightSidebar li .iconfont {
+        font-size: 28px;
+    }
+    .nav .search {
+        width: 350px;
+    }
+    .QAndM .message .messageNotification {
+        width: 337PX;
+        height: 452px;
+        right: -66px;
+        top: 55px
+    }
+    .QAndM .message .foot .clearAllPoint {
+        font-size: 13px;
+    }
+    .QAndM .message .foot .clearAllPoint svg {
+        height: 18px;
+        margin-top: 3px;
+    }
+    .logonHeadPortrait {
+        height: 60px;
+        margin-top: 18px;
+    }
+    .logonHeadPortrait .headPortrait img {
+        height: 42px;
+        width: 42px;
+        margin-top: 4px
+    }
+    /* 个人信息面板 */
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes>img {
+        width: 78px;
+        height: 78px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond_general {
+        padding: 10px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div em {
+        font-size: 16px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div .iconfont {
+        font-size: 27px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) {
+        height: 90px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
+        height: 45px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em {
+        width: 130px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond {
+        height: 420px;
+        width: 330px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .myCollY .iconfont {
+        font-size: 18px
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-last-of-type(1) {
+        width: 110px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .ResUserName {
+        font-size: 20px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .ResMarkNumber {
+        font-size: 16px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond {
+        height: 370px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .triangle {
+        left: 240px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div:nth-of-type(1) em {
+        line-height: 25px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResUserName {
+        font-size: 20px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMarkNumber {
+        font-size: 16px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general .ResMessagePojoMajor {
+        font-size: 13px;
+    }
+    .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div.myCollY .iconfont {
+        font-size: 19px;
+    }
+    /* 二级面板的样式 */
+    .nav .hpSecondSecond {
+        width: 330px;
+    }
+    .QAndM .message .messageNotification::after {
+        top: -8px;
+        right: 71.5px;
+    }
+}
