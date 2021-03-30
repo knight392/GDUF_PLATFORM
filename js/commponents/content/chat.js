@@ -1,64 +1,11 @@
-
-
-// 登录成功和自动登录后会进行自动与服务器进行连接
-
-
-//每个页面都写一个
-
-
-$(".logon1").on("click", logon1);
-$(".logon2").on("click", logon2);
-
-
-
-//模拟登录成功和自动登录
-function logon1() {
-  $.cookie("markNumber", "191543214", { expires: 1 });
-  $.cookie("face", "../img/use1 (1).jpg", { expires: 1 });
-  $.cookie("userName", "冯某某", { expires: 1 });
-  setCookie("markNumber", "191543214")
-  var json = {
-    "markNumber": "191543214",
-    "face": "../img/use1 (1).jpg",
-    "userName": "冯某某"
-  }
-  setCookie(json, 1);
-  displayTipPane("登录用户1")
-  initialWebSocket();//首次与服务器进行连接
-
-}
-function logon2() {
-  $.cookie("markNumber", "191541227", { expires: 1 });
-  // console.log($.cookie("markNumber"));
-  $.cookie("face", "../img/use1 (2).jpg", { expires: 1 });
-  $.cookie("userName", "吴某某", { expires: 1 });
-
-  displayTipPane("登录用户2");
-  initialWebSocket();//首次与服务器进行连接
-}
-
-// 退出登录
-$(".logOut").on("click", function () {
-  $.removeCookie("markNumber");
-  $.removeCookie("face");
-  $.removeCookie("userName");
-  ws.close();
-  $(".platform_chat").fadeOut();
-  // displayTipPane("退出登录!WebSocket断开连接!");
-})
-
-
-
 //聊天
-var lockReconnect = false;//避免重复连接
-var myMarkNumber = "191543214";//要获取cookie
-var wantToSendMarkNumber = "123456789";//随便写一个，目的是与服务进行连接
-var url = "ws://192.168.137.105:8080/WebSocket";
-var wsUrl //点击某一个私信后重新修改
-var ws;
-var tt;
-var ulNode = document.getElementById("ulNode");
-var screen_inner = document.getElementById("screen_inner");
+let lockReconnect = false;//避免重复连接
+let url = "ws://192.168.137.105:8080/WebSocket";
+let wsUrl //点击某一个私信后重新修改
+let ws;
+let tt;
+let ulNode = document.getElementById("ulNode");
+let screen_inner = document.getElementById("screen_inner");
 
 // initialWebSocket();//首次与服务器进行连接
 
@@ -68,7 +15,7 @@ function closeWebSocket() {
   $(".platform_chat").fadeOut();
 }
 
-var lastTarget = null;
+let lastTarget = null;
 // 开始聊天,点击私信进行连接
 $(".chatBtn").on("click", function () {
   wantToSendMarkNumber = $(this).attr("target");
@@ -102,15 +49,15 @@ function loadHistoryInfo(target) {//获取与某一个人的具体历史信息�
 // 文本发送
 function getTextInfo() {
   //判空处理
-  var reg = /^\s*$/
+  let reg = /^\s*$/
   if (reg.test($(".platform_chat textarea").val())) {
     displayTipPane("输入文本不能为空！")
     $(".platform_chat textarea").val("");
     return null;
   }
-  var date = new Date();
-  var sendTime = date.getTime();
-  var textInfo = {
+  let date = new Date();
+  let sendTime = date.getTime();
+  let textInfo = {
     "senderMarkNumber": myMarkNumber,
     "senderFace": $.cookie("face"),
     "senderName": $.cookie("userName"),
@@ -123,7 +70,7 @@ function getTextInfo() {
 }
 
 function sendText() {
-  var textInfo = getTextInfo();
+  let textInfo = getTextInfo();
   if (textInfo != null) {//非空
     addSend(textInfo);
     ws.send(JSON.stringify(textInfo));//发送json对象
@@ -152,9 +99,9 @@ $(".platform_chat textarea").on("keydown", function (e) {
 
 //表情发送, 鼠标点击某一个表情时触发函数
 function setFaceEventListener() {
-  var date = new Date();
-  var sendTime = date.getTime();
-  var faceInfo = {
+  let date = new Date();
+  let sendTime = date.getTime();
+  let faceInfo = {
     "senderMarkNumber": myMarkNumber,
     "senderFace": $.cookie("face"),
     "senderName": $.cookie("userName"),
@@ -184,11 +131,11 @@ $('.platform_chat .picture').click(() => {
 })
 $('#sendImgBtn').change(readFile_chat);
 //读图片，添加到输入框中
-var oinput = document.getElementById("sendImgBtn");
+let oinput = document.getElementById("sendImgBtn");
 
 //读取文件
 function readFile_chat() {
-  var formdata = new FormData();
+  let formdata = new FormData();
   if (!oinput['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　 //判断上传文件格式
     return displayTipPane("图片格式有误！");
   }
@@ -198,7 +145,7 @@ function readFile_chat() {
   sendImage_chat(formdata);
 }
 
-var sendingImg = false;
+let sendingImg = false;
 function sendImage_chat(formdata) {
   sendingImg = true;
   $.ajax({
@@ -228,9 +175,9 @@ function sendImage_chat(formdata) {
 
 //发送图片信息
 function sendImg_chatContent(url) {
-  var date = new Date();
-  var sendTime = date.getTime();
-  var imgInfo = {
+  let date = new Date();
+  let sendTime = date.getTime();
+  let imgInfo = {
     "senderMarkNumber": myMarkNumber,
     "senderFace": $.cookie("face"),
     "senderName": $.cookie("userName"),
@@ -269,7 +216,7 @@ function addReceived(data) {
   data = JSON.parse(data);
   // console.log(data);
 
-  var liNode = document.createElement("li");
+  let liNode = document.createElement("li");
   liNode.classList.add("target");
   if (data.contentType == "text") {
     liNode.innerHTML = '<img class="profile" src="' + data.senderFace + '"><span class="text">' + data.content + '</span>';
@@ -279,7 +226,7 @@ function addReceived(data) {
     // data.content = "http://192.168.137.105:8080"+data.content.substring(2);
     liNode.innerHTML = '<img class="profile" src="' + data.senderFace + '"><span class="text"><img  src="' + data.content + '" style="max-width:130px; margin:5px;border-radius:4px;cursor:zoom-in;cursor:-webkit-zoom-in" class="fadein_img"></span>';
     ulNode.appendChild(liNode);
-    // var oImg = liNode.getElementsByTagName("img")[0];
+    // let oImg = liNode.getElementsByTagName("img")[0];
     rebindSeeImage();
     isImgLoad(function () {
       screen_inner.scrollTop = screen_inner.scrollHeight - screen_inner.clientHeight;
@@ -293,7 +240,7 @@ function addReceived(data) {
 function addSend(data) {
   // displayTipPane(data);
   //判断data类型 img | text
-  var liNode = document.createElement("li");
+  let liNode = document.createElement("li");
   liNode.classList.add("me");
 
   if (data.contentType == "text") {
@@ -307,7 +254,7 @@ function addSend(data) {
     liNode.innerHTML = '<span class="text"><img  src="' + data.content + '" style="max-width:130px; border-radius:4px; margin:5px;cursor:zoom-in;cursor:zoom-in;cursor:-webkit-zoom-in" class="fadein_img"></span><img class="profile" src="' + data.senderFace + '">';
     ulNode.appendChild(liNode);
     //添加事件
-    // var oImg = liNode.getElementsByTagName("img")[0];
+    // let oImg = liNode.getElementsByTagName("img")[0];
     // $(oImg).on('click',rebindSeeImage);
     rebindSeeImage();
     isImgLoad(function () {
@@ -381,13 +328,13 @@ function reconnect() {
   }, 4000);
 }
 //心跳检测
-var heartCheck = {
+let heartCheck = {
   timeout: 3000,
   timeoutObj: null,
   serverTimeoutObj: null,
   start: function () {
     // displayTipPane('start');
-    var self = this;
+    let self = this;
     this.timeoutObj && clearTimeout(this.timeoutObj);
     this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
     this.timeoutObj = setTimeout(function () {
@@ -427,8 +374,8 @@ function createWebSocket1() {
 // 制作表情面板
 
 function addFace() {
-  for (var i = 1; i <= 25; i++) {
-    var oImg = $('<img src="../emoji/' + i + '.png">');
+  for (let i = 1; i <= 25; i++) {
+    let oImg = $('<img src="../emoji/' + i + '.png">');
     $(".facePane").append(oImg);
     oImg.on("click", setFaceEventListener);
   }

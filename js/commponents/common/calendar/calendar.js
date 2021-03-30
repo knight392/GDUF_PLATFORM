@@ -15,36 +15,18 @@ function setCalendar(year, month) {//设置展示样式
     for (let j = 0; j < 7; j++) {
       $(table[i][j]).removeClass("fill");
       $(table[i][j]).removeClass("today");
-
       $(table[i][j]).html("");
       if (calendar[i][j] != "" && calendar[i][j] != null && calendar[i][j] != undefined) {
         $(table[i][j]).addClass("fill");
       }
-
       $(table[i][j]).html(calendar[i][j]);
       if (date_now.getFullYear() == year && (date_now.getMonth() + 1) == month && $(table[i][j]).html() == date_now.getDate()) {
         $(table[i][j]).addClass("today");
       }
     }
   }
-
-
   $(".calendar .day .fill").off("click");
-
   $(".calendar .day .fill").on("click", getTime);
-  //标出当天
-  //判断展示的年月是否和实际的年月相同
-
-
-  // if(date_now.getFullYear()==year && (date_now.getMonth()+1)==month){
-  //     console.log("相同")
-  //     for(let i=0; i<6; i++){
-  //         for(let j=0; j<7; j++){
-
-  //         }
-  //     }
-  // }
-  // console.log(table);
 }
 let date = new Date();
 // console.log(date);
@@ -86,15 +68,9 @@ $(".switch_btn_calendar .down").click(function () {
   setYearMonth();
   //2000年为基准年,不能求它小于日历
   setCalendar(nowYear, nowMonth);
-
   // $(".calendar .day .flil").click(getTime)
 })
-
-
 //获取时间
-
-
-
 function getTime() {
   // console.log(nowYear+"年"+nowMonth+"月"+$(this).html()+"日");
   $(".timeBox .time_display .yearNum").html(nowYear);
