@@ -1,4 +1,10 @@
-function template(id, data) {
+/**
+ * 模板引擎替换函数
+ * @param {*} id 
+ * @param {*} data 
+ * @returns 
+ */
+export default function template(id, data) {
     var reg = /{{(\w+)}}/;
     id = "#" + id;
     var str = document.querySelector(id).innerHTML;

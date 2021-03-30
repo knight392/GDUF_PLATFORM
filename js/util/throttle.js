@@ -1,4 +1,9 @@
-function throttle(fn) {
+/**
+ * 节流函数, 多次触发事件时，间隔事件执行
+ * @param {*} fn 
+ * @returns 
+ */
+export default function throttle(fn) {
   let canRun = true; // 通过闭包保存一个标记
   return function () {
     if (!canRun) return; // 在函数开头判断标记是否为 true，不为 true 则 return
