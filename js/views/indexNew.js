@@ -112,7 +112,7 @@ $(function() {
 
     const rcnext = function() {
         rcnextp();
-        var temp = rcindex;
+        const temp = rcindex;
         rcindex = rcleftindex;
         rcleftindex = rcrightindex;
         rcrightindex = temp;
@@ -125,12 +125,10 @@ $(function() {
         rcindex = rcrightindex;
         rcrightindex = rcleftindex;
         rcleftindex = temp;
-
         rcbackp();
     }
 
     const rcnextp = function() {
-
         $('.rc-picturesY li').eq(rcindex).animate({
             'left': '0',
             'transition': 'left 3s ease-in',
@@ -231,9 +229,6 @@ $(function() {
 
     //#endregion
 
-    //#region 功能介绍部分 进入页面出现动画效果
-
-
     //#region 失物招领
     const lostfoundYOpacityPosition = function(opacityY, positionY) {
         $('.inlaf').css({
@@ -317,33 +312,23 @@ $(function() {
 
     //#endregion
 
-    //#endregion
-
     //#region 学校新闻 √
 
     //#region 点击换一批 新闻页面 换一批
-
-
     $(".changeTheBatchNews").on({
-
         click: function() {
-
-            var indexCur = parseInt($(this).siblings("ul").find(".displayNewsDiv").attr("data-part"));
-            console.log(indexCur);
-            console.log(indexCur <= $(this).siblings("ul").find(".NewsDiv").length);
+            let indexCur = parseInt($(this).siblings("ul").find(".displayNewsDiv").attr("data-part"));
             if (indexCur < $(this).siblings("ul").find(".NewsDiv").length - 1) {
                 indexCur++;
                 $(this).siblings("ul").find(".NewsDiv").eq(indexCur).addClass("displayNewsDiv");
                 $(this).siblings("ul").find(".NewsDiv").eq(indexCur).siblings().removeClass("displayNewsDiv");
             } else {
-
                 indexCur = 0;
                 $(this).siblings("ul").find(".NewsDiv").eq(0).addClass("displayNewsDiv");
                 $(this).siblings("ul").find(".NewsDiv").eq(0).siblings().removeClass("displayNewsDiv");
             }
         }
-    })
-
+    });
     //#endregion
 
     //#region 添加title
@@ -354,8 +339,7 @@ $(function() {
     }
     for (let i = 0; i < sourceNews.length; i++) {
         sourceNews[i].title = sourceNews[i].innerText;
-    }
-
+    };
     //#endregion
 
     //#endregion
