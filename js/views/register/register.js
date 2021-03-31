@@ -1,19 +1,15 @@
-import {baseHttpURL} from '../common/baseRequestInfo.js'
-import request from '../util/request.js'
+import { baseHttpURL } from '../../common/baseRequestInfo';
+import request from '../../util/request';
+import { isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste, set_displayMessage, forbidSendConfirm } from './tools'
 //发送验证码 每60s发一次
 
 //禁用 倒计时 disable属性
 
 //验证码
-let confirmCode = "1";
-let time = 0;
-let timer = null;
-
 const requestData = {
   email: "", //发送请求的邮箱
   requestType: "get"
 }
-
 let markNumber = null; //学号或教工号
 let email = null; //注册成功后的最终邮箱
 let userType = null; //用户类型。student / teacher
@@ -21,39 +17,8 @@ let userType = null; //用户类型。student / teacher
 $('input[type=text]').val('');
 //点击后开始发送请求，禁用按钮,开始定时器
 
-//判断输入框是否为空
-function isEmpty($obj, $errorMessage) {
-  if ($obj.val() == '') {
-    $obj.attr('placeholder', $errorMessage);
-    $obj.addClass('error');
-    return true;
-  }
-  return false;
-}
 
 
-//设置发送验证的按钮的样式
-function setSendBtn() {
-  //console.log("定时器");
-  if (time == 0) {
-    clearInterval(timer);
-    $('.send_btn').removeAttr('disabled');
-    $('.send_btn').removeClass('btn_disable');
-    $('.send_btn').addClass('btn_available');
-    $('.send_btn').val("发送验证码");
-  } else {
-    time--;
-    $('.send_btn').val(time + "s后重发");
-  }
-}
-
-
-
-//清空错误信息
-function clearErrorMessage($obj, $tip) {
-  $obj.attr('placeholder', $tip);
-  $obj.removeClass('error');
-}
 
 //设置一些输入框样式
 $('.email_input').on("focus", function () {
@@ -74,8 +39,6 @@ function statusDisplay() {
   $('.status header').fadeOut();
   $('.status .content').fadeIn();
 }
-
-
 //身份选择
 $('.individual').bind("click", function () {
   $('.status').removeClass('status_display');
@@ -92,99 +55,40 @@ $('.individual').bind("click", function () {
     $('.email_tail').html('gduf.edu.cn');
   }
 })
-
 //身份切换
 $('.alter').bind("click", function () {
   $('.status').addClass('status_display');
   statusDisplay();
 })
-//邮箱有效性验证 //不能为中文
-function isEmailAvailable($errorMessage) {
-  let $obj = $(".email_input");
-  let reg = /^m.*$/;
-  let reg2 = /[\u4E00-\u9FFF]+/;//非中文
-  if (reg2.test($obj.val())) {
-    $obj.attr('placeholder', $errorMessage);
-    $obj.val("");
-    $obj.addClass('error');
 
-    return false;
-  }
-  //学生
-  if (reg.test($('.email_tail').html())) {
-    let reg1 = /^(\d|\w){9}$/; //开头和结尾一定要做好
-    if (!reg1.test($('.email_input').val())) {
-      $obj.val("");
-      $obj.attr('placeholder', $errorMessage);
-      $obj.addClass('error');
-      return false;
-    }
-  }
-  return true;
-}
-
-//判断用户名、邮箱是否存在
-function dataIsExiste(field, value, errorMessage) {
-  let result = false;
-  
-  $.ajax({
-    url: '../Servlet/IsExistInfoServlet',
-    data: {
-      field: field,
-      value: value,
-      requestTpye: "get",
-      userType: userType,
-    },
-
-    success: function (res) {
-      if (res.statusCode == 200) {
-        set_displayMessage(errorMessage);
-        result = true;
-      } else {
-        if (field == 'userName') {
-          $('.userName .success_icon').css("display", "block");
-        }
-      }
-    }
-  });
-
-  return result;
-}
-
-function getUserType() {
-  let reg = /^m/;
-  if (reg.test($('.email_tail').html())) {
-    return 'student';
-  }
-  return 'teacher';
-}
 
 //发送验证码的逻辑
 //定时器做的工作，减少数字，显示数字，当time==0时，清除定时器，并且把按钮重新恢复，并改变内容
 $('.send_btn').click(function () {
-
   if (time == 0 && !isEmpty($('.email_input'), "邮箱禁止为空！") && isEmailAvailable("邮箱有误！")) {
     requestData.email = $('.email_input').val() + "@" + $('.email_tail').html();
-    userType = getUserType();
-    if (!dataIsExiste('email', requestData.email, "该邮箱已被注册！")) {
-      //    console.log(requestData.email);
-      // console.log('发送验证码');
-      $.get("../Servlet/VerifyCodeServlet", {
-        email: requestData.email,
-        requestType: "get"
-      }, function (res) {
-        confirmCode = res.message.toLowerCase();
-      });
-      time = 60;
-      $('.send_btn').attr("disabled", "disabled");
-      $('.send_btn').addClass('btn_disable');
-      $('.send_btn').removeClass('btn_available');
-      $('.confirm_input').val("");
-      timer = setInterval(setSendBtn, 1000);
-      $('.send_btn').val("60s后重发");
-    }
+    userType = getUserType(); // 这是全局变量不能改
+    //判断数据是否存在
+    dataIsExiste('email', requestData.email, userType).then(res => {
+      // 200 存在 | 500 不再
+      if (res == true) {
+        set_displayMessage('该邮箱已被注册！')
+      } else {
+        request(`${baseHttpURL}/Servlet/VerifyCodeServlet`, {
+          email: requestData.email,
+          requestType: 'get'
+        }).then(res => {
+          set_displayMessage('发送成功，请注意查收！');
+          forbidSendConfirm();
+        }, err => {
+          set_displayMessage('发送失败，请重新发送！');
+        })
+      }
+    })
   }
 })
+
+
 
 
 //输入判空
@@ -467,14 +371,6 @@ function pwdIsVailable(pwd) {
   return (reg.test(pwd));
 }
 
-//设置错误信息
-function set_displayMessage(message, duration) {
-  $('.modal_content').html(message);
-  $('.modal_bg').fadeIn();
-  setTimeout(() => {
-    $('.modal_bg').fadeOut();
-  }, duration || 1200)//默认2s
-}
 
 //设置成成功信息
 
