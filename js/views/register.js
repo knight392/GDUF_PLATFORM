@@ -1,3 +1,5 @@
+import {baseHttpURL} from '../common/baseRequestInfo.js'
+import request from '../util/request.js'
 //发送验证码 每60s发一次
 
 //禁用 倒计时 disable属性
@@ -7,7 +9,7 @@ let confirmCode = "1";
 let time = 0;
 let timer = null;
 
-let requestData = {
+const requestData = {
   email: "", //发送请求的邮箱
   requestType: "get"
 }
@@ -15,9 +17,6 @@ let requestData = {
 let markNumber = null; //学号或教工号
 let email = null; //注册成功后的最终邮箱
 let userType = null; //用户类型。student / teacher
-
-const baseURL = '';
-
 //清除原来的输入框的缓存
 $('input[type=text]').val('');
 //点击后开始发送请求，禁用按钮,开始定时器
@@ -58,11 +57,9 @@ function clearErrorMessage($obj, $tip) {
 
 //设置一些输入框样式
 $('.email_input').on("focus", function () {
-
   clearErrorMessage($('.email_input'), '请输入校园邮箱');
 });
 $('.confirm_input').on("focus", function () {
-
   clearErrorMessage($('.confirm_input'), '请输入验证码');
 });
 $('.input_text_page1').bind('focus', function () {
@@ -128,9 +125,8 @@ function isEmailAvailable($errorMessage) {
 
 //判断用户名、邮箱是否存在
 function dataIsExiste(field, value, errorMessage) {
-  //设置同步请求
-
   let result = false;
+  
   $.ajax({
     url: '../Servlet/IsExistInfoServlet',
     data: {
