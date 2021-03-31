@@ -265,11 +265,6 @@ body {
 
 /* #region                           校区互通 */
 
-.functionPartY .fp-pictureY .campusInterworkY:hover .mask {
-    /* background-color: rgba(0, 0, 0, 0.4); */
-    /* background-color: rgba(2, 142, 155, 0.5); */
-}
-
 .functionPartY .fp-pictureY .campusInterworkY .mask .ci-h3 {
     width: 30%;
     height: 100%;
