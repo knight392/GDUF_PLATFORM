@@ -1,7 +1,10 @@
-window.onload = function(e) {
+import { chart, rcnextp } from '../commponents/content/chart3bgimgY.js';
+
+window.onload = function() {
 
     //#region 设置高度
-    $(".rotationChartY .rc-picturesY>li").css("height", window.innerHeight + 'px'); //轮播图的父元素
+    $(".rotationChartY .rc-picturesY").css("height", window.innerHeight + 'px'); //轮播图的背景父元素
+    $(".rotationChartY .rc-picturesY>li").css("height", window.innerHeight + 'px'); //轮播图背景元素
     $(".functionPartY .fp-pictureY>li").css("height", window.innerHeight + 'px'); //功能介绍
     $(".beforeFooter").css("height", window.innerHeight - 60 + 'px'); //页脚前part
     //#endregion
@@ -15,33 +18,13 @@ window.onload = function(e) {
     //#endregion    
 
     //#region 轮播图
-
-    $('.rc-picturesY li').eq(0).animate({
-        'left': '0',
-        'transition': 'left 3s ease-in',
-    });
-
-    $('.rc-picturesY li').eq(0).css({
-        'z-index': '11',
-    });
-
-    $('.rc-picturesY li').eq(1).css({
-        'z-index': '10',
-        'left': '-100%',
-        'transition': 'none',
-    });
-
-    $('.rc-picturesY li').eq(2).css({
-        'z-index': '10',
-        'left': '0',
-        'transition': 'none',
-    });
-
+    rcnextp('.rc-picturesY li', 0, 1, 2);
     //#endregion
 
 }
 
-$(function() {
+$(function() {;
+
     //#region 悬停导航栏更多 出现导航栏 + 导航栏
 
     $('.showNavY').on({
@@ -104,129 +87,8 @@ $(function() {
 
     //#endregion
 
-    //#region 轮播图 左右拖动
-
-    let rcindex = 0;
-    let rcleftindex = 1;
-    let rcrightindex = 2;
-
-    const rcnext = function() {
-        rcnextp();
-        const temp = rcindex;
-        rcindex = rcleftindex;
-        rcleftindex = rcrightindex;
-        rcrightindex = temp;
-        rcnextp();
-    }
-
-    const rcback = function() {
-        rcbackp();
-        const temp = rcindex;
-        rcindex = rcrightindex;
-        rcrightindex = rcleftindex;
-        rcleftindex = temp;
-        rcbackp();
-    }
-
-    const rcnextp = function() {
-        $('.rc-picturesY li').eq(rcindex).animate({
-            'left': '0',
-            'transition': 'left 3s ease-in',
-        });
-
-        $('.rc-picturesY li').eq(rcindex).css({
-            'z-index': '11',
-        });
-
-        $('.rc-picturesY li').eq(rcleftindex).css({
-            'z-index': '10',
-            'left': '-100%',
-            'transition': 'none',
-        });
-
-        $('.rc-picturesY li').eq(rcrightindex).css({
-            'z-index': '10',
-            'left': '0',
-            'transition': 'none',
-        });
-    }
-
-    const rcbackp = function() {
-        $('.rc-picturesY li').eq(rcindex).animate({
-            'left': '0',
-            'transition': 'right 3s ease-in',
-        });
-
-        $('.rc-picturesY li').eq(rcindex).css({
-            'z-index': '11',
-        });
-
-        $('.rc-picturesY li').eq(rcleftindex).css({
-            'left': '0',
-            'z-index': '10',
-            'transition': 'none',
-        });
-
-        $('.rc-picturesY li').eq(rcrightindex).css({
-            'z-index': '10',
-            'left': '100%',
-            'transition': 'none',
-        });
-    }
-
-    let time = 0;
-    let rctimer;
-    rctimer = setInterval(function() {
-        time++;
-        if (time == 50) {
-            time = 0;
-            rcnext();
-        }
-    }, 100)
-
-
-    $('.rc-back').on({
-        click: function() {
-            time = 0;
-            rcback();
-        }
-    });
-
-    $('.rc-next').on({
-        click: function() {
-            time = 0;
-            rcnext();
-        }
-    })
-
-    $('.rotationChartY').on({
-        mouseenter: function() {
-            $('.rc-back').show(500);
-            $('.rc-next').show(500);
-            clearInterval(rctimer);
-            time = 0;
-        },
-        mouseover: function() {
-            $('.rc-back').show(500);
-            $('.rc-next').show(500);
-            clearInterval(rctimer);
-            time = 0;
-        },
-        mouseleave: function() {
-            clearInterval(rctimer);
-            rctimer = setInterval(function() {
-                time++;
-                if (time == 50) {
-                    time = 0;
-                    rcnext();
-                }
-            }, 100)
-            $('.rc-back').hide(500);
-            $('.rc-next').hide(500);
-        },
-
-    })
-
+    //#region 轮播图 
+    chart('.rc-picturesY li', '.rc-back', '.rc-next', '.rotationChartY');
     //#endregion
 
     //#region 失物招领
