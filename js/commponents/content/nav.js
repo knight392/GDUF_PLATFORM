@@ -1,4 +1,6 @@
 import debounce from '../../util/debounce.js'
+import { host } from '../../views/index.js'
+import displayTipPane from '../content/tipPane.js'
 window.onload = function() {
     //#region 清空搜索框内的内容 √
     $(".search .searchBar").val("");
@@ -53,10 +55,7 @@ $(function() {
         }
     })
 
-    //#region 搜索框 √
-
-
-    //#region 点击 + 得失焦点 + 节流 √ 
+    //#region 搜索框 √ 点击 + 得失焦点 + 节流 √ 
 
     $(".search").on({
         click: function(e) {
@@ -65,7 +64,6 @@ $(function() {
     })
 
     $(".nav").find(".searchBar").on({
-
         blur: function() {
             //搜索框失去焦点 bar/btn 的边框圆角 变会 + bar 的背景 变回半透明 + 联想内容 隐藏
             $(".searchBar").css("borderRadius", "40px 0 0 40px");
@@ -76,77 +74,72 @@ $(function() {
             //失去焦点 清空li的内容
             // $(this).parent().siblings(".searchContent").find("li").remove();
 
-        },
-
-        //#endregion
+        }
     })
 
     //#region 节流
     $(".nav").find(".searchBar").bind("keyup", debounce(function() {
-        //键盘抬起事件 + val() 非空 发送请求 
-        // console.log($(this).val());
-        if ($(this).val() != null || $(this).val() != "") {
-            //搜索框获得焦点 bar/btn 的边框圆角 变化 + bar 的背景 变白 + 联想内容 显示
-            $(".searchBar").css("borderRadius", "16px 0 0 0");
-            $(".searchBtn").css("borderRadius", "0 16px 0 0");
-            $(this).css("backgroundColor", "#fff");
-            $(this).parent().siblings(".searchContent").show(200);
-        } else {
-            $(".searchBar").css("borderRadius", "40px 0 0 40px");
-            $(".searchBtn").css("borderRadius", "0 40px 40px 0");
-            $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
-            $(this).parent().siblings(".searchContent").hide(200);
-        }
+            //键盘抬起事件 + val() 非空 发送请求 
+            // console.log($(this).val());
+            if ($(this).val() != null || $(this).val() != "") {
+                //搜索框获得焦点 bar/btn 的边框圆角 变化 + bar 的背景 变白 + 联想内容 显示
+                $(".searchBar").css("borderRadius", "16px 0 0 0");
+                $(".searchBtn").css("borderRadius", "0 16px 0 0");
+                $(this).css("backgroundColor", "#fff");
+                $(this).parent().siblings(".searchContent").show(200);
+            } else {
+                $(".searchBar").css("borderRadius", "40px 0 0 40px");
+                $(".searchBtn").css("borderRadius", "0 40px 40px 0");
+                $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
+                $(this).parent().siblings(".searchContent").hide(200);
+            }
 
-        if ($(this).val() != "") {
-            $.get('../Servlet/MainPageServlet', {
-                requestType: 'get',
-                getType: "explore",
-                exploreContent: $(this).val(),
-            }, function(res) {
-                // console.log(res);  
-                $('.search .searchContent li').remove();
-                let indexli = 0;
-                let url;
-                let icon;
-                for (let i = 0; i < res.dataList.length && i < 5; i++) {
-                    //判断是哪个篇 的 然后获取 创建iconfont
-                    if (res.dataList[i].questionType === "学习篇") {
-                        icon = "iconxuexi";
-                    } else if (res.dataList[i].questionType === "期末篇") {
-                        icon = "iconkaoshi3";
-                    } else if (res.dataList[i].questionType === "宿舍篇") {
-                        icon = "iconsushe";
-                    } else if (res.dataList[i].questionType === "食堂篇") {
-                        icon = "iconshitang";
-                    } else if (res.dataList[i].questionType === "考证篇") {
-                        icon = "iconziyuan";
-                    } else {
-                        icon = "iconqita";
+            if ($(this).val() != "") {
+                $.get(host + 'Servlet/MainPageServlet', {
+                    requestType: 'get',
+                    getType: "explore",
+                    exploreContent: $(this).val(),
+                }, function(res) {
+                    // console.log(res);  
+                    $('.search .searchContent li').remove();
+                    let indexli = 0;
+                    let url;
+                    let icon;
+                    for (let i = 0; i < res.dataList.length && i < 5; i++) {
+                        //判断是哪个篇 的 然后获取 创建iconfont
+                        if (res.dataList[i].questionType === "学习篇") {
+                            icon = "iconxuexi";
+                        } else if (res.dataList[i].questionType === "期末篇") {
+                            icon = "iconkaoshi3";
+                        } else if (res.dataList[i].questionType === "宿舍篇") {
+                            icon = "iconsushe";
+                        } else if (res.dataList[i].questionType === "食堂篇") {
+                            icon = "iconshitang";
+                        } else if (res.dataList[i].questionType === "考证篇") {
+                            icon = "iconziyuan";
+                        } else {
+                            icon = "iconqita";
+                        }
+                        url = 'questionPage.html?id=' + res.dataList[i].id;
+
+                        if (indexli < 5) {
+                            const li = $('<li><span><i class="iconfont ' + icon + ' "></i></span><a target="_blank" href=" ' + url + ' ">' + res.dataList[i].title + '</a></li>');
+                            $(".search .searchContent").prepend(li);
+                            $(".search .searchContent").find("li").eq(i).html(res.dataList[i].title);
+                            indexli++;
+                        }
                     }
-                    url = 'questionPage.html?id=' + res.dataList[i].id;
-
-                    if (indexli < 5) {
-                        const li = $('<li><span><i class="iconfont ' + icon + ' "></i></span><a target="_blank" href=" ' + url + ' ">' + res.dataList[i].title + '</a></li>');
-                        $(".search .searchContent").prepend(li);
-                        $(".search .searchContent").find("li").eq(i).html(res.dataList[i].title);
-                        indexli++;
-                    }
-                }
-            }, 'json')
-        } else {
-            $(".searchContent").find('li').remove();
-            $(".search").find(".searchBar").val("");
-            $(".searchBar").css("borderRadius", "40px 0 0 40px");
-            $(".searchBtn").css("borderRadius", "0 40px 40px 0");
-            $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
-            $(this).parent().siblings(".searchContent").hide(200);
-        }
-    }, 250, true))
-
-    //#endregion
-
-    //#endregion
+                }, 'json')
+            } else {
+                $(".searchContent").find('li').remove();
+                $(".search").find(".searchBar").val("");
+                $(".searchBar").css("borderRadius", "40px 0 0 40px");
+                $(".searchBtn").css("borderRadius", "0 40px 40px 0");
+                $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
+                $(this).parent().siblings(".searchContent").hide(200);
+            }
+        }, 250, true))
+        //#endregion
 
     //#endregion
 
@@ -155,11 +148,9 @@ $(function() {
     //#region 点击登录button进入登录弹框 √
 
     $('.fadein').click(function() {
-        // $("input").val("");
         $(".logOn").siblings().fadeOut();
         $(".logOn").fadeIn();
         $(".modal_bg_logon").fadeIn(); //远安修改代码 解决类名冲突
-        // $('.modal_bg').fadeIn();
         $('.modal').css({
             transform: 'translate(-50%,-50%) scale(1)'
         })
@@ -170,7 +161,6 @@ $(function() {
         $('.logonBody .logonYmadal').css({
             transform: 'translate(-50%,-50%) scale(0.7)'
         })
-
     })
 
     //#endregion
@@ -209,7 +199,7 @@ $(function() {
         if (pwd === "" || account === "") {
             displayTipPane('用户名/密码不能为空');
         } else {
-            $.get('../Servlet/UserServlet', {
+            $.get(host + 'Servlet/UserServlet', {
                 password: pwd,
                 loginValue: account,
                 requestType: 'get',

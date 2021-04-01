@@ -68,7 +68,7 @@ button {
 }
 
 .logonBody .modal {
-    background-color: rgba(255,255,255,0.96);
+    background-color: rgba(255, 255, 255, 0.96);
     border-radius: 24px;
     width: 900px;
     height: 750px;
@@ -115,7 +115,7 @@ button {
 
 .modal_head button {
     /* 相对于整个模态框 的定位  */
-    position: relative;
+    position: absolute;
     top: 10px;
     right: 36px;
     /* right: 342px; */
@@ -130,11 +130,11 @@ button {
 .modal_head b {
     display: block;
     width: 100%;
-    font-family: "幼圆";
+    /* font-family:  "微软"; */
     text-align: center;
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 200px;
+    /* font-size: 50px; */
+    font-weight: 500;
+    /* line-height: 200px; */
     letter-spacing: 5px;
 }
 
@@ -177,7 +177,7 @@ button {
     width: 188px;
     height: 77px;
     margin: 20px;
-    color:#666;
+    color: #666;
     box-sizing: content-box;
     cursor: pointer;
     transition: all 0.2s;
@@ -231,8 +231,7 @@ button {
     font-size: 35px;
     color: #555;
     position: absolute;
-    bottom:5%;
-   
+    bottom: 5%;
 }
 
 
@@ -241,16 +240,19 @@ button {
 
 /* #region 登录--学生/教师  logOnDisplay控制 表单/b/h2 的显示  */
 
+
 /* .modal_content .logOn .logOnDisplay h2 {
     /* h2 在非logOnDisplay 时 字体不粗(整体定义的h2)  */
-    /* font-weight: 500;
-} */ 
+
+
+/* font-weight: 500;
+} */
 
 .modal_content .logOn .logOnDisplay b {
     /* b 在非logOnDisplay时  无 */
     /* 父级定位在 h2 */
     position: absolute;
-    bottom:0;
+    bottom: 0;
     left: 15px;
     display: block;
     width: 154px;
@@ -292,15 +294,12 @@ button {
     font-size: 29px;
 }
 
-
-
 .modal_content .logOn .btnLogon {
-    right:0px;
+    right: 0px;
 }
 
 .modal_content .logOn .btnRegister {
-   
-    left:0px;
+    left: 0px;
 }
 
 .modal_content b.aForgetPas {
@@ -408,11 +407,12 @@ button {
     font-weight: 700;
     font-size: 38px;
     color: #333333;
+    line-height: 35px;
 }
 
 .modal_content .forgetPas .forgetPasLast,
 .modal_content .forgetPas .forgetPasNext {
-    bottom:0;
+    bottom: 0;
     width: 249px;
     height: 63px;
 }
@@ -420,8 +420,9 @@ button {
 .modal_content .forgetPas .forgetPasLast {
     left: 20px;
 }
-.modal_content .forgetPas .forgetPasNext{
-    right:20px;
+
+.modal_content .forgetPas .forgetPasNext {
+    right: 20px;
 }
 
 
@@ -435,13 +436,15 @@ button {
     position: absolute;
     display: none;
     top: 30px;
-    left: -13px;
-    width: 613px;
-    height: 377px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82%;
+    height: 180px;
 }
 
 .modal_content .resetPas>div {
-    margin: 85px 0;
+    margin: 15px 0;
+    padding: 0 15px;
 }
 
 .modal_content .resetPas>div span {
@@ -450,204 +453,205 @@ button {
 
 .modal_content .resetPas>div input {
     /* 两个密码框 */
-    width: 355px;
-    height: 50px;
+    width: 71%;
+    height: 35px;
     border-radius: 8px;
     border: #797979 solid 1px;
-    font-size: 25px;
-    line-height: 45px;
-    padding: 2px;
+    font-size: 14px;
     padding-left: 14px;
     vertical-align: bottom;
     margin-left: 8px;
 }
 
 .modal_content .resetPas .resetPasConfirm {
-    bottom: -44px;
-    left: 150px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 
 /* #endregion */
+
+
 /* 70% */
-@media(max-width:1960px){
-    .logonBody .modal{
-        width:480px;
-        height:370px;
+
+@media(max-width:1960px) {
+    .logonBody .modal {
+        width: 480px;
+        height: 370px;
         border-radius: 16px;
     }
-    .logonBody .modal_content{
-        margin-top:0px;
-        width:100%;
+    .logonBody .modal_content {
+        margin-top: 0px;
+        width: 100%;
         height: 280px;
     }
-    .logonBody .modal_content .logOn{
+    .logonBody .modal_content .logOn {
         height: 254px;
     }
-    .modal_content .logOn .logOnTeacher form, .modal_content .logOn .logOnStudent form{
-        width:74%;
-        left:50%;
-        top:55px;
-        transform: translate(-50%,0);
+    .modal_content .logOn .logOnTeacher form,
+    .modal_content .logOn .logOnStudent form {
+        width: 74%;
+        left: 50%;
+        top: 55px;
+        transform: translate(-50%, 0);
     }
- 
-    .modal_content .logOn form .input{
-        width:100%;
+    .modal_content .logOn form .input {
+        width: 100%;
     }
-    .modal_content .logOn form .value:hover .active_line{
-        width:100%;
+    .modal_content .logOn form .value:hover .active_line {
+        width: 100%;
     }
-    .modal_content .logOn form .active_line{
+    .modal_content .logOn form .active_line {
         height: 1px;
     }
-    
-    .logonBody  .modal_head button{
-        width:30px;
-        height:30px;
-        font-size:25px;
-        top:-20px;
-        right:5px;
+    .logonBody .modal_head button {
+        width: 30px;
+        height: 30px;
+        font-size: 25px;
+        top: -20px;
+        right: 5px;
     }
-    .logonBody  .modal_head {
-        margin-top:20px;
+    .logonBody .modal_head {
+        margin-top: 20px;
         height: 64px;
         line-height: 64px;
     }
-    .logonBody  .modal_head b{
-        font-size:23px;
+    .logonBody .modal_head b {
+        font-size: 23px;
         line-height: 64px;
     }
-    .modal_content .logOn .student{
-        margin-right:0;
+    .modal_content .logOn .student {
+        margin-right: 0;
     }
-    .modal_content .logOn h2{
-        font-size:21px;
+    .modal_content .logOn h2 {
+        font-size: 21px;
         height: 50px;
-        margin:0px 20px;
+        margin: 0px 20px;
         line-height: 50px;
-       
         position: relative;
     }
-    .modal_content .logOn .logOnDisplay h2{
+    .modal_content .logOn .logOnDisplay h2 {
         font-weight: 400;
-
     }
-    .modal_content .logOn .logOnDisplay h2 b{
-        width:80px;
-        height:3px;
-        left:50%;
-        transform: translate(-50%,0);
-        bottom:0;
+    .modal_content .logOn .logOnDisplay h2 b {
+        width: 80px;
+        height: 3px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: 0;
     }
-    .modal_content .logOn form .tip{
-        font-size:16px;
+    .modal_content .logOn form .tip {
+        font-size: 16px;
     }
-    .modal_content .logOn form .input{
-        font-size:16px;
-        padding-left:10px;
+    .modal_content .logOn form .input {
+        font-size: 16px;
+        padding-left: 10px;
         box-sizing: border-box;
         height: 36px;
         line-height: 36px;
         border-bottom: 1px solid #999;
     }
-    .modal_content > .logOn form .confirm{
-        margin-top:25px;
+    .modal_content>.logOn form .confirm {
+        margin-top: 25px;
     }
-    .logonBody .modal_content button{
-        bottom:0;
-        height:35px;
-        line-height: 35px;
-        font-size:20px;
-        width:140px;
-    }
-    .modal_content .logOn .btnRegister{
-        left:60px;
-    }
-    .modal_content .logOn .btnLogon{
-        right:60px;
-    }
-    .modal_content b.aForgetPas{
-        right:72px;
-        font-size:15px;
-       
-        bottom:80px;
-    }
-
-    /* 忘记密码 */
-    .modal_content .forgetPas{
-       width:82%;
-        left:50%;
-        transform: translate(-50%,0);
-       
-        height: 270px;
-    }
-    .modal_content .forgetPas > div{
-       margin:20px auto 0;
-    }
-    .modal_content .forgetPas span, .modal_content .resetPas span{
-        font-size:17px;
-        color:#666;
-    }
-    .modal_content .forgetPas .teacherOrStudent label{
-        font-size:16px;
-        margin:0 0 0 31px;
-        color:#666;
-    }
-    .modal_content .forgetPas .writeEmail .inEmai{
-        margin-left:12px;
-       
-    }
-    .modal_content .forgetPas .writeEmail input, .modal_content .forgetPas .writeEmail em, .modal_content .forgetPas .verificationCode input{
-        font-size:16px;
-        color:#666;
-        width:130px;
-        height: 26px;
-        border:1px solid #797979;
-    }
-    .modal_content .forgetPas .writeEmail i{
-        font-size:18px;
-        color:#666;
-    }
-    .modal_content .forgetPas .writeEmail .emailSuffix{
-        height: 26px;
-        width:100px;
-        font-size:14px;
-        line-height: 26px;
-        color:#666;
-        border:1px solid #797979;
-        text-align: center;
-    }
-    .modal_content .forgetPas .verificationCode .sendVerificationCode{
-        height: 33px;
-        width:100px;
-        bottom:103px;
-        right:8px;
-        font-size:16px;
-        line-height: 33px;
-    }
-    .modal_content .forgetPas .forgetPasLast, .modal_content .forgetPas .forgetPasNext{
-        width:150px;
+    .logonBody .modal_content button {
+        bottom: 0;
         height: 35px;
         line-height: 35px;
-        font-size:16px;
-        bottom:30px;
+        font-size: 20px;
+        width: 140px;
     }
-    .modal_content .forgetPas .verificationCode input{
-        margin-left:39px;
+    .modal_content .logOn .btnRegister {
+        left: 60px;
     }
-    .modal_content .forgetPas .writeEmail .inEmail{
+    .modal_content .logOn .btnLogon {
+        right: 60px;
+    }
+    .modal_content b.aForgetPas {
+        right: 59px;
+        font-size: 15px;
+        bottom: 80px;
+    }
+    /* 忘记密码 */
+    .modal_content .forgetPas {
+        width: 82%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        height: 270px;
+    }
+    .modal_content .forgetPas>div {
+        margin: 20px auto 0;
+    }
+    .modal_content .forgetPas span,
+    .modal_content .resetPas span {
+        font-size: 17px;
+        color: #666;
+    }
+    .modal_content .forgetPas .teacherOrStudent label {
+        font-size: 16px;
+        margin: 0 0 0 31px;
+        color: #666;
+    }
+    .modal_content .forgetPas .writeEmail .inEmai {
+        margin-left: 12px;
+    }
+    .modal_content .forgetPas .writeEmail input,
+    .modal_content .forgetPas .writeEmail em,
+    .modal_content .forgetPas .verificationCode input {
+        font-size: 16px;
+        color: #666;
+        width: 130px;
+        height: 26px;
+        border: 1px solid #797979;
+    }
+    .modal_content .forgetPas .writeEmail i {
+        font-size: 18px;
+        color: #666;
+    }
+    .modal_content .forgetPas .writeEmail .emailSuffix {
+        height: 26px;
+        width: 100px;
+        font-size: 14px;
+        line-height: 26px;
+        color: #666;
+        border: 1px solid #797979;
+        text-align: center;
+    }
+    .modal_content .forgetPas .verificationCode .sendVerificationCode {
+        height: 33px;
+        width: 100px;
+        bottom: 103px;
+        right: 8px;
+        font-size: 16px;
+        line-height: 33px;
+    }
+    .modal_content .forgetPas .forgetPasLast,
+    .modal_content .forgetPas .forgetPasNext {
+        width: 150px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px;
+        bottom: 30px;
+    }
+    .modal_content .forgetPas .verificationCode input {
+        margin-left: 39px;
+    }
+    .modal_content .forgetPas .writeEmail .inEmail {
         margin-left: 5px;
     }
 }
+
+
 /* 80% */
-@media(max-width:1789px){
-   
-}
+
+@media(max-width:1789px) {}
+
+
 /* 90% */
-@media(max-width:1549px){
-    
-    
-}
+
+@media(max-width:1549px) {}
+
+
 /* 100% */
-@media(max-width:1280px){
-}
+
+@media(max-width:1280px) {}

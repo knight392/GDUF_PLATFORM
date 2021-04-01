@@ -1,5 +1,6 @@
 import displayTipPane from '../commponents/content/tipPane.js';
 import template from '../util/template.js';
+export const host = 'http://192.168.137.122:8080/';
 window.onload = function() {
 
     //#region 渲染 √
