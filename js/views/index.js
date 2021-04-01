@@ -1,3 +1,5 @@
+import displayTipPane from '../commponents/content/tipPane.js';
+import template from '../util/template.js';
 window.onload = function() {
 
     //#region 渲染 √
@@ -735,7 +737,7 @@ $(function() {
 
     //#region 内容中视频的播放暂停
 
- 
+
 
     //#endregion
 
