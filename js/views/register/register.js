@@ -18,9 +18,6 @@ let userType = null; //用户类型。student / teacher
 $('input[type=text]').val('');
 //点击后开始发送请求，禁用按钮,开始定时器
 
-
-
-
 //设置一些输入框样式
 $('.email_input').on("focus", function () {
   clearErrorMessage($('.email_input'), '请输入校园邮箱');
@@ -158,8 +155,6 @@ $(".next_btn").click(async function () {
 
 
 //注册的下一步操作*********************************************************
-
-
 
 let $pwd_view = false;
 let $pwd_confirm_view = false;
