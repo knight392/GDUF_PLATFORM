@@ -5,6 +5,20 @@ let oAuthor; //文章的作者
 let questionId_local = getQueryletiable("id");
 // let questionId_local = 'O9lweXUB3qqWTmFg4Gx-';
 
+//动态添加回答的数据
+let answerData = {
+  "requestType": "get",
+  "questionId": questionId_local, //回答的问题的id
+  //回答者的学号,找cookie
+  "answerContents": ""
+}
+
+
+let answerContents = new Array();
+
+//加载文本和图片到answerContents
+let emptyContent = true;
+
 //登录者的学号
 
 function sentenceIsLogon() {
@@ -17,8 +31,6 @@ function sentenceIsLogon() {
     isLogon = false;
   }
 }
-
-
 
 // console.log($.cookie("markNumber"));
 $(window).on("load", () => {
@@ -56,7 +68,6 @@ $(window).bind("scroll", fixed);
 
 // 写回答板块的打开的与关闭
 $('.question_info_main .answer_btn').click(() => {
-
   if (isLogon) {
     $('.textAnswer').slideDown();
   } else {
@@ -253,16 +264,7 @@ function sendImage(formdata, imgObj) { //imgObj是jq对象
     }
   })
 }
-//动态添加回答的数据
-let answerData = {
-  "requestType": "get",
-  "questionId": questionId_local, //回答的问题的id
-  //回答者的学号,找cookie
-  "answerContents": ""
-}
 
-
-let answerContents = new Array();
 
 function addAnswerContentItem(order, type, content) {
   return JSON.stringify({
@@ -271,8 +273,7 @@ function addAnswerContentItem(order, type, content) {
     "contentMain": content
   })
 }
-//加载文本和图片到answerContents
-let emptyContent = true;
+
 
 function loadAnswerContents() {
   //遍历一遍所有的节点

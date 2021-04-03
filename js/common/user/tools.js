@@ -13,12 +13,13 @@ function filter(obj) {
  * @param {*} loginData (可是{loginValue, password, requestType, userType}对象，也可以是一个token)
  * @returns 
  */
-function doLogin(loginData){
+function loginRequest(loginData){
   return new Promise((resolve, reject) => {
     request(baseHttpURL+'', {
       method: 'get',
       body: JSON.stringify(loginData)
     }).then(res => {
+      // 应该返回一个token
       resolve(filter(res))
     }, err => {
       resolve(null)
@@ -35,6 +36,4 @@ function getToken() {
   }
 }
 
-
-
-export {doLogin, getToken}
+export {loginRequest, getToken}
