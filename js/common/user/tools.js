@@ -1,5 +1,6 @@
 import request from '../../util/request'
 import {baseHttpURL} from '../baseRequestInfo'
+import {cookieUtil} from '../../util/cookieUtil'
 // 对返回的用户对象数据进行过滤
 function filter(obj) {
   let { userType, messagePojo } = obj;
@@ -10,16 +11,16 @@ function filter(obj) {
 
 /**
  * 
- * @param {*} loginData (可是{loginValue, password, requestType, userType}对象，也可以是一个token)
+ * @param {*} loginData ({loginValue, password, requestType, userType}对象, 也可以什么也不发，这时hui)
  * @returns 
  */
 function loginRequest(loginData){
   return new Promise((resolve, reject) => {
     request(baseHttpURL+'', {
       method: 'get',
-      body: JSON.stringify(loginData)
+      body: loginData ? JSON.stringify(loginData) : ''
     }).then(res => {
-      // 应该返回一个token
+      // 同时会服务器返送一个名为token的cookie到客户端中，客户端会自动保存，并且在每次的http请求中都会发送给服务器
       resolve(filter(res))
     }, err => {
       resolve(null)
@@ -27,13 +28,14 @@ function loginRequest(loginData){
   })
 }
 
+// 获取token
+/**
+ * 
+ * @returns null | String
+ */
 function getToken() {
-  try{
-    return $.cookie('token')
-  }catch(e){
-    console.log(e);
-    return null;
-  }
+  
+ return  cookieUtil.get('token')
 }
 
 export {loginRequest, getToken}

@@ -5,9 +5,10 @@ let user = null;
 // 每次加载页面都看看有没有token,可自动登录
 (function(){
   const token = getToken();
-  if(token != null && token != ''){
+  if(token != null){
     try{
-      user =  doLogin(token)
+      // 有token就发送一个token的cookie
+      user =  doLogin()
     }catch(e) {
       console.log(e);
       user = null;
@@ -21,10 +22,11 @@ function doLogOff(){
 }
 /**
  * 
- * @param {*} loginData (可是{loginValue, password, requestType, userType}对象，也可以是一个token)
+ * @param {*} loginData (可以是{loginValue, password, requestType, userType}对象 或 不发，此时用token验证)
  * @returns 
  */
-function doLogin(loginData){
+// 
+function doLogin(loginData = null){
   loginRequest(loginData).then(res => {
     user = res
   }, err => {
