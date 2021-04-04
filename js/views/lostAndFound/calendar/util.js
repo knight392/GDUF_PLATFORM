@@ -17,19 +17,21 @@ function isLeapYear(year) {
   return 0;
 }
 
-// 返回一个m*n的二维月天数数组，
-export default function getCalendar(year, month) {
- 
+// sun | mon | tue | wed | tus | fri | stu 
+// 返回一个6行7列的二维月天数数组并且日期开始的位置依据星期而定
+export default function getCalendarData(year, month) {
   //6行7列
-  let calendar = [[], [], [], [], [], []];
-  let nextPostion = 0;
-  //计算当前年的1月1日的是星期几
-  let year_first = 0;
-  let month_first = 0;
-  // console.log(year_first);
-  //计算当前月1号是星期几
+  const calendar = [[], [], [], [], [], []];
+  let nextPosition = 0;
+
+  // 从当前年的1月1到当前月之前的总共的天数
   let totalDay_month = 0;
+  // 从 基础年到要求的年之前的总共天数
   let totalDay_year = 0;
+  // 当前年的第一天是星期几
+  let year_first = 0;
+  // 当前月的第一天是星期几
+  let month_first = 0;
   for (let i = base_year; i < year; i++) {
     totalDay_year += (365 + isLeapYear(i));
   }
@@ -38,17 +40,18 @@ export default function getCalendar(year, month) {
   }
   year_first = (totalDay_year + base_week) % 7;
   month_first = (totalDay_month + year_first) % 7;
+  // 第一行不是从第一格开始，因为1号不一定是星期日
   for (let i = 0; i < month_first; i++) {
     calendar[0][i] = "";
-    nextPostion++;
+    nextPosition++;
   }
   //填日数
   for (let day = 1; day <= months[isLeapYear(year)][month]; day++) {
     //求出下一个填充的位置
-    let row = Math.floor(nextPostion / 7);
-    let column = nextPostion % 7;
+    let row = Math.floor(nextPosition / 7);
+    let column = nextPosition % 7;
     calendar[row][column] = day;
-    nextPostion++;
+    nextPosition++;
   }
   return calendar;
 }

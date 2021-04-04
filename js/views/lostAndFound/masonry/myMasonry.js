@@ -1,7 +1,7 @@
 'use strict';
 let colum_count;//当前容器宽度下能分的列数
 let originPosition_x;
-let itemWidth;//item的宽度加+间距
+// let itemWidth;//item的宽度加+间距
 let totalNum;//容器中的总数
 let columHeight;
 //获取父容器的宽度
@@ -14,7 +14,8 @@ let columHeight;
 //判断图片是否加载完
 let t_img;
 let isLoad = true;
-function loadAllItem(parentBox,item = '.item', itemWidth, gap) {
+// 加载渲染全部的item
+function loadAllItem(parentBox, item = '.item', itemWidth, gap) {
   //计算列数
   let items = parentBox.children(item);
   totalNum = 0;//容器中的总数
@@ -35,7 +36,6 @@ function loadItem(itemArr, itemWidth, gap) {
   //itemArr是一个字符串数组，是整个标签
   for (let i = 0; i < itemArr.length; i++) {
     let item = $(itemArr[i]);
-    // parentBox.append(item);//添加到容器中
     item.show();
     item.css({
       "top": Math.max.apply(null, columHeight) + "px"
@@ -47,19 +47,15 @@ function loadItem(itemArr, itemWidth, gap) {
         "left": originPosition_x + gap + (itemWidth * totalNum) + "px",
         "top": gap + "px"
       });
-      //    setTimeout(()=>{
       columHeight[totalNum] = item.outerHeight() + gap;//记录高度
     } else {
       let minHeight = Math.min.apply(null, columHeight);//寻找最小高度
       let minHeight_colum = columHeight.indexOf(minHeight);//寻找下标
-      // console.log(minHeight);
       item.animate({
         "left": originPosition_x + gap + (itemWidth * minHeight_colum) + "px",
         "top": columHeight[minHeight_colum] + gap + "px"
       });
-      // setTimeout(()=>{
       columHeight[minHeight_colum] += item.outerHeight() + gap;
-      // },100)
     }
     totalNum++;
   }
@@ -84,4 +80,4 @@ function isImgLoad(callback, img) {
   }
 }
 
-export {loadAllItem, isImgLoad}
+export { loadAllItem, isImgLoad }

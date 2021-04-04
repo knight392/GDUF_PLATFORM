@@ -429,12 +429,11 @@ $(".platform_chat .face").on("click", function (e) {
   e.stopPropagation()
   $(".facePane").fadeIn(230);
   $(".facePane").css("display", "flex");
-
 })
+
 $('body').on("click", function () {
   $(".facePane").fadeOut(230);
 })
-
 
 // 关闭聊天面板
 $('.platform_chat .close_btn').click(function () {

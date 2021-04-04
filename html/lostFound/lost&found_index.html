@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>失物招领</title>
    
-    <link rel="stylesheet" href="../css/iconfont.css" type="text/css"> 
-    <link rel="stylesheet" href="../css/logOn.css" type="text/css">
-    <link rel="stylesheet" href="../css/hoverPaneY.css"> 
-    <link rel="stylesheet" href="../css/lostAndFoundIndex.css" type="text/css">
+    <link rel="stylesheet" href="../../css/iconfont.css" type="text/css"> 
+    <link rel="stylesheet" href="../../css/logOn.css" type="text/css">
+    <link rel="stylesheet" href="../../css/hoverPaneY.css"> 
+    <link rel="stylesheet" href="../../css/lostAndFoundIndex.css" type="text/css">
    
-    <link href="../css/tipPane.css" type="text/css" rel="stylesheet">
-    <link href="../css/foundPane.css" type="text/css" rel="stylesheet">
-    <link href="../css/lostPane.css" type="text/css" rel="stylesheet"> 
-    <link href="../css/chat.css"  type="text/css" rel="stylesheet">
-    <script src="../js/myMasonry.js"></script>
+    <link href="../../css/tipPane.css" type="text/css" rel="stylesheet">
+    <link href="../../css/foundPane.css" type="text/css" rel="stylesheet">
+    <link href="../../css/lostPane.css" type="text/css" rel="stylesheet"> 
+    <link href="../../css/chat.css"  type="text/css" rel="stylesheet">
+
+    <!-- <script src="../js/myMasonry.js"></script>
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.cookie.js"></script>
     <script src="../js/logOn.js"></script>
-    
     <script src="../js/debounce.js"></script>
     <script src="../js/scrollUp.js"></script>
     <script src="../js/myTemplate.js"></script>
     <script src="../js/myCookie.js"></script>
     <script src="../js/tipPane.js"></script> 
    
-    <script src="../js/nav_lostAndFound.js"></script>
+    <script src="../js/nav_lostAndFound.js"></script> -->
+    
 <body>
     <nav class="nav">
         <div class="w">
             <!-- 展示logo 首页  校区互通 搜索栏 消息 头像-->
             <div class="displayRow">
                 <a class="logo" href="#" title='点击进入首页'>
-                    <img src="../img/gduf-logo.png">
+                    <img src="../../img/gduf-logo.png">
                 </a>
                 <a class="navLinker navIndex" href="../index.html">首页</a>
                 <a class="navLinker navCommunication" href="index.html">校区互通</a>
@@ -99,7 +100,7 @@
                     <div class="headPortrait">
 
                         <!-- 导航栏上的头像 -->
-                        <img class="navHPY" src="../img/InitialPortrait.jpg" alt=" " title="个人中心 ">
+                        <img class="navHPY" src="../../img/InitialPortrait.jpg" alt=" " title="个人中心 ">
 
                         <div class="hpSecond">
                             <!-- 头像的二级导航 -->
@@ -110,7 +111,7 @@
                                 <!-- 个人属性part -->
                                 <!-- 用户头像 用户名 -->
                                 <div class="hpPersonalAttributes">
-                                    <img class="ResMessageFace" src="../img/InitialPortrait.jpg " alt=" ">
+                                    <img class="ResMessageFace" src="../../img/InitialPortrait.jpg " alt=" ">
                                     <em> <b class="ResUserName"></b></em>
                                     <em> <b class="ResMarkNumber"></b></em>
                                     <em> <b class="ResMessagePojoMajor"></b> </em>
@@ -247,7 +248,7 @@
                         <div class="objectSelectPane selectPane">
                             <div class="paneContentBox">
                                 <div class="imgBox">
-                                    <img src="../img/bg1007.jpg">
+                                    <img src="../../img/bg1007.jpg">
                                 </div>
                                 <div class="itemBox">
                                     <ul class="objectList">
@@ -336,7 +337,7 @@
                                     </div>
                                 </div>
                                 <div class="imgBox">
-                                    <img src="../img/bg1010.jpg">
+                                    <img src="../../img/bg1010.jpg">
                                 </div>
                             </div>
                         </div>
@@ -348,9 +349,9 @@
                         <div class="timeSelectPane selectPane">
                             <div class="paneContentBox">
                                 <div class="imgBox">
-                                    <img src="../img/bg1011_.png">
+                                    <img src="../../img/bg1011_.png">
                                 </div>
-                                <table class="calendar">
+                                <table class="calendar" id="calendar_main">
                                     <tr>
                                         <th class="title_calendar" colspan="7">
                                             <span class="year"></span> 年
@@ -435,7 +436,7 @@
                         <div class="locationSelectPane selectPane">                   
                             <div class="paneContentBox">
                                 <div class="imgBox">
-                                    <img src="../img/bg1012.jpg">
+                                    <img src="../../img/bg1012.jpg">
                                 </div>
                                 <div class="locationList">
                                     
@@ -1172,9 +1173,9 @@
                     <div class="foundTime row">
                         <span class="tip">拾得时间：</span>
                         <div class="value timeBox">
-                            <div class="calendar_entrance">
+                            <div id="calendar_entrance_main">
                                 <svg t="1603790426545" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5658" width="32" height="32"><path d="M831.97 64.09H704.03V32.045a32.045 32.045 0 0 0-64.09 0V64.09H384.06V32.045a32.045 32.045 0 0 0-64.09 0V64.09H191.312A191.312 191.312 0 0 0 0 250.14v586.851a191.312 191.312 0 0 0 191.312 186.051H831.97a191.312 191.312 0 0 0 191.313-191.312v-575.85A191.312 191.312 0 0 0 831.97 64.09z m127.94 767.88a128.18 128.18 0 0 1-127.94 127.94H191.312a127.94 127.94 0 0 1-127.94-127.94V415.865H959.91z m0-479.955H64.09v-95.656A127.94 127.94 0 0 1 191.312 127.94h127.94v63.372a32.045 32.045 0 0 0 64.09 0V127.94h255.88v63.372a32.045 32.045 0 0 0 64.09 0V127.94h127.94a128.18 128.18 0 0 1 127.94 127.94z" fill="#8a8a8a" p-id="5659"></path><path d="M296.295 621.766H186.53a36.589 36.589 0 0 1 0-73.177h109.765a36.589 36.589 0 1 1 0 73.177z m292.47 0H442.41a36.589 36.589 0 0 1 0-73.177h146.354a36.589 36.589 0 0 1 0 73.177z m255.88 0H735.118a36.589 36.589 0 1 1 0-73.177h109.527a36.589 36.589 0 1 1 0 73.177z m-548.35 219.291H186.53a36.589 36.589 0 1 1 0-73.177h109.765a36.589 36.589 0 0 1 0 73.177z m292.47 0H442.41a36.589 36.589 0 0 1 0-73.177h146.354a36.589 36.589 0 0 1 0 73.177z m255.88 0H735.118a36.589 36.589 0 1 1 0-73.177h109.527a36.589 36.589 0 1 1 0 73.177z" fill="#999999" p-id="5660"></path></svg>
-                                <table class="calendar">
+                                <table id="calendar_main">
                                     <tr>
                                         <th colspan="7">
                                             <span class="year"></span> 年
@@ -1602,9 +1603,11 @@
             <input type="button" value="发送">
         </div>
     </div>
-    <script src="../js/foundPane.js"></script>
+    <!-- <script src="../js/foundPane.js"></script>
     <script src="../js/lostPane.js"></script>
-    <script src="../js/lost&found.js"></script>
-    <script src="../js/nav.js"></script>
+    <script src="../js/nav.js"></script> -->
+    <script src="../../js/util/jquery-3.5.1.js"></script>
+    <script src="../../js/views/lostAndFound/lost&found.js" type="module"></script>
+   
 </body>
 </html>
