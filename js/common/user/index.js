@@ -34,7 +34,11 @@ function doLogin(loginData = null){
   })
 }
 
-export {user, doLogOff, doLogin}
+function isLogin() {
+  return user == null ? true : false
+ }
+
+export {user, doLogOff, doLogin, isLogin}
 
 
 
