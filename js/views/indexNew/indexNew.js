@@ -1,4 +1,5 @@
-import { chart, rcnextp } from '../commponents/content/chart3bgimgY.js';
+import { chart, rcnextp } from './info.js';
+import { lostfoundYOpacityPosition, inschoolNewsYCssPosition } from './tools.js'
 
 window.onload = function() {
 
@@ -92,24 +93,6 @@ $(function() {;
     //#endregion
 
     //#region 失物招领
-    const lostfoundYOpacityPosition = function(opacityY, positionY) {
-        $('.inlaf').css({
-            opacity: opacityY,
-            bottom: positionY
-        });
-        $('.lf-img').css({
-            opacity: opacityY,
-            bottom: positionY
-        });
-        $('.lf-h2').css({
-            opacity: opacityY,
-            top: positionY,
-        });
-        $('.lf-p').css({
-            opacity: opacityY,
-            top: positionY
-        })
-    };
     $('.lostFoundY').on({
         mouseenter: function() {
             lostfoundYOpacityPosition(1, 0);
@@ -128,12 +111,6 @@ $(function() {;
     //#endregion
 
     //#region 校内通知
-    const inschoolNewsYCssPosition = function(positionY) {
-        $('.deansOffice').css('top', positionY);
-        $('.youthLeagueCommittee').css('bottom', positionY);
-        $('.studentAffairsOffice').css('top', positionY);
-        $('.other').css('bottom', positionY);
-    };
     $('.inschoolNewsY').on({
         mouseenter: function() {
             inschoolNewsYCssPosition(0);
