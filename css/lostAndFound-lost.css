@@ -12,11 +12,14 @@ body {
 /* #region 寻物详情 */
 
 [class^="YitemDetails"] {
-    margin-top: 140px;
-   
+    width: 100%;
+    margin-top: 110px;
+    height: 420px;
 }
-[class^="YitemDetails"]  .w{
-    width:1790px;
+
+[class^="YitemDetails"] .w,
+[class^="YitemPicture"] .w {
+    width: 70%;
 }
 
 
@@ -25,10 +28,10 @@ body {
 [class^="YitemDetails"] h2,
 [class^="YreleaseInformation"] h2,
 [class^="YitemPicture"] h2 {
-    font-size: 40px;
+    font-size: 1.2em;
     font-weight: 700;
     line-height: 2em;
-    border-bottom: 5px solid #797979;
+    border-bottom: 3px solid #797979;
 }
 
 
@@ -41,24 +44,18 @@ body {
     width: 60%;
     float: left;
     box-sizing: border-box;
-    padding: 50px 100px;
+    padding: 20px 30px;
 }
 
 [class^="YitemDetails"] p {
     width: 100%;
-    /* height: 2.5em; */
-    height: 80px;
-    line-height: 80px;
-    /* font-size: 30px; */
+    height: 2em;
+    line-height: 2em;
 }
 
 [class^="YitemDetails"] p em {
-    font-size: 30px;
-    /* display: block; */
     float: left;
     width: 6em;
-    /* width: 60%; */
-    /* background-color: blue; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -73,28 +70,38 @@ body {
 
 [class^="YitemDetails"] .YdetailsOfUser {
     box-sizing: border-box;
-    padding: 50px 0px;
+    padding: 40px 0px;
     width: 40%;
     float: right;
-    /* background-color: aquamarine; */
 }
 
 [class^="YitemDetails"] .YdetailsOfUser img {
-    width: 240px;
-    height: 240px;
-    border-radius: 240px;
+    width: 6em;
+    height: 6em;
+    border-radius: 100%;
     float: left;
-    margin-right: 40px;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 [class^="YitemDetails"] .YdetailsOfUser p {
-    width: 435px;
+    width: 100%;
     float: left;
+    line-height: 1.5em;
+    height: 1.5em;
+    font-size: 0.8em;
 }
 
-[class^="YitemDetails"] .YdetailsOfUser em:nth-of-type(1) {
-    /* width: em; */
-    width: 4.2em;
+[class^="YitemDetails"] .YdetailsOfUser p em:nth-of-type(1) {
+    width: 5em;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+[class^="YitemDetails"] .YdetailsOfUser p em:nth-of-type(2) {
+    width: 70%;
+    font-size: 0.8em;
 }
 
 
@@ -112,14 +119,10 @@ body {
 [class^="YreleaseInformation"] p {
     width: 35%;
     float: left;
-    /* font-size: 30px; */
     padding: 40px 40px 40px 100px;
     height: 70px;
     line-height: 70px;
     margin-right: 50px;
-    /* text-align: right; */
-    /* box-sizing: border-box; */
-    /* background-color: antiquewhite; */
 }
 
 [class^="YreleaseInformation"] p em {
@@ -135,86 +138,95 @@ body {
 [class^="YitemPicture"] {
     width: 100%;
     height: 500px;
-    /* padding: 50px 100px; */
-    /* background-color: antiquewhite; */
 }
 
 [class^="YitemPicture"] img {
-    width: 600px;
-    height: 600px;
-    margin: 100px 140px;
-    /* margin-right: 100px; */
-    /* margin-top: 100px; */
+    width: 300px;
+    height: 300px;
+    margin: 20px 30px;
 }
 
 
 /* #endregion */
 
-/* 70% */
-@media(max-width:1960px){
-    
-    [class^="YitemDetails"] .w{
-        width:1618px;
-    }
-    [class^="YitemPicture"] .w{
-        width:1618px;
-    }
 
-}
+/* 70% */
+
+
+/* @media(max-width:1960px) {
+    [class^="YitemDetails"] .w {
+        width: 1618px;
+    }
+    [class^="YitemPicture"] .w {
+        width: 1618px;
+    }
+} */
+
+
 /* 80% */
-@media(max-width:1789px){
-    [class^="YitemDetails"] .w{
-        width:1470px;
+
+
+/* @media(max-width:1789px) {
+    [class^="YitemDetails"] .w {
+        width: 1470px;
     }
-    [class^="YitemPicture"] .w{
-        width:1470px;
+    [class^="YitemPicture"] .w {
+        width: 1470px;
     }
-}
+} */
+
+
 /* 90% */
-@media(max-width:1549px){
-    [class^="YitemDetails"] .w{
-        width:1290px;
+
+
+/* @media(max-width:1549px) {
+    [class^="YitemDetails"] .w {
+        width: 1290px;
     }
-    [class^="YitemPicture"] .w{
-        width:1290px;
+    [class^="YitemPicture"] .w {
+        width: 1290px;
     }
-    
-}
+} */
+
+
 /* 100% */
-@media(max-width:1280px){
-    [class^="YitemDetails"] .w{
-        width:1158px;
+
+
+/* @media(max-width:1280px) {
+    [class^="YitemDetails"] .w {
+        width: 1158px;
     }
-    [class^="YitemPicture"] .w{
-        width:1158px;
+    [class^="YitemPicture"] .w {
+        width: 1158px;
     }
-    [class^="YitemDetails"] h2, [class^="YreleaseInformation"] h2, [class^="YitemPicture"] h2{
-        font-size:25px;
+    [class^="YitemDetails"] h2,
+    [class^="YreleaseInformation"] h2,
+    [class^="YitemPicture"] h2 {
+        font-size: 25px;
         border-width: 2px;
     }
-    [class^="YitemDetails"] .YdetailsOfItem{
-        padding:25px 37px;
+    [class^="YitemDetails"] .YdetailsOfItem {
+        padding: 25px 37px;
     }
-    [class^="YitemDetails"] p em{
-        font-size:18px;
+    [class^="YitemDetails"] p em {
+        font-size: 18px;
     }
-    [class^="YitemDetails"] .YdetailsOfUser img{
-        width:140px;
+    [class^="YitemDetails"] .YdetailsOfUser img {
+        width: 140px;
         height: 140px;
     }
-    [class^="YitemDetails"] p{
+    [class^="YitemDetails"] p {
         line-height: 100%;
         height: 60px;
     }
-    [class^="YitemDetails"] .YdetailsOfUser{
-        padding:25px 0;
+    [class^="YitemDetails"] .YdetailsOfUser {
+        padding: 25px 0;
     }
-    [class^="YitemPicture"] img{
-        width:400px;
+    [class^="YitemPicture"] img {
+        width: 400px;
         height: 400px;
     }
-}
-
+} */
 
 
 /* #endregion */
