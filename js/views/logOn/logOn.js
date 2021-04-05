@@ -1,6 +1,7 @@
 //CheckPassWord function 检查密码的格式 没有用到
 //忘记密码 验证码验证 重置密码 没有与后端交互
-import displayTipPane from '../commponents/content/tipPane.js'
+
+import CheckPassWord from './tools.js';
 
 $(function() {
 
@@ -36,19 +37,6 @@ $(function() {
             // $(".logonBody .modal_head b").text("用户登录")
         }
     })
-
-    //必须为字母加数字且长度不小于8位
-    function CheckPassWord(password) {
-        const str = password;
-        if (str == null || str.length != 9) {
-            return false;
-        }
-        const reg1 = new RegExp(/^[0-9A-Za-z]+$/);
-        if (!reg1.test(str)) {
-            return false;
-        }
-        return true;
-    }
 
     //#region 点击 超链接/按钮 转换页面+邮箱的后缀名
 
