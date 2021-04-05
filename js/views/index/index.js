@@ -1,6 +1,8 @@
-import displayTipPane from '../commponents/content/tipPane.js';
-import template from '../util/template.js';
-import baseHttpURL from '../common/baseRequestInfo.js';
+import displayTipPane from '../../commponents/content/tipPane.js';
+import template from '../../util/template.js';
+
+import baseHttpURL from '../../common/baseRequestInfo.js';
+import { totime } from './tools.js'
 window.onload = function() {
 
     //#region 渲染 √
@@ -13,18 +15,18 @@ window.onload = function() {
         // console.log(res);
         mainScrollid1 = res.scrollId;
         LoadNextPage1 = res.next;
-        for (var i = 0; i < res.dataList.length; i++) {
-            var json = {
+        for (let i = 0; i < res.dataList.length; i++) {
+            const json = {
                 queYurl: 'questionPage.html?id=' + res.dataList[i].id,
                 queYtitle: res.dataList[i].title,
                 queYkind: res.dataList[i].questionType,
                 queYremarks: res.dataList[i].contents[0].contentMain,
             }
 
-            var queY = template("campusIntercommunicationQueY_template", json);
+            const queY = template("campusIntercommunicationQueY_template", json);
             $('.studyPartY').append(queY);
             if (res.dataList[i].tag != null) {
-                for (var j = 0; j < res.dataList[i].tag.length; j++) {
+                for (let j = 0; j < res.dataList[i].tag.length; j++) {
                     if (res.dataList[i].tag[j] != null) {
                         $('.queY').eq($('.queY').length - 1).find('h3').append('<span># ' + res.dataList[i].tag[j] + '</span>')
                     }
@@ -32,9 +34,9 @@ window.onload = function() {
                 }
             }
             if (res.dataList[i].contents.length != 1) {
-                for (var j = 1; j < res.dataList[i].contents.length; j++) {
+                for (let j = 1; j < res.dataList[i].contents.length; j++) {
                     if (res.dataList[i].contents[j].contentMain != null) {
-                        var src = res.dataList[i].contents[j].contentMain;
+                        const src = res.dataList[i].contents[j].contentMain;
                         $('.queY').eq($('.queY').length - 1).find('.queImgY').prepend('<img src="' + src + '" alt="">');
                     }
                     // json["queYimgsrc" + j] = 'http://192.168.137.105:8080/' + res.dataList[i].contents[j].contentMain.substring(2);
@@ -55,9 +57,9 @@ window.onload = function() {
         console.log(res);
         mainScrollid2 = res.scrollId;
         LoadNextPage2 = res.next;
-        for (var i = 0; i < res.dataList.length; i++) {
-            // var time = res.dataList[i].time.toLocaleDateString().replace(/\//g, "-") + " " + res.dataList[i].time.toTimeString().substr(0, 8)
-            var json = {
+        for (let i = 0; i < res.dataList.length; i++) {
+            // let time = res.dataList[i].time.toLocaleDateString().replace(/\//g, "-") + " " + res.dataList[i].time.toTimeString().substr(0, 8)
+            const json = {
                 divkind: "trendsY-person",
                 content: res.dataList[i].title,
                 trendsTime: totime(res.dataList[i].time),
@@ -73,18 +75,18 @@ window.onload = function() {
                 json["major"] = res.dataList[i].teacher.major;
                 json["grade"] = res.dataList[i].teacher.level;
             }
-            var trend = template("schoolDevelopmentTrendsY-template", json);
+            const trend = template("schoolDevelopmentTrendsY-template", json);
             $('.dynamicsY').prepend(trend);
 
             if (res.dataList[i].contents != null) {
                 if (res.dataList[i].contents.length == 1 && res.dataList[i].contents[0].contentType === "video") {
-                    var video = $('<div class="videoFather"><video src="' + res.dataList[i].contents[0].contentMain + '" loop muted></video><i class="iconfont iconset trendsMuted"></i></div>');
+                    const video = $('<div class="videoFather"><video src="' + res.dataList[i].contents[0].contentMain + '" loop muted></video><i class="iconfont iconset trendsMuted"></i></div>');
                     $(".trendsY-person").eq(0).find('.trendsContent').append(video);
                 } else {
-                    for (var j = 0; j < res.dataList[i].contents.length; j++) {
+                    for (let j = 0; j < res.dataList[i].contents.length; j++) {
                         if (res.dataList[i].contents[j].contentMain != null) {
 
-                            var img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
+                            const img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
 
                             $(".trendsY-person").eq(0).find('.trendsContent').append(img);
                         }
@@ -133,26 +135,17 @@ window.onload = function() {
     //#endregion
 }
 
-var mainScrollid1; //存scrollId 用来加载下一页
-var LoadNextPage1; //存next 用来判断是否有下一页
-var mainScrollid2; //存scrollId 用来加载下一页
-var LoadNextPage2; //存next 用来判断是否有下一页
+let mainScrollid1; //存scrollId 用来加载下一页
+let LoadNextPage1; //存next 用来判断是否有下一页
+let mainScrollid2; //存scrollId 用来加载下一页
+let LoadNextPage2; //存next 用来判断是否有下一页
 //校区互通 1 校园动态 2
-var PART = 1;
-
-var totime = function(time) {
-    //直接用 new Date(时间戳) 格式转化获得当前时间
-    var timestamp = new Date(time);
-
-    //再利用拼接正则等手段转化为yyyy-MM-dd hh:mm:ss 格式
-    return timestamp.toLocaleDateString().replace(/\//g, "-") + " " + timestamp.toTimeString().substr(0, 8);
-}
+let PART = 1;
 
 $(function() {
 
     $('body').on({
         click: function() {
-
             //#region 校园动态 点击表情/图片/视频 下拉二级导航
 
             $('.issWidgetSonY').slideUp(300);
@@ -162,7 +155,7 @@ $(function() {
             //#endregion
 
             //#region 动态的视频 暂停播放
-            for (var vindex = 0; vindex < $('.trendsContent').find('video').length; vindex++) {
+            for (let vindex = 0; vindex < $('.trendsContent').find('video').length; vindex++) {
                 $('.trendsContent').find('video')[vindex].pause();
                 $('.trendsContent').find('.trendsMuted').show();
             }
@@ -209,17 +202,17 @@ $(function() {
                         // console.log(res);
                         mainScrollid1 = res.scrollId;
                         LoadNextPage1 = res.next;
-                        for (var i = 0; i < res.dataList.length; i++) {
-                            var json = {
+                        for (let i = 0; i < res.dataList.length; i++) {
+                            const json = {
                                 queYurl: 'questionPage.html?id=' + res.dataList[i].id,
                                 queYtitle: res.dataList[i].title,
                                 queYkind: res.dataList[i].questionType,
                                 queYremarks: res.dataList[i].contents[0].contentMain,
                             }
-                            var queY = template("campusIntercommunicationQueY_template", json);
+                            const queY = template("campusIntercommunicationQueY_template", json);
                             $('.studyPartY').append(queY);
                             if (res.dataList[i].tag != null) {
-                                for (var j = 0; j < res.dataList[i].tag.length; j++) {
+                                for (let j = 0; j < res.dataList[i].tag.length; j++) {
                                     if (res.dataList[i].tag[j] != null) {
                                         $('.queY').eq($('.queY').length - 1).find('h3').append('<span># ' + res.dataList[i].tag[j] + '</span>')
                                     }
@@ -227,9 +220,9 @@ $(function() {
                                 }
                             }
                             if (res.dataList[i].contents.length != 1) {
-                                for (var j = 1; j < res.dataList[i].contents.length; j++) {
+                                for (let j = 1; j < res.dataList[i].contents.length; j++) {
                                     if (res.dataList[i].contents[j].contentMain != null) {
-                                        var src = res.dataList[i].contents[j].contentMain;
+                                        let src = res.dataList[i].contents[j].contentMain;
                                         $('.queY').eq($('.queY').length - 1).find('.queImgY').prepend('<img src="' + src + '" alt="">');
                                     }
 
@@ -253,9 +246,9 @@ $(function() {
                         console.log(res);
                         mainScrollid2 = res.scrollId;
                         LoadNextPage2 = res.next;
-                        for (var i = 0; i < res.dataList.length; i++) {
-                            // var time = res.dataList[i].time.toLocaleDateString().replace(/\//g, "-") + " " + res.dataList[i].time.toTimeString().substr(0, 8)
-                            var json = {
+                        for (let i = 0; i < res.dataList.length; i++) {
+                            // const time = res.dataList[i].time.toLocaleDateString().replace(/\//g, "-") + " " + res.dataList[i].time.toTimeString().substr(0, 8)
+                            const json = {
                                 divkind: "trendsY-person",
                                 content: res.dataList[i].title,
                                 trendsTime: totime(res.dataList[i].time),
@@ -265,18 +258,18 @@ $(function() {
                                 grade: res.dataList[i].student.level,
                             }
 
-                            var trend = template("schoolDevelopmentTrendsY-template", json);
+                            const trend = template("schoolDevelopmentTrendsY-template", json);
                             $('.dynamicsY').append(trend);
 
                             if (res.dataList[i].contents != null) {
                                 if (res.dataList[i].contents.length == 1 && res.dataList[i].contents[0].contentType === "video") {
-                                    var video = $('<div class="videoFather"><video src="' + res.dataList[i].contents[0].contentMain + '" loop muted></video><i class="iconfont iconset trendsMuted"></i></div>');
+                                    const video = $('<div class="videoFather"><video src="' + res.dataList[i].contents[0].contentMain + '" loop muted></video><i class="iconfont iconset trendsMuted"></i></div>');
                                     $(".trendsY-person").eq($(".trendsY-person").length - 1).find('.trendsContent').append(video);
                                 } else {
-                                    for (var j = 0; j < res.dataList[i].contents.length; j++) {
+                                    for (let j = 0; j < res.dataList[i].contents.length; j++) {
                                         if (res.dataList[i].contents[j].contentMain != null) {
                                             console.log(1);
-                                            var img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
+                                            let img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
 
                                             $(".trendsY-person").eq($(".trendsY-person").length - 1).find('.trendsContent').append(img);
                                         }
@@ -375,12 +368,12 @@ $(function() {
         click: function() {
             // console.log(window.location.href);
             if (window.location.href.indexOf('?') == -1) {
-                var url = window.location.href.substring(0, window.location.href.length - 10) + $(this).parents(".queY").find("a").attr("href");
+                const url = window.location.href.substring(0, window.location.href.length - 10) + $(this).parents(".queY").find("a").attr("href");
             } else {
-                var url = window.location.href;
+                const url = window.location.href;
             }
-            console.log(url);
-            var input = $("<input  value='" + url + "'>");
+            // console.log(url);
+            const input = $("<input  value='" + url + "'>");
             $(this).parent().prepend(input);
             $(this).parent().find("input").select();
             document.execCommand("copy");
@@ -425,7 +418,7 @@ $(function() {
 
     //#region 图片
 
-    var sendingImg = false;
+    let sendingImg = false;
 
     //#region 插入图片 + 删除图片
 
@@ -435,17 +428,17 @@ $(function() {
                 displayTipPane("有图片还在上传中...");
                 return;
             }
-            var formdata = new FormData();
-            var div = $("<div class='develimgY'><b class='removeimg' title='删除'>&times;</b></div>");
-            var img = $('<img>');
+            let formdata = new FormData();
+            let div = $("<div class='develimgY'><b class='removeimg' title='删除'>&times;</b></div>");
+            let img = $('<img>');
             $(div).prepend(img);
-            var url = window.URL || window.webkitURL || window.mozURL;
-            var obj = e.currentTarget.files[0]; //图片资源对象
+            let url = window.URL || window.webkitURL || window.mozURL;
+            let obj = e.currentTarget.files[0]; //图片资源对象
             console.log(obj);
             // console.log(e.currentTarget);
             formdata.append(0, obj);
             console.log(formdata);
-            var imgSrc = url.createObjectURL(obj);
+            let imgSrc = url.createObjectURL(obj);
             $(img).attr("src", imgSrc);
 
             $(this).parents(".addfileY").before(div);
@@ -513,23 +506,23 @@ $(function() {
 
     //#region 视频
 
-    var sendingVideo = false;
+    let sendingVideo = false;
     $(".addvideoY").on({
         change: function(e) {
             if (sendingVideo) {
                 displayTipPane("有视频还在上传中...");
                 return;
             }
-            var formdata = new FormData();
-            var div = $("<div class='develvideoY'><b class='removevideo' title='删除'>&times;</b></div>");
-            var video = $('<video muted autoplay loop></video>');
+            let formdata = new FormData();
+            let div = $("<div class='develvideoY'><b class='removevideo' title='删除'>&times;</b></div>");
+            let video = $('<video muted autoplay loop></video>');
             $(div).prepend(video);
             $(this).find(".addfileY").hide();
-            var url = window.URL || window.webkitURL || window.mozURL;
-            var obj = e.currentTarget.files[0]; //视频资源对象
+            let url = window.URL || window.webkitURL || window.mozURL;
+            let obj = e.currentTarget.files[0]; //视频资源对象
             console.log(e.currentTarget);
             formdata.append(0, obj);
-            var videoSrc = url.createObjectURL(obj);
+            let videoSrc = url.createObjectURL(obj);
             $(video).attr("src", videoSrc);
             // console.log(videoSrc);
             // console.log(obj);
@@ -604,7 +597,7 @@ $(function() {
             displayTipPane("有视频正在上传中！");
             return;
         }
-        var title = $(".issuePersonalDY textarea").val();
+        const title = $(".issuePersonalDY textarea").val();
 
         //判空
         if (title == "" || title == null || title == undefined) {
@@ -612,8 +605,8 @@ $(function() {
             return;
         }
 
-        var contents = [];
-        var contents_order = 0;
+        let contents = [];
+        let contents_order = 0;
 
         function addContentItem1(order, type, content) {
             return {
@@ -624,18 +617,18 @@ $(function() {
         }
 
         if ($('.develimgY').length > 0) {
-            var imgArr = $(".issuePersonalDY .addpicY .addpicSon .develimgY img");
+            const imgArr = $(".issuePersonalDY .addpicY .addpicSon .develimgY img");
 
-            for (var i = 0; i < imgArr.length; i++) {
+            for (let i = 0; i < imgArr.length; i++) {
 
-                var url = $(imgArr[i]).attr("remoteurl");
-                console.log("url=" + url);
+                const url = $(imgArr[i]).attr("remoteurl");
+                // console.log("url=" + url);
                 contents[i] = addContentItem1(++contents_order, "img", url);
             }
         } else if ($('.develvideoY').length > 0) {
-            var videoArr = $(".issuePersonalDY .addvideoY .addvideoSon .develvideoY video");
-            for (var i = 0; i < videoArr.length; i++) {
-                var url = $(videoArr[i]).attr("remoteurl");
+            const videoArr = $(".issuePersonalDY .addvideoY .addvideoSon .develvideoY video");
+            for (let i = 0; i < videoArr.length; i++) {
+                let url = $(videoArr[i]).attr("remoteurl");
                 contents[0] = addContentItem1(++contents_order, "video", url);
             }
         }
@@ -724,7 +717,7 @@ $(function() {
 
             //#region 板块切换
 
-            var partindex = $(this).attr('data-part-index');
+            const partindex = $(this).attr('data-part-index');
             $('.dynamicsY').eq(partindex).siblings('.dynamicsY').fadeOut(300);
             $('.dynamicsY').eq(partindex).fadeIn(300);
 
