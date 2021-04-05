@@ -1,6 +1,6 @@
 //聊天
+import {wsURL} from '../../../common/baseRequestInfo.js'
 let lockReconnect = false;//避免重复连接
-let url = "ws://192.168.137.105:8080/WebSocket";
 let wsUrl //点击某一个私信后重新修改
 let ws;
 let tt;
@@ -86,7 +86,6 @@ $(".platform_chat input[type='button']").on("click", function () {
 
 //回车键发送
 $(".platform_chat textarea").on("keydown", function (e) {
-
   if (e.keyCode == 13 || e.keyCode == 108) {
     sendText();
     e.preventDefault()
@@ -242,7 +241,6 @@ function addSend(data) {
   //判断data类型 img | text
   let liNode = document.createElement("li");
   liNode.classList.add("me");
-
   if (data.contentType == "text") {
     liNode.innerHTML = '<span class="text">' + data.content + '</span><img class="profile" src="' + data.senderFace + '">';
   } else if (data.contentType == "face") {//表情,大小有限制
