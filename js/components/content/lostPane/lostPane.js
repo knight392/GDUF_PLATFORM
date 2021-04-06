@@ -1,11 +1,10 @@
  // 物品类型
 
- var lostLocation = "";
- var lostTime = "";
- var objectType = "";
- var objectDetailType = "";
- var imgs = [];  //保存的是图片的地址
- 
+ let lostLocation = "";
+ let lostTime = "";
+ let objectType = "";
+ let objectDetailType = "";
+ let imgs = [];  //保存的是图片的地址
  
  function getLocation_lost(){
      lostLocation = $(".modal_bg_lost .lostArea .value .text").html()+""+$(".modal_bg_lost .lostArea .value .areaDetail").val();
@@ -38,8 +37,8 @@ $(".modal_bg_lost .calendar_entrance").on("mouseleave",function(){
 //时间的填充
 function getLostTime(){
     if($('.modal_bg_lost .yearNum').html()!="" && $('.modal_bg_lost .yearNum').html()!=null && $('.modal_bg_lost .yearNum').html()!=undefined){
-        var month = $('.modal_bg_lost .monthNum').html();
-        var day = $('.modal_bg_lost .dayNum').html();
+        let month = $('.modal_bg_lost .monthNum').html();
+        let day = $('.modal_bg_lost .dayNum').html();
         month = month.length>1 ? month : "0"+month;
         day = day.length>1 ? day : "0"+day;
         lostTime = $('.modal_bg_lost .yearNum').html()+"-"+month+"-"+day;
@@ -47,8 +46,8 @@ function getLostTime(){
 }
 // 加载图片
 function getImgs_lost(){
-    var imgsArr = $(".modal_bg_lost .imgBox").children();
-    for(var i=0; i<imgsArr.length; i++){
+    let imgsArr = $(".modal_bg_lost .imgBox").children();
+    for(let i=0; i<imgsArr.length; i++){
         imgs[i] = $(imgsArr[i]).attr("remoteurl")
     }
 }
@@ -79,27 +78,27 @@ $('.modal_bg_lost .addPic input').change(readFile);
 //解决的问题是：formdata对象应该是要
 //编辑区div行的指针
 //插入图片：现在就只能插入到输入框的最后
-var sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
+let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 function readFile() {
-var formdata = new FormData();
+let formdata = new FormData();
 if (!$(this).val().match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　 //判断上传文件格式
     return displayTipPane("图片格式有误！");
 }
-var reader = new FileReader();
+let reader = new FileReader();
 //因为每次表签设置了单文件读取，所以是file[0]
 reader.readAsDataURL(this.files[0]); //转成base64
 reader.fileName = this.files[0].name;
 // formdata.delete(0);//先删除，再添加
 formdata.append(0, this.files[0]); // formdata 的属性
 reader.onload = function (e) {
-    var imgMsg = {
+    let imgMsg = {
         name: this.fileName, //获取文件名
         base64: this.result //reader.readAsDataURL方法执行完后，base64数据储存在reader.result里
     }
     // console.log(imgMsg);
-    var newImage = template("templateAddImage", imgMsg);
+    let newImage = template("templateAddImage", imgMsg);
     // console.log(newImage)
-    var imgObj = $(newImage);
+    let imgObj = $(newImage);
     $(".imgPrevLoad img").attr("src",this.result);
     isImgLoad(function(){
         imgObj.attr("prevLoadHeight",parseInt($(".imgPrevLoad img").height()));
@@ -159,7 +158,7 @@ function searchFound(content){
         },
         success : function(res){
             // console.log(res);
-            var dataList = res.dataList;
+            let dataList = res.dataList;
             $(".modal_bg_lost .search_display").fadeOut();
             if(dataList.length!=0 && dataList!=null && dataList!=undefined){
                 $(".modal_bg_lost .search_display ul").html("");//清除之前记录
@@ -188,20 +187,20 @@ $('.modal_bg_lost .objName .value').on("click",function(e){
 // 加载更多没写
 function displayFound(dataList){
     // 现在是先全部有图片
-    // var reg = /(..\/)/
-    for(var i=0; i<dataList.length; i++){
-        var data = {
+    // let reg = /(..\/)/
+    for(let i=0; i<dataList.length; i++){
+        let data = {
             "id" : dataList[i].id,
             "foundObjectName" : dataList[i].foundObjectName,
             "objectDetailType" : dataList[i].objectDetailType,
             "foundDescribe" : dataList[i].foundDescribe
         }
         if(dataList[i].imgs.length!=0){
-            var url = dataList[i].imgs[0];
+            let url = dataList[i].imgs[0];
             // url = url.replace(reg.exec(url)[0],"../");
             data["img"] = url;
         }
-        var item = template("templateFoundItem",data);
+        let item = template("templateFoundItem",data);
         $(".modal_bg_lost .search_display ul").append(item); 
     }
     $(".modal_bg_lost .search_display ul").find("em").removeAttr("style");
@@ -226,7 +225,7 @@ function submite_lost(){
         !valueIsEmpty($('.modal_bg_lost .objDetail .value_box').val(),"把物品描述清楚一点吧~")&&
         !valueIsEmpty($(".modal_bg_lost .contact .value").val(),"没有联系方式，拾主怎么联系你呢？")){
        
-        var data = {
+        let data = {
             "requestType": "post",
             "type": "lost",
             "contact": $(".modal_bg_lost .contact .value").val(),
@@ -248,7 +247,7 @@ function submite_lost(){
         getImgs_lost();
         if(imgs.length!=0){
             data["imgs"] = imgs;
-            var imgsArr = $(".modal_bg_lost .imgBox").children();
+            let imgsArr = $(".modal_bg_lost .imgBox").children();
             data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
             
         }
