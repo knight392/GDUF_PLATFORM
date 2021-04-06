@@ -2,6 +2,9 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import request from '../../util/request.js';
 import template from '../../util/template.js';
 import { totime } from './tools.js'
+import { user, isLogin } from '../../common/user/index.js'
+import displayTipPane from '../../components/content/tipPane.js'
+
 
 
 export let mainScrollid1; //存scrollId 用来加载下一页
@@ -10,6 +13,7 @@ export let mainScrollid2; //存scrollId 用来加载下一页
 export let LoadNextPage2; //存next 用来判断是否有下一页
 export let PART = 1; //校区互通 1 校园动态 2
 
+// 初始化校区互通
 export function infoIndexPART1() {
     request(baseHttpURL + '/Servlet/MainPageServlet', {
         method: "get",
@@ -17,6 +21,8 @@ export function infoIndexPART1() {
             requestType: 'get',
             getType: "init",
         }
+
+
     }).then(res => {
         // console.log(res);
         mainScrollid1 = res.scrollId;
@@ -56,13 +62,14 @@ export function infoIndexPART1() {
     })
 }
 
+// 初始化校园动态
 export function infoIndexPART2() {
     request(baseHttpURL + '/Servlet/DynamicCommunicateCircleServlet', {
         method: "get",
         body: {
             requestType: "get",
             type: "all",
-            ViewerMarkNumber: $.cookie("markNumber"),
+            ViewerMarkNumber: user.markNumber,
         }
     }).then(res => {
         // console.log(res);
