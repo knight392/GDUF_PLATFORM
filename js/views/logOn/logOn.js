@@ -1,7 +1,7 @@
 //CheckPassWord function 检查密码的格式 没有用到
 //忘记密码 验证码验证 重置密码 没有与后端交互
 
-import CheckPassWord from './tools.js';
+// import CheckPassWord from './tools.js';
 
 $(function() {
 

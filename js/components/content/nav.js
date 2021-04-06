@@ -1,6 +1,7 @@
 import debounce from '../../util/debounce.js'
-import { host } from '../../views/index.js'
+import baseHttpURL from '../../common/baseRequestInfo.js';
 import displayTipPane from '../content/tipPane.js'
+
 window.onload = function() {
     //#region 清空搜索框内的内容 √
     $(".search .searchBar").val("");
@@ -95,7 +96,7 @@ $(function() {
             }
 
             if ($(this).val() != "") {
-                $.get(host + 'Servlet/MainPageServlet', {
+                $.get(baseHttpURL + 'Servlet/MainPageServlet', {
                     requestType: 'get',
                     getType: "explore",
                     exploreContent: $(this).val(),
@@ -199,7 +200,7 @@ $(function() {
         if (pwd === "" || account === "") {
             displayTipPane('用户名/密码不能为空');
         } else {
-            $.get(host + 'Servlet/UserServlet', {
+            $.get(baseHttpURL + 'Servlet/UserServlet', {
                 password: pwd,
                 loginValue: account,
                 requestType: 'get',
