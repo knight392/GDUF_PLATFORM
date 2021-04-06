@@ -1,4 +1,4 @@
-import {getToken, loginRequest} from './tools'
+import {getToken, loginRequest} from './tools.js'
 // user为null,表示没有登录
 let user = null;
 
@@ -16,6 +16,7 @@ let user = null;
   }
 })()
 
+// 退出登录
 function doLogOff(){
   user = null;
   $.removeCookie('token')
@@ -25,7 +26,8 @@ function doLogOff(){
  * @param {*} loginData (可以是{loginValue, password, requestType, userType}对象 或 不发，此时用token验证)
  * @returns 
  */
-// 
+
+// 登录
 function doLogin(loginData = null){
   loginRequest(loginData).then(res => {
     user = res
@@ -34,6 +36,7 @@ function doLogin(loginData = null){
   })
 }
 
+// 判断是否用户登录了
 function isLogin() {
   return user == null ? true : false
  }

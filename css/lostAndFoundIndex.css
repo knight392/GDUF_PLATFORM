@@ -654,6 +654,9 @@ input {
 
 
 /* 分类悬浮板 */
+.objectSelect:hover .objectSelectPane{
+  display: block;
+}
 
 .objectSelectPane {
     position: absolute;
@@ -710,7 +713,9 @@ input {
 
 
 /* 物品筛选 */
-
+.itemSelect:hover .itemSelectPane {
+  display: block;
+}
 .itemSelectPane {
     height: 200px;
     width: 711px;
@@ -776,8 +781,12 @@ input {
 
 
 /* 时间盒子 */
+.timeSelect:hover .timeSelectPane {
+  display: block;
+}
 
 .timeSelectPane {
+    display: none;
     position: absolute;
     top: 38px;
     right: -50px;
@@ -785,7 +794,6 @@ input {
     width: 600px;
     border: 1px solid #eee;
     /* display: flex; */
-    display: none;
     justify-content: space-between;
 }
 
