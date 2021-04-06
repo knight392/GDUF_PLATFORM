@@ -1,12 +1,12 @@
 
 import {initCalendar, bindSelectDayEvent} from './calendar/calendar.js'
-import {changeMode, scrollHandler, resizeHandler, selectGoods, selectObject, selectObjectDetail, selectTime, selectLocation, reSelect, } from './tools.js'
+import {changeMode, scrollHandler, resizeHandler, selectGoods, selectObject, selectObjectDetail, selectTime, selectLocation, reSelect, openLostPane, openFoundPane } from './tools.js'
+import debounce from '../../util/debounce.js'
 // 创建一个日历
 initCalendar('#calendar_main');
 
 // 重新筛选
 $(".reSelect").on("click", reSelect)
-
 
 //模式切换
 $(".modalDisplayPane").on("click", changeMode)
@@ -23,7 +23,7 @@ $(".objectList li").on("click", selectObject)
 $(".itemSelect .itemList .item").on("click", selectObjectDetail)
 
 // 绑定选定日期事件 日期筛选
-bindSelectDayEvent('#calendar_main', selectTime)
+bindSelectDayEvent('#calendar_main', function() {selectTime.call(this,"#calendar_main")})
 
 //点击地点筛选
 $(".locationSelectPane .locationList .item").on("click", selectLocation);
@@ -37,24 +37,10 @@ $(".refreshBtn").on("click", selectGoods)
 $(window).on("resize", debounce(resizeHandler, 100))
 
 // 打开寻物启事的面板
-$(".lostBtn").on("click", function () {
-  //  alert("打开面板")
-  if (isHaveCookie()) { //函数写在了nav上
-    $(".modal_bg_lost").fadeIn();
-  } else {
-    displayTipPane("你还没登录噢~");
-  }
-});
+$(".lostBtn").on("click", openLostPane);
 
 //打开失物招领的面板
-$(".foundBtn").on("click", function () {
-  // alert("打开面板")
-  if (isHaveCookie()) {
-    $(".modal_bg_found").fadeIn();
-  } else {
-    displayTipPane("你还没登录噢~");
-  }
-});
+$(".foundBtn").on("click", openFoundPane);
 
 // 筛选面板的打开
 $(".nav .toolRow .toolBox .tool").on("mouseenter", function () {

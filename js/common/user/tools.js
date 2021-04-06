@@ -1,6 +1,6 @@
-import request from '../../util/request'
-import {baseHttpURL} from '../baseRequestInfo'
-import {cookieUtil} from '../../util/cookieUtil'
+import request from '../../util/request.js'
+import {baseHttpURL} from '../baseRequestInfo.js'
+import cookieUtil from '../../util/cookieUtil.js'
 // 对返回的用户对象数据进行过滤
 function filter(obj) {
   let { userType, messagePojo } = obj;

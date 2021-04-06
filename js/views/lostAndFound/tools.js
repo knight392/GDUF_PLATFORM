@@ -2,6 +2,7 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
 import displayTipPane from '../../components/content/tipPane.js'
 import { loadAllItem } from './masonry/myMasonry.js'
+import {isLogin} from '../../common/user/index.js'
 // 主要是筛选物品，主要访问的是LostAndFoundServlet,
 // 请求的参数，根据筛选的类型不同而动态改变
 // 初始打开是失物招领
@@ -522,9 +523,12 @@ function selectLocation() {
 }
 
 //时间筛选
-function selectTime() {
+function selectTime(calendarId) {
   //nowMonth已经加1
-  let month = ("" + nowMonth).length > 1 ? nowMonth : "0" + nowMonth;
+  const nowYear = $(calendarId).data("year");
+  const nowMonth = $(calendarId).data("month");
+  let month = nowMonth.length > 1 ? nowMonth : "0" + nowMonth;
+  // this是指向td
   let day = $(this).html().length > 1 ? $(this).html() : "0" + $(this).html();
   if (display_modal == "lost") {
     lostTime = `${nowYear}-${month}-${day}`;
@@ -532,11 +536,34 @@ function selectTime() {
     foundTime = `${nowYear}-${month}-${day}`;
   }
   let displayTime = `${nowYear}-${month}-${day}`;//展示在筛选栏上的文字
+  console.log(displayTime);
   $(".timeSelect .toolText").html(displayTime);
   $(".timeSelect").addClass("toolSelected");
   $(".timeSelectPane").stop().fadeOut(230);
   selectGoods();
 }
 
+// 打开寻物启事面板
+function openLostPane() {
+  //  alert("打开面板")
+  if (isLogin()) { //函数写在了nav上
+    $(".modal_bg_lost").fadeIn();
+  } else {
+    displayTipPane("你还没登录噢~");
+  }
+}
 
-export { changeMode, scrollHandler, resizeHandler, loadGoods, selectGoods, reSelect, selectObject, selectObjectDetail, selectTime, selectLocation }
+// 打开失物招领面板
+
+function openFoundPane() {
+  // alert("打开面板")
+  if (isLogin()) {
+    $(".modal_bg_found").fadeIn();
+  } else {
+    displayTipPane("你还没登录噢~");
+  }
+}
+
+
+
+export { changeMode, scrollHandler, resizeHandler, loadGoods, selectGoods, reSelect, selectObject, selectObjectDetail, selectTime, selectLocation, openFoundPane, openLostPane }
