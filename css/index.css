@@ -79,7 +79,6 @@ input {
 .maincontent {
     width: 100%;
     margin-top: 120px;
-    height: 100%;
     background: url(../img/校区互通bg1.jpg) center -200px fixed no-repeat;
     background-size: 100%;
     position: relative;
@@ -182,6 +181,7 @@ input {
 .maincontent .indexQuizList {
     width: 90%;
     margin: 0 auto;
+    /* min-height: 100%; */
     /* display: none; */
     /* background-color: rgba(0, 0, 0, 0.2); */
     box-shadow: 0 0 20px 11px rgba(43, 51, 59, 0.5);
