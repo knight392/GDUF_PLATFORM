@@ -34,6 +34,8 @@ let itemOuterWidth = 320;
 let itemGap = 30;
 //用于显示不同的颜色
 let itemIndex = 0;
+// 展示平台的当前宽度
+let platformWidth = $(".platform").css("width");  //flag的作用就是如果实现宽度不变不重新排版
 
 //初始化失物招领物品
 loadAllItem($(".item_containner"), itemOuterWidth, itemGap);
@@ -42,6 +44,14 @@ loadAllItem($(".item_containner"), itemOuterWidth, itemGap);
 //只用在首次加载，和模式切换
 loadGoods(display_modal);
 
+
+// 请求筛选物品数据
+function requestGoods(data) {
+  return request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
+    method: 'get',
+    body: data
+  })
+}
 
 // 首次加载物品调用
 function loadGoods(type) {
@@ -269,104 +279,102 @@ function changeMode() {
   }
 }
 
+function getLostRequestData() {
+  const data = {
+    "requestType": "get",
+    "type": "lost",
+    "getInfWay": getInfWay,
+  };
+  //动态添加筛选条件
+  if (objectType != null && objectType != undefined && objectType != "") {
+    data["objectType"] = objectType;
+  }
+  if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
+    data["objectDetailType"] = objectDetailType;
+  }
+  if (lostTime != null && lostTime != undefined && lostTime != "") {
+    data["lostTime"] = lostTime;
+  }
+  if (lostLocation != null && lostLocation != undefined && lostLocation != "") {
+    data["lostLocation"] = lostLocation;
+  }
+  if (scrollId != null) {
+    data["scrollId"] = scrollId;
+  }
+  return data
+}
+
+function getFoundRequestData() {
+  const data = {
+    "requestType": "get",
+    "type": "found",
+    "getInfWay": getInfWay,
+  };
+  //动态添加筛选条件
+  if (objectType != null && objectType != undefined && objectType != "") {
+    data["objectType"] = objectType;
+  }
+  if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
+    data["objectDetailType"] = objectDetailType;
+  }
+  if (foundTime != null && foundTime != undefined && foundTime != "") {
+    data["foundTime"] = foundTime;
+  }
+  if (foundLocation != null && foundLocation != undefined && foundLocation != "") {
+    data["foundLocation"] = foundLocation;
+  }
+  if (scrollId != null) {
+    data["scrollId"] = scrollId;
+  }
+  return data;
+}
+
+// 加载更多的物品
 function loadMoreGoods() {
   canLoading = false;
   if (display_modal == "lost") {
-    let data = {
-      "requestType": "get",
-      "type": "lost",
-      "getInfWay": getInfWay,
-    };
-    //动态添加筛选条件
-    if (objectType != null && objectType != undefined && objectType != "") {
-      data["objectType"] = objectType;
-    }
-    if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
-      data["objectDetailType"] = objectDetailType;
-    }
-    if (lostTime != null && lostTime != undefined && lostTime != "") {
-      data["lostTime"] = lostTime;
-    }
-    if (lostLocation != null && lostLocation != undefined && lostLocation != "") {
-      data["lostLocation"] = lostLocation;
-    }
-    if (scrollId != null) {
-      data["scrollId"] = scrollId;
-    }
-
-    $.ajax({
-      url: "../Servlet/LostAndFoundServlet",
-      type: "get",
-      dataType: "json",
-      data: data,
-      success: function (res) {
-        canLoading = true;
-        scrollId = res.scrollId;
-        haveMore = res.next;
-        let dataList = transfromTime(res.dataList, "lostTime");
-        //把键名进行统一,时间已经在被转换的时间改名了
-        // time location describe name objectDetailType
-        for (let i = 0; i < dataList.length; i++) {
-          if (dataList[i]["lostLocation"] != null && dataList[i]["lostLocation"] != undefined) {
-            dataList[i]["location"] = dataList[i]["lostLocation"];
-          } else {
-            dataList[i]["location"] = "未填写"
-          }
-          dataList[i]["describe"] = dataList[i]["lostDescribe"];
-          dataList[i]["name"] = dataList[i]["lostObjectName"];
-          dataList[i]["href"] = "lostAndFound-lost.html?id=" + dataList[i]["id"];
+    const data = getLostRequestData();
+    requestGoods(data).then(res => {
+      canLoading = true;
+      scrollId = res.scrollId;
+      haveMore = res.next;
+      let dataList = transfromTime(res.dataList, "lostTime");
+      //把键名进行统一,时间已经在被转换的时间改名了
+      // time location describe name objectDetailType
+      for (let i = 0; i < dataList.length; i++) {
+        if (dataList[i]["lostLocation"] != null && dataList[i]["lostLocation"] != undefined) {
+          dataList[i]["location"] = dataList[i]["lostLocation"];
+        } else {
+          dataList[i]["location"] = "未填写"
         }
-        // 添加物品数据
-        displayGoods(dataList);
+        dataList[i]["describe"] = dataList[i]["lostDescribe"];
+        dataList[i]["name"] = dataList[i]["lostObjectName"];
+        dataList[i]["href"] = "lostAndFound-lost.html?id=" + dataList[i]["id"];
       }
+      // 添加物品数据
+      displayGoods(dataList);
     })
   } else {
-    let data = {
-      "requestType": "get",
-      "type": "found",
-      "getInfWay": getInfWay,
-    };
-    //动态添加筛选条件
-    if (objectType != null && objectType != undefined && objectType != "") {
-      data["objectType"] = objectType;
-    }
-    if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
-      data["objectDetailType"] = objectDetailType;
-    }
-    if (foundTime != null && foundTime != undefined && foundTime != "") {
-      data["foundTime"] = foundTime;
-    }
-    if (foundLocation != null && foundLocation != undefined && foundLocation != "") {
-      data["foundLocation"] = foundLocation;
-    }
-    if (scrollId != null) {
-      data["scrollId"] = scrollId;
-    }
-    $.ajax({
-      url: "../Servlet/LostAndFoundServlet",
-      type: "get",
-      dataType: "json",
-      data: data,
-      success: function (res) {
-        canLoading = true;
-        scrollId = res.scrollId;
-        haveMore = res.next;
-        let dataList = transfromTime(res.dataList, "foundTime");
-        //把键名进行统一,时间已经在被转换的时间改名了
-        // time location describe name objectDetailType
-        for (let i = 0; i < dataList.length; i++) {
-          if (dataList[i]["foundLocation"] != null && dataList[i]["foundLocation"] != undefined) {
-            dataList[i]["location"] = dataList[i]["foundLocation"];
-          } else {
-            dataList[i]["location"] = "未填写"
-          }
-          dataList[i]["describe"] = dataList[i]["foundDescribe"];
-          dataList[i]["name"] = dataList[i]["foundObjectName"];
-          dataList[i]["href"] = "lostAndFound-found.html?id=" + dataList[i]["id"];
+    const data = getFoundRequestData();
+    requestGoods(data).then(res => {
+      canLoading = true;
+      scrollId = res.scrollId;
+      haveMore = res.next;
+      let dataList = transfromTime(res.dataList, "foundTime");
+      //把键名进行统一,时间已经在被转换的时间改名了
+      // time location describe name objectDetailType
+      for (let i = 0; i < dataList.length; i++) {
+        if (dataList[i]["foundLocation"] != null && dataList[i]["foundLocation"] != undefined) {
+          dataList[i]["location"] = dataList[i]["foundLocation"];
+        } else {
+          dataList[i]["location"] = "未填写"
         }
-        // 添加物品数据
-        displayGoods(dataList);
+        dataList[i]["describe"] = dataList[i]["foundDescribe"];
+        dataList[i]["name"] = dataList[i]["foundObjectName"];
+        dataList[i]["href"] = "lostAndFound-found.html?id=" + dataList[i]["id"];
       }
+      // 添加物品数据
+      displayGoods(dataList);
     })
   }
 }
@@ -392,13 +400,25 @@ function scrollHandler() {
   }
 }
 
-// 请求筛选物品数据
-function requestGoods(data) {
-  return request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
-    method: 'get',
-    body: data
-  })
+// 处理屏幕缩放
+function resizeHandler() {
+  if ($(".platform").css("width") == "1618px" && $(".platform").css("width") != platformWidth) {
+    //展示5列
+    loadAllItem($(".item_containner"), itemOuterWidth, itemGap);
+    platformWidth = $(".platform").css("width");
+  } else if ($(".platform").css("width") == "1100px" && $(".platform").css("width") != platformWidth) {
+    //展示4列
+    loadAllItem($(".item_containner"), itemOuterWidth, itemGap);
+    platformWidth = $(".platform").css("width");
+  } else if ($(".platform").css("width") == "1300px" && $(".platform").css("width") != platformWidth) {
+    //展示4列
+    loadAllItem($(".item_containner"), itemOuterWidth, itemGap);
+    platformWidth = $(".platform").css("width");
+  }
 }
+
+
+
 
 //条件筛选函数
 function selectGoods() {
@@ -408,24 +428,7 @@ function selectGoods() {
   //清空容器
   //加一个缓冲动态图
   if (display_modal == "lost") {
-    let data = {
-      requestType: "get",
-      type: "lost",
-      getInfWay
-    };
-    //动态添加筛选条件
-    if (objectType != null && objectType != undefined && objectType != "") {
-      data["objectType"] = objectType;
-    }
-    if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
-      data["objectDetailType"] = objectDetailType;
-    }
-    if (lostTime != null && lostTime != undefined && lostTime != "") {
-      data["lostTime"] = lostTime;
-    }
-    if (lostLocation != null && lostLocation != undefined && lostLocation != "") {
-      data["lostLocation"] = lostLocation;
-    }
+    const data = getLostRequestData();
     requestGoods(data).then(res => {
       haveMore = res.next;
       scrollId = res.scrollId;
@@ -446,24 +449,7 @@ function selectGoods() {
       displayGoods_first(dataList);
     })
   } else {
-    let data = {
-      requestType: "get",
-      type: "found",
-      getInfWay
-    };
-    //动态添加筛选条件
-    if (objectType != null && objectType != undefined && objectType != "") {
-      data["objectType"] = objectType;
-    }
-    if (objectDetailType != null && objectDetailType != undefined && objectDetailType != "") {
-      data["objectDetailType"] = objectDetailType;
-    }
-    if (foundTime != null && foundTime != undefined && foundTime != "") {
-      data["foundTime"] = foundTime;
-    }
-    if (foundLocation != null && foundLocation != undefined && foundLocation != "") {
-      data["foundLocation"] = foundLocation;
-    }
+    const data = getFoundRequestData();
     requestGoods(data).then(res => {
       scrollId = res.scrollId;
       haveMore = res.next;
@@ -486,4 +472,71 @@ function selectGoods() {
   }
 }
 
-export { changeMode, scrollHandler, loadGoods, selectGoods }
+
+
+// 重新筛选
+function reSelect() {
+  //样式去除类名
+  $(".nav .toolRow .tool").removeClass("toolSelected");
+  $(".objectSelect .toolText").html("分类筛选");
+  $(".itemSelect .toolText").html("物品筛选");
+  $(".timeSelect .toolText").html("日期筛选");
+  $(".locationSelect .toolText").html("地点筛选");
+  // 逻辑部分可以直接调用模式切换函数
+  loadGoods(display_modal);
+}
+
+// 一级筛选
+function selectObject() {
+  objectType = $(this).find(".text").html();
+  $(".objectSelect .toolText").html(objectType);
+  $(".objectSelect").addClass("toolSelected");
+  $(".objectSelectPane").stop().fadeOut(230);
+  //二级筛选清空
+  objectDetailType = null;
+  $(".itemSelect").removeClass("toolSelected");
+  $(".itemSelect .toolText").html("物品筛选");
+  selectGoods();
+}
+
+// 二级筛选
+function selectObjectDetail() {
+  objectDetailType = $(this).html();
+  $(".itemSelect .toolText").html(objectDetailType);
+  $(".itemSelect").addClass("toolSelected");
+  $(".itemSelectPane").stop().fadeOut(230);
+  selectGoods();
+}
+
+// 地点筛选
+function selectLocation() {
+  $(".locationSelect .toolText").html($(this).html());
+  $(".locationSelect").addClass("toolSelected");
+  if (display_modal == "lost") {
+    lostLocation = $(this).html();
+  } else {
+    foundLocation = $(this).html();
+  }
+  $(".locationSelectPane").stop().fadeOut(230);
+  selectGoods();
+}
+
+//时间筛选
+function selectTime() {
+  //nowMonth已经加1
+  let month = ("" + nowMonth).length > 1 ? nowMonth : "0" + nowMonth;
+  let day = $(this).html().length > 1 ? $(this).html() : "0" + $(this).html();
+  if (display_modal == "lost") {
+    lostTime = `${nowYear}-${month}-${day}`;
+  } else {
+    foundTime = `${nowYear}-${month}-${day}`;
+  }
+  let displayTime = `${nowYear}-${month}-${day}`;//展示在筛选栏上的文字
+  $(".timeSelect .toolText").html(displayTime);
+  $(".timeSelect").addClass("toolSelected");
+  $(".timeSelectPane").stop().fadeOut(230);
+  selectGoods();
+}
+
+
+export { changeMode, scrollHandler, resizeHandler, loadGoods, selectGoods, reSelect, selectObject, selectObjectDetail, selectTime, selectLocation }
