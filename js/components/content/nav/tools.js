@@ -329,7 +329,7 @@ export function attentionPass() {
 
 // 我的收藏
 
-//我的提问
+// 我的提问
 export function QAcue() {
     request(baseHttpURL + '/Servlet/MainPageServlet', {
         method: "get",
@@ -358,6 +358,7 @@ export function QAcue() {
     })
 }
 
+// 我的回答
 export function QAanswer() {
     request(baseHttpURL + '/Servlet/AnswerServlet', {
         method: "get",

@@ -3,7 +3,7 @@ import { baseHttpURL } from '../../../common/baseRequestInfo.js';
 import displayTipPane from '../tipPane.js'
 
 import { setCookie, isHaveCookie, clearCookie, getSearchMessageY, logon, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
-import { isLogin, user } from '../../../common/user/index.js';
+import { doLogOff, isLogin, user } from '../../../common/user/index.js';
 
 window.onload = function() {
     //#region 清空搜索框内的内容 √
@@ -739,16 +739,19 @@ $('#hoverBox_request').click(function() {
 //#region 退出登录 √
 $(".exitLogonY").on({
     click: function() {
-        USERID = null;
-        $(".personal").show(100);
-        $(".logonHeadPortrait").hide(100);
-        $(".system").html("");
-        $(".private").html("");
-        $(".myAttention").html("");
-        $(".attentionMe").html("");
-        $(".myCue").html("");
-        $(".myAns").html("");
-        $(".mycollection").html("");
+        //#region 
+        // USERID = null;
+        // $(".personal").show(100);
+        // $(".logonHeadPortrait").hide(100);
+        // $(".system").html("");
+        // $(".private").html("");
+        // $(".myAttention").html("");
+        // $(".attentionMe").html("");
+        // $(".myCue").html("");
+        // $(".myAns").html("");
+        // $(".mycollection").html("");
+        //#endregion
+        doLogOff();
         clearCookie();
         closeWebSocket();
         //问题页面判断是否登录
