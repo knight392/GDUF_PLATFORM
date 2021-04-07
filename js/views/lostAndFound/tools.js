@@ -546,7 +546,7 @@ function selectTime(calendarId) {
 // 打开寻物启事面板
 function openLostPane() {
   //  alert("打开面板")
-  if (isLogin()) { //函数写在了nav上
+  if (true) { //函数写在了nav上
     $(".modal_bg_lost").fadeIn();
   } else {
     displayTipPane("你还没登录噢~");
@@ -557,7 +557,7 @@ function openLostPane() {
 
 function openFoundPane() {
   // alert("打开面板")
-  if (isLogin()) {
+  if (true) {
     $(".modal_bg_found").fadeIn();
   } else {
     displayTipPane("你还没登录噢~");
