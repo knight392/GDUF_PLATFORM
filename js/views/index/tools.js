@@ -303,7 +303,7 @@ export function sendDevel() {
 
     //获取内容 发送内容
     function sendD() {
-        if (isLogin) {
+        if (isLogin()) {
             request(baseHttpURL + '/Servlet/QuestionServlet', {
                 method: "post",
                 body: {
