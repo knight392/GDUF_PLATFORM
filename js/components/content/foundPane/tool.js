@@ -1,5 +1,6 @@
 // 物品类型
 import {isImage, getImgBase64} from '../../../util/imgHandler.js'
+import sendFile from '../fileHandler.js';
 
 let foundLocation = "";
 let foundTime = "";
@@ -43,24 +44,16 @@ function getImgs_found() {
 
 
 function readFile_found() {
-  let formdata = new FormData();
-  if (!$(this).val().match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　 //判断上传文件格式
+  if (! isImage(this.files[0].name)) {　　 //判断上传文件格式
     return displayTipPane("图片格式有误！");
   }
-  let reader = new FileReader();
-  //因为每次表签设置了单文件读取，所以是file[0]
-  reader.readAsDataURL(this.files[0]); //转成base64
-  reader.fileName = this.files[0].name;
-  // formdata.delete(0);//先删除，再添加
-  formdata.append(0, this.files[0]); // formdata 的属性
+  const reader = getImgBase64(this.files[0]);
   reader.onload = function (e) {
     let imgMsg = {
       name: this.fileName, //获取文件名
       base64: this.result //reader.readAsDataURL方法执行完后，base64数据储存在reader.result里
     }
-    // console.log(imgMsg);
     let newImage = template("templateAddImage", imgMsg);
-    // console.log(newImage)
     let imgObj = $(newImage);
     $(".imgPrevLoad img").attr("src", this.result);
     isImgLoad(function () {
@@ -77,27 +70,13 @@ function readFile_found() {
 //发送图片
 function sendImage_found(formdata, imgObj) { //imgObj是jq对象
   sendingImg = true;
-  $.ajax({
-    url: '../Servlet/ReceiveFileServlet',
-    type: 'post',
-    data: formdata,
-    dataType: 'json',
-    processData: false, //用FormData传fd时需有这两项
-    contentType: false,
-    success: function (data) {
-      imgObj.attr("remoteurl", data.message);//把远程url地址写在remoteurl上
-      sendingImg = false;
-    },
-    error: function (data) {
-      imgObj.remove();
-      sendingImg = false;
-      displayTipPane("图片上传失败！已自动删除！")
-    },
-    timeout: function (data) {
-      imgObj.remove();
-      sendingImg = false;
-      displayTipPane("图片上传超时！已自动删除！")
-    }
+  sendFile(formdata).then(res => {
+    imgObj.attr("remoteurl", data.message);//把远程url地址写在remoteurl上
+    sendingImg = false;
+  }, err => {
+    imgObj.remove();
+    sendingImg = false;
+    displayTipPane("图片上传失败！已自动删除！")
   })
 }
 
