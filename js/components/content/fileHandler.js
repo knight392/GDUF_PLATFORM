@@ -1,4 +1,4 @@
-import request from '../../util/request.js'
+/* import request from '../../util/request.js'
 //文件上传
 /**
  * 
@@ -19,3 +19,4 @@ export default function sendFile(url ,formdata) { //imgObj是jq对象
     })
   })
 }
+ 
