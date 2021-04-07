@@ -38,7 +38,7 @@ function doLogin(loginData = null){
 
 // 判断是否用户登录了
 function isLogin() {
-  return user == null ? true : false
+  return user == null ? false : true
  }
 
 export {user, doLogOff, doLogin, isLogin}
