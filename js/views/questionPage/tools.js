@@ -91,7 +91,7 @@ function readFile() {
 //发送图片
 function sendImage(formdata, imgObj) { //imgObj是jq对象
   sendingImg = true;
-  sendFile(baseHttpURL + "/Servlet/ReceiveFileServlet", formdata).then(url => {
+  sendFile(formdata).then(url => {
     imgObj.attr("remoteurl", url);
     sendingImg = false;
   }, err => {

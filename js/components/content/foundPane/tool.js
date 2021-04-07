@@ -2,11 +2,6 @@
 import {isImage, getImgBase64} from '../../../util/imgHandler.js'
 import sendFile from '../fileHandler.js';
 
-let foundLocation = "";
-let foundTime = "";
-let objectType = "";
-let objectDetailType = "";
-let imgs = [];
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
 //  获得丢失地点
@@ -24,22 +19,25 @@ function selectObjectType() {
 }
 
 // 获取时间
-function getfoundTime() {
-  if ($('.modal_bg_found .yearNum').html() != "" && $('.modal_bg_found .yearNum').html() != null && $('.modal_bg_found .yearNum').html() != undefined) {
+function getTime(paneClassName) {
+  if ($(`${paneClassName} .yearNum`).html().trim() != "") {
     let month = $('.modal_bg_found .monthNum').html();
     let day = $('.modal_bg_found .dayNum').html();
     month = month.length > 1 ? month : "0" + month;
     day = day.length > 1 ? day : "0" + day;
-    foundTime = `${$('.modal_bg_found .yearNum').html()}-${month}-${day}`;
+    return `${$('.modal_bg_found .yearNum').html()}-${month}-${day}`;
   }
+  return null;
 }
 
 // 加载图片的远程URL
 function getImgs_found() {
   let imgsArr = $(".modal_bg_found .imgBox").children();
+  let imgs = [];
   for (let i = 0; i < imgsArr.length; i++) {
     imgs[i] = $(imgsArr[i]).attr("remoteurl")
   }
+  return imgs;
 }
 
 
@@ -95,7 +93,7 @@ function submite_found() {
       "requestType": "post",
       "type": "found",
       "contact": $(".modal_bg_found .contact .value").val(),
-      "authorMarkNumber": $.cookie("markNumber"),
+      // "authorMarkNumber": $.cookie("markNumber"),
       "objectDetailType": objectDetailType,
       "objectType": objectType,
       "foundDescribe": $('.modal_bg_found .objDetail .value_box').val(),
