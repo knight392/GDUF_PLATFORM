@@ -686,7 +686,7 @@ function agreeAnswer(receiverMarkNumber) {
 function attentionRequest(data) {
   return request(baseHttpURL + '/Servlet/AttentionServlet', {
     method: 'post',
-    body: JSON.stringify(data)
+    body: data
   })
 }
 
@@ -851,7 +851,7 @@ function setAuthorInfo(data) {
 function sendInfo(data) {
   request(baseHttpURL+'/Servlet/InfServlet', {
     method:'post',
-    body: JSON.stringify(data)
+    body: data
   }).then(res => {
     console.log('通知成功');
   },err => {
@@ -860,4 +860,4 @@ function sendInfo(data) {
 }
 
 
-export { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor }
+export { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion }
