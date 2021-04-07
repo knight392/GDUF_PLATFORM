@@ -34,8 +34,11 @@ function loginRequest(loginData){
  * @returns null | String
  */
 function getToken() {
-  
  return  cookieUtil.get('token')
 }
 
-export {loginRequest, getToken}
+function removeToken() {
+  cookieUtil.unset('token')
+}
+
+export {loginRequest, getToken, removeToken}

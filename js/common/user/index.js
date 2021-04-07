@@ -1,4 +1,4 @@
-import {getToken, loginRequest} from './tools.js'
+import {getToken, loginRequest, removeToken} from './tools.js'
 // user为null,表示没有登录
 let user = null;
 
@@ -18,8 +18,8 @@ let user = null;
 
 // 退出登录
 function doLogOff(){
-  user = null;
-  $.removeCookie('token')
+  user = null
+  removeToken()
 }
 /**
  * 
