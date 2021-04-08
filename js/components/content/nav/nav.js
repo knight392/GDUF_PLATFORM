@@ -96,44 +96,6 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
     }
 
     if ($(this).val() != "") {
-
-        //#region
-        // $.get(baseHttpURL + 'Servlet/MainPageServlet', {
-        //         requestType: 'get',
-        //         getType: "explore",
-        //         exploreContent: $(this).val(),
-        //     }, function(res) {
-        //         // console.log(res);  
-        //         $('.search .searchContent li').remove();
-        //         let indexli = 0;
-        //         let url;
-        //         let icon;
-        //         for (let i = 0; i < res.dataList.length && i < 5; i++) {
-        //             //判断是哪个篇 的 然后获取 创建iconfont
-        //             if (res.dataList[i].questionType === "学习篇") {
-        //                 icon = "iconxuexi";
-        //             } else if (res.dataList[i].questionType === "期末篇") {
-        //                 icon = "iconkaoshi3";
-        //             } else if (res.dataList[i].questionType === "宿舍篇") {
-        //                 icon = "iconsushe";
-        //             } else if (res.dataList[i].questionType === "食堂篇") {
-        //                 icon = "iconshitang";
-        //             } else if (res.dataList[i].questionType === "考证篇") {
-        //                 icon = "iconziyuan";
-        //             } else {
-        //                 icon = "iconqita";
-        //             }
-        //             url = 'questionPage.html?id=' + res.dataList[i].id;
-
-        //             if (indexli < 5) {
-        //                 const li = $('<li><span><i class="iconfont ' + icon + ' "></i></span><a target="_blank" href=" ' + url + ' ">' + res.dataList[i].title + '</a></li>');
-        //                 $(".search .searchContent").prepend(li);
-        //                 $(".search .searchContent").find("li").eq(i).html(res.dataList[i].title);
-        //                 indexli++;
-        //             }
-        //         }
-        //     }, 'json')
-        //#endregion
         getSearchMessageY($(this).val())
     } else {
         $(".searchContent").find('li').remove();
@@ -204,49 +166,6 @@ $('.btnLogon').click(function() {
         displayTipPane('用户名/密码不能为空');
     } else {
         logon();
-        //#region 
-        // $.get(baseHttpURL + 'Servlet/UserServlet', {
-        //     password: pwd,
-        //     loginValue: account,
-        //     requestType: 'get',
-        //     userType: type
-        // }, function(res) {
-        //     if (res.statusCode == 200) {
-        //         setCookie(res.messagePojo, 10); //保存30天
-
-        //         //if登录成功 退出登录框 登录+注册 -> 消息+头像
-
-        //         $('.modal_bg').fadeOut(); // 其实就是css 的过渡+ display
-        //         $('.modal').css({
-        //             transform: 'translate(-50%,-50%) scale(0.7)'
-        //         })
-
-        //         //#region 动态创建 头像下部分的内容
-
-        //         $('.personal').hide(100);
-        //         $('.logonHeadPortrait').show(100);
-        //         $('.ResUserName').text(res.userName);
-        //         $('.ResUserName').prop("title", res.userName);
-        //         $('.ResMarkNumber').text(res.markNumber);
-        //         $('.ResMarkNumber').prop("title", res.markNumber);
-        //         USERID = res.markNumber;
-        //         $('.ResMessagePojoMajor').text(res.messagePojo.major);
-        //         $('.ResMessagePojoMajor').prop("title", res.messagePojo.major);
-        //         let ResMessageFaceScr = '../' + res.messagePojo.face.substring(2);
-        //         $('.ResMessageFace').prop("src", ResMessageFaceScr);
-        //         $('.navHPY').prop('src', ResMessageFaceScr);
-
-        //         //#endregion
-        //         //#region 生成websocket对象
-        //         initialWebSocket();
-
-        //         //#endregion
-
-        //     } else {
-        //         displayTipPane('账号或密码有误，登录失败！');
-        //     }
-        // }, 'json')
-        //#endregion
     }
 })
 
@@ -265,40 +184,6 @@ $(".message").on({
             $('.message').find(".messageNotification").stop().fadeIn();
             if (message_openFirst) {
                 message_openFirst = false;
-                //#region 
-                // $.get('../Servlet/InfServlet', {
-                //         currentPage: "1",
-                //         receiverMarkNumber: USERID,
-                //         order: "sendTime",
-                //         direction: "desc",
-                //         requestType: 'get',
-                //         type: "inf",
-                //     }, function(res) {
-                //         $(".system").html("");
-                //         //#region 动态创建  消息通知
-                //         for (let i = res.dataList.length - 1; i > 0; i--) {
-
-                //             const item = $("<li class='item'></li>");
-                //             const src = '../' + res.dataList[i].senderFace.substring(2);
-                //             const img = $("<img src='" + src + "'>");
-                //             const svg = $("<svg class='info_point' class='icon' height='10' p-id='12380' t='1602330426902' version='1.1' viewBox='0 0 1024 1024' width='10' xmlns='https://www.w3.org/2000/svg'><path d='M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z' fill='#E6A23C' p-id='12381'></svg>");
-                //             const username = $("<span class='userName itemTitle' title='" + res.dataList[i].senderName + "'>" + res.dataList[i].senderName + "</span>");
-                //             const information = $("<span class='item_info' title='" + res.dataList[i].content + "'>" + res.dataList[i].content + "</span>");
-                //             const time = $("<span class='time'>" + res.dataList[i].timeUpToNow + "</span>");
-
-                //             $(".message .contentBox_information").find(".system").prepend(item);
-                //             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(img);
-                //             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(svg);
-                //             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(username);
-                //             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(information);
-                //             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(time);
-
-                //         }
-                //         //#endregion
-                //         // console.log(res);
-
-                //     }, 'json')
-                //#endregion
                 messageInf();
             }
         } else {
@@ -314,77 +199,7 @@ $(".message").on({
 //右边:私信
 $('.message #hoverBox_privateMessage').on({
     click: function() {
-        //#region goRightY() 
-        // $(this).siblings(".activeLine").addClass("toRight");
-        // $(this).siblings(".activeLine").removeClass("toLeft");
-        // $(this).css('fontWeight', '700');
-        // $(this).siblings('span').css("fontWeight", '400');
-        // $(".system").fadeOut();
-        // $(".private").fadeIn();
-        //#endregion
         goRightY(".system", ".private");
-        //#region 获取私信通知
-        // let send = new Array();
-        // let pindex;
-        // let isRead = true;
-        // $.get('../Servlet/InfServlet', {
-        //     currentPage: "1",
-        //     receiverMarkNumber: USERID,
-        //     order: "sendTime",
-        //     direction: "desc",
-        //     requestType: 'get',
-        //     type: "chat",
-        // }, function(res) {
-        //     $(".private").html("");
-        //     // console.log(res);
-        //     //#region 动态创建  消息私信
-        //     pindex = 0;
-        //     for (let i = res.dataList.length - 1; i > 0; i--) {
-        //         const item = $("<li class='item chatBtn' target='" + res.dataList[i].senderMarkNumber + "' targetName='" + res.dataList[i].senderName + "' data-pindex='" + pindex + "'></li>");
-        //         const src = '../' + res.dataList[i].senderFace.substring(2);
-        //         const img = $("<img src='" + src + "'>");
-        //         const svg = $("<svg class='info_point' class='icon' height='10' p-id='12380' t='1602330426902' version='1.1' viewBox='0 0 1024 1024' width='10' xmlns='https://www.w3.org/2000/svg'><path d='M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z' fill='#E6A23C' p-id='12381'></svg>");
-        //         const username = $("<span class='userName itemTitle' title='" + res.dataList[i].senderName + "'>" + res.dataList[i].senderName + "</span>");
-        //         const information = $("<span class='item_info' title='" + res.dataList[i].content + "'>" + res.dataList[i].content + "</span>");
-        //         const time = $("<span class='time'>" + res.dataList[i].timeUpToNow + "</span>");
-        //         $(".message .contentBox_information").find(".private").prepend(item);
-        //         $(".message .contentBox_information").find(".private").find(".item").eq(0).append(img);
-        //         $(".message .contentBox_information").find(".private").find(".item").eq(0).append(svg);
-        //         $(".message .contentBox_information").find(".private").find(".item").eq(0).append(username);
-        //         $(".message .contentBox_information").find(".private").find(".item").eq(0).append(information);
-        //         $(".message .contentBox_information").find(".private").find(".item").eq(0).append(time);
-
-        //         send[pindex] = {
-        //             'senderMarkNumber': res.dataList[i].senderMarkNumber,
-        //             'senderFace': '../' + res.dataList[i].senderFace.substring(2),
-        //             'senderName': res.dataList[i].senderName,
-        //         }
-        //         pindex++;
-        //     }
-        //     //#endregion
-        //     $(".chatBtn").off("click");
-        //     $(".chatBtn").on("click", function() {
-        //         wantToSendMarkNumber = $(this).attr("target");
-        //         wsUrl = url + '/' + myMarkNumber + '/' + wantToSendMarkNumber;
-        //         //重新连接WebSocket
-
-        //         //用户名
-        //         $(".platform_chat .targetName").text($(this).attr("targetName"));
-        //         if (lastTarget != null && lastTarget != $(this).attr("target")) {
-        //             ulNode.innerHTML = "";
-        //         }
-        //         lastTarget = $(this).attr("targetName");
-
-        //         $(".platform_chat").fadeIn();
-
-        //         //这次的webSocket是有发送目标的
-        //         createWebSocket1();
-        //     });
-        //     // console.log(send);
-
-        // }, 'json')
-
-        //#endregion
         messageChat();
     }
 })
@@ -392,47 +207,7 @@ $('.message #hoverBox_privateMessage').on({
 //左边:动态
 $('.message #hoverBox_dynamicMessage').on({
     click: function() {
-        //#region goLeftY()
-        // $(this).siblings(".activeLine").addClass("toLeft");
-        // $(this).siblings(".activeLine").removeClass("toRight");
-        // $(this).css('fontWeight', '700');
-        // $(this).siblings('span').css("fontWeight", '400');
-        // $(".private").fadeOut();
-        // $(".system").fadeIn();
-        //#endregion
         goLeftY(".private", ".system");
-        //#region 
-        // $.get('../Servlet/InfServlet', {
-        //     currentPage: "1",
-        //     receiverMarkNumber: USERID,
-        //     order: "sendTime",
-        //     direction: "desc",
-        //     requestType: 'get',
-        //     type: "inf",
-        // }, function(res) {
-        //     $(".system").html("");
-        //     // console.log(res);
-
-        //     // 动态创建  消息通知
-        //     for (let i = res.dataList.length - 1; i > 0; i--) {
-
-        //         const item = $("<li class='item'></li>");
-        //         const src = '../' + res.dataList[i].senderFace.substring(2);
-        //         const img = $("<img src='" + src + "'>");
-        //         const svg = $("<svg class='info_point' class='icon' height='10' p-id='12380' t='1602330426902' version='1.1' viewBox='0 0 1024 1024' width='10' xmlns='https://www.w3.org/2000/svg'><path d='M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z' fill='#E6A23C' p-id='12381'></svg>");
-        //         const username = $("<span class='userName itemTitle' title='" + res.dataList[i].senderName + "'>" + res.dataList[i].senderName + "</span>");
-        //         const information = $("<span class='item_info' title='" + res.dataList[i].content + "'>" + res.dataList[i].content + "</span>");
-        //         const time = $("<span class='time'>" + res.dataList[i].timeUpToNow + "</span>");
-
-        //         $(".message .contentBox_information").find(".system").prepend(item);
-        //         $(".message .contentBox_information").find(".system").find(".item").eq(0).append(img);
-        //         $(".message .contentBox_information").find(".system").find(".item").eq(0).append(svg);
-        //         $(".message .contentBox_information").find(".system").find(".item").eq(0).append(username);
-        //         $(".message .contentBox_information").find(".system").find(".item").eq(0).append(information);
-        //         $(".message .contentBox_information").find(".system").find(".item").eq(0).append(time);
-        //     }
-        // })
-        //#endregion
         messageInf();
     }
 });
@@ -443,62 +218,6 @@ $(".attention").on({
     click: function() {
         // 获取我的关注 √ 
         if (isLogin()) {
-            //#region 
-            // $.get('../Servlet/AttentionServlet', {
-            //     requestType: 'get',
-            //     majorMarkNumber: USERID,
-            //     attentionType: "major",
-            //     currentPage: "1",
-            //     direction: "asc",
-            //     order: "id",
-            // }, function(res) {
-            //     $(".myAttention").html("");
-            //     // console.log(res);
-
-            //     //#region 动态创建 我的关注
-            //     for (let i = 0; i < res.dataList.length; i++) {
-            //         const json = {
-            //             userFace: res.dataList[i].userFace,
-            //             userName: res.dataList[i].userName,
-            //             action: "turnOff",
-            //             isSubscribe: "subscribe_on"
-            //         }
-            //         if (res.dataList[i].userType == "student") {
-            //             json["status"] = "学生";
-            //             json["school_info"] = res.dataList[i].major;
-            //         } else {
-            //             json["status"] = "老师";
-            //             json["school_info"] = res.dataList[i].collage;
-            //         }
-            //         const item = template("attentionItem_template", json);
-            //         $(".myAttention").append(item);
-            //     }
-            //     //#endregion
-
-            //     //还没关注之前，点击后发送关注请求，并且成功后把状态变成关注，点亮
-            //     //如果当前是已关注，title为取消关注
-
-            //     // 点击关注按钮，并且是当前状态为turnON ，就发送请求发送关注，如果为turnOff就发送取消关注请求
-
-            //     $('.hoverBox .contentBox_subscribe .item .subscribe').click(function() {
-            //         if ($(this).attr("nextAction") === 'turnOn') {
-            //             //发送关注请求
-            //             $(this).find('svg path').css("fill", "#ff7800");
-            //             $(this).attr({
-            //                 "nextAction": "turnOff",
-            //                 "title": "取消关注"
-            //             });
-            //         } else {
-            //             $(this).find('svg path').css("fill", "#bfbfbf");
-            //             $(this).attr({
-            //                 "nextAction": "turnOn",
-            //                 "title": "关注"
-            //             });
-            //         }
-            //     })
-
-            // }, 'json');
-            //#endregion
             attentionMajor();
         } else {
             displayTipPane("您还未登录！");
@@ -508,52 +227,9 @@ $(".attention").on({
 
 // 右边:关注我的 √
 $('#hoverBox_fans').click(function() {
-    //#region 
-    // $(this).siblings(".activeLine").addClass("toRight");
-    // $(this).siblings(".activeLine").removeClass("toLeft");
-    // $(this).css('fontWeight', '700');
-    // $(this).siblings('span').css("fontWeight", '400');
-    // $(".myAttention").fadeOut();
-    // $(".attentionMe").fadeIn();
-    //#endregion
     goRightY(".myAttention", ".attentionMe");
     // 发送请求 获取关注我的
     if (isLogin()) {
-        //#region 
-        // $.get('../Servlet/AttentionServlet', {
-        //     requestType: 'get',
-        //     attentionType: "pass",
-        //     passMarkNumber: USERID,
-        //     currentPage: "1",
-        //     direction: "asc",
-        //     order: "id",
-        // }, function(res) {
-        //     $(".attention .contentBox_subscribe").find("ul.attentionMe").html("");
-
-        //     // console.log(res);
-
-        //     //#region 动态创建 关注我的
-        //     for (let i = 0; i < res.dataList.length; i++) {
-        //         // console.log(res.dataList[i]);
-        //         const json = {
-        //             userFace: res.dataList[i].userFace,
-        //             userName: res.dataList[i].userName,
-        //             action: "turnOn",
-        //             isSubscribe: "subscribe_off"
-        //         }
-        //         if (res.dataList[i].userType == "student") {
-        //             json["status"] = "学生";
-        //             json["school_info"] = res.dataList[i].major;
-        //         } else {
-        //             json["status"] = "老师";
-        //             json["school_info"] = res.dataList[i].collage;
-        //         }
-        //         const item = template("attentionItem_template", json);
-        //         $("ul.attentionMe").append(item);
-        //     }
-        //     //#endregion
-        // }, 'json');
-        //#endregion
         attentionPass();
     } else {
         displayTipPane("您还未登录！");
@@ -563,14 +239,6 @@ $('#hoverBox_fans').click(function() {
 
 //左边:我的关注
 $('#hoverBox_interest').click(function() {
-    //#region 
-    // $(this).siblings(".activeLine").addClass("toLeft");
-    // $(this).siblings(".activeLine").removeClass("toRight");
-    // $(this).css('fontWeight', '700');
-    // $(this).siblings('span').css("fontWeight", '400');
-    // $(".myAttention").fadeIn();
-    // $(".attentionMe").fadeOut();
-    //#endregion
     goLeftY(".attentionMe", ".myAttention");
     // 获取我的关注 √ 
     if (isLogin()) {
@@ -625,70 +293,6 @@ $(".myCollY").on({
 $(".myQAY").on({
     click: function() {
         if (isLogin()) {
-            //#region 我的提问 √
-            // $.get('../Servlet/MainPageServlet', {
-            //     requestType: 'get',
-            //     getType: "special",
-            //     authorMarkNumber: USERID,
-            // }, function(res) {
-            //     $(".myCue").html("");
-
-            //     //#region 动态创建 我的提问
-
-            //     for (let i = 0; i < res.dataList.length; i++) {
-            //         const li = $('<li class="item"></li>');
-            //         // const contenturl = 'html/questionPage.html?id=' + data.id;
-            //         const a = $('<a href="questionPage.html?id="' + res.dataList[i].id + '></a>');
-            //         const title = $("<div class='problem_title' title='" + res.dataList[i].title + "'>" + res.dataList[i].title + "</div>");
-            //         const remark = $("<div class='problem_remark_answer' title='" + res.dataList[i].contents[0].contentMain + "'>" + res.dataList[i].contents[0].contentMain + "</div>")
-
-            //         const time = $("<div class='time_box'><span class='time'>" + res.dataList[i].timeUpToNow + "</span></div>")
-
-            //         $(".contentBox_request").find(".myCue").prepend(li);
-            //         $(".contentBox_request").find(".myCue").find("li").eq(0).append(a);
-            //         $(".contentBox_request").find(".myCue").find("li").eq(0).find("a").append(title);
-            //         $(".contentBox_request").find(".myCue").find("li").eq(0).find("a").append(remark);
-            //         $(".contentBox_request").find(".myCue").find("li").eq(0).find("a").append(time);
-
-            //     }
-
-            //     //#endregion
-
-            // }, 'json')
-
-            // }
-            //#endregion
-            //#region 获取我的问题 √
-            // $.get('../Servlet/AnswerServlet', {
-            //     requestType: 'get',
-            //     getAnswerType: "individual",
-            //     markNumber: USERID,
-            //     currentPage: "1",
-            // }, function(res) {
-            //     $(".myAns").html("");
-            //     //#region 动态创建 我的回答
-
-            //     for (let i = 0; i < res.dataList.length; i++) {
-            //         const li = $('<li class="item"></li>');
-            //         // const contenturl = 'html/questionPage.html?id=' + data.id;
-            //         const a = $('<a href="questionPage.html?id="' + res.dataList[i].questionId + '></a>');
-            //         const title = $("<div class='problem_title'>" + res.dataList[i].title + "</div>");
-            //         const remark = $("<div class='problem_remark_answer'></div>");
-
-            //         const time = $("<div class='time_box'><span class='time'>" + res.dataList[i].timeUpToNow + "</span></div>");
-            //         $(".contentBox_request").find(".myAns").prepend(li);
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).append(a);
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).find("a").append(title);
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).find("a").append(remark);
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).find(".problem_remark_answer").html(res.dataList[i].contents[0].contentMain);
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).find(".problem_remark_answer").attr("title", $(".contentBox_request").find(".myAns").find("li").eq(0).find(".problem_remark_answer").text());
-            //         $(".contentBox_request").find(".myAns").find("li").eq(0).find("a").append(time);
-
-            //     }
-            //     //#endregion
-            // }, 'json')
-
-            //#endregion
             QAcue();
         } else {
             displayTipPane("您还未登录！");
@@ -698,14 +302,6 @@ $(".myQAY").on({
 
 // 右边:问答 
 $('#hoverBox_answer').click(function() {
-    //#region 
-    // $(this).siblings(".activeLine").addClass("toRight");
-    // $(this).siblings(".activeLine").removeClass("toLeft");
-    // $(this).css('fontWeight', '600');
-    // $(this).siblings('span').css("fontWeight", '400');
-    // $(".myCue").fadeOut();
-    // $(".myAns").fadeIn();
-    //#endregion
     goRightY(".myCue", ".myAns");
     //发送请求
     if (isLogin()) {
@@ -717,14 +313,6 @@ $('#hoverBox_answer').click(function() {
 
 // 左边:提问
 $('#hoverBox_request').click(function() {
-    //#region 
-    // $(this).siblings(".activeLine").addClass("toLeft");
-    // $(this).siblings(".activeLine").removeClass("toRight");
-    // $(this).css('fontWeight', '700');
-    // $(this).siblings('span').css("fontWeight", '400');
-    // $(".myAns").fadeOut();
-    // $(".myCue").fadeIn();
-    //#endregion
     goLeftY(".myAns", ".myCue");
     //发送请求
     if (isLogin()) {
@@ -739,18 +327,16 @@ $('#hoverBox_request').click(function() {
 //#region 退出登录 √
 $(".exitLogonY").on({
     click: function() {
-        //#region 
         // USERID = null;
-        // $(".personal").show(100);
-        // $(".logonHeadPortrait").hide(100);
-        // $(".system").html("");
-        // $(".private").html("");
-        // $(".myAttention").html("");
-        // $(".attentionMe").html("");
-        // $(".myCue").html("");
-        // $(".myAns").html("");
-        // $(".mycollection").html("");
-        //#endregion
+        $(".personal").show(100);
+        $(".logonHeadPortrait").hide(100);
+        $(".system").html("");
+        $(".private").html("");
+        $(".myAttention").html("");
+        $(".attentionMe").html("");
+        $(".myCue").html("");
+        $(".myAns").html("");
+        $(".mycollection").html("");
         doLogOff();
         clearCookie();
         closeWebSocket();
