@@ -5,18 +5,16 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>问题页面</title>
-  <link rel="stylesheet" href="../../emoji/" type="text/css">
   <link rel="stylesheet" href="../../css/logOn.css" type="text/css">
   <link href="../../css/quiz.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/hoverPaneY.css">
   <link rel="stylesheet" href="../../css/nav.css">
   <link href="../../css/question&answer_Page.css" type="text/css" rel="stylesheet">
   <link href="../../css/tipPane.css" type="text/css" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/chat.css">
+  <link href="../../css/iconfont.css" type="text/css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="../../css/chat.css"> -->
   <link href="../../css/imgDisplayTemplate.css" type="text/css" rel="stylesheet">
-  <link href="../../css/chat.css" type="text/css" rel="stylesheet">
- 
-
+  <!-- <link href="../../css/chat.css" type="text/css" rel="stylesheet"> -->
   <!-- <script src="../js/chat.js"></script> -->
 
 </head>
@@ -152,41 +150,42 @@
   <!--                          提问页面                           -->
   <div class="quizModal_bg quizModal_bg_askQuestion">
     <div class="quizModal">
+      <!-- 头部 -->
       <div class="quizModal_head">
         <button class="fadeout">&times;</button>
       </div>
+      <!-- 内容 -->
       <div class="quizModal_content">
+        <!-- 问题输入 -->
         <div class="mainQuestion">
-          <textarea maxlength="30" t name="" id="" cols="30" rows="10" class="mainQ" placeholder="请输入问题"></textarea>
+          <textarea maxlength="30" name="" id="" cols="30" rows="10" class="mainQ" placeholder="请输入问题"></textarea>
           <span><b class="nowNum">0</b><b>/</b><b class="maxNum">30</b></span>
         </div>
+        <!-- 图片插入 -->
         <div class="insertPicture">
-          <div class="picture_containner"></div>
-          <!-- <img src="" alt=""> -->
-          <!-- <div class="picture">
-                        <img src="../../img/01.jpg" alt="">
-                        <i class="removePicture">&times;</i>
-                    </div> -->
+          <div class="picture_containner" id='picture_container'></div>
           <i class="file iconfont iconjiahao1">
             <input type="file" class="insertP" accept="image/*">
           </i>
         </div>
+        <!-- 问题详情 -->
         <div class="questionNote">
           <textarea maxlength="80" name="" id="" cols="30" rows="10" class="queN" placeholder="问题备注"></textarea>
           <span><b class="nowNum">0</b><b>/</b><b class="maxNum">80</b></span>
         </div>
+        <!-- 标签栏 -->
         <div class="label">
           <b class="labelFont">标签栏</b>
-          <div class="nodeBoard">
+          <div class="nodeBoard" id="label_container">
 
           </div>
           <div class="addLabel">
             <input maxlength="6" type="text" placeholder="自行输入标签"> <i class="iconfont">&#xe720;</i>
-            <!-- <input type="text" placeholder="请输入标签" class="WriteAddLabel"> -->
             <button class="add_btn">添加</button>
           </div>
 
         </div>
+        <!-- 文章类型，邀请回答  -->
         <div class="rowBox">
           <div class="questionType">
             <span class="cur_val" value="null">请选择文章类型</span>
@@ -209,7 +208,9 @@
             邀请好友回答
           </div>
         </div>
+        <!-- 提交请求 -->
         <button class="publish">立即发表</button>
+        <!-- 匿名选项 -->
         <div class="anonymity" anonymity="false">
           <button class="btn">
             <svg t="1603548623411" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +222,6 @@
           </button>匿名
         </div>
       </div>
-
     </div>
   </div>
 
@@ -472,7 +472,7 @@
   </div>
 
   <!-- 聊天 -->
-  <div class="platform_chat">
+  <div class="platform_chat" style="display: none;">
     <h4 class="title targetName"></h4>
     <span class="close_btn">&times;</span>
     <div class="screen">
@@ -685,7 +685,7 @@
             </svg> 发表回答
           </div>
 
-          <input style="display: none;" id="file_input" class="file_input" type="file" multiple>
+          <input style="display: none;" id="file_input" class="file_input" type="file" multiple accept="image/*">
 
           <div class="tool slideUp">
             <svg t="1602589409277" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -863,7 +863,7 @@
       </div>
     </li>
   </template>
-  <script>
+  <!-- <script>
     $(window).scroll(function () {
 
       if ($(document).scrollTop() >= 433) {
@@ -876,10 +876,10 @@
         $(".nav .search").css("left", "50%");
       }
     })
-  </script>
+  </script> -->
   <script src="../../js/util/jquery-3.5.1.js"></script>
   <script src="../../js/views/questionPage/questionPage.js" type='module'></script>
-
+  <script src="../../js/components/content/questionPane/quiz.js" type="module"></script>
 </body>
 
 </html>
