@@ -1,4 +1,4 @@
-import {selectObjectType, submite_found, readFile_found} from './tool.js'
+import {selectObjectType, submit_found, readFile_found} from './tool.js'
 import {initCalendar, bindSelectDayEvent} from '../calendar/calendar.js'
  $(".modal_bg_found .objClass_entrance").on("mouseenter",function(){
     $(this).find(".objClassPane").stop().fadeIn(200);
@@ -55,7 +55,7 @@ $(".modal_bg_found .addPic .addBtn").on("click",function(){
 $('.modal_bg_found .addPic input').change(readFile_found);
 
 // 一键发布
-$(".modal_bg_found .sendBtn").on("click",submite_found);
+$(".modal_bg_found .sendBtn").on("click",submit_found);
 //关闭面板
 
 $(".modal_bg_found .fadeout_foundModal").on("click",function(){

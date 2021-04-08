@@ -1,10 +1,11 @@
+import displayTipPane from './tipPane.js'
 // 获取时间
 /**
  * 
  * @param {*} paneClassName 
  * @returns {String} time
  */
- function getTime(paneClassName) {
+function getTime(paneClassName) {
   if ($(`${paneClassName} .yearNum`).html().trim() != "") {
     let month = $(`${paneClassName} .monthNum`).html();
     let day = $(`${paneClassName} .dayNum`).html();
@@ -30,4 +31,26 @@ function getImgsRemoteURL(paneClassName) {
   return imgs;
 }
 
-export {getTime, getImgsRemoteURL}
+// 判断值是否为空
+function valueIsEmpty(value, tip) {
+  if (value == "" || value == null || value == undefined) {
+    displayTipPane(tip);
+    return true;
+  }
+  return false;
+}
+
+// 提交请求
+function submitRequest(data) {
+  return new Promise((resolve, reject) => {
+    request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
+      method: 'post',
+      body: data
+    }).then(res => {
+      resolve(res)
+    }, err => {
+      reject(err)
+    })
+  })
+}
+export { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest }

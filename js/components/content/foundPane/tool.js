@@ -1,9 +1,7 @@
 // 物品类型
-import { baseHttpURL } from '../../../common/baseRequestInfo.js';
 import { isImage, getImgBase64 } from '../../../util/imgHandler.js'
-import request from '../../../util/request.js';
 import sendFile from '../fileHandler.js';
-import { getTime, getImgsRemoteURL } from '../lostFoundCommonUtil.js'
+import { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest } from '../lostFoundCommonUtil.js'
 import displayTipPane from '../tipPane.js'
 
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
@@ -60,7 +58,7 @@ function readFile_found() {
 function sendImage_found(formdata, imgObj) { //imgObj是jq对象
   sendingImg = true;
   sendFile(formdata).then(res => {
-    imgObj.attr("remoteurl", data.message);//把远程url地址写在remoteurl上
+    imgObj.attr("remoteurl", res);//把远程url地址写在remoteurl上
     sendingImg = false;
   }, err => {
     imgObj.remove();
@@ -70,7 +68,7 @@ function sendImage_found(formdata, imgObj) { //imgObj是jq对象
 }
 
 // 一键发布
-function submite_found() {
+function submit_found() {
   // 判空
   //物品名称
   // if($('.modal_bg_found .objName .value').val())
@@ -104,10 +102,8 @@ function submite_found() {
       let imgsArr = $(".modal_bg_found .imgBox").children();
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
     }
-    request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
-      method: 'post',
-      body: data
-    }).then(res => {
+    // 提交请求
+    submitRequest(data).then(res => {
       displayTipPane("发布成功！");
       $(".modal_bg_found").fadeOut();
       clearModalFound();
@@ -143,4 +139,4 @@ function clearModalFound() {
   $(".modal_bg_found .award .value_box").val("");
 }
 
-export { selectObjectType, submite_found, readFile_found}
+export { selectObjectType, submit_found, readFile_found}

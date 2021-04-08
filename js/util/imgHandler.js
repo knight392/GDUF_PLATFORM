@@ -1,6 +1,6 @@
 /**
  * 读取本地文件完base64的uri格式，一般用来做图片预览
- * @param {*} img 
+ * @param {file} img 
  * @returns {Object} reader
  */
 function getImgBase64(img){
