@@ -166,7 +166,7 @@ function sendImgVideo(formdata, obj, sendingImgVideo) { //imgObj是jq对象
 }
 
 // 添加视频/img  删除
-export function insertImgVideo(type) {
+export function insertImgVideo(e, type) {
     let formdata = new FormData();
     let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
     let url = window.URL || window.webkitURL || window.mozURL;
