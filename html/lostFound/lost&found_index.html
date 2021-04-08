@@ -885,9 +885,9 @@
               </div>
             </div>
           </div>
-          <div class="lostTime row">
+          <div class="lostTime row" >
             <span class="tip">丢失时间：</span>
-            <div class="value timeBox">
+            <div class="value timeBox" id="lostTimeBox">
               <div class="calendar_entrance">
                 <svg t="1603790426545" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="5658" width="32" height="32">
@@ -1184,10 +1184,10 @@
               </div>
             </div>
           </div>
-          <div class="foundTime row">
+          <div class="foundTime row" >
             <span class="tip">拾得时间：</span>
-            <div class="value timeBox">
-              <div id="calendar_entrance_main">
+            <div class="value timeBox" id="foundTimeBox">
+              <div class="calendar_entrance">
                 <svg t="1603790426545" class="icon" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="5658" width="32" height="32">
                   <path
@@ -1641,9 +1641,10 @@
   <!-- <script src="../js/foundPane.js"></script>
     <script src="../js/lostPane.js"></script>
     <script src="../js/nav.js"></script> -->
-  <script src="../../js/util/jquery-3.5.1.js"></script>
+  <script src="../../js/util/jquery-3.5.1.min.js"></script>
   <script src="../../js/views/lostAndFound/lost&found.js" type="module"></script>
-
+  <script src='../../js/components/content/lostPane/lostPane.js' type='module'></script>
+  <script src='../../js/components/content/foundPane/foundPane.js' type='module'></script>
 </body>
 
 </html>

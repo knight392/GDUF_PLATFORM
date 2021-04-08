@@ -1,13 +1,13 @@
 // 物品类型
-import {isImage, getImgBase64} from '../../../util/imgHandler.js'
+import { isImage, getImgBase64 } from '../../../util/imgHandler.js'
 import sendFile from '../fileHandler.js';
+import { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest } from '../lostFoundCommonUtil.js'
+import displayTipPane from '../tipPane.js'
 
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
+let objectDetailType = '';
+let objectType = '';
 
-//  获得丢失地点
-function getLocation_found() {
-  foundLocation = $(".modal_bg_found .foundArea .value .text").html() + "" + $(".modal_bg_found .foundArea .value .areaDetail").val();
-}
 
 // 选择物品类型
 function selectObjectType() {
@@ -18,34 +18,21 @@ function selectObjectType() {
   objectType = $(this).parents(".row_objClass").find(".title_row").html();
 }
 
-// 获取时间
-function getTime(paneClassName) {
-  if ($(`${paneClassName} .yearNum`).html().trim() != "") {
-    let month = $('.modal_bg_found .monthNum').html();
-    let day = $('.modal_bg_found .dayNum').html();
-    month = month.length > 1 ? month : "0" + month;
-    day = day.length > 1 ? day : "0" + day;
-    return `${$('.modal_bg_found .yearNum').html()}-${month}-${day}`;
-  }
-  return null;
-}
 
-// 加载图片的远程URL
-function getImgs_found() {
-  let imgsArr = $(".modal_bg_found .imgBox").children();
-  let imgs = [];
-  for (let i = 0; i < imgsArr.length; i++) {
-    imgs[i] = $(imgsArr[i]).attr("remoteurl")
-  }
-  return imgs;
+
+//  获得丢失地点
+function getLocation_found() {
+  return $(".modal_bg_found .foundArea .value .text").html() + "" + $(".modal_bg_found .foundArea .value .areaDetail").val();
 }
 
 
 function readFile_found() {
-  if (! isImage(this.files[0].name)) {　　 //判断上传文件格式
+  if (!isImage(this.files[0].name)) {　　 //判断上传文件格式
     return displayTipPane("图片格式有误！");
   }
   const reader = getImgBase64(this.files[0]);
+  const formdata = new FormData(); // 用来发送数据
+  formdata.append(0, this.files[0]); // formdata 的属性
   reader.onload = function (e) {
     let imgMsg = {
       name: this.fileName, //获取文件名
@@ -65,11 +52,13 @@ function readFile_found() {
   }
   // }
 }
+
+
 //发送图片
 function sendImage_found(formdata, imgObj) { //imgObj是jq对象
   sendingImg = true;
   sendFile(formdata).then(res => {
-    imgObj.attr("remoteurl", data.message);//把远程url地址写在remoteurl上
+    imgObj.attr("remoteurl", res);//把远程url地址写在remoteurl上
     sendingImg = false;
   }, err => {
     imgObj.remove();
@@ -79,7 +68,7 @@ function sendImage_found(formdata, imgObj) { //imgObj是jq对象
 }
 
 // 一键发布
-function submite_found() {
+function submit_found() {
   // 判空
   //物品名称
   // if($('.modal_bg_found .objName .value').val())
@@ -99,8 +88,7 @@ function submite_found() {
       "foundDescribe": $('.modal_bg_found .objDetail .value_box').val(),
       "foundObjectName": $('.modal_bg_found .objName .value').val(),
     };
-    getfoundTime();
-
+    const foundTime = getTime('.modal_bg_found');
     if (foundTime != "") {
       data["foundTime"] = foundTime;
     }
@@ -108,35 +96,24 @@ function submite_found() {
     if (foundLocation != "") {
       data["foundLocation"] = foundLocation;
     }
-    getImgs_found();
-    console.log(imgs);
+    const imgs = getImgsRemoteURL('.modal_bg_found');
     if (imgs.length != 0) {
       data["imgs"] = imgs;
       let imgsArr = $(".modal_bg_found .imgBox").children();
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
     }
-    // console.log(data);
-    $.ajax({
-      url: "../Servlet/LostAndFoundServlet",
-      type: "post",
-      dataType: "json",
-      data: JSON.stringify(data),
-      success: function (res) {
-        displayTipPane("发布成功！");
-
-        $(".modal_bg_found").fadeOut();
-        clearModalFound();
-      },
-      timeout: function (res) {
-        displayTipPane("发布超时！");
-      },
-      error: function (res) {
-        displayTipPane("发布失败！");
-      }
+    // 提交请求
+    submitRequest(data).then(res => {
+      displayTipPane("发布成功！");
+      $(".modal_bg_found").fadeOut();
+      clearModalFound();
+    }, err => {
+      displayTipPane("发布失败！");
     })
   }
 }
 
+// 清空
 function clearModalFound() {
   //物品名称
   $('.modal_bg_found .objName .value').val("");
@@ -145,10 +122,7 @@ function clearModalFound() {
   objectType = "";
   objectDetailType = "";
   //时间
-
-
   $(".modal_bg_found .foundTime  .time_display").css("display", "none");
-  foundTime = "";
   //地点
   $(".modal_bg_found .foundArea .text").html("");
   $(".modal_bg_found .foundArea .areaDetail").val("");
@@ -165,4 +139,4 @@ function clearModalFound() {
   $(".modal_bg_found .award .value_box").val("");
 }
 
-export { selectObjectType, getfoundTime }
+export { selectObjectType, submit_found, readFile_found}

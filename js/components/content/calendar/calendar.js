@@ -112,8 +112,7 @@ function setCalendarAttrOfYearMonth(calendarId, year, month) {
 function bindSelectDayEvent(calendarId, handler) {
   $(calendarId).click(function(event) {
     if(event.target.className == 'fill'){
-      console.log($(event.target));
-      handler.call($(event.target));
+      handler.call(event.target);
     }
   })
 }
