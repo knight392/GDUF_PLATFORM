@@ -12,7 +12,7 @@ window.onload = function() {
 
     //#region 远安增加代码，实现加载判断是否最近登录过
     // console.log("加载用户信息");
-    if (isLogin) {         // displayTipPane("加载用户信息")
+    if (isLogin()) {         // displayTipPane("加载用户信息")
                 
         $('.modal_bg').fadeOut();  // 其实就是css 的过渡+ display
                 
@@ -261,7 +261,7 @@ let message_openFirst = true;
 $(".message").on({
     mouseenter: function(e) {
         e.stopPropagation();
-        if (isLogin) {
+        if (isLogin()) {
             $('.message').find(".messageNotification").stop().fadeIn();
             if (message_openFirst) {
                 message_openFirst = false;
@@ -442,7 +442,7 @@ $('.message #hoverBox_dynamicMessage').on({
 $(".attention").on({
     click: function() {
         // 获取我的关注 √ 
-        if (isLogin) {
+        if (isLogin()) {
             //#region 
             // $.get('../Servlet/AttentionServlet', {
             //     requestType: 'get',
@@ -518,7 +518,7 @@ $('#hoverBox_fans').click(function() {
     //#endregion
     goRightY(".myAttention", ".attentionMe");
     // 发送请求 获取关注我的
-    if (isLogin) {
+    if (isLogin()) {
         //#region 
         // $.get('../Servlet/AttentionServlet', {
         //     requestType: 'get',
@@ -573,7 +573,7 @@ $('#hoverBox_interest').click(function() {
     //#endregion
     goLeftY(".attentionMe", ".myAttention");
     // 获取我的关注 √ 
-    if (isLogin) {
+    if (isLogin()) {
         attentionMajor();
     } else {
         displayTipPane("您还未登录！");
@@ -610,7 +610,7 @@ $(".myCollY").on({
         //先清空上次请求创建的信息
         $(".myCollY .contentBox_collection").find("ul.mycollection").html("");
 
-        if (isLogin) {
+        if (isLogin()) {
 
         } else {
             displayTipPane("您还未登录！");
@@ -624,7 +624,7 @@ $(".myCollY").on({
 //#region 我的问答 √
 $(".myQAY").on({
     click: function() {
-        if (isLogin) {
+        if (isLogin()) {
             //#region 我的提问 √
             // $.get('../Servlet/MainPageServlet', {
             //     requestType: 'get',
@@ -708,7 +708,7 @@ $('#hoverBox_answer').click(function() {
     //#endregion
     goRightY(".myCue", ".myAns");
     //发送请求
-    if (isLogin) {
+    if (isLogin()) {
         QAanswer();
     } else {
         displayTipPane("您还未登录！");
@@ -727,7 +727,7 @@ $('#hoverBox_request').click(function() {
     //#endregion
     goLeftY(".myAns", ".myCue");
     //发送请求
-    if (isLogin) {
+    if (isLogin()) {
         QAcue();
     } else {
         displayTipPane("您还未登录！");
@@ -793,7 +793,7 @@ $(".hpSecond .secondPane_entrance").on({
         secondPane.css("borderRadius", "22px");
         generalPane.css("borderRadius", "22px");
 
-        if (isLogin) {
+        if (isLogin()) {
             //count是实现点击一次按钮打开二级面板，再次点击就关闭
             // 原面板的右边圆角
             secondPane.css("borderRadius", "22px 0 0 22px");

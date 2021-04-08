@@ -14,15 +14,6 @@ export const totime = function(time) {
     return timestamp.toLocaleDateString().replace(/\//g, "-") + " " + timestamp.toTimeString().substr(0, 8);
 }
 
-// 复制链接
-export function copyUrl(url) {
-    const input = $("<input  value='" + url + "'>");
-    $(this).parent().prepend(input);
-    $(this).parent().find("input").select();
-    document.execCommand("copy");
-    $(this).parent().find('input').remove();
-}
-
 // 校区互通的加载更多
 export function loadingNextPART1() {
     if (LoadNextPage1) {
@@ -175,7 +166,7 @@ function sendImgVideo(formdata, obj, sendingImgVideo) { //imgObj是jq对象
 }
 
 // 添加视频/img  删除
-export function insertImgVideo(type) {
+export function insertImgVideo(e, type) {
     let formdata = new FormData();
     let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
     let url = window.URL || window.webkitURL || window.mozURL;
@@ -207,7 +198,6 @@ export function insertImgVideo(type) {
             'margin': '0 auto'
         });
         sendImgVideo(formdata, $(video), sendingVideo); //发送视频
-
     }
 
     //×出现与消失
@@ -303,7 +293,7 @@ export function sendDevel() {
 
     //获取内容 发送内容
     function sendD() {
-        if (isLogin) {
+        if (isLogin()) {
             request(baseHttpURL + '/Servlet/QuestionServlet', {
                 method: "post",
                 body: {
