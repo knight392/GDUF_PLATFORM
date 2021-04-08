@@ -2,13 +2,10 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import { isLogin, user } from '../../common/user/index.js'
 import displayTipPane from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
-
-
-// import baseHttpURL from '../../common/baseRequestInfo.js';
-
 import { infoIndexPART1, infoIndexPART2 } from './info.js'
 import { loadingNextPART1, loadingNextPART2, totime, insertImgVideo, sendDevel } from './tools.js'
 let PART = 1; //校区互通 1 校园动态 2
+
 window.onload = function() {
 
     //#region 
@@ -138,7 +135,6 @@ window.onload = function() {
     $('.addpicSon').find('.develvideoY').remove();
     //#endregion
 }
-
 
 $('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
 $('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
@@ -444,7 +440,7 @@ $(".addimgsY").on({
         //     }
         // })
         //#endregion
-        insertImgVideo('img');
+        insertImgVideo(e, 'img');
     }
 });
 //#endregion  
@@ -497,7 +493,7 @@ $(".addvideoY").on({
         //     }
         // })
         //#endregion
-        insertImgVideo('video');
+        insertImgVideo(e, 'video');
     }
 });
 //#region 

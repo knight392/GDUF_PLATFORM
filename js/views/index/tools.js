@@ -198,7 +198,6 @@ export function insertImgVideo(type) {
             'margin': '0 auto'
         });
         sendImgVideo(formdata, $(video), sendingVideo); //发送视频
-
     }
 
     //×出现与消失
