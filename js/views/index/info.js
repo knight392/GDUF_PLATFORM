@@ -17,8 +17,6 @@ export function infoIndexPART1() {
             requestType: 'get',
             getType: "init",
         }
-
-
     }).then(res => {
         // console.log(res);
         mainScrollid1 = res.scrollId;
@@ -108,5 +106,23 @@ export function infoIndexPART2() {
             }
         }
     })
+
+    //#region 内容中视频的播放暂停
+    // $('.trendsMuted').on({
+    //     click: function(e) {
+    //         e.stopPropagation();
+    //         $(this).siblings('video').attr('autoplay', 'autoplay');
+    //         $(this).siblings('video')[0].play();
+    //         $(this).hide();
+
+    //         $(this).siblings('video').on({
+    //             click: function() {
+    //                 $(this)[0].pause();
+    //                 $(this).siblings('.trendsMuted').show();
+    //             }
+    //         })
+    //     }
+    // });
+    //#endregion
 
 }
