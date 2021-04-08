@@ -3,7 +3,7 @@ import { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subsc
 import displayTipPane from '../../commponents/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import debounce from '../../util/debounce.js'
-
+import {isLogin} from '../../common/user/index.js'
 
 // 页面初始化
 (function() {
@@ -161,7 +161,7 @@ $('.question_info_main .like_btn .icon').click(agreeQuestion)
 
 
 $(".author_info_box .subscribe_btn").click(function () {
-  if (isLogon == false) {
+  if (isLogin()) {
     displayTipPane("请先完成登录!");
     return;
   }
@@ -175,7 +175,19 @@ $(".author_info_box .subscribe_btn").click(function () {
   }
 })
 
-
+// 打开提问模态框
+$('.cueY').click(function () {
+  if (isLogin()) {
+    $('.quizModal_bg').fadeIn();
+    $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
+    // $('.modal').fadeIn();
+    $('.quizModal').css({
+      transform: 'translate(-50%,-50%) scale(1)'
+    })
+  } else {
+    displayTipPane("你还没登录噢~");
+  }
+})
 
 
 //渲染问题

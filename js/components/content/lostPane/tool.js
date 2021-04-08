@@ -15,13 +15,12 @@ function getLocation_lost() {
 
 //插入图片：现在就只能插入到输入框的最后
 function readFile_lost() {
-
   if (isImage(this.file[0].name)) {　　 //判断上传文件格式
     return displayTipPane("图片格式有误！");
   }
   const formdata = new FormData();
   formdata.append(0, this.files[0]); // formdata 的属性
-  const reader = getImgBase64(this.file[0])
+  const reader = getImgBase64(this.files[0])
   reader.onload = function (e) {
     let imgMsg = {
       name: this.fileName, //获取文件名
@@ -72,6 +71,7 @@ function searchFound(content) {
     }
   })
 }
+
 // 加载更多没写
 function displayFound(dataList) {
   // 现在是先全部有图片
@@ -94,8 +94,6 @@ function displayFound(dataList) {
   $(".modal_bg_lost .search_display ul").find("em").removeAttr("style");
   $(".modal_bg_lost .search_display ul").find("em").css("font-weight", "700")
 }
-
-
 
 function submit_lost() {
   // 判空

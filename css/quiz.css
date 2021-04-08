@@ -30,7 +30,7 @@ button {
 /* #region 模态框关闭按钮*/
 
 .quizModal_bg {
-    display: none;
+    display: block;
     background-color: #00000066;
     position: fixed;
     width: 100%;
@@ -196,10 +196,10 @@ button {
     color: #f00
 }
 
-
-/* .quizModal .quizModal_content>.insertPicture .picture:hover .removePicture {
+/* 悬浮后删除按钮显示 */
+.quizModal .quizModal_content>.insertPicture .picture:hover .removePicture {
     display: block;
-} */
+}
 
 .quizModal_bg_askQuestion .quizModal_content .insertPicture .file {
     position: relative;
@@ -277,13 +277,13 @@ button {
 
 .quizModal_bg_askQuestion .quizModal_content .label .nodeBoard span {
     position: relative;
+    display: block;
     /* width: 67px; */
     height: 40px;
     background-color: #fff;
     margin-right: 15px;
     float: left;
     padding: 0 20px;
-    display: block;
     margin-top: 8px;
     border-radius: 8px;
     text-align: center;
@@ -295,19 +295,22 @@ button {
 
 .quizModal_bg_askQuestion .quizModal_content .label .nodeBoard .text {
     color: #028e9b;
-    
     font-size: 20px
 }
 
 .quizModal_bg_askQuestion .quizModal_content .label .nodeBoard span i {
+    display: none;
     position: absolute;
     right: 3px;
     top: -9px;
     font-size: 30px;
-    display: none;
     color: #028e9b;
     cursor: pointer;
 }
+.quizModal_bg_askQuestion .quizModal_content .label .nodeBoard .labelItem:hover .removeLabel{
+  display: inline-block;
+}
+
 
 .quizModal_bg_askQuestion .quizModal_content .label .addLabel {
     width: 35%;
