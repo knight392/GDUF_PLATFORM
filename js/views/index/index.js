@@ -1,12 +1,13 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import { isLogin, user } from '../../common/user/index.js'
 import displayTipPane from '../../components/content/tipPane.js'
+import getLink from '../../util/copyLink.js'
 
 
 // import baseHttpURL from '../../common/baseRequestInfo.js';
 
 import { infoIndexPART1, infoIndexPART2 } from './info.js'
-import { loadingNextPART1, loadingNextPART2, copyUrl, totime, insertImgVideo, sendDevel } from './tools.js'
+import { loadingNextPART1, loadingNextPART2, totime, insertImgVideo, sendDevel } from './tools.js'
 let PART = 1; //校区互通 1 校园动态 2
 window.onload = function() {
 
@@ -363,7 +364,7 @@ $(".copyurlY").on({
             url = window.location.href;
         }
         // console.log(url);
-        copyUrl(url);
+        getLink(url);
     }
 })
 

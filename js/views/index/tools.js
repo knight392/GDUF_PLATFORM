@@ -14,15 +14,6 @@ export const totime = function(time) {
     return timestamp.toLocaleDateString().replace(/\//g, "-") + " " + timestamp.toTimeString().substr(0, 8);
 }
 
-// 复制链接
-export function copyUrl(url) {
-    const input = $("<input  value='" + url + "'>");
-    $(this).parent().prepend(input);
-    $(this).parent().find("input").select();
-    document.execCommand("copy");
-    $(this).parent().find('input').remove();
-}
-
 // 校区互通的加载更多
 export function loadingNextPART1() {
     if (LoadNextPage1) {
