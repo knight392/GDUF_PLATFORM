@@ -231,7 +231,7 @@
 
       <!--        校徽        -->
       <div class="logo">
-        <img src="../img/gduf-logo.png" alt="" title="广东金融学院">
+        <img src="../../img/gduf-logo.png" alt="" title="广东金融学院">
       </div>
 
       <!-- 首页+校区互通+失物招领+提问 功能页面 -->
@@ -289,7 +289,7 @@
         <div class="headPortrait">
 
           <!-- 导航栏上的头像 -->
-          <img class="navHPY" src="../img/InitialPortrait.jpg" alt=" " title="个人中心 ">
+          <img class="navHPY" src="../../img/InitialPortrait.jpg" alt=" " title="个人中心 ">
 
           <div class="hpSecond">
             <!-- 头像的二级导航 -->
@@ -300,7 +300,7 @@
               <!-- 个人属性part -->
               <!-- 用户头像 用户名 -->
               <div class="hpPersonalAttributes">
-                <img class="ResMessageFace" src="../img/InitialPortrait.jpg " alt=" ">
+                <img class="ResMessageFace" src="../../img/InitialPortrait.jpg " alt=" ">
                 <em> <b class="ResUserName"></b></em>
                 <em> <b class="ResMarkNumber"></b></em>
                 <em> <b class="ResMessagePojoMajor"></b> </em>
@@ -509,7 +509,7 @@
   </div>
 
   <!-- 问题的描述和提问者的信息 -->
-  <div class="question_info_main">
+  <div class="question_info_main" id="question_main">
     <div class="question_info_box">
       <!-- 问题标题 -->
       <div class="questionTitle">
@@ -599,7 +599,7 @@
     </div>
   </div>
   <!-- 回答区 -->
-  <div class="content_main">
+  <div class="content_main" id="content_main">
     <!-- 右边的侧栏框 -->
     <div class="sideBox_fixed">
       <!-- 提问者信息 -->
@@ -629,7 +629,6 @@
             </div> -->
       <!-- 随手记，便签 -->
       <div class="note">
-
         <div class="title">
           便利签
         </div>
@@ -637,7 +636,7 @@
           <textarea placeholder="信息太多记不住？写这里吧！"></textarea>
         </div>
         <div class="toolBar">
-          <div class="tool copyText">
+          <div class="tool copyText" id="copyText" >
             <svg t="1602597539989" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
               p-id="9757" width="23" height="23">
               <path
@@ -707,8 +706,6 @@
     </div>
   </div>
   <!-- 用来显示图片的模态框 -->
-
-  <textarea id="copyURL" type="text" style="display: none;"></textarea>
   <div class="modal_bg_img modal_bg">
     <div class="modal">
       <div class="modal_head">
@@ -732,6 +729,7 @@
   <div class="tipPane">
     请先完成登录！
   </div>
+
   <template id="templateImage">
     <img src="{{base64}}" alt="{{name}}" type="img">
   </template>

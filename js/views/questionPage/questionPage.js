@@ -1,10 +1,14 @@
-import { user } from '../../common/user/index.js'
+import { user, isLogin } from '../../common/user/index.js'
 import { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
-import displayTipPane from '../../commponents/content/tipPane.js'
+import displayTipPane from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import debounce from '../../util/debounce.js'
-import {isLogin} from '../../common/user/index.js'
+import  bindImageSacningEvent from '../../components/content/imgDisplayTemplate.js'
 
+//一进入之后加载一些
+let answerPage = 1;
+//  滑到底部加载更多回答
+let isNoMoreAnswer = false;
 // 页面初始化
 (function() {
   loadQuestion();
@@ -13,9 +17,13 @@ import {isLogin} from '../../common/user/index.js'
 
 $(window).bind("scroll", fixed);
 
+// 绑定放大图片事件，凡是有fadeIn_img都可以放大
+bindImageSacningEvent('#content_main', 'fadeIn_img');
+bindImageSacningEvent('#question_main', 'fadeIn_img');
+
 // 写回答板块的打开的与关闭
 $('.question_info_main .answer_btn').click(() => {
-  if (user) {
+  if (isLogin()) {
     $('.textAnswer').slideDown();
   } else {
     displayTipPane("请先完成登录");
@@ -26,12 +34,13 @@ $('.textAnswer .slideUp').click(() => {
 })
 
 //复制便利签文本
-$('.note .copyText').click(function () {
+$('#copyText').on('click',function () {
   $('.note .content textarea').select();
   document.execCommand("copy"); // 执行浏览器复制命令
+  displayTipPane("复制成功")
 })
 
-
+// 获取当前文本链接
 $(".copyurlY").on({
   click: getLink
 })
@@ -121,15 +130,13 @@ $("#sendAnswerBtn").click(function () {
   sendAnswer();
 })
 //
-//一进入之后加载一些
-let answerPage = 1;
-let totalAnswerPage = 1;
+
+
 
 // let answer_nowPostion = 1;
 //获取回答，发送请求，获取相应，动态添加
 
-//  滑到底部加载更多回答
-let isNoMoreAnswer = false;
+
 $(window).on("scroll", debounce(function () {
   //滚动条到顶部的高度
   let scrollTop = Math.ceil($(this).scrollTop());

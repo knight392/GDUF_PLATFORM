@@ -1,7 +1,7 @@
 let oAuthor; //文章的作者
 
 //动态添加回答的数据
-questionId = getQueryletiable('id');
+const questionId = getQueryletiable('id');
 //获取url上query的键和获取值
 function getQueryletiable(letiable) {
   let query = window.location.search.substring(1);
@@ -13,4 +13,8 @@ function getQueryletiable(letiable) {
   return (false);
 }
 
-export {oAuthor, questionId}
+function setAuthorInfo(author) {
+  oAuthor = author
+}
+
+export {oAuthor, questionId, setAuthorInfo}

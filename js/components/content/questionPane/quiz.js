@@ -54,12 +54,7 @@ $(".quizModal_bg_askQuestion .mainQuestion textarea").on("blur", getKeyword);
 //自行添加标签
 $(".quizModal_bg_askQuestion .addLabel .add_btn").click(addLableManually)
 
-
-//#region 插入图片 + 删除图片
-// let pictureNum = 0;
 $(".insertP").on({change: addImage})
-
-
 
 
 // 匿名事件绑定

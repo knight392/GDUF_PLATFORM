@@ -1,10 +1,10 @@
 import { isImage, getImgBase64 } from '../../util/imgHandler.js'
 import request from '../../util/request.js'
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
-import sendFile from '../../commponents/content/fileHandler.js'
+import sendFile from '../../components/content/fileHandler.js'
 import { user, isLogin } from '../../common/user/index.js'
-import { oAuthod, questionId } from './info.js'
-import displayTipPane from '../../commponents/content/tipPane.js'
+import {questionId } from './info.js'
+import displayTipPane from '../../components/content/tipPane.js'
 import {defaultStudentFace, defaultTeacherFace} from '../../common/user/defaultInfo.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
@@ -109,7 +109,7 @@ function formatAnswerContentItem(order, type, content) {
   })
 }
 
-
+// 加载问题内容
 function loadAnswerContents() {
   //遍历一遍所有的节点
   //如果是图片就把remoteURL加入到anserContent中
@@ -136,6 +136,7 @@ function loadAnswerContents() {
   return answerContents;
 }
 
+// 清空编辑器
 function clearAnserEditor() {
   //清空内容
   $(".answerArea .answerTextArea").html('<div class="begin" id="begin"></div><div class="textarea edit-div" type="text" contenteditable="true" id="edit-div"></div>');
@@ -365,7 +366,6 @@ function displayAnswers(arr) {
     oItem.find(".seeComment").attr("loadingAbility", "true"); //有加载数据能力
     oItem.find(".commentList").attr("nextPage", 1);
     bindAnserItemEvent(oItem);
-
     oItem.find(".like_btn").attr("status", isAgree);
     let contentText = addAnswerContentText(arr[i].contents);
     oItem.find(".contentText").append(contentText);
@@ -373,7 +373,6 @@ function displayAnswers(arr) {
     oItem.find(".loadmore").click(loadMoreComment);
   }
   //点击图片放大
-  //  rebindSeeImage();
 }
 
 function seeComment(nextPage) {
@@ -414,8 +413,8 @@ function displayComment(dataList) {
     //$(this)查看评论按钮
   }
 }
-//加载更多评论，加载的更旧的评论
 
+//加载更多评论，加载的更旧的评论
 function loadMoreComment() {
   // console.log("加载更多评论")
   let obj = $(this);
@@ -442,25 +441,6 @@ function loadMoreComment() {
       obj.parents(".answerItem").find(".commentList .contentBox").append('<div class="ending_comment">已加载完全部评论</div>');
       //加载完全部评论展示
     }
-  })
-}
-//重新绑定图片放大事件
-function rebindSeeImage() {
-  $(".fadein_img").off("click");
-  $(".modal_bg_img .fadeout").off("click");
-  $('.fadein_img').on("click", function () {
-    $('.modal_bg_img').fadeIn();
-    $('.modal_bg_img .modal').css({
-      transform: 'translate(-50%,-50%) scale(1)'
-    })
-    $('.modal_bg_img .modal').find(".modal_content img").attr("src", $(this).attr("src"));
-  })
-
-  $('.modal_bg_img .fadeout').on("click", function () {
-    $('.modal_bg_img').fadeOut(); // 其实就是css 的过渡+ display
-    $('.modal_bg_img .modal').css({
-      transform: 'translate(-50%,-50%) scale(0.7)'
-    })
   })
 }
 //点击查看评论
@@ -745,10 +725,11 @@ function cancelSubscribeAuthor() {
   })
 }
 
+// 加载问题
 function loadQuestion() {
   let data1 = {
     requestType: "get",
-    questionId: questionId_local, //需要jsp来获取请求
+    questionId, 
   }
   if (isLogin()) {
     data1["viewerMarkNumber"] = user.markNumber;
@@ -762,6 +743,7 @@ function loadQuestion() {
   })
 }
 
+// 渲染问题面板
 function setQuestionMain(data) {
   //title
   $('.question_info_main .questionTitle').html(data.title);
@@ -774,12 +756,7 @@ function setQuestionMain(data) {
   //img
   for (let i = 1; i < data.contents.length; i++) {
     let src = data.contents[i]['contentMain'];
-    $('.question_info_main .questionImage').append('<img title="点击放大" class="fadein fadein_img" src="' + src + '">');
-
-    //点击图片放大
-   rebindSeeImage.call(this);
-    //点赞数
-    //收藏数     
+    $('.question_info_main .questionImage').append('<img title="点击放大" class="fadein fadein_img" src="' + src + '">');  
   }
 
   //是否点赞
@@ -802,7 +779,7 @@ function setAuthorInfo(data) {
   //头像默认 用户名改匿名
   let src;
   if (data.userType == "student") {
-    oAuthor = data.student;
+    setAuthorInfo(data.student);
     $(".author_info_box .userType").html("学生");
     $(".author_info_box .schoolInfo").html(oAuthor.major);
 
@@ -810,7 +787,7 @@ function setAuthorInfo(data) {
     $(".author_info_box .chatBtn").attr("target", oAuthor.markNumber);
     $(".author_info_box .chatBtn").attr("targetName", oAuthor.userName);
   } else {
-    oAuthor = data.teacher;
+    setAuthorInfo(data.teacher); 
     $(".author_info_box .userType").html("老师");
     $(".author_info_box .schoolInfo").html(oAuthor.college);
     //私信设置target和targetName
