@@ -1,27 +1,37 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-}
+@import url(../base.css);
+@import url(./foundPane.css);
+@import url(./lostPane.css);
 
 body::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 body::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background-color: rgba(255,255,255,.8);
 }
 
 body::-webkit-scrollbar-track {
     border-radius: 0;
-    background-color: #fff;
+    background-color: #028e9b;
 }
+
+.itemList::-webkit-scrollbar,.locationList::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.itemList::-webkit-scrollbar-thumb,.locationList::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: rgba(255,255,255,.8);
+}
+
+.itemList::-webkit-scrollbar-track,.locationList::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: #5ec4cd;
+}
+
 
 body {
     font-family: "微软雅黑", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", PingHei, STHeiti;
@@ -653,6 +663,7 @@ input {
 }
 
 
+
 /* 分类悬浮板 */
 .objectSelect:hover .objectSelectPane{
   display: block;
@@ -749,11 +760,15 @@ input {
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
+
+
 .itemSelectPane .itemRow {
     box-sizing: border-box;
     padding: 10px;
     cursor: default;
 }
+
+
 
 .itemSelectPane .itemRow .title_row {
     line-height: 24px;
