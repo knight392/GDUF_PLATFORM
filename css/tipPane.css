@@ -1,5 +1,5 @@
 .tipPane {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -9,6 +9,8 @@
     height: 100px;
     text-align: center;
     background-color: #868e96;
+    border:1px solid #8e7f7f;
+    opacity: 0.8;
     font-size: 30px;
     color: #dee2e6;
     font-family: "Microsoft YaHei", Verdana, Geneva, Tahoma, sans-serif;
@@ -17,6 +19,26 @@
     z-index: 1000;
     font-weight: 500;
 }
+.tipPane_success{
+  background-color: #97cf8d;
+  opacity: 0.8;
+  color:#feffde;
+  border:1px solid #52734d
+}
+.tipPane_err{
+  background-color:#f5c0c0;
+  opacity: 0.8;
+  color:#ec4646 ;
+  border:1px solid #ec4646;
+}
+
+.tipPane_warn{
+  background-color:#ffefa1;
+  opacity: 0.8;
+  color:#bd9354 ;
+  border:1px solid #ffcb91;
+}
+
 /* 70% */
 @media(max-width:1960px){
     .tipPane{
