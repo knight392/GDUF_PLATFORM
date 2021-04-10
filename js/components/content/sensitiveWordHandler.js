@@ -4,7 +4,7 @@ import {baseHttpURL} from '../../common/baseRequestInfo.js'
 /**
  * 
  * @param {String} content 
- * @returns {Object} 审核失败 {isPass: false, message: res.message} | 审核成功 {isPass: true, content: res[0]}
+ * @returns {Object} 审核失败 {isErr: false, message: res.message} | 审核成功 {res[0]} | 发生错误 {isErr: true, message: err}
  */
 export default function SensitiveWordHandler(content) {
   return new Promise((resolve, reject) => {
@@ -16,13 +16,13 @@ export default function SensitiveWordHandler(content) {
     }).then(res => {
       // 被禁止
       if(res.statusCode == 500){
-        resolve({isPass: false, message: res.message})
+        reject({isErr: false, message: res.message})
       }else{
         // 审核通过
-        resolve({isPass: true, content: res[0]})
+        resolve(res[0])
       }
     }, err => {
-      reject(err)
+      reject({isErr: true, message: err})
     })
   })
 }

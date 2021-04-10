@@ -75,6 +75,9 @@ button {
     border: none;
     cursor: pointer;
 }
+.quizModal_bg_askQuestion .quizModal_head button:hover{
+  color:#f00
+}
 
 
 /* #endregion */

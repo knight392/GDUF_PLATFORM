@@ -16,9 +16,9 @@ $(".quizModal").on({
 // 点击X关闭
 $('.quizModal .fadeout').click(function () {
   $('.quizModal_bg').fadeOut(); // 其实就是css 的过渡+ display
-  $('.quizModal').css({
-    transform: 'translate(-50%,-50%) scale(1)'
-  })
+  // $('.quizModal').css({
+  //   transform: 'translate(-50%,-50%) scale(1)'
+  // })
 })
 
 // 文本域字数限制

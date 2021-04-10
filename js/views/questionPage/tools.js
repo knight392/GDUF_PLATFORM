@@ -6,6 +6,7 @@ import { user, isLogin } from '../../common/user/index.js'
 import {questionId } from './info.js'
 import {tipInfo, displayTipPane, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import {defaultStudentFace, defaultTeacherFace} from '../../common/user/defaultInfo.js'
+import inputTextFilter from '../../components/content/inputTextFilter.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
 
@@ -461,19 +462,29 @@ function sendComment() {
   };
   let obj = $(this); //this指发表评论的按钮
   //判断敏感词
-  request(baseHttpURL + '/Servlet/SensitiveWordServlet', {
-    method: "post",
-    body: JSON.stringify({
-      textArr: [text]
-    })
-  }).then(res => {
-    if (res.statusCode == 500) {
-      displayTipPane_warn("内容" + res.message + "请修改后再发送！");
-    } else {
-      data_1.content = res[0];
-      send();
+  inputTextFilter(text).then(res => {
+    text = res;
+    send()
+  }, err => {
+    if (err.isErr) {
+      displayTipPane_err(tipInfo.submit.err);
+    }else {
+      displayTipPane_err(`内容：${err.message}，请修改后再重新提交！`);
     }
   })
+  // request(baseHttpURL + '/Servlet/SensitiveWordServlet', {
+  //   method: "post",
+  //   body: JSON.stringify({
+  //     textArr: [text]
+  //   })
+  // }).then(res => {
+  //   if (res.statusCode == 500) {
+  //     displayTipPane_warn("内容" + res.message + "请修改后再发送！");
+  //   } else {
+  //     data_1.content = res[0];
+  //     send();
+  //   }
+  // })
 
 
   // 发送评论

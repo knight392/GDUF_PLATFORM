@@ -1,9 +1,9 @@
 import request from '../../../util/request.js'
 import { baseHttpURL } from '../../../common/baseRequestInfo.js'
-import {tipInfo, displayTipPane_success, displayTipPane_warn, displayTipPane_err} from '../tipPane.js'
+import { tipInfo, displayTipPane_success, displayTipPane_warn, displayTipPane_err } from '../tipPane.js'
 import sendFile from '../fileHandler.js'
-import {getImgBase64, isImage } from '../../../util/imgHandler.js'
-import SensitiveWordHandler from '../sensitiveWordHandler.js'
+import { getImgBase64, isImage } from '../../../util/imgHandler.js'
+import inputTextFilter from '../inputTextFilter.js'
 let sendingImg = false;
 
 function textInputHandler() {
@@ -42,11 +42,11 @@ function displayLabels(labels) {
 
 // 对父容器使用事件委派来处理删除item
 function BindrRmoveItemEvent(containerId, btnClassName, handler) {
-  $(containerId).on('click', function(e) {
+  $(containerId).on('click', function (e) {
     if (e.target.className = btnClassName) {
       handler.call(e.target)
     }
-  } )
+  })
 }
 
 // // 应该可以是使用事件委派来解决
@@ -77,7 +77,7 @@ function addImage() {
   const formdata = new FormData();
   formdata.append(0, this.files[0]);
   const reader = getImgBase64(this.files[0]);
-  reader.onload = function() {
+  reader.onload = function () {
     let imgObj = $(`
     <div class='picture'>
       <i class='removePicture'>&times;</i>
@@ -118,28 +118,40 @@ function sendQuestion() {
     return;
   }
   const data = getSubmitData();
-  if(data == null) {
+  if (data == null) {
     return;
   }
-  //判断敏感词，审核通过执行发送
-  SensitiveWordHandler(data.textContent).then(res => {
-    if (res.isPass) {
-      data.contents[0].contentMain = res.content;
-      submitQuestionRequst(
-        {"requestType": "post",
-          "title": data.title,
-          "tag": data.labels,
-          "questionType": data.type,
-          // "authorMarkNumber": $.cookie("markNumber"),
-          "contents": data.contents,
-          "anonymity": data.anonymity}
-      )
-    } else {
-      displayTipPane_warn("内容" + res.message + "请修改后再发送！");
-    }
+  //xss和判断敏感词，审核通过执行发送
+  contentHandler(data).then(([title, content, labels]) => {
+    data.title = title;
+    data.contents[0].contentMain = content;
+    data.labels = labels;
+    submitQuestionRequst(
+      {
+        "requestType": "post",
+        "title": data.title,
+        "tag": data.labels,
+        "questionType": data.type,
+        // "authorMarkNumber": $.cookie("markNumber"),
+        "contents": data.contents,
+        "anonymity": data.anonymity
+      }
+    )
   }, err => {
-    console.log(err);
+    if ( !err.isErr){
+      displayTipPane_err(`内容:${err.message}，请修改后再提交！`);
+    }else{
+      displayTipPane_err(tipInfo.submit.err);
+    }
   })
+}
+// xss处理和敏感词审核
+function contentHandler(data) {
+  let title = inputTextFilter(data.title)
+  // 所有标签拼成一字符串请求
+  let content = inputTextFilter(data.textContent)
+  let labels = inputTextFilter(data.labels.reduce((prev, next) => prev + '#' + next)).then(res => res.split('#'))
+  return Promise.all([title, content, labels])
 }
 
 function submitQuestionRequst(data) {
@@ -239,4 +251,4 @@ function clearPane() {
 
 
 
-export { textInputHandler, addImage, addLableManually, getKeyword, sendQuestion, BindrRmoveItemEvent}
+export { textInputHandler, addImage, addLableManually, getKeyword, sendQuestion, BindrRmoveItemEvent }
