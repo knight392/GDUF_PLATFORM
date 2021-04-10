@@ -2,8 +2,9 @@
 import { isImage, getImgBase64 } from '../../../util/imgHandler.js'
 import sendFile from '../fileHandler.js';
 import { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest } from '../lostFoundCommonUtil.js'
-import displayTipPane from '../tipPane.js'
-
+import {tipInfo, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../tipPane.js'
+import template from '../../../util/template.js'
+import {isImgLoad} from '../../../views/lostAndFound/masonry/myMasonry.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 let objectDetailType = '';
 let objectType = '';
@@ -28,7 +29,7 @@ function getLocation_found() {
 
 function readFile_found() {
   if (!isImage(this.files[0].name)) {　　 //判断上传文件格式
-    return displayTipPane("图片格式有误！");
+    return displayTipPane_warn(tipInfo.img.format_warn);
   }
   const reader = getImgBase64(this.files[0]);
   const formdata = new FormData(); // 用来发送数据
@@ -63,7 +64,7 @@ function sendImage_found(formdata, imgObj) { //imgObj是jq对象
   }, err => {
     imgObj.remove();
     sendingImg = false;
-    displayTipPane("图片上传失败！已自动删除！")
+    displayTipPane_err(tipInfo.img.err)
   })
 }
 
@@ -104,11 +105,11 @@ function submit_found() {
     }
     // 提交请求
     submitRequest(data).then(res => {
-      displayTipPane("发布成功！");
+      displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_found").fadeOut();
       clearModalFound();
     }, err => {
-      displayTipPane("发布失败！");
+      displayTipPane_err(tipInfo.submit.err);
     })
   }
 }

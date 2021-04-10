@@ -5,10 +5,10 @@
  * @returns 
  */
 export default function template(id, data) {
-    var reg = /{{(\w+)}}/;
+    let reg = /{{(\w+)}}/;
     id = "#" + id;
-    var str = document.querySelector(id).innerHTML;
-    var result = reg.exec(str);
+    let str = document.querySelector(id).innerHTML;
+    let result = reg.exec(str);
     while (result != null) {
         //替换
         str = str.replace(result[0], data[result[1]]);

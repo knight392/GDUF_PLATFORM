@@ -4,7 +4,7 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import sendFile from '../../components/content/fileHandler.js'
 import { user, isLogin } from '../../common/user/index.js'
 import {questionId } from './info.js'
-import displayTipPane from '../../components/content/tipPane.js'
+import {tipInfo, displayTipPane, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import {defaultStudentFace, defaultTeacherFace} from '../../common/user/defaultInfo.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
@@ -62,7 +62,7 @@ function inputText(e) {
 function readFile() {
   const oinput = document.getElementById("file_input");
   if (!isImage(oinput[value])) {　　 //判断上传文件格式
-    return displayTipPane("图片格式有误！");
+    return displayTipPane_warn(tipInfo.img.format_warn);
   }
   const formdata = new FormData(); // 用来发送数据
   formdata.append(0, this.files[0]); // formdata 的属性
@@ -97,7 +97,7 @@ function sendImage(formdata, imgObj) { //imgObj是jq对象
   }, err => {
     sendingImg = false;
     console.log(err);
-    displayTipPane("图片上传失败！已自动删除！")
+    displayTipPane_err(tipInfo.img.upLoading)
   })
 }
 
@@ -150,29 +150,29 @@ function clearAnserEditor() {
 function sendAnswer() {
   //发布文本之前把文本和图片加起来
   if (sendingImg) {
-    displayTipPane("有图片正在上传中!")
+    displayTipPane_warn(tipInfo.img.upLoading)
     return;
   }
   //加载内容
   const answerContents = loadAnswerContents();
   if (answerContents.length === 0) {
-    displayTipPane("请输入内容！");
+    displayTipPane_warn("请输入内容！");
     return;
   }
   request(baseHttpURL + "/Servlet/AnswerServlet", {
     method: 'post',
-    body: JSON.stringify({
+    body: {
       answerContents,
       requestType: 'post',
       questionId
-    })
+    }
   }).then(res => {
     if (res.statusCode == 200) {
       // 清空编辑器
       clearAnserEditor();
       //收起
       $(".answerArea .textAnswer").slideUp();
-      displayTipPane("发布成功！");
+      displayTipPane_success(tipInfo.submit.succees);
       //加载最新内容
       loadMyNewAnswer(answerContents, res.id);
       //发送通知
@@ -189,10 +189,10 @@ function sendAnswer() {
       // 发送通知
       sendInfo(data);
     } else {
-      displayTipPane("发布失败！");
+      displayTipPane_err(tipInfo.submit.err);
     }
   }, err => {
-    displayTipPane("发布失败！");
+    displayTipPane_err(tipInfo.submit.err);
   })
 }
 
@@ -204,7 +204,7 @@ function bindAnswerItemEvent(framObj) {
   //添加评论
   framObj.find(".comment_btn").on("click", function () {
     if (isLogin()) {
-      displayTipPane("请先完成登录！");
+      displayTipPane_warn(tipInfo.login.no_login);
       return;
     }
     $(this).parents(".answerItem").find(".addComment").slideDown();
@@ -235,7 +235,7 @@ function bindAnswerItemEvent(framObj) {
   framObj.find(".like_btn .icon").attr("changing", "false");
   framObj.find(".like_btn .icon").click(function () {
     if (!isLogin()) {
-      displayTipPane("请先完成登录！");
+      displayTipPane_warn(tipInfo.login.no_login);
       return;
     }
     agreeAnswer.call($(this), framObj.attr("marknumber"));
@@ -325,7 +325,7 @@ function getAnswer(curPage) {
       isNoMoreAnswer = true;
     }
   }, err => {
-    displayTipPane("加载回答失败")
+    displayTipPane_err("加载回答失败~")
   })
 }
 // 
@@ -449,7 +449,7 @@ function sendComment() {
   //获取内容
   let text = $(this).parents(".addComment").find(".textBox").val();
   if (text == "" || text == undefined || text == null) {
-    displayTipPane("评论不能为空！");
+    displayTipPane_warn("评论不能为空！");
     return;
   }
   let answerItem = $(this).parents(".answerItem");
@@ -468,7 +468,7 @@ function sendComment() {
     })
   }).then(res => {
     if (res.statusCode == 500) {
-      displayTipPane("内容" + res.message + "请修改后再发送！");
+      displayTipPane_warn("内容" + res.message + "请修改后再发送！");
     } else {
       data_1.content = res[0];
       send();
@@ -513,7 +513,7 @@ function sendComment() {
           sendInfo(data);
         }
       } else {
-        displayTipPane("评论失败！");
+        displayTipPane_err("评论失败！");
       }
     })
   }
@@ -543,7 +543,7 @@ function agreeRequest(data) {
 function agreeQuestion() {
   //当前点击状态
   if (!user) {
-    displayTipPane("请先完成登录");
+    displayTipPane(tipInfo.login.no_login);
     return;
   }
   if ($(this).attr("changing") == "true") {
@@ -607,7 +607,7 @@ function agreeQuestion() {
 function agreeAnswer(receiverMarkNumber) {
   //当前点击状态
   if (!isLogin()) {
-    displayTipPane("请先完成登录！");
+    displayTipPane_warn(tipInfo.login.no_login);
     return;
   }
   if ($(this).attr("changing") == "true") {

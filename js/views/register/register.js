@@ -1,6 +1,7 @@
-import { baseHttpURL } from '../../common/baseRequestInfo';
+import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import request from '../../util/request';
-import { isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste, set_displayMessage, forbidSendConfirm, judeCode, changeToNextPage,
+import {displayTipPane_success, displayTipPane_warn, displayTipPane_err} from '../../components/content/tipPane.js'
+import {statusDisplay ,isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste,forbidSendConfirm, judeCode, changeToNextPage,
 animationDisplay, animationSlide_major, animationSlide, viewChange, pwdIsSame, pwdIsVailable, userNameIsAvailable } from './tools'
 //发送验证码 每60s发一次
 
@@ -33,12 +34,10 @@ $('.input_text_page1').bind('blur', function () {
 });
 
 //身份展示
-function statusDisplay() {
-  $('.status header').fadeOut();
-  $('.status .content').fadeIn();
-}
+
 //身份选择
 $('.individual').bind("click", function () {
+  console.log('切换');
   $('.status').removeClass('status_display');
 
   $('.status header').fadeIn();
@@ -70,16 +69,16 @@ $('.send_btn').click(function () {
     dataIsExiste('email', requestData.email, userType).then(res => {
       // 200 存在 | 500 不再
       if (res == true) {
-        set_displayMessage('该邮箱已被注册！')
+        displayTipPane_warn('该邮箱已被注册！')
       } else {
         request(`${baseHttpURL}/Servlet/VerifyCodeServlet`, {
           email: requestData.email,
           requestType: 'get'
         }).then(res => {
-          set_displayMessage('发送成功，请注意查收！');
+          displayTipPane_success('发送成功，请注意查收！');
           forbidSendConfirm();
         }, err => {
-          set_displayMessage('发送失败，请重新发送！');
+          displayTipPane_err('发送失败，请重新发送！');
         })
       }
     })
@@ -199,7 +198,7 @@ $('.pwd_confirm svg').click(function () {
 $('.userName input').blur(function () {
   $('.userName .success_icon').css("display", "none");
   if (!userNameIsAvailable($(this).val())) {
-    set_displayMessage('用户名格式有误！');
+    displayTipPane_warn('用户名格式有误！');
   } else {
     dataIsExiste('userName', $(this).val(), '该用户名已存在！');
   }
@@ -217,24 +216,24 @@ $('.submit_btn').click(() => {
   if (userType == 'teacher') {
     //教工号判空
     if ($('#markNumber_teacher input').val() == '') {
-      set_displayMessage("请填写您的教工号！");
+      displayTipPane_warn("请填写您的教工号！");
       return;
     }
     markNumber = $('#markNumber_teacher input').val();
     //用户名判空
     if ($('.userName input').eq(1).val() == '') {
-      set_displayMessage('请输入您的用户名！');
+      displayTipPane_warn('请输入您的用户名！');
       return;
     }
 
     //性别判空
     if ($('.sex .value').eq(1).attr('data') == '') {
-      set_displayMessage('请选择您的性别！');
+      displayTipPane_warn('请选择您的性别！');
       return;
     }
     //学院判空
     if ($('.college .value').eq(1).attr('data') == '') {
-      set_displayMessage('请选择您所属的学院！');
+      displayTipPane_warn('请选择您所属的学院！');
       return;
     }
 
@@ -242,29 +241,29 @@ $('.submit_btn').click(() => {
     //学生
     //用户名判空
     if ($('.userName input').eq(0).val() == '') {
-      set_displayMessage('请输入您的用户名！');
+      displayTipPane_warn('请输入您的用户名！');
       return;
     }
     //性别判空
     if ($('.sex .value').eq(0).attr('data') == '') {
-      set_displayMessage('请选择您的性别！');
+      displayTipPane_warn('请选择您的性别！');
       return;
     }
 
     //年级判空
     if ($('#grade .value').attr('data') == '') {
-      set_displayMessage('请选择您所在年级！');
+      displayTipPane_warn('请选择您所在年级！');
       return;
     }
 
     //学院判空
     if ($('.college .value').eq(0).attr('data') == '') {
-      set_displayMessage('请选择您所属的学院！');
+      displayTipPane_warn('请选择您所属的学院！');
       return;
     }
     //专业判空
     if ($('.major .value').attr('data') == '') {
-      set_displayMessage('请选择您的专业！');
+      displayTipPane_warn('请选择您的专业！');
       return;
     }
   }
@@ -272,30 +271,30 @@ $('.submit_btn').click(() => {
 
   //校区判空
   if ($('.campus .value').eq(0).attr('data') + $('.campus .value').eq(1).attr('data') == '') {
-    set_displayMessage('请选择您现所属的校区！');
+    displayTipPane_warn('请选择您现所属的校区！');
     return;
   }
 
   //密码判空
   if ($('.pwd input').eq(0).val() + $('.pwd input').eq(1).val() == '') {
-    set_displayMessage('密码禁止为空！');
+    displayTipPane_warn('密码禁止为空！');
     return;
   }
 
   //密码有效性判断
   if (!pwdIsVailable($('.pwd input').eq(1).val() + $('.pwd input').eq(0).val())) {
-    set_displayMessage('密码格式错误！');
+    displayTipPane_warn('密码格式错误！');
     return;
   }
   //确认密码判空
   if ($('.pwd_confirm input').eq(0).val() + $('.pwd_confirm input').eq(1).val() == '') {
-    set_displayMessage('请输入确认密码！');
+    displayTipPane_warn('请输入确认密码！');
     return;
   }
 
   //密码一致判断
   if (!pwdIsSame($('.pwd input').eq(0).val() + $('.pwd input').eq(1).val(), $('.pwd_confirm input').eq(0).val() + $('.pwd_confirm input').eq(1).val())) {
-    set_displayMessage('密码前后不一致！');
+    displayTipPane_err('密码前后不一致！');
     return;
   }
 
@@ -320,7 +319,7 @@ $('.submit_btn').click(() => {
   }).then(res => {
     if(res.statusCode === 200 ){
       // 获取账号密码进行登录, 并把token保存到cookie中
-      set_displayMessage('注册成功！正跳转到首页...');
+      displayTipPane_success('注册成功！正跳转到首页...');
       //跳转。。。
       setTimeout(() => {
         window.open("../index.html")

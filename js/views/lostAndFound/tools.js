@@ -1,8 +1,7 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
-import displayTipPane from '../../components/content/tipPane.js'
+import {tipInfo, displayTipPane,displayTipPane_warn} from '../../components/content/tipPane.js'
 import { loadAllItem } from './masonry/myMasonry.js'
-import {isLogin} from '../../common/user/index.js'
 // 主要是筛选物品，主要访问的是LostAndFoundServlet,
 // 请求的参数，根据筛选的类型不同而动态改变
 // 初始打开是失物招领
@@ -117,7 +116,7 @@ function loadGoods(type) {
     //展示返回的数据
     displayGoods_first(dataList);
   }, err => {
-    displayTipPane("加载物品失败了~")
+    displayTipPane_warn("加载物品失败了~")
   })
 
 }
@@ -396,7 +395,7 @@ function scrollHandler() {
         loadMoreGoods();
       }
     } else {
-      displayTipPane("没有跟多物品了哦~")
+      displayTipPane_warn("没有跟多物品了哦~")
     }
   }
 }
@@ -549,7 +548,7 @@ function openLostPane() {
   if (true) { //函数写在了nav上
     $(".modal_bg_lost").fadeIn();
   } else {
-    displayTipPane("你还没登录噢~");
+    displayTipPane_warn(tipInfo.login.no_login);
   }
 }
 
@@ -560,7 +559,7 @@ function openFoundPane() {
   if (true) {
     $(".modal_bg_found").fadeIn();
   } else {
-    displayTipPane("你还没登录噢~");
+    displayTipPane_warn(tipInfo.login.no_login);
   }
 }
 

@@ -1,11 +1,15 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
-
+import {displayTipPane_success} from '../../components/content/tipPane.js'
 import data_major from './majors'
 let time = 0;
 let timer = null;
 let major_target = 30;//专业的初始下拉高度
 
+function statusDisplay() {
+  $('.status header').fadeOut();
+  $('.status .content').fadeIn();
+}
 function forbidSendConfirm() {
   // 60
   time = 60;
@@ -97,13 +101,6 @@ function dataIsExiste(field, value, userType) {
 
 
 //设置错误信息
-function set_displayMessage(message, duration = 1200) {
-  $('.modal_content').html(message);
-  $('.modal_bg').fadeIn();
-  setTimeout(() => {
-    $('.modal_bg').fadeOut();
-  }, duration)//默认2s
-}
 
 //设置发送验证的按钮的样式
 function setSendBtn() {
@@ -142,7 +139,7 @@ function judgeCode(code) {
 //选择进入那一个注册页面的逻辑
 function changeToNextPage(nextPage) {
   //本页缩小,左滑消失
-  set_displayMessage("邮箱验证成功！");
+  displayTipPane_success("邮箱验证成功！");
   setTimeout(() => {
     $('.modal_bg').fadeOut();
     $('#form1').animate({
@@ -305,5 +302,5 @@ function userNameIsAvailable(userName) {
   return reg.test(userName);
 }
 
-export { isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste, set_displayMessage, forbidSendConfirm, judgeCode, changeToNextPage,
+export {statusDisplay ,isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste, forbidSendConfirm, judgeCode, changeToNextPage,
 animationDisplay, animationSlide_major, animationSlide,viewChange, pwdIsSame, pwdIsVailable,userNameIsAvailable }

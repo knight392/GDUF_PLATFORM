@@ -84,18 +84,20 @@ td {
 .status header .alter {
     right: 20px;
     font-size: 22px;
-    color: #02A7F0;
+    color:#5ec4cd ;
     cursor: pointer;
 }
 
 .individual_inner {
     position: relative;
 }
-
-.individual_inner svg {
-    position: relative;
-    top: 4px;
+.individual_inner img{
+  position: relative;
+  top: 4px;
+  width:30px;
+  height:30px;
 }
+
 
 .status .content {
     display: none;
@@ -120,8 +122,8 @@ td {
 }
 
 .status .individual:hover {
-    border: 1px solid #02A7F0;
-    box-shadow: 0 0 1px #02A7F0;
+    border: 1px solid #5ec4cd;
+    box-shadow: 0 0 1px #5ec4cd;
 }
 
 
@@ -226,12 +228,12 @@ td {
 }
 
 .btn_available {
-    background-color: #02A7F0;
-    border: 1px solid #02a7f0;
+    background-color: #5ec4cd;
+    border: 1px solid #5ec4cd;
 }
 
 .btn_available:hover {
-    background-color: #2db4e5;
+    background-color: #8fd7dd;
 }
 
 input {
@@ -249,8 +251,10 @@ input {
     position: relative;
     height: 50px;
 }
-.next_out svg{
+.next_out img{
     position: absolute;
+    width:26px;
+    height: 26px;
     top:50%;
     transform: translate(0,-50%);
     right:150px;
@@ -282,8 +286,8 @@ input.error {
 }
 
 .editing {
-    border: 1px solid #02A7F0;
-    box-shadow: 0 0 1px #02A7F0;
+    border: 1px solid #5ec4cd;
+    box-shadow: 0 0 1px #5ec4cd;
 }
 
 
@@ -415,7 +419,7 @@ input.error {
 }
 
 .slideDown .list li:hover {
-    color: #02A7F0;
+    color: #5ec4cd;
 }
 
 .slideDown .choice svg {
@@ -569,7 +573,7 @@ input.error {
     font-weight: 600;
     width: 318px;
     border: none;
-    background-color: #02A7F0;
+    background-color: #5ec4cd;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
@@ -586,8 +590,8 @@ input.error {
     transform: translate(-50%, 0);
     z-index: 4;
     height: 1.1px;
-    background-color: #02A7F0;
-    box-shadow: 0 0 2px #02A7F0;
+    background-color: #5ec4cd;
+    box-shadow: 0 0 2px #5ec4cd;
     width: 0px;
     border-radius: 20px;
     transition: width, ease-in 0.3s;

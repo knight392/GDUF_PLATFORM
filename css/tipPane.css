@@ -1,12 +1,11 @@
 .tipPane {
-    /* display: none; */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 100px;
     width: 380px;
-    height: 100px;
     text-align: center;
     background-color: #868e96;
     border:1px solid #8e7f7f;
@@ -44,7 +43,6 @@
     .tipPane{
         font-size:26px;
         width: 350px;
-        height: 90px;
         line-height: 90px;
     }
 
@@ -54,7 +52,7 @@
     .tipPane{
         font-size:22px;
         width: 330px;
-        height: 80px;
+      
         line-height: 80px;
     }
 }
@@ -63,7 +61,6 @@
     .tipPane{
         font-size:18px;
         width: 260px;
-        height: 70px;
         line-height: 70px;
     }
     
@@ -73,7 +70,6 @@
     .tipPane{
         font-size:16px;
         width: 200px;
-        height: 60px;
         line-height: 60px;
     }
 }

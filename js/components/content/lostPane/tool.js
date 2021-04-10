@@ -3,6 +3,9 @@ import { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest } from '../lostF
 import sendFile from '../fileHandler.js';
 import request from '../../../util/request.js';
 import { baseHttpURL } from '../../../common/baseRequestInfo.js';
+import template from '../../../util/template.js'
+import {isImgLoad} from '../../../views/lostAndFound/masonry/myMasonry.js'
+import {tipInfo, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../tipPane.js'
 let lostLocation = "";
 let objectType = "";
 let objectDetailType = "";
@@ -15,8 +18,8 @@ function getLocation_lost() {
 
 //插入图片：现在就只能插入到输入框的最后
 function readFile_lost() {
-  if (isImage(this.file[0].name)) {　　 //判断上传文件格式
-    return displayTipPane("图片格式有误！");
+  if (!isImage(this.files[0].name)) {　　 //判断上传文件格式
+    return displayTipPane_warn(tipInfo.img.format_warn);
   }
   const formdata = new FormData();
   formdata.append(0, this.files[0]); // formdata 的属性
@@ -48,7 +51,7 @@ function sendImage_lost(formdata, imgObj) { //imgObj是jq对象
   }, err => {
     imgObj.remove();
     sendingImg = false;
-    displayTipPane("图片上传失败！已自动删除！")
+    displayTipPane_err(tipInfo.img.err)
   })
 }
 
@@ -130,11 +133,11 @@ function submit_lost() {
 
     }
     submitRequest(data).then(res => {
-      displayTipPane("发布成功！");
+      displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_lost").fadeOut();
       clearModalLost();
     }, err => {
-      displayTipPane("发布失败！");
+      displayTipPane_err(tipInfo.submit.err);
     })
   }
 }

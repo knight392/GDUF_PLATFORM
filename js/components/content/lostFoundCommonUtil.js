@@ -1,4 +1,4 @@
-import displayTipPane from './tipPane.js'
+import {displayTipPane} from './tipPane.js'
 // 获取时间
 /**
  * 
@@ -34,7 +34,7 @@ function getImgsRemoteURL(paneClassName) {
 // 判断值是否为空
 function valueIsEmpty(value, tip) {
   if (value == "" || value == null || value == undefined) {
-    displayTipPane(tip);
+    displayTipPane_warn(tip);
     return true;
   }
   return false;

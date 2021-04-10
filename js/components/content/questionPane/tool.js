@@ -1,6 +1,6 @@
 import request from '../../../util/request.js'
 import { baseHttpURL } from '../../../common/baseRequestInfo.js'
-import displayTipPane from '../tipPane.js'
+import {tipInfo, displayTipPane_success, displayTipPane_warn, displayTipPane_err} from '../tipPane.js'
 import sendFile from '../fileHandler.js'
 import {getImgBase64, isImage } from '../../../util/imgHandler.js'
 import SensitiveWordHandler from '../sensitiveWordHandler.js'
@@ -50,26 +50,6 @@ function BindrRmoveItemEvent(containerId, btnClassName, handler) {
 }
 
 // // 应该可以是使用事件委派来解决
-// function rebindLabel() {
-//   //#region 鼠标悬停在标签 上 背景颜色改变 且出现删除按钮
-//   $(".nodeBoard>span").on({
-//     mouseover: function () {
-//       $(this).css("backgroundColor", "rgba(0, 0, 0, 0.1)");
-//       $(this).find("i").show();
-//     },
-//     mouseout: function () {
-//       $(this).css("backgroundColor", "#fff");
-//       $(this).find("i").hide();
-//     }
-//   })
-//   //#region 标签删除 添加
-//   $(".removeLabel").on("click", function () {
-//     // console.log("删除标签");
-//     // label_count--;
-//     // console.log(label_count);
-//     $(this).parent().hide(300);
-//   })
-// }
 
 // 手动添加标签
 function addLableManually() {
@@ -78,7 +58,7 @@ function addLableManually() {
   if (text != '' && text != null && text != undefined) {
     $('.quizModal_bg_askQuestion .label .nodeBoard').append('<span class="labelItem"><div class="text">' + text + '</div><i class="removeLabel">&times;</i></span>')
   } else {
-    displayTipPane("标签不能为空！");
+    displayTipPane_warn("标签不能为空哦~");
   }
   $(".quizModal_bg_askQuestion .addLabel input").val("");
 }
@@ -86,11 +66,11 @@ function addLableManually() {
 // 添加图片
 function addImage() {
   if (sendingImg) {
-    displayTipPane("有图片还在上传中...");
+    displayTipPane_warn(tipInfo.img.upLoading);
     return;
   }
   if (!isImage(this.files[0].name)) {
-    displayTipPane("图片格式有误！");
+    displayTipPane_warn(tipInfo.img.format_warn);
     return;
   }
   const btn = this;
@@ -119,7 +99,7 @@ function sendImage(formdata, imgObj) { //imgObj是jq对象
   }, err => {
     imgObj.remove();
     sendingImg = false;
-    displayTipPane("上传失败！已自动删除原图片！");
+    displayTipPane_err(tipInfo.img.err);
   })
 }
 
@@ -134,7 +114,7 @@ function getContentItem(order, type, content) {
 //发送提问
 function sendQuestion() {
   if (sendingImg) {
-    displayTipPane("有图片正在上传中！");
+    displayTipPane_warn(tipInfo.img.upLoading);
     return;
   }
   const data = getSubmitData();
@@ -155,7 +135,7 @@ function sendQuestion() {
           "anonymity": data.anonymity}
       )
     } else {
-      displayTipPane("内容" + res.message + "请修改后再发送！");
+      displayTipPane_warn("内容" + res.message + "请修改后再发送！");
     }
   }, err => {
     console.log(err);
@@ -169,11 +149,11 @@ function submitQuestionRequst(data) {
     method: 'post',
     body: data
   }).then(res => {
-    displayTipPane("发布成功！");
+    displayTipPane_success(tipInfo.submit.succees);
     $(".quizModal_bg_askQuestion").fadeOut();
     clearPane();
   }, err => {
-    displayTipPane("遇到了未知原因，发布失败！");
+    displayTipPane_err(tipInfo.submit.err);
   })
 }
 
@@ -184,12 +164,12 @@ function getSubmitData() {
   let type = $(".quizModal_bg_askQuestion .questionType .cur_val").attr("value");
   //判空
   if (title == "" || title == null || title == undefined) {
-    displayTipPane("问题标题不能为空!");
+    displayTipPane_warn("问题标题不能为空哦~");
     return null;
   }
   let textContent = $(".quizModal_bg_askQuestion .questionNote textarea").val();
   if (textContent == "" || textContent == null || textContent == undefined) {
-    displayTipPane("问题不能备注为空!");
+    displayTipPane_warn("问题不能备注为空哦~");
     return null;
   }
   let contents = [];
@@ -206,7 +186,7 @@ function getSubmitData() {
   let labels = [];
   let oLabels = $(".quizModal_bg_askQuestion .nodeBoard").children();
   if (oLabels.length == 0) {
-    displayTipPane("请至少选择一个标签");
+    displayTipPane_warn("至少要选择一个标签哦~");
     return null;
   }
   for (let i = 0; i < oLabels.length; i++) {
@@ -214,7 +194,7 @@ function getSubmitData() {
   }
 
   if (type == "null") {
-    displayTipPane("请选择文章类型！");
+    displayTipPane_warn("请选择文章类型~");
     return null;
   }
   let anonymity = $(".quizModal_bg_askQuestion .anonymity").attr("anonymity") == "true" ? true : false;

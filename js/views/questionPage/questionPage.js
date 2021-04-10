@@ -1,6 +1,6 @@
 import { user, isLogin } from '../../common/user/index.js'
 import { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
-import displayTipPane from '../../components/content/tipPane.js'
+import {tipInfo, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import debounce from '../../util/debounce.js'
 import  bindImageSacningEvent from '../../components/content/imgDisplayTemplate.js'
@@ -26,7 +26,7 @@ $('.question_info_main .answer_btn').click(() => {
   if (isLogin()) {
     $('.textAnswer').slideDown();
   } else {
-    displayTipPane("请先完成登录");
+    displayTipPane_warn(tipInfo.login.no_login);
   }
 })
 $('.textAnswer .slideUp').click(() => {
@@ -37,7 +37,7 @@ $('.textAnswer .slideUp').click(() => {
 $('#copyText').on('click',function () {
   $('.note .content textarea').select();
   document.execCommand("copy"); // 执行浏览器复制命令
-  displayTipPane("复制成功")
+  displayTipPane_success(tipInfo.copy.note_success)
 })
 
 // 获取当前文本链接
@@ -48,8 +48,8 @@ $(".copyurlY").on({
 //#endregion
 
 $('.note .writeAnswer').click(function () {
-  if (!user) {
-    displayTipPane("请先完成登录！")
+  if (isLogin()) {
+    displayTipPane_warn(tipInfo.login.no_login)
     return;
   }
   scrollUp();
@@ -100,7 +100,7 @@ $('.fadeout').click(function () {
 //点击"+"相当于点击input[type=file]
 $('.addImageBtn').click(() => {
   if (sendingImg) {
-    displayTipPane("有图片正在上传中...");
+    displayTipPane_warn(tipInfo.img.upLoading);
   } else {
     $('.file_input').click();
   }
@@ -148,7 +148,7 @@ $(window).on("scroll", debounce(function () {
   if (scrollTop + curHeight >= totalHeight) {
     //还要根据是否有下一页判断可进行发送请求
     if (isNoMoreAnswer) {
-      displayTipPane("没有更多回答了哦！");
+      displayTipPane_warn("没有更多回答了哦！");
       return;
     }
     getAnswer(++answerPage);
@@ -169,7 +169,7 @@ $('.question_info_main .like_btn .icon').click(agreeQuestion)
 
 $(".author_info_box .subscribe_btn").click(function () {
   if (isLogin()) {
-    displayTipPane("请先完成登录!");
+    displayTipPane_warn(tipInfo.login.no_login);
     return;
   }
   if ($(".author_info_box .subscribe_btn").attr("status") == "subscribe") {
@@ -178,7 +178,7 @@ $(".author_info_box .subscribe_btn").click(function () {
   } else if ($(".author_info_box .subscribe_btn").attr("status") == "no_subscribe") {
     subscribeAuthor();
   } else {
-    displayTipPane("作者匿名，关注已禁用！")
+    displayTipPane_warn("作者匿名，关注已禁用！")
   }
 })
 
@@ -192,7 +192,7 @@ $('.cueY').click(function () {
       transform: 'translate(-50%,-50%) scale(1)'
     })
   } else {
-    displayTipPane("你还没登录噢~");
+    displayTipPane_warn("只有登录了才能提问哦~");
   }
 })
 
