@@ -18,7 +18,7 @@ function loginRequest(loginData){
   return new Promise((resolve, reject) => {
     request(baseHttpURL+'', {
       method: 'get',
-      body: loginData ? JSON.stringify(loginData) : ''
+      body: loginData
     }).then(res => {
       // 同时会服务器返送一个名为token的cookie到客户端中，客户端会自动保存，并且在每次的http请求中都会发送给服务器
       resolve(filter(res))
@@ -28,17 +28,27 @@ function loginRequest(loginData){
   })
 }
 
-// 获取token
+// 获取本地User数据
 /**
  * 
  * @returns null | String
  */
-function getToken() {
- return  cookieUtil.get('token')
+function getLocalUser() {
+ return  JSON.parse(cookieUtil.get('localUser'))
+}
+/**
+ * 清除本地User数据
+ */
+function removeLocalUser() {
+  cookieUtil.unset('localUser')
 }
 
-function removeToken() {
-  cookieUtil.unset('token')
+/**
+ * 设置本地User数据
+ * @param {Object} user 
+ */
+function setLocalUser(user) {
+  cookieUtil.set('localUser',JSON.stringify(user),0,'/','',true);
 }
 
-export {loginRequest, getToken, removeToken}
+export {loginRequest, getLocalUser, removeLocalUser, setLocalUser}

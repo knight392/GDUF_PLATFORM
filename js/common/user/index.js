@@ -1,14 +1,19 @@
-import {getToken, loginRequest, removeToken} from './tools.js'
+import {getLocalUser, setLocalUser, removeLocalUser, loginRequest} from './tools.js'
+import {createWebSocket, closeWebSocket} from '../../components/content/inform/index.js'
+import {baseWsURL} from '../baseRequestInfo.js'
 // user为null,表示没有登录
+/**
+ *  { userType, markNumber, email, face, college, sex, userName, area, graduatedUniversity, degree }
+ */
 let user = null;
 
 // 每次加载页面都看看有没有token,可自动登录
 (function(){
-  const token = getToken();
-  if(token != null){
+  const user = getLocalUser();
+  if(user != null){
     try{
       // 有token就发送一个token的cookie
-      user =  doLogin()
+      createWebSocket(baseWsURL)
     }catch(e) {
       console.log(e);
       user = null;
@@ -19,7 +24,8 @@ let user = null;
 // 退出登录
 function doLogOff(){
   user = null
-  removeToken()
+  closeWebSocket()
+  removeLocalUser()
 }
 /**
  * 
@@ -28,9 +34,11 @@ function doLogOff(){
  */
 
 // 登录
-function doLogin(loginData = null){
+function doLogin(loginData){
   loginRequest(loginData).then(res => {
     user = res
+    createWebSocket(baseWsURL)
+    setLocalUser(user)
   }, err => {
     user = null
   })

@@ -14,6 +14,7 @@
   <link href="../../css/chat.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+  <!-- 导航栏 -->
   <nav class="nav">
     <div class="w">
       <!-- 展示logo 首页  校区互通 搜索栏 消息 头像-->
@@ -73,9 +74,9 @@
         <!--登录注册按钮-->
         <div class="personal">
           <button class="signUpBtn">
-            <em class="fadein">登录</em>
+            <em class="fadein" id="loginBtn">登录</em>
             |
-            <em class="toRegister" onclick="window.open('register.html')">注册</em>
+            <em class="toRegister" onclick="location.assign('../register/register.html')">注册</em>
           </button>
         </div>
         <!--头像-->
@@ -1394,7 +1395,7 @@
             <div class="imgItem">
                 <img src="{{base64}}" alt="{{name}}" type="img">
             </div>
-        </script>
+  </script>
   <!-- 展示的物品模板 -->
   <!-- <script type="text/html" id="templateFoundItem">
         <li class="item">

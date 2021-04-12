@@ -109,17 +109,14 @@ $('.switchY .change').on({
             $('.indexQuizList').slideDown(2000);
             $('.change').attr('title', '切换校园动态');
             $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
-
             PART = 1;
         } else {
             $('.switchY .change').html(' <i class="iconfont iconqiehuan-"></i>校区互通');
             $('.indexQuizList').slideUp(1000);
             $('.schoolDevelopmentY').slideDown(2000);
             $('.change').attr('title', '切换校区互通');
-
             $('.hb').css('height', $('.allD-div').outerHeight(true) + 'px');
             $('.maincontent').css('height', $('.schoolDevelopmentY').css('height'));
-
             PART = 2;
         }
         $("body, html").stop().animate({
