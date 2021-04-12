@@ -1,5 +1,8 @@
 import {getLocalUser, setLocalUser, removeLocalUser, loginRequest} from './tools.js'
 // user为null,表示没有登录
+/**
+ *  { userType, markNumber, email, face, college, sex, userName, area, graduatedUniversity, degree }
+ */
 let user = null;
 
 // 每次加载页面都看看有没有token,可自动登录

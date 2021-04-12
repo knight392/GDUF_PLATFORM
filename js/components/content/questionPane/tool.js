@@ -4,6 +4,7 @@ import { tipInfo, displayTipPane_success, displayTipPane_warn, displayTipPane_er
 import sendFile from '../fileHandler.js'
 import { getImgBase64, isImage } from '../../../util/imgHandler.js'
 import inputTextFilter from '../inputTextFilter.js'
+import { user } from '../../../common/user/index.js'
 let sendingImg = false;
 
 function textInputHandler() {
@@ -132,7 +133,7 @@ function sendQuestion() {
         "title": data.title,
         "tag": data.labels,
         "questionType": data.type,
-        // "authorMarkNumber": $.cookie("markNumber"),
+        "authorMarkNumber": user.markNumber,
         "contents": data.contents,
         "anonymity": data.anonymity
       }

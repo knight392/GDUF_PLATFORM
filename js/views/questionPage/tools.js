@@ -165,7 +165,8 @@ function sendAnswer() {
     body: {
       answerContents,
       requestType: 'post',
-      questionId
+      questionId,
+      markNumber:user.markNumber
     }
   }).then(res => {
     if (res.statusCode == 200) {
@@ -304,7 +305,7 @@ function getAnswer(curPage) {
     requestType: "get",
     getAnswerType: "question",
     questionId, // 进入该页面后应该会有questionId
-    // markNumber: $.cookie("markNumber"), // 用户者的学号
+    markNumber: user.markNumber, // 用户者的学号
     currentPage: curPage //当前页面
   }
   // if (user) {
@@ -457,7 +458,7 @@ function sendComment() {
   let data_1 = {
     requestType: "post",
     answerId: answerItem.attr("answerid"),
-    // markNumber: $.cookie("markNumber"),
+    markNumber: user.markNumber,
     content: text
   };
   let obj = $(this); //this指发表评论的按钮
@@ -511,14 +512,14 @@ function sendComment() {
           oAgreeCount.html(parseInt(oAgreeCount.html()) + 1);
           obj.attr("changing", "false");
           let data = {
-            "senderMarkNumber": $.cookie("markNumber"),
+            "senderMarkNumber": user.markNumber,
             "receiverMarkNumber": obj.parents(".answerItem").attr("answerId"),
             "content": '评论了你对"' + $(".question_info_box .questionTitle").html() + '"的回答',
             "additionContent": "额外内容 可以为空",
             "type": "inf",
-            // "senderName": $.cookie("userName"),
+            "senderName": user.markNumber,
             "isRead": false,
-            // "senderFace": $.cookie("face"),
+            "senderFace": user.face,
             "requestType": "post"
           }
           sendInfo(data);
@@ -567,8 +568,8 @@ function agreeQuestion() {
     agreeRequest({
       requestType: "delete",
       agreeType: "question",
-      // markNumber: $.cookie("markNumber"),
-      questionId //先写这个
+      markNumber: user.markNumber,
+      questionId 
     }).then(res => {
       obj.parents(".like_btn").attr("status", "no_agree");
       obj.parents(".like_btn").addClass("no_agree");
@@ -581,7 +582,7 @@ function agreeQuestion() {
     agreeRequest({
       requestType: "post",
       agreeType: "question",
-      // markNumber: $.cookie("markNumber"),
+      markNumber: user.markNumber,
       questionId
     }).then(res => {
       if (res.statusCode == 200) {
@@ -592,14 +593,14 @@ function agreeQuestion() {
         oAgreeCount.html(parseInt(oAgreeCount.html()) + 1);
         obj.attr("changing", "false");
         let data = {
-          // "senderMarkNumber": $.cookie("markNumber"),
+          "senderMarkNumber": user.markNumber,
           "receiverMarkNumber": oAuthor.markNumber,
           "content": '点赞了你的问题"' + $(".question_info_box .questionTitle").html() + '"',
           // "additionContent": "额外内容 可以为空",
           "type": "inf",
-          // "senderName": $.cookie("userName"),
+          "senderName": user.userName,
           "isRead": false,
-          // "senderFace": $.cookie("face"),
+          "senderFace": user.face,
           "requestType": "post"
         }
         sendInfo(data);
@@ -627,12 +628,11 @@ function agreeAnswer(receiverMarkNumber) {
   $(this).attr("changing", "true");
   let status = $(this).parents(".like_btn").attr("status");
   let obj = $(this);
-  // console.log($(this));
   if (status == "agree") { //再次点击为取消点赞
     agreeRequest({
       requestType: "delete",
       agreeType: "answer",
-      // markNumber: $.cookie("markNumber"),
+      markNumber: user.markNumber,
       answerId: $(this).parents(".answerItem").attr("answerId")
     }).then(res => {
       obj.parents(".like_btn").attr("status", "no_agree");
@@ -647,7 +647,7 @@ function agreeAnswer(receiverMarkNumber) {
     agreeRequest({
       requestType: "delete",
       agreeType: "answer",
-      // markNumber: $.cookie("markNumber"),
+      markNumber: user.markNumber,
       answerId: $(this).parents(".answerItem").attr("answerId")
     }).then(res => {
       if (res.statusCode == 200) {
@@ -658,14 +658,14 @@ function agreeAnswer(receiverMarkNumber) {
         oAgreeCount.html(parseInt(oAgreeCount.html()) + 1);
         obj.attr("changing", "false");
         let data = {
-          // "senderMarkNumber": $.cookie("markNumber"),
+          "senderMarkNumber": user.markNumber,
           receiverMarkNumber,
           content: '点赞了你对"' + $(".question_info_box .questionTitle").html() + '"的回答',
           // "additionContent": "额外内容 可以为空",
           type: "inf",
-          // "senderName": $.cookie("userName"),
+          "senderName": user.userName,
           isRead: false,
-          // "senderFace": $.cookie("face"),
+          "senderFace": user.face,
           requestType: "post"
         }
         sendInfo(data);
@@ -686,8 +686,9 @@ function attentionRequest(data) {
 //关注作者
 function subscribeAuthor() {
   attentionRequest({
-    "passMarkNumber": oAuthor.markNumber,
-    "requestType": "post"
+    majorMarkNumber:user.markNumber,
+    passMarkNumber: oAuthor.markNumber,
+    requestType: "post"
   }).then(res => {
     if (res.statusCode == 200) {
       $(".author_info_box .subscribe_btn").addClass("subscribe");
@@ -695,14 +696,14 @@ function subscribeAuthor() {
       $(".author_info_box .subscribe_btn").attr("status", "subscribe");
       $(".author_info_box .subscribe_btn").html("已关注");
       let data = {
-        // "senderMarkNumber": $.cookie("markNumber"),
+        "senderMarkNumber": user.markNumber,
         "receiverMarkNumber": oAuthor.markNumber,
         "content": "关注了你",
         // "additionContent": "额外内容 可以为空",
         "type": "inf",
-        // "senderName": $.cookie("userName"),
+        "senderName": user.userName,
         "isRead": false,
-        // "senderFace": $.cookie("face"),
+        "senderFace": user.face,
         "requestType": "post"
       };
       sendInfo(data);
@@ -721,14 +722,14 @@ function cancelSubscribeAuthor() {
       $(".author_info_box .subscribe_btn").attr("status", "no_subscribe");
       $(".author_info_box .subscribe_btn").html("关注");
       let data = {
-        // "senderMarkNumber": $.cookie("markNumber"),
+        "senderMarkNumber": user.markNumber,
         "receiverMarkNumber": oAuthor.markNumber,
         "content": "取消对你的关注。",
         // "additionContent": "额外内容 可以为空",
         "type": "inf",
-        // "senderName": $.cookie("userName"),
+        "senderName": user.userName,
         "isRead": false,
-        // "senderFace": $.cookie("face"),
+        "senderFace": user.face,
         "requestType": "post"
       };
       sendInfo(data);

@@ -5,6 +5,7 @@ import { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest } from '../lostF
 import {tipInfo, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../tipPane.js'
 import template from '../../../util/template.js'
 import {isImgLoad} from '../../../views/lostAndFound/masonry/myMasonry.js'
+import { user } from '../../../common/user/index.js';
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 let objectDetailType = '';
 let objectType = '';
@@ -83,7 +84,7 @@ function submit_found() {
       "requestType": "post",
       "type": "found",
       "contact": $(".modal_bg_found .contact .value").val(),
-      // "authorMarkNumber": $.cookie("markNumber"),
+      "authorMarkNumber": user.markNumber,
       "objectDetailType": objectDetailType,
       "objectType": objectType,
       "foundDescribe": $('.modal_bg_found .objDetail .value_box').val(),

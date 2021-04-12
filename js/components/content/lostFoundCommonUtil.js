@@ -1,4 +1,4 @@
-import {displayTipPane} from './tipPane.js'
+import {displayTipPane_warn} from './tipPane.js'
 // 获取时间
 /**
  * 

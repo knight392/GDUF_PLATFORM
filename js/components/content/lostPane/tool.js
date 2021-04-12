@@ -6,6 +6,7 @@ import { baseHttpURL } from '../../../common/baseRequestInfo.js';
 import template from '../../../util/template.js'
 import {isImgLoad} from '../../../views/lostAndFound/masonry/myMasonry.js'
 import {tipInfo, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../tipPane.js'
+import { user } from '../../../common/user/index.js';
 let lostLocation = "";
 let objectType = "";
 let objectDetailType = "";
@@ -110,7 +111,7 @@ function submit_lost() {
       "requestType": "post",
       "type": "lost",
       "contact": $(".modal_bg_lost .contact .value").val(),
-      // "authorMarkNumber": $.cookie("markNumber"),
+      "authorMarkNumber": user.markNumber,
       "objectDetailType": objectDetailType,
       "objectType": objectType,
       "lostDescribe": $('.modal_bg_lost .objDetail .value_box').val(),
