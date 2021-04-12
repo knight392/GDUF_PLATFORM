@@ -6,6 +6,9 @@ import { displayTipPane, displayTipPane_err, displayTipPane_success, displayTipP
 
 import { mainScrollid1, LoadNextPage1, mainScrollid2, LoadNextPage2 } from './info.js'
 import { sendingImg, sendingVideo } from './index.js'
+import { isLogin } from '../../common/user/index.js';
+import inputTextFilter from '../../components/content/inputTextFilter.js';
+import sendFile from '../../components/content/fileHandler.js';
 // 时间转换为时间戳
 export const totime = function(time) {
     //直接用 new Date(时间戳) 格式转化获得当前时间
@@ -139,30 +142,38 @@ export function loadingNextPART2() {
 // 发送图片 视频
 function sendImgVideo(formdata, obj, sendingImgVideo) { //imgObj是jq对象
     sendingImgVideo = true;
-    $.ajax({
-        url: baseHttpURL + '/Servlet/ReceiveFileServlet',
-        type: 'post',
-        data: formdata,
-        dataType: 'json',
-        processData: false, //用FormData传fd时需有这两项
-        contentType: false,
-        success: function(data) {
-            // console.log(data);
-            // console.log(formdata);
-            obj.attr("remoteURL", data.message);
-            sendingImgVideo = false;
-        },
-        error: function() {
+    sendFile(formdata).then(res => {
+            obj.attr("remoteURL", res);
+            sendImgVideo = false;
+        }, err => {
             obj.remove();
-            sendingImgVideo = false;
-            displayTipPane_err('文件上传失败了哦~');
-        },
-        timeout: function() {
-            obj.remove();
-            sendingImgVideo = false;
-            displayTipPane_err('文件上传失败了哦~');
-        }
-    })
+            sendImgVideo = false;
+            displayTipPane_err("文件上传失败了哦~");
+        })
+        // $.ajax({
+        //     url: baseHttpURL + '/Servlet/ReceiveFileServlet',
+        //     type: 'post',
+        //     data: formdata,
+        //     dataType: 'json',
+        //     processData: false, //用FormData传fd时需有这两项
+        //     contentType: false,
+        //     success: function(data) {
+        //         // console.log(data);
+        //         // console.log(formdata);
+        //         obj.attr("remoteURL", data.message);
+        //         sendingImgVideo = false;
+        //     },
+        //     error: function() {
+        //         obj.remove();
+        //         sendingImgVideo = false;
+        //         displayTipPane_err('文件上传失败了哦~');
+        //     },
+        //     timeout: function() {
+        //         obj.remove();
+        //         sendingImgVideo = false;
+        //         displayTipPane_err('文件上传失败了哦~');
+        //     }
+        // })
 }
 
 // 添加视频/img  删除
@@ -277,19 +288,16 @@ export function sendDevel() {
     }
 
     //判断敏感词
-    request(baseHttpURL + '/Servlet/SensitiveWordServlet', {
-        method: "post",
-        body: {
-            textArr: [title]
-        }
-    }).then(res => {
-        if (res.statusCode == 500) {
-            displayTipPane_warn("内容" + res.message + "请修改后再发送！")
+    inputTextFilter(title).then(res => {
+        title = res;
+        sendD();
+    }, err => {
+        if (err.isErr) {
+            displayTipPane_err(tipInfo.submit.err);
         } else {
-            // console.log(res);
-            sendD();
+            displayTipPane_err(`内容：${err.message}，请修改后再重新提交！`);
         }
-    });
+    })
 
     //获取内容 发送内容
     function sendD() {

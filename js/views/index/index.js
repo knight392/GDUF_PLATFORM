@@ -6,6 +6,7 @@ import { infoIndexPART1, infoIndexPART2 } from './info.js'
 import { loadingNextPART1, loadingNextPART2, totime, insertImgVideo, sendDevel } from './tools.js'
 let PART = 1; //校区互通 1 校园动态 2
 
+
 window.onload = function() {
     infoIndexPART1();
 
