@@ -1,6 +1,6 @@
 import debounce from '../../../util/debounce.js'
 import { baseHttpURL } from '../../../common/baseRequestInfo.js';
-import displayTipPane from '../tipPane.js'
+import { displayTipPane_warn, tipInfo } from '../tipPane.js'
 
 import { setCookie, isHaveCookie, clearCookie, getSearchMessageY, logon, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
@@ -12,8 +12,7 @@ window.onload = function() {
 
     //#region 远安增加代码，实现加载判断是否最近登录过
     // console.log("加载用户信息");
-    if (isLogin()) {         // displayTipPane("加载用户信息")
-                
+    if (isLogin()) {                
         $('.modal_bg').fadeOut();  // 其实就是css 的过渡+ display
                 
         $('.modal').css({
@@ -124,8 +123,8 @@ $('.fadein').click(function() {
 })
 
 $('.fadeout').click(function() {
-    $('.modal_bg_logon').fadeOut(); // 其实就是css 的过渡+ display
-    $('.logonBody .logonYmadal').css({
+    $(this).parent().parent().parent().fadeOut(); // 其实就是css 的过渡+ display
+    $(this).parent().parent().css({
         transform: 'translate(-50%,-50%) scale(0.7)'
     })
 })
@@ -163,7 +162,7 @@ $('.btnLogon').click(function() {
     }
 
     if (pwd === "" || account === "") {
-        displayTipPane('用户名/密码不能为空');
+        displayTipPane_warn('用户名/密码不能为空')
     } else {
         logon();
     }
@@ -187,7 +186,7 @@ $(".message").on({
                 messageInf();
             }
         } else {
-            displayTipPane("你还没登录噢~");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     },
     mouseleave: function(e) {
@@ -220,7 +219,7 @@ $(".attention").on({
         if (isLogin()) {
             attentionMajor();
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     }
 })
@@ -232,7 +231,7 @@ $('#hoverBox_fans').click(function() {
     if (isLogin()) {
         attentionPass();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 
 })
@@ -244,7 +243,7 @@ $('#hoverBox_interest').click(function() {
     if (isLogin()) {
         attentionMajor();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 });
 //#endregion
@@ -281,7 +280,7 @@ $(".myCollY").on({
         if (isLogin()) {
 
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
 
     }
@@ -295,7 +294,7 @@ $(".myQAY").on({
         if (isLogin()) {
             QAcue();
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     }
 })
@@ -307,7 +306,7 @@ $('#hoverBox_answer').click(function() {
     if (isLogin()) {
         QAanswer();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 })
 
@@ -318,7 +317,8 @@ $('#hoverBox_request').click(function() {
     if (isLogin()) {
         QAcue();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
+
     }
 })
 
@@ -393,7 +393,7 @@ $(".hpSecond .secondPane_entrance").on({
                 right: right + "px",
             }, 300);
         } else {
-            displayTipPane("您还未登录");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
 
     }

@@ -2,7 +2,7 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js';
 
 import request from '../../util/request.js';
 import template from '../../util/template.js';
-import displayTipPane from '../../components/content/tipPane.js'
+import { displayTipPane, displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
 
 import { mainScrollid1, LoadNextPage1, mainScrollid2, LoadNextPage2 } from './info.js'
 import { sendingImg, sendingVideo } from './index.js'
@@ -17,7 +17,7 @@ export const totime = function(time) {
 // 校区互通的加载更多
 export function loadingNextPART1() {
     if (LoadNextPage1) {
-        displayTipPane("加载问题ing~");
+        displayTipPane_warn('正在加载问题...');
         request(baseHttpURL + '/Servlet/ScrollSearchServlet', {
             method: "get",
             body: {
@@ -59,14 +59,14 @@ export function loadingNextPART1() {
 
         }, 'json')
     } else {
-        displayTipPane("没有更多问题了哦~");
+        displayTipPane_warn('没有更多问题了哦~');
     }
 }
 
 // 失物招领的加载更多
 export function loadingNextPART2() {
     if (LoadNextPage2) {
-        displayTipPane("加载动态ing~");
+        displayTipPane_warn('正在加载动态...~')
         request(baseHttpURL + '/Servlet/ScrollSearchServlet', {
             method: "get",
             body: {
@@ -132,7 +132,7 @@ export function loadingNextPART2() {
             })
         })
     } else {
-        displayTipPane("没有更多动态了哦~");
+        displayTipPane_warn('没有更多动态了哦~');
     }
 }
 
@@ -155,12 +155,12 @@ function sendImgVideo(formdata, obj, sendingImgVideo) { //imgObj是jq对象
         error: function() {
             obj.remove();
             sendingImgVideo = false;
-            displayTipPane("上传失败！已自动删除原资源！");
+            displayTipPane_err('文件上传失败了哦~');
         },
         timeout: function() {
             obj.remove();
             sendingImgVideo = false;
-            displayTipPane("上传超时！已自动删除原资源！");
+            displayTipPane_err('文件上传失败了哦~');
         }
     })
 }
@@ -233,18 +233,18 @@ export function insertImgVideo(e, type) {
 // 发布信息
 export function sendDevel() {
     if (sendingImg) {
-        displayTipPane("有图片正在上传中！");
+        displayTipPane_warn(tipInfo.img.upLoading);
         return;
     }
     if (sendingVideo) {
-        displayTipPane("有视频正在上传中！");
+        displayTipPane_warn(tipInfo.video.upLoading);
         return;
     }
     const title = $(".issuePersonalDY textarea").val();
 
     //判空
     if (title == "" || title == null || title == undefined) {
-        displayTipPane("文章内容不能为空!");
+        displayTipPane_warn('文章内容不能为空哦~');
         return;
     }
 
@@ -284,7 +284,7 @@ export function sendDevel() {
         }
     }).then(res => {
         if (res.statusCode == 500) {
-            displayTipPane("内容" + res.message + "请修改后再发送！");
+            displayTipPane_warn("内容" + res.message + "请修改后再发送！")
         } else {
             // console.log(res);
             sendD();
@@ -304,7 +304,7 @@ export function sendDevel() {
                     contents,
                 }
             }).then(res => {
-                displayTipPane("发布成功！");
+                displayTipPane_success(tipInfo.submit.succees);
                 //清空title,detail
                 $(".issuePersonalDY textarea").val("");
 
@@ -316,7 +316,7 @@ export function sendDevel() {
                 // console.log(res);
             })
         } else {
-            displayTipPane('您还没有登录哦~');
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     }
 }

@@ -1,6 +1,6 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import { isLogin, user } from '../../common/user/index.js'
-import displayTipPane from '../../components/content/tipPane.js'
+import { displayTipPane_success, tipInfo } from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import { infoIndexPART1, infoIndexPART2 } from './info.js'
 import { loadingNextPART1, loadingNextPART2, totime, insertImgVideo, sendDevel } from './tools.js'
@@ -185,7 +185,7 @@ export var sendingImg = false;
 $(".addimgsY").on({
     change: function(e) {
         if (sendingImg) {
-            displayTipPane("有图片还在上传中...");
+            displayTipPane_success(tipInfo.img.upLoading);
             return;
         }
         insertImgVideo(e, 'img');
@@ -198,7 +198,7 @@ export var sendingVideo = false;
 $(".addvideoY").on({
     change: function(e) {
         if (sendingVideo) {
-            displayTipPane("有视频还在上传中...");
+            displayTipPane_success(tipInfo.video.upLoading);
             return;
         }
         insertImgVideo(e, 'video');
