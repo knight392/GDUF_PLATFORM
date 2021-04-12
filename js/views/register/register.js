@@ -200,6 +200,7 @@ $('.fadeOut').click(function () {
 $('.submit_btn').click(() => {
   //学号是自动填充，但是教工号用户自己写的，根据userType来进行选择，
   //学号或教工号，待定。。
+  let markNumber
   if (userType == 'teacher') {
     //教工号判空
     if ($('#markNumber_teacher input').val() == '') {
@@ -225,7 +226,13 @@ $('.submit_btn').click(() => {
     }
 
   } else {
-    //学生
+    //学生学号
+    if ($('#markNumber_student input').val() == '') {
+      displayTipPane_warn("请填写您的学号！");
+      return;
+    }
+    markNumber = $('#markNumber_student input').val();
+    console.log(markNumber);
     //用户名判空
     if ($('.userName input').eq(0).val() == '') {
       displayTipPane_warn('请输入您的用户名！');
