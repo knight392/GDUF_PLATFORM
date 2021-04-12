@@ -3,7 +3,7 @@ import { createWebSocket, closeWebSocket } from '../../components/content/inform
 import { baseWsURL } from '../baseRequestInfo.js'
 // user为null,表示没有登录
 /**
- *  { userType, markNumber, email, face, college, sex, userName, area, graduatedUniversity, degree }
+ *  { userType, markNumber, email, face, college, sex, userName, area, graduatedUniversity, degree, major }
  */
 let user = null;
 
@@ -12,8 +12,7 @@ let user = null;
     const user = getLocalUser();
     if (user != null) {
         try {
-            // 有token就发送一个token的cookie
-            createWebSocket(baseWsURL)
+            // createWebSocket(baseWsURL)
         } catch (e) {
             console.log(e);
             user = null;
@@ -38,7 +37,7 @@ function doLogin(loginData) {
     return new Promise((resolve, reject) => {
         loginRequest(loginData).then(res => {
             user = res
-            createWebSocket(baseWsURL)
+            // createWebSocket(baseWsURL)
             setLocalUser(user)
             resolve(true)
         }, err => {

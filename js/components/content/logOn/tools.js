@@ -1,8 +1,6 @@
-import { baseHttpURL } from "../../../common/baseRequestInfo.js";
-import { doLogin, isLogin } from "../../../common/user/index.js";
-import request from "../../../util/request.js";
-import { setCookie } from "../nav/tools.js";
-import { displayTipPane_err, displayTipPane_warn } from "../tipPane.js";
+
+import { doLogin, user} from "../../../common/user/index.js";
+import { displayTipPane_err, displayTipPane_success, displayTipPane_warn } from "../tipPane.js";
 
 //必须为字母加数字且长度不小于8位
 export function CheckPassWord(password) {
@@ -61,16 +59,18 @@ export async function logon() {
 
             $('.personal').hide(100);
             $('.logonHeadPortrait').show(100);
-            $('.ResUserName').text(res.userName);
-            $('.ResUserName').prop("title", res.userName);
-            $('.ResMarkNumber').text(res.markNumber);
-            $('.ResMarkNumber').prop("title", res.markNumber);
+            $('.ResUserName').text(user.userName);
+            $('.ResUserName').prop("title", user.userName);
+            $('.ResMarkNumber').text(user.markNumber);
+            $('.ResMarkNumber').prop("title", user.markNumber);
             // USERID = res.markNumber;
-            $('.ResMessagePojoMajor').text(res.messagePojo.major);
-            $('.ResMessagePojoMajor').prop("title", res.messagePojo.major);
-            let ResMessageFaceScr = '../' + res.messagePojo.face.substring(2);
-            $('.ResMessageFace').prop("src", ResMessageFaceScr);
-            $('.navHPY').prop('src', ResMessageFaceScr);
+            if(user.major){
+              $('.ResMessagePojoMajor').text(user.major);
+              $('.ResMessagePojoMajor').prop("title", user.major);
+            }
+            $('.ResMessageFace').prop("src", user.face);
+            $('.navHPY').prop('src', user.face);
+            displayTipPane_success("登录成功！")
         } else {
             displayTipPane_err('登录失败！ 账号或密码有误！');
         }

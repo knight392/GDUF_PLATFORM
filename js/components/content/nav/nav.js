@@ -1,8 +1,8 @@
 import debounce from '../../../util/debounce.js'
 // import { baseHttpURL } from '../../../common/baseRequestInfo.js';
-import { displayTipPane_warn, tipInfo } from '../tipPane.js'
+import { displayTipPane, displayTipPane_warn, tipInfo } from '../tipPane.js'
 
-import { setCookie, isHaveCookie, clearCookie, getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
+import { getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
 import { logon } from '../../content/logOn/tools.js';
 
@@ -306,8 +306,7 @@ $(".exitLogonY").on({
         $(".myAns").html("");
         $(".mycollection").html("");
         doLogOff();
-        clearCookie();
-        closeWebSocket();
+        displayTipPane("已退出登录~")
         //问题页面判断是否登录
     }
 });
@@ -376,16 +375,3 @@ $(".hpSecondSecond").on({
 })
 
 //#endregion 
-
-
-
-
-let lockReconnect = false; //避免重复连接
-let myMarkNumber = "191543214"; //要获取cookie
-let wantToSendMarkNumber = "123456789"; //随便写一个，目的是与服务进行连接
-let url = "ws://192.168.137.105:8080/WebSocket";
-let wsUrl //点击某一个私信后重新修改
-let ws;
-let tt;
-let ulNode = document.getElementById("ulNode");
-let screen_inner = document.getElementById("screen_inner");

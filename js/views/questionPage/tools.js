@@ -474,19 +474,7 @@ function sendComment() {
       displayTipPane_err(`内容：${err.message}，请修改后再重新提交！`);
     }
   })
-  // request(baseHttpURL + '/Servlet/SensitiveWordServlet', {
-  //   method: "post",
-  //   body: JSON.stringify({
-  //     textArr: [text]
-  //   })
-  // }).then(res => {
-  //   if (res.statusCode == 500) {
-  //     displayTipPane_warn("内容" + res.message + "请修改后再发送！");
-  //   } else {
-  //     data_1.content = res[0];
-  //     send();
-  //   }
-  // })
+ 
 
 
   // 发送评论
@@ -555,7 +543,7 @@ function agreeRequest(data) {
 // 文章点赞
 function agreeQuestion() {
   //当前点击状态
-  if (!user) {
+  if (!isLogin()) {
     displayTipPane(tipInfo.login.no_login);
     return;
   }

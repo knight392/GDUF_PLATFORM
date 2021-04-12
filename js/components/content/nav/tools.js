@@ -3,34 +3,6 @@ import { user } from '../../../common/user/index.js'
 import request from '../../../util/request.js'
 import template from '../../../util/template.js'
 
-export function setCookie(json, time) {
-    for (const key in json) {
-        $.cookie(key, json[key], { expires: time });
-    }
-}
-
-export function isHaveCookie() {
-    if (navigator.onLine && $.cookie("markNumber") != null && $.cookie("markNumber") != undefined &&
-        $.cookie("userName") != null && $.cookie("userName") != undefined &&
-        $.cookie("face") != undefined && $.cookie("face") != null) {
-        return true;
-    }
-    return false;
-}
-
-export function clearCookie() {
-    $.removeCookie("area");
-    $.removeCookie("college");
-    $.removeCookie("email");
-    $.removeCookie("face");
-    $.removeCookie("id");
-    $.removeCookie("level");
-    $.removeCookie("major");
-    $.removeCookie("password");
-    $.removeCookie("markNumber");
-    $.removeCookie("sex");
-    $.removeCookie("userName");
-}
 
 /**
  * 
