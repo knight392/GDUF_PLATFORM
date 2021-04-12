@@ -79,44 +79,6 @@ export function getSearchMessageY(val) {
 
 }
 
-// 登录
-export function logon() {
-    request(baseHttpURL + 'Servlet/UserServlet', {
-        method: "get",
-        body: {
-            password: pwd,
-            loginValue: account,
-            requestType: 'get',
-            userType: type
-        }
-    }), then(res => {
-        if (res.statusCode == 200) {
-            setCookie(res.messagePojo, 10); //保存30天
-
-            //if登录成功 退出登录框 登录+注册 -> 消息+头像
-            $('.modal_bg').fadeOut(); // 其实就是css 的过渡+ display
-            $('.modal').css({
-                transform: 'translate(-50%,-50%) scale(0.7)'
-            })
-
-            $('.personal').hide(100);
-            $('.logonHeadPortrait').show(100);
-            $('.ResUserName').text(res.userName);
-            $('.ResUserName').prop("title", res.userName);
-            $('.ResMarkNumber').text(res.markNumber);
-            $('.ResMarkNumber').prop("title", res.markNumber);
-            // USERID = res.markNumber;
-            $('.ResMessagePojoMajor').text(res.messagePojo.major);
-            $('.ResMessagePojoMajor').prop("title", res.messagePojo.major);
-            let ResMessageFaceScr = '../' + res.messagePojo.face.substring(2);
-            $('.ResMessageFace').prop("src", ResMessageFaceScr);
-            $('.navHPY').prop('src', ResMessageFaceScr);
-
-        } else {
-            displayTipPane('登录失败！账号或密码有误！');
-        }
-    })
-}
 
 /**
  *  窗口的走向 去右边
