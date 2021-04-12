@@ -7,6 +7,7 @@ import {questionId } from './info.js'
 import {tipInfo, displayTipPane, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import {defaultStudentFace, defaultTeacherFace} from '../../common/user/defaultInfo.js'
 import inputTextFilter from '../../components/content/inputTextFilter.js'
+import {sendInfoWs} from '../../components/content/inform/index.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
 
@@ -842,7 +843,9 @@ function sendInfo(data) {
     method:'post',
     body: data
   }).then(res => {
+    sendInfoWs(data.receiverMarkNumber)
     console.log('通知成功');
+    
   },err => {
     console.log(err);
   })

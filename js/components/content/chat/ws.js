@@ -40,16 +40,17 @@ function createWebSocket1() {
 
 
 //聊天
-let lockReconnect = false;//避免重复连接
+
 let myMarkNumber = "191543214";//要获取cookie
 let wantToSendMarkNumber = "123456789";//随便写一个，目的是与服务进行连接
+
+let ulNode = document.getElementById("ulNode");
+let screen_inner = document.getElementById("screen_inner");
+let lockReconnect = false;//避免重复连接
 let url = "ws://192.168.137.105:8080/WebSocket";
 let wsUrl //点击某一个私信后重新修改
 let ws;
 let tt;
-let ulNode = document.getElementById("ulNode");
-let screen_inner = document.getElementById("screen_inner");
-
 // initialWebSocket();//首次与服务器进行连接
 
 // 退出登录调用
