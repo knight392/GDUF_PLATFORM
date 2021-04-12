@@ -18,7 +18,7 @@ export function infoIndexPART1() {
             getType: "init",
         }
     }).then(res => {
-        // console.log(res);
+        console.log(res);
         mainScrollid1 = res.scrollId;
         LoadNextPage1 = res.next;
         for (let i = 0; i < res.dataList.length; i++) {

@@ -1,9 +1,10 @@
 import debounce from '../../../util/debounce.js'
-import { baseHttpURL } from '../../../common/baseRequestInfo.js';
-import displayTipPane from '../tipPane.js'
+// import { baseHttpURL } from '../../../common/baseRequestInfo.js';
+import { displayTipPane_warn, tipInfo } from '../tipPane.js'
 
-import { setCookie, isHaveCookie, clearCookie, getSearchMessageY, logon, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
+import { setCookie, isHaveCookie, clearCookie, getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
+import { logon } from '../../content/logOn/tools.js';
 
 window.onload = function() {
     //#region 清空搜索框内的内容 √
@@ -12,8 +13,7 @@ window.onload = function() {
 
     //#region 远安增加代码，实现加载判断是否最近登录过
     // console.log("加载用户信息");
-    if (isLogin()) {         // displayTipPane("加载用户信息")
-                
+    if (isLogin()) {                
         $('.modal_bg').fadeOut();  // 其实就是css 的过渡+ display
                 
         $('.modal').css({
@@ -40,9 +40,6 @@ window.onload = function() {
     }    
     //#endregion
 }
-
-let USERID;
-let USERIMG;
 
 //头像那边的二级导航 ：0 没显示  1 表示已经显示
 
@@ -124,8 +121,8 @@ $('.fadein').click(function() {
 })
 
 $('.fadeout').click(function() {
-    $('.modal_bg_logon').fadeOut(); // 其实就是css 的过渡+ display
-    $('.logonBody .logonYmadal').css({
+    $(this).parent().parent().parent().fadeOut(); // 其实就是css 的过渡+ display
+    $(this).parent().parent().css({
         transform: 'translate(-50%,-50%) scale(0.7)'
     })
 })
@@ -134,39 +131,9 @@ $('.fadeout').click(function() {
 
 //#region 用户名/密码 与后端交互 √
 
-let option = 1;
-
-$(".logOn h2").on("click", function() {
-    //点击 学生/老师 相应模块 显示
-    $(this).parent().addClass("logOnDisplay");
-    $(this).parent().siblings().removeClass("logOnDisplay");
-
-    //设置option 1/2 当前登录状态 1 学生 2 老师
-    if ($(this).text() === "学生") {
-        option = 1;
-    } else if ($(this).text() === "教师") {
-        option = 2;
-    }
-})
-
 //登录
 $('.btnLogon').click(function() {
-    let pwd, account, type;
-    if (option == 1) {
-        pwd = $('#stu_pwd').val();
-        account = $('#stu_account').val();
-        type = "student"
-    } else {
-        pwd = $('#teacher_pwd').val();
-        account = $('#teacher_account').val();
-        type = "teacher"
-    }
-
-    if (pwd === "" || account === "") {
-        displayTipPane('用户名/密码不能为空');
-    } else {
-        logon();
-    }
+    logon();
 })
 
 //#endregion
@@ -187,7 +154,7 @@ $(".message").on({
                 messageInf();
             }
         } else {
-            displayTipPane("你还没登录噢~");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     },
     mouseleave: function(e) {
@@ -220,7 +187,7 @@ $(".attention").on({
         if (isLogin()) {
             attentionMajor();
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     }
 })
@@ -232,7 +199,7 @@ $('#hoverBox_fans').click(function() {
     if (isLogin()) {
         attentionPass();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 
 })
@@ -244,7 +211,7 @@ $('#hoverBox_interest').click(function() {
     if (isLogin()) {
         attentionMajor();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 });
 //#endregion
@@ -281,7 +248,7 @@ $(".myCollY").on({
         if (isLogin()) {
 
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
 
     }
@@ -295,7 +262,7 @@ $(".myQAY").on({
         if (isLogin()) {
             QAcue();
         } else {
-            displayTipPane("您还未登录！");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
     }
 })
@@ -307,7 +274,7 @@ $('#hoverBox_answer').click(function() {
     if (isLogin()) {
         QAanswer();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
     }
 })
 
@@ -318,7 +285,8 @@ $('#hoverBox_request').click(function() {
     if (isLogin()) {
         QAcue();
     } else {
-        displayTipPane("您还未登录！");
+        displayTipPane_warn(tipInfo.login.no_login);
+
     }
 })
 
@@ -393,7 +361,7 @@ $(".hpSecond .secondPane_entrance").on({
                 right: right + "px",
             }, 300);
         } else {
-            displayTipPane("您还未登录");
+            displayTipPane_warn(tipInfo.login.no_login);
         }
 
     }

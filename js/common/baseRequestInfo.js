@@ -3,4 +3,4 @@
  */
 const baseHttpURL = 'http://192.168.0.174:8080'
 const baseWsURL = 'ws://192.168.0.174:8080/WebSocket'
-export {baseHttpURL, baseWsURL}
+export { baseHttpURL, baseWsURL }

@@ -5,8 +5,12 @@
 
 $(function() {
 
+
     // 点击表单 表单本身的提示语句span.tip 缩小上移
     $(".confirm input").on("focus", function() {
+        console.log(
+            1
+        );
         $(this).siblings('.tip').animate({
             bottom: "90%"
         }, 100)
