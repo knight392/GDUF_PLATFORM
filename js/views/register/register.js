@@ -305,15 +305,20 @@ $('.submit_btn').click(() => {
     body: formData
   }).then(res => {
     if(res.statusCode === 200 ){
-      // 获取账号密码进行登录, 并把token保存到cookie中
-      displayTipPane_success('注册成功！正跳转到首页...');
-      //跳转。。。
+      displayTipPane_success('恭喜，注册成功，您现可以登录正常使用啦~');
       setTimeout(() => {
-       location.assign('../MutualCommunication/index.html')
+        // 回退到上一个打开页面
+        history.back();
       }, 2000);
+    }else{
+      displayTipPane_err("天啦撸，遇到了未知原因注册失败了~~")
     }
+  }, err => {
+    displayTipPane_err("天啦撸，网络遇到问题请重试~~")
   })
 })
+
+
 
 
 
