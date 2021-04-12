@@ -33,7 +33,7 @@ $(".logOn h2").on("click", function() {
     }
 })
 
-export function logon() {
+export async function logon() {
     let pwd, account, type;
     if (option == 1) {
         pwd = $('#stu_pwd').val();
@@ -48,44 +48,31 @@ export function logon() {
     if (pwd === "" || account === "") {
         displayTipPane_warn('用户名/密码不能为空')
     } else {
-        request(baseHttpURL + '/Servlet/UserServlet', {
-            method: "get",
-            body: {
+        if (await doLogin({
                 password: pwd,
                 loginValue: account,
                 requestType: 'get',
                 userType: type
-            }
-        }).then(res => {
-            console.log(res);
-            if (res.statusCode == 200) {
-                doLogin();
-                // setCookie(res.messagePojo, 10); //保存30天
-                console.log(isLogin());
-                //if登录成功 退出登录框 登录+注册 -> 消息+头像
-                $('.modal_bg').fadeOut(); // 其实就是css 的过渡+ display
-                $('.modal').css({
-                    transform: 'translate(-50%,-50%) scale(0.7)'
-                })
+            })) {
+            $('.modal_bg').fadeOut(); // 其实就是css 的过渡+ display
+            $('.modal').css({
+                transform: 'translate(-50%,-50%) scale(0.7)'
+            })
 
-                $('.personal').hide(100);
-                $('.logonHeadPortrait').show(100);
-                $('.ResUserName').text(res.userName);
-                $('.ResUserName').prop("title", res.userName);
-                $('.ResMarkNumber').text(res.markNumber);
-                $('.ResMarkNumber').prop("title", res.markNumber);
-                // USERID = res.markNumber;
-                $('.ResMessagePojoMajor').text(res.messagePojo.major);
-                $('.ResMessagePojoMajor').prop("title", res.messagePojo.major);
-                let ResMessageFaceScr = '../' + res.messagePojo.face.substring(2);
-                $('.ResMessageFace').prop("src", ResMessageFaceScr);
-                $('.navHPY').prop('src', ResMessageFaceScr);
-
-            } else {
-                displayTipPane_err('登录失败！ 账号或密码有误！');
-            }
-        }, err => {
-            console.log(err);
-        })
+            $('.personal').hide(100);
+            $('.logonHeadPortrait').show(100);
+            $('.ResUserName').text(res.userName);
+            $('.ResUserName').prop("title", res.userName);
+            $('.ResMarkNumber').text(res.markNumber);
+            $('.ResMarkNumber').prop("title", res.markNumber);
+            // USERID = res.markNumber;
+            $('.ResMessagePojoMajor').text(res.messagePojo.major);
+            $('.ResMessagePojoMajor').prop("title", res.messagePojo.major);
+            let ResMessageFaceScr = '../' + res.messagePojo.face.substring(2);
+            $('.ResMessageFace').prop("src", ResMessageFaceScr);
+            $('.navHPY').prop('src', ResMessageFaceScr);
+        } else {
+            displayTipPane_err('登录失败！ 账号或密码有误！');
+        }
     }
 }
