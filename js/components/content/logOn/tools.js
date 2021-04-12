@@ -1,5 +1,7 @@
 import { baseHttpURL } from "../../../common/baseRequestInfo.js";
+import { doLogin, isLogin } from "../../../common/user/index.js";
 import request from "../../../util/request.js";
+import { setCookie } from "../nav/tools.js";
 import { displayTipPane_err, displayTipPane_warn } from "../tipPane.js";
 
 //必须为字母加数字且长度不小于8位
@@ -46,7 +48,7 @@ export function logon() {
     if (pwd === "" || account === "") {
         displayTipPane_warn('用户名/密码不能为空')
     } else {
-        request(baseHttpURL + 'Servlet/UserServlet', {
+        request(baseHttpURL + '/Servlet/UserServlet', {
             method: "get",
             body: {
                 password: pwd,
@@ -54,10 +56,12 @@ export function logon() {
                 requestType: 'get',
                 userType: type
             }
-        }), then(res => {
+        }).then(res => {
+            console.log(res);
             if (res.statusCode == 200) {
-                setCookie(res.messagePojo, 10); //保存30天
-
+                doLogin();
+                // setCookie(res.messagePojo, 10); //保存30天
+                console.log(isLogin());
                 //if登录成功 退出登录框 登录+注册 -> 消息+头像
                 $('.modal_bg').fadeOut(); // 其实就是css 的过渡+ display
                 $('.modal').css({
@@ -80,6 +84,8 @@ export function logon() {
             } else {
                 displayTipPane_err('登录失败！ 账号或密码有误！');
             }
+        }, err => {
+            console.log(err);
         })
     }
 }

@@ -1,7 +1,9 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js';
+import { displayTipPane_success } from '../../components/content/tipPane.js';
 import request from '../../util/request.js';
 import template from '../../util/template.js';
 import { totime } from './tools.js'
+
 
 export let mainScrollid1; //存scrollId 用来加载下一页
 export let LoadNextPage1; //存next 用来判断是否有下一页
@@ -53,6 +55,8 @@ export function infoIndexPART1() {
         // console.log("$('.indexQuizList').outerHeight(true)" + $('.indexQuizList').outerHeight(true));
         // console.log("$('.maincontent').outerHeight(true)" + $('.maincontent').outerHeight(true));
 
+    }, err => {
+        console.log(err);
     })
 }
 
@@ -105,6 +109,7 @@ export function infoIndexPART2() {
                 }
             }
         }
+        displayTipPane_success('内容加载完成~')
     })
 
     //#region 内容中视频的播放暂停
