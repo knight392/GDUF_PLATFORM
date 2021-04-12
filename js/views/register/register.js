@@ -1,8 +1,8 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js';
-import request from '../../util/request';
+import request from '../../util/request.js';
 import {displayTipPane_success, displayTipPane_warn, displayTipPane_err} from '../../components/content/tipPane.js'
-import {statusDisplay ,isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste,forbidSendConfirm, judeCode, changeToNextPage,
-animationDisplay, animationSlide_major, animationSlide, viewChange, pwdIsSame, pwdIsVailable, userNameIsAvailable } from './tools'
+import {time,statusDisplay ,isEmpty, clearErrorMessage, isEmailAvailable, dataIsExiste,forbidSendConfirm, judgeCode, changeToNextPage,
+animationDisplay, animationSlide_major, animationSlide, viewChange, pwdIsSame, pwdIsVailable, userNameIsAvailable } from './tools.js'
 //发送验证码 每60s发一次
 
 //禁用 倒计时 disable属性
@@ -12,19 +12,19 @@ const requestData = {
   email: "", //发送请求的邮箱
   requestType: "get"
 }
-let markNumber = null; //学号或教工号
+// let markNumber = null; //学号或教工号
 let email = null; //注册成功后的最终邮箱
-let userType = null; //用户类型。student / teacher
+let userType = 'student'; //用户类型。student / teacher
 //清除原来的输入框的缓存
 $('input[type=text]').val('');
 //点击后开始发送请求，禁用按钮,开始定时器
 
 //设置一些输入框样式
 $('.email_input').on("focus", function () {
-  clearErrorMessage($('.email_input'), '请输入校园邮箱');
+  clearErrorMessage($('.email_input'));
 });
 $('.confirm_input').on("focus", function () {
-  clearErrorMessage($('.confirm_input'), '请输入验证码');
+  clearErrorMessage($('.confirm_input'));
 });
 $('.input_text_page1').bind('focus', function () {
   $(this).addClass('editing');
@@ -37,19 +37,16 @@ $('.input_text_page1').bind('blur', function () {
 
 //身份选择
 $('.individual').bind("click", function () {
-  console.log('切换');
   $('.status').removeClass('status_display');
-
   $('.status header').fadeIn();
   $('.status .content').fadeOut();
-
   $('.status header').find('.text').html(
     $(this).find('.individual_inner').clone()
   );
   if ($(this).attr('id') == 'student') {
-    $('.email_tail').html('m.gduf.edu.cn');
+   userType = 'student'
   } else {
-    $('.email_tail').html('gduf.edu.cn');
+    userType = 'teacher'
   }
 })
 //身份切换
@@ -62,9 +59,8 @@ $('.alter').bind("click", function () {
 //发送验证码的逻辑
 //定时器做的工作，减少数字，显示数字，当time==0时，清除定时器，并且把按钮重新恢复，并改变内容
 $('.send_btn').click(function () {
-  if (time == 0 && !isEmpty($('.email_input'), "邮箱禁止为空！") && isEmailAvailable("邮箱有误！")) {
-    requestData.email = $('.email_input').val() + "@" + $('.email_tail').html();
-    userType = getUserType(); // 这是全局变量不能改
+  if (time == 0 && !isEmpty($('.email_input'), "邮箱禁止为空哦~") && isEmailAvailable("邮箱格式有误！")) {
+    requestData.email = $('.email_input').val();
     //判断数据是否存在
     dataIsExiste('email', requestData.email, userType).then(res => {
       // 200 存在 | 500 不再
@@ -72,8 +68,11 @@ $('.send_btn').click(function () {
         displayTipPane_warn('该邮箱已被注册！')
       } else {
         request(`${baseHttpURL}/Servlet/VerifyCodeServlet`, {
-          email: requestData.email,
-          requestType: 'get'
+          method: 'get',
+          body: {
+            email: requestData.email,
+            requestType: 'get'
+          }
         }).then(res => {
           displayTipPane_success('发送成功，请注意查收！');
           forbidSendConfirm();
@@ -122,31 +121,21 @@ $('.send_btn').click(function () {
 
 //点击进入下一步注册逻辑
 $(".next_btn").click(async function () {
-  if (!isEmpty($('.email_input'), "邮箱号码禁止为空") && !isEmpty($('.confirm_input'), "验证码禁止为空")) {
-    //拿取本页的数据有:邮箱，身份，学号,
+  if (!isEmpty($('.email_input'), "邮箱禁止为空哦~") && !isEmpty($('.confirm_input'), "验证码禁止为空哦~")) {
     email = requestData.email; //不能再次获取
-    let temp_email = requestData.email.split('@'); //把邮箱把号码和后缀分开
-    markNumber = temp_email[0];
-    const code = $('.confirm_inpu').val();
-    if(await judeCode(email, code)){
-      let reg = new RegExp('^m');
-      if (reg.test(temp_email[1])) {
-        userType = 'student';//最终确定userType
-        //自动填充
-        $('#sNo input').val(markNumber);
+    const code = $('.confirm_input').val();
+    if(await judgeCode( {code,requestType: 'get'})){
+      if (userType == 'student') {
         //换到学生注册面
         changeToNextPage('#form_student');
       } else {
-        userType = 'teacher';
         //换到老师注册面
         changeToNextPage('#form_teacher');
       }
     }else {
-      $('.confirm_input').val("");
-      $('.confirm_input').attr('placeholder', '验证码错误！');
+      displayTipPane_err("验证码有误，注意区分大小哦~")
       $('.confirm_input').addClass('error');
     }
-   
   } 
 })
 
@@ -160,7 +149,7 @@ let $pwd_confirm_view = false;
 //输入框悬浮时激活线变长
 $(".form .row .value input").on("focus", function () {
   $(this).parents(".row").find(".active_line").animate({
-    width: "430px"
+    width: "310px"
   }, 300)
 })
 $(".form .row .value input").on("blur", function () {
@@ -292,7 +281,7 @@ $('.submit_btn').click(() => {
 
   //密码一致判断
   if (!pwdIsSame($('.pwd input').eq(0).val() + $('.pwd input').eq(1).val(), $('.pwd_confirm input').eq(0).val() + $('.pwd_confirm input').eq(1).val())) {
-    displayTipPane_err('密码前后不一致！');
+    displayTipPane_warn('密码前后不一致！');
     return;
   }
 
@@ -313,15 +302,15 @@ $('.submit_btn').click(() => {
   }
   request(baseHttpURL+'/Servlet/UserServlet', {
     method:'post',
-    body: JSON.stringify(formData)
+    body: formData
   }).then(res => {
     if(res.statusCode === 200 ){
       // 获取账号密码进行登录, 并把token保存到cookie中
       displayTipPane_success('注册成功！正跳转到首页...');
       //跳转。。。
       setTimeout(() => {
-        window.open("../index.html")
-      }, 1500);
+       location.assign('../MutualCommunication/index.html')
+      }, 2000);
     }
   })
 })

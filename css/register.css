@@ -145,30 +145,17 @@ td {
     font-size: 22px;
 }
 
-.email_input,
-.email_tail {
+.email_input {
+    width: 500px;
+    padding: 2px 5px;
+    letter-spacing: 0.1em;
+    background-color: transparent;
+    border-radius: 8px;
     border: 1px solid #ccc;
     color: #444;
     outline: none;
     font-size: 22px;
-}
-
-.email_input {
-    padding: 2px 5px;
     line-height: 50px;
-    width: 313px;
-    letter-spacing: 0.1em;
-    background-color: transparent;
-    border-radius: 8px;
-}
-
-.email_tail {
-    padding: 2px 5px;
-    display: inline-block;
-    line-height: 50px;
-    font-size: 22px;
-    border-radius: 8px;
-    width: 140px;
 }
 
 
@@ -280,9 +267,9 @@ input {
 /* 输入为空错误提示 */
 
 input.error {
-    color: #f00;
-    border: 1px solid #f00;
-    box-shadow: 0 0 1px #f00;
+    color: rgb(247, 66, 66);
+    border: 1px solid rgb(240, 90, 90);
+    box-shadow: 0 0 1px rgb(226, 96, 96);
 }
 
 .editing {
@@ -605,7 +592,7 @@ input.error {
 /* form2输入错误 */
 
 .error_form2 {
-    border-bottom: 1px solid #f00;
+    border-bottom: 1px solid rgb(236, 83, 83);
 }
 
 
@@ -718,6 +705,12 @@ input.error {
        height: 40px;
        font-size:20px;
    }
+   .email_input{
+     width:385px;
+     height: 36px;
+     line-height: 36px;
+     font-size:16px;
+   }
    .status header span{
        line-height: 40px;
    }
@@ -731,16 +724,16 @@ input.error {
    .status .individual{
        font-size:20px;
        line-height: 40px;
-       width:163px;
+       width:155px;
        height: 40px;
    }
-   .email_input,.confirm_input{
+   .confirm_input{
        width:200px;
        height: 36px;
        line-height: 36px;
        font-size:16px;
    }
-   .email span,.send_btn{
+   .email span,.email_tail,.send_btn{
         height: 36px;
         line-height: 36px;
         font-size:18px;

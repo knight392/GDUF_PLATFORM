@@ -1,7 +1,7 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
-import {displayTipPane_success} from '../../components/content/tipPane.js'
-import data_major from './majors'
+import { displayTipPane_err, displayTipPane_success } from '../../components/content/tipPane.js'
+import data_major from './majors.js'
 let time = 0;
 let timer = null;
 let major_target = 30;//专业的初始下拉高度
@@ -24,51 +24,31 @@ function forbidSendConfirm() {
 //判断输入框是否为空
 function isEmpty($obj, $errorMessage) {
   if ($obj.val() == '') {
-    $obj.attr('placeholder', $errorMessage);
+    displayTipPane_err($errorMessage)
     $obj.addClass('error');
     return true;
   }
   return false;
 }
 //清空错误信息
-function clearErrorMessage($obj, $tip) {
-  $obj.attr('placeholder', $tip);
+function clearErrorMessage($obj) {
   $obj.removeClass('error');
 }
 
-//邮箱有效性验证 //不能为中文
+//邮箱有效性验证 
 function isEmailAvailable($errorMessage) {
   let $obj = $(".email_input");
-  let reg = /^m.*$/;
-  let reg2 = /[\u4E00-\u9FFF]+/;//非中文
-  if (reg2.test($obj.val())) {
-    $obj.attr('placeholder', $errorMessage);
-    $obj.val("");
+  let reg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
+  if (! reg.test($obj.val())) {
+    displayTipPane_err($errorMessage)
     $obj.addClass('error');
     return false;
-  }
-  //学生
-  if (reg.test($('.email_tail').html())) {
-    let reg1 = /^(\d|\w){9}$/; //开头和结尾一定要做好
-    if (!reg1.test($('.email_input').val())) {
-      $obj.val("");
-      $obj.attr('placeholder', $errorMessage);
-      $obj.addClass('error');
-      return false;
-    }
   }
   return true;
 }
 
 
 
-function getUserType() {
-  let reg = /^m/;
-  if (reg.test($('.email_tail').html())) {
-    return 'student';
-  }
-  return 'teacher';
-}
 
 //判断用户名、邮箱是否存在
 /**
@@ -90,9 +70,9 @@ function dataIsExiste(field, value, userType) {
       }
     }).then(res => {
       // 200 存在 | 500 不存在
-      if(res.statusCode == 200){
+      if (res.statusCode == 200) {
         resolve(true)
-      }else{
+      } else {
         resolve(false)
       }
     })
@@ -119,15 +99,15 @@ function setSendBtn() {
 
 
 // 判断验证码是否成功
-function judgeCode(code) {
+function judgeCode(data) {
   return new Promise((resolve, reject) => {
-    request(baseHttpURL+'', {
+    request(baseHttpURL + '/Servlet/VerifyServlet', {
       method: 'get',
-      body: code
+      body: data
     }).then(res => {
-      if(res.statusCode == 200) {
+      if (res.statusCode == 200) {
         resolve(true)
-      }else{
+      } else {
         resolve(false)
       }
     })
@@ -193,7 +173,7 @@ function animationDisplay(obj, item1, item2) {
 //下拉展示栏动画
 function animationSlide(obj, target) {
   $(obj + " .list").click(function (event) {
-    let event = event || $(window).event;
+    event = event || $(window).event;
     let target = event.target || event.srcElement;
     if (target.nodeName.toLowerCase() == 'li') {
       $(this).fadeOut();
@@ -222,7 +202,7 @@ function animationSlide(obj, target) {
 //专业的下拉动画展示
 function animationSlide_major(obj) {
   $(obj + " .list").click(function (event) {
-    let event = event || $(window).event;
+    event = event || $(window).event;
     let target = event.target || event.srcElement;
     if (target.nodeName.toLowerCase() == 'li') {
       $(this).fadeOut();
@@ -302,5 +282,7 @@ function userNameIsAvailable(userName) {
   return reg.test(userName);
 }
 
-export {statusDisplay ,isEmpty, clearErrorMessage, isEmailAvailable, getUserType, dataIsExiste, forbidSendConfirm, judgeCode, changeToNextPage,
-animationDisplay, animationSlide_major, animationSlide,viewChange, pwdIsSame, pwdIsVailable,userNameIsAvailable }
+export {time,
+  statusDisplay, isEmpty, clearErrorMessage, isEmailAvailable, dataIsExiste, forbidSendConfirm, judgeCode, changeToNextPage,
+  animationDisplay, animationSlide_major, animationSlide, viewChange, pwdIsSame, pwdIsVailable, userNameIsAvailable
+}
