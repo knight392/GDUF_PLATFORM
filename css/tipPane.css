@@ -15,7 +15,7 @@
     font-family: "Microsoft YaHei", Verdana, Geneva, Tahoma, sans-serif;
     /* font-family: ; */
     border-radius: 14px;
-    z-index: 1000;
+    z-index: 1500;
     font-weight: 500;
 }
 .tipPane_success{
@@ -42,7 +42,7 @@
 @media(max-width:1960px){
     .tipPane{
         font-size:26px;
-        width: 350px;
+        width: 370px;
         line-height: 90px;
     }
 
@@ -60,7 +60,7 @@
 @media(max-width:1549px){
     .tipPane{
         font-size:18px;
-        width: 260px;
+        width: 280px;
         line-height: 70px;
     }
     
@@ -69,7 +69,7 @@
 @media(max-width:1280px){
     .tipPane{
         font-size:16px;
-        width: 200px;
+        width: 240px;
         line-height: 60px;
     }
 }

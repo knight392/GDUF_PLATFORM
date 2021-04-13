@@ -24,12 +24,9 @@ function initCalendar(calendarId) {
   $(`${calendarId} .switch_btn_calendar .down`).on("click",() => { toNextMonth(calendarId) });
 }
 
-
-
 // 设置填充某个月历中日期数据
 function fillCalendarData(calendarId, year, month) {
   const calendar = getCalendarData(year, month);//根据年月获取月历数据
-  console.log(calendar);
   const date_now = new Date(); // 用来判断是不是当前月
   const rows = $(`${calendarId} .day`); // 表格的多个行
   const table = []; // 二维表格保存着dom元素td,用来填充日期

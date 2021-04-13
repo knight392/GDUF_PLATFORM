@@ -24,10 +24,10 @@ function loginRequest(loginData) {
             if(res.statusCode == 200){
               resolve(filter(res))
             }else{
-              resolve(null)
+              reject(null)
             }
         }, err => {
-            resolve(null)
+            reject(null)
         })
     })
 }
@@ -52,7 +52,7 @@ function removeLocalUser() {
  * @param {Object} user 
  */
 function setLocalUser(user) {
-    cookieUtil.set('localUser', JSON.stringify(user), 0, '/', '', true);
+    cookieUtil.set('localUser', JSON.stringify(user), 24 * 60 * 60, '/', '', true);
 }
 
 export { loginRequest, getLocalUser, removeLocalUser, setLocalUser }

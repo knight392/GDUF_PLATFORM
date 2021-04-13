@@ -56,6 +56,7 @@ export async function logon() {
             $('.modal').css({
                 transform: 'translate(-50%,-50%) scale(0.7)'
             })
+            console.log(user);
 
             $('.personal').hide(100);
             $('.logonHeadPortrait').show(100);

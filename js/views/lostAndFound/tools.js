@@ -2,7 +2,8 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
 import {tipInfo, displayTipPane,displayTipPane_warn} from '../../components/content/tipPane.js'
 import { loadAllItem } from './masonry/myMasonry.js'
-import { isLogin } from '../../common/user/index.js';
+import { isLogin } from '../../common/user/index.js'
+import template from '../../util/template.js'
 // 主要是筛选物品，主要访问的是LostAndFoundServlet,
 // 请求的参数，根据筛选的类型不同而动态改变
 // 初始打开是失物招领
@@ -80,8 +81,10 @@ function loadGoods(type) {
     canLoading = true;
     scrollId = res.scrollId;
     modechanging = false;
+    let dataList = null;
     if (type == "lost") {//寻物启事
-      let dataList = transfromTime(res.dataList, "lostTime");
+      transfromTime(res.dataList, "lostTime");
+      dataList = res.dataList;
       //把键名进行统一,时间已经在被转换的时间改名了
       // time location describe name objectDetailType
       for (let i = 0; i < dataList.length; i++) {
@@ -100,7 +103,8 @@ function loadGoods(type) {
 
     } else {
       //失物招领
-      let dataList = transfromTime(res.dataList, "foundTime");
+      transfromTime(res.dataList, "foundTime");
+      dataList = res.dataList;
       for (let i = 0; i < dataList.length; i++) {
 
         if (dataList[i]["foundLocation"] != null && dataList[i]["foundLocation"] != undefined) {
@@ -241,7 +245,6 @@ function transfromTime(arr, timeType) {
       arr[i]["time"] = "未填写"
     }
   }
-  return arr;
 }
 
 // 模式切换, 原理是根据nextAction这个属性来判断下一次加载什么类型的数据
@@ -339,7 +342,8 @@ function loadMoreGoods() {
       canLoading = true;
       scrollId = res.scrollId;
       haveMore = res.next;
-      let dataList = transfromTime(res.dataList, "lostTime");
+      transfromTime(res.dataList, "lostTime");
+      let dataList = res.dataList;
       //把键名进行统一,时间已经在被转换的时间改名了
       // time location describe name objectDetailType
       for (let i = 0; i < dataList.length; i++) {
@@ -361,7 +365,8 @@ function loadMoreGoods() {
       canLoading = true;
       scrollId = res.scrollId;
       haveMore = res.next;
-      let dataList = transfromTime(res.dataList, "foundTime");
+      transfromTime(res.dataList, "foundTime");
+      let dataList = res.dataList;
       //把键名进行统一,时间已经在被转换的时间改名了
       // time location describe name objectDetailType
       for (let i = 0; i < dataList.length; i++) {

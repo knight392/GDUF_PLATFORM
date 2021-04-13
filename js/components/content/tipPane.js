@@ -54,6 +54,9 @@ const tipInfo = {
     copy: {
         note_success: '复制成功！',
         link_success: '链接复制成功！'
+    },
+    dev: {
+      mes: '抱歉，该功能还在开发中哦~'
     }
 }
 
