@@ -126,6 +126,9 @@ button {
     border: none;
     cursor: pointer;
 }
+.modal_head button:hover{
+  color:rgb(245, 60, 60);
+}
 
 .modal_head b {
     display: block;

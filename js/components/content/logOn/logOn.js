@@ -30,6 +30,7 @@ $(function() {
 
     $(".fadein").on({
         click: function() {
+            console.log('fadein');
             $(".tip").css({
                 bottom: "5%"
             })
@@ -71,21 +72,9 @@ $(function() {
 
     //2.点击 忘记密码页面的 下一步.forgetPasNext 忘记密码页面.forgetPas 转换成 重置密码页面.resetPas 
     $(".forgetPasNext").on("click", function() {
-        //没有与后端数据验证
-        // if ($('.inEmail').val() == "") {
-        //     displayTipPane("邮箱不能为空");
-        // } else if ($('.verificationCode input').val() == "") {
-        //     displayTipPane("验证码不能为空");
-        // } else {
-        //     $('.logonTitle').text("重置密码");
-        //     $(".forgetPas").fadeOut();
-        //     $(".resetPas").fadeIn();
-        // }
         $('.logonTitle').text("重置密码");
         $(".forgetPas").fadeOut();
         $(".resetPas").fadeIn();
-
-
     })
 
     //3.点击 忘记密码页面的 上一步.forgetPasLast 忘记密码页面.forgetPas 转换成 登录页面.logon 
