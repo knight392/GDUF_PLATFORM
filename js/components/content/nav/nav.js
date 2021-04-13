@@ -4,7 +4,6 @@ import { displayTipPane, displayTipPane_warn, tipInfo } from '../tipPane.js'
 
 import { getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
-import { logon } from '../../content/logOn/tools.js';
 
 window.onload = function() {
     //#region 清空搜索框内的内容 √
@@ -132,9 +131,6 @@ $('.fadeout').click(function() {
 //#region 用户名/密码 与后端交互 √
 
 //登录
-$('.btnLogon').click(function() {
-    logon();
-})
 
 //#endregion
 
