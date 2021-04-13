@@ -3,14 +3,35 @@ import request from '../../util/request.js'
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import sendFile from '../../components/content/fileHandler.js'
 import { user, isLogin } from '../../common/user/index.js'
-import {questionId } from './info.js'
+import {questionId,setAuthor, oAuthor } from './info.js'
 import {tipInfo, displayTipPane, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import {defaultStudentFace} from '../../common/user/defaultInfo.js'
 import inputTextFilter from '../../components/content/inputTextFilter.js'
-import {sendInfoWs} from '../../components/content/inform/index.js'
+import {sendInfoWs} from '../../components/content/inform/listner/index.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
 
+//一进入之后加载一些
+let answerPage = 1;
+//  滑到底部加载更多回答
+let isNoMoreAnswer = false;
 
+function scrollHandler() {
+  //滚动条到顶部的高度
+  let scrollTop = Math.ceil($(this).scrollTop());
+  //窗口高度
+  let curHeight = $(this).height();
+  //整个文档高度
+  let totalHeight = $(document).height();
+  //滚动条到底
+  if (scrollTop + curHeight >= totalHeight) {
+    //还要根据是否有下一页判断可进行发送请求
+    if (isNoMoreAnswer) {
+      displayTipPane_warn("没有更多回答了哦！");
+      return;
+    }
+    getAnswer(++answerPage);
+  }
+}
 
 function fixed() {
   //侧边栏的固定
@@ -740,7 +761,7 @@ function loadQuestion() {
     body: data1
   }).then(res => {
     setQuestionMain(res);
-    setAuthorInfo(res);
+    setAuthorInfoPane(res);
   })
 }
 
@@ -774,13 +795,14 @@ function setQuestionMain(data) {
 }
 
 // 渲染作者
-function setAuthorInfo(data) {
+function setAuthorInfoPane(data) {
   //是否关注作者
   //判断作者是否匿名
   //头像默认 用户名改匿名
+  console.log(data);
   let src;
   if (data.userType == "student") {
-    setAuthorInfo(data.student);
+    setAuthor(data.student);
     $(".author_info_box .userType").html("学生");
     $(".author_info_box .schoolInfo").html(oAuthor.major);
 
@@ -788,7 +810,7 @@ function setAuthorInfo(data) {
     $(".author_info_box .chatBtn").attr("target", oAuthor.markNumber);
     $(".author_info_box .chatBtn").attr("targetName", oAuthor.userName);
   } else {
-    setAuthorInfo(data.teacher); 
+    setAuthor(data.teacher); 
     $(".author_info_box .userType").html("老师");
     $(".author_info_box .schoolInfo").html(oAuthor.college);
     //私信设置target和targetName
@@ -812,7 +834,6 @@ function setAuthorInfo(data) {
     $(".author_info_box .subscribe_btn").addClass("forbidden");
   } else {
     if (data.attentionAuthor) {
-      console.log("已关注作者")
       $(".author_info_box .subscribe_btn").attr("status", "subscribe");
       $(".author_info_box .subscribe_btn").addClass("subscribe");
       $(".author_info_box .subscribe_btn").html("已关注");
@@ -840,4 +861,4 @@ function sendInfo(data) {
 }
 
 
-export { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion }
+export {scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion }
