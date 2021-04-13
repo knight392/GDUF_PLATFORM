@@ -78,7 +78,7 @@ function submit_found() {
   if (!valueIsEmpty($('.modal_bg_found .objName .value').val(), "把物品名称填上吧~") &&
     !valueIsEmpty($('.modal_bg_found .objClass .value .text').html(), "物品类别还没选哦~") &&
     !valueIsEmpty($('.modal_bg_found .objDetail .value_box').val(), "把物品描述清楚一点吧~") &&
-    !valueIsEmpty($(".modal_bg_found .contact .value").val(), "填上联系方式更方便失主联系您噢~")) {
+    !valueIsEmpty($(".modal_bg_found .contact .value").val(), "要填上联系方式哦~")) {
 
     let data = {
       "requestType": "post",
@@ -94,18 +94,21 @@ function submit_found() {
     if (foundTime != "") {
       data["foundTime"] = foundTime;
     }
-    getLocation_found();
+    let foundLocation = getLocation_found();
     if (foundLocation != "") {
       data["foundLocation"] = foundLocation;
     }
     const imgs = getImgsRemoteURL('.modal_bg_found');
+    if (imgs.length == 0) {
+      displayTipPane_warn("至少附带一张照片哦~");
+      return 
+    }
     if (imgs.length != 0) {
       data["imgs"] = imgs;
       let imgsArr = $(".modal_bg_found .imgBox").children();
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
     }
     // 提交请求
-    console.log(data);
     submitRequest(data).then(res => {
       displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_found").fadeOut();

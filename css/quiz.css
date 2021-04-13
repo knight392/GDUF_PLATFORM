@@ -514,7 +514,7 @@ button {
     .quizModal_bg_askQuestion .quizModal_content div:nth-of-type(3) textarea {
         font-size: 16px;
         padding: 5px;
-        line-height: 30px;
+        line-height: 26px;
     }
     .quizModal_bg_askQuestion .quizModal_content .label .labelFont {
         font-size: 18px;

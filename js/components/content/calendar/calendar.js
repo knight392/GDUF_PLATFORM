@@ -108,7 +108,7 @@ function setCalendarAttrOfYearMonth(calendarId, year, month) {
 // 绑定选择日期后的事件处理程序
 function bindSelectDayEvent(calendarId, handler) {
   $(calendarId).click(function(event) {
-    if(event.target.className == 'fill'){
+    if(/\w*fill\w*/.test(event.target.className)){
       handler.call(event.target);
     }
   })

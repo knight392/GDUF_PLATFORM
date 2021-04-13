@@ -14,7 +14,7 @@ let sendingImg = false;
 
 //  获取丢失地点
 function getLocation_lost() {
-  lostLocation = $(".modal_bg_lost .lostArea .value .text").html() + "" + $(".modal_bg_lost .lostArea .value .areaDetail").val();
+  return $(".modal_bg_lost .lostArea .value .text").html() + "" + $(".modal_bg_lost .lostArea .value .areaDetail").val();
 }
 
 //插入图片：现在就只能插入到输入框的最后
@@ -105,7 +105,7 @@ function submit_lost() {
   if (!valueIsEmpty($('.modal_bg_lost .objName .value').val(), "把物品名称填上吧~") &&
     !valueIsEmpty($('.modal_bg_lost .objClass .value .text').html(), "物品类别还没选哦~") &&
     !valueIsEmpty($('.modal_bg_lost .objDetail .value_box').val(), "把物品描述清楚一点吧~") &&
-    !valueIsEmpty($(".modal_bg_lost .contact .value").val(), "没有联系方式，拾主怎么联系你呢？")) {
+    !valueIsEmpty($(".modal_bg_lost .contact .value").val(), "要填上联系方式哦~")) {
 
     let data = {
       "requestType": "post",
@@ -122,7 +122,7 @@ function submit_lost() {
     if (lostTime != "") {
       data["lostTime"] = lostTime;
     }
-    getLocation_lost();
+    let lostLocation = getLocation_lost();
     if (lostLocation != "") {
       data["lostLocation"] = lostLocation;
     }
@@ -136,7 +136,6 @@ function submit_lost() {
       let imgsArr = $(".modal_bg_lost .imgBox").children();
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
     }
-    console.log(data);
     submitRequest(data).then(res => {
       displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_lost").fadeOut();

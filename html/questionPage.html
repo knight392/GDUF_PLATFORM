@@ -12,7 +12,7 @@
   <link href="../css/tipPane.css" type="text/css" rel="stylesheet">
   <link href="../css/iconfont.css" type="text/css" rel="stylesheet">
   <link href="../css/imgDisplayTemplate.css" type="text/css" rel="stylesheet">
-  <link rel='icon' href='../img/gduf-logo_1.ico' type='image/x-ico' /> 
+  <link rel='icon' href='../img/gduf-logo_1.ico' type='image/x-ico' />
 </head>
 
 <body>
@@ -224,7 +224,6 @@
   <!--                           导航栏                           -->
   <div class="nav beforeNav">
     <div class="w">
-
       <!--        校徽        -->
       <div class="logo">
         <img src="../img/gduf-logo.png" alt="" title="广东金融学院">
@@ -233,8 +232,10 @@
       <!-- 首页+校区互通+失物招领+提问 功能页面 -->
       <div class="functionNav">
         <ul>
-          <li title="首页" class="index-li" onclick="location.assign('../index.html')">首页</li>
-          <li title="失物招领" class="lostAndFound-li" onclick="location.assign('./lostFoundIndex.html')">失物招领</li>
+          <li title="首页" class="index-li" onclick='location.assign("../index.html")'>首页</li>
+          <!-- <li title="校区互通" class="campus-li">校区互通</li> -->
+          <li title="失物招领" class="lostAndFound-li" onclick='location.assign("./lostFoundIndex.html")'>失物招领</li>
+          <!-- <li title="提问" class="quiz-li">提问</li> -->
         </ul>
       </div>
 
@@ -246,26 +247,7 @@
           <i class="iconfont iconsousuo"></i>
         </form>
         <ul class="searchContent" style="display: none;">
-          <li>
-            <span><i class="iconfont"></i></span>
-            <a href=""></a>
-          </li>
-          <li>
-            <span><i class="iconfont"></i></span>
-            <a href=""></a>
-          </li>
-          <li>
-            <span><i class="iconfont"></i></span>
-            <a href=""></a>
-          </li>
-          <li>
-            <span><i class="iconfont"></i></span>
-            <a href=""></a>
-          </li>
-          <li>
-            <span><i class="iconfont"></i></span>
-            <a href=""></a>
-          </li>
+        </ul>
       </div>
 
       <!--         登录注册按钮      -->
@@ -276,6 +258,7 @@
           <em class="toRegister" onclick="location.assign('./register.html')">注册</em>
         </button>
       </div>
+
       <!--         头像            -->
       <div class="logonHeadPortrait">
 
@@ -332,6 +315,8 @@
                   <span class="mode" id="hoverBox_fans">关注我的人</span>
                   <span class="activeLine toLeft"></span>
                 </div>
+
+
                 <!-- 内容框 -->
                 <div class="contentBox_subscribe">
                   <div class="itemList_box">
@@ -340,7 +325,9 @@
                     <ul class="itemList attentionMe"></ul>
                   </div>
                 </div>
+
               </div>
+
             </div>
             <!-- 我的回答打开面板 -->
             <div class="hpSecondSecond QandAY">
@@ -409,17 +396,29 @@
                     </ul>
                   </div>
                 </div>
+                <!-- <div class="foot ">
+                            <input type="text " placeholder="请输入... ">
+                            <div class="search_btn "><svg t="1602165226427 " class="icon " viewBox="0 0 1024 1024 " version="1.1 " xmlns="http://www.w3.org/2000/svg " p-id="3356 " width="23 " height="23 ">
+                                <path d="M222.6944 222.7968A323.1488 323.1488 0 0 0 133.6832 512c19.2512-87.3728 64.512-172.7488 135.0144-243.3024C339.2512 198.1184 424.6272 152.8832 512 133.632c-101.632-19.1488-210.688 10.5216-289.3056 89.1648z " fill="#ffffff
+                            " p-id="3357 "></path><path d="M989.44 822.1184l-121.7024-121.7024a118.016 118.016 0 0 0-92.8-34.1248c114.4576-165.5552 97.92-394.3936-49.4848-541.824-165.9392-165.9904-435.0464-165.9904-601.0368 0-165.9392 165.9904-165.9392 435.1232 0 601.1136
+                            147.4048 147.4304 376.064 163.84 541.7216 49.3824-2.56 33.28 8.8576 67.5328 34.1248 92.8l121.7024 121.728c46.08 45.9776 121.3696 45.9776 167.3472 0 46.208-45.9776 46.208-121.2928 0.128-167.3728zM676.096 676.096c-138.6752 138.6752-363.392
+                            138.6752-502.016 0-138.6752-138.6752-138.6752-363.4432 0-502.1184 138.624-138.6752 363.3408-138.6752 502.016 0 138.6496 138.5728 138.6496 363.4432 0 502.1184z " fill="#ffffff " p-id="3358 "></path></svg>
+                            </div>
+                        </div> -->
               </div>
+
             </div>
           </div>
         </div>
       </div>
+
+
       <!-- 提问 + 消息通知 -->
       <div class="QAndM">
 
         <!-- 提问 -->
         <span class="cueY" title="提问">
-          <i class="iconfont iconwenhao- fadeinQuiz"></i>
+          <i class="iconfont fadeinQuiz"><i class="iconfont iconyumao"></i> 提问</i>
         </span>
 
         <!-- 消息 -->
@@ -432,15 +431,14 @@
             <div class="hoverBox">
               <div class="title">消息通知</div>
               <div class="mode_selection">
-                <span class="mode active" id="hoverBox_interest">动态通知</span>
-                <span class="mode" id="hoverBox_fans">私信通知</span>
+                <span class="mode active" id="hoverBox_dynamicMessage">动态通知</span>
+                <span class="mode" id="hoverBox_privateMessage">私信通知</span>
                 <span class="activeLine toLeft"></span>
               </div>
               <!-- 内容框 -->
               <div class="contentBox_information">
                 <div class="itemList_box">
                   <ul class="itemList system" style="display: block;">
-
 
                   </ul>
                   <ul class="itemList private"></ul>
@@ -454,16 +452,20 @@
                     <path
                       d="M965.12 286.293333H657.493333V108.8C657.493333 48.64 605.013333 0 540.586667 0H482.56C418.56 0.426667 366.506667 49.066667 366.506667 108.8V285.866667H58.453333C26.026667 285.866667 0 310.613333 0 341.333333v176.213334c0 30.293333 26.453333 55.466667 58.453333 55.466666v253.866667c-0.426667 46.933333-6.826667 93.44-18.346666 135.253333l-0.853334 6.4c0 30.72 26.453333 55.466667 58.453334 55.466667H926.293333c30.293333 0 57.6-22.613333 59.733334-49.493333l-0.853334-7.253334c-12.8-46.933333-19.2-96-19.626666-145.066666v-248.32l19.2-3.84c22.613333-7.68 38.4-28.16 38.4-52.053334V341.76c0.426667-30.72-26.026667-55.466667-58.026667-55.466667z m-210.773333 650.24V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813334c-19.2 0-34.56 14.933333-34.56 33.28v202.666666h-113.92V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813333c-19.2 0-34.56 14.933333-34.56 33.28v202.666666H359.253333V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813333c-19.2 0-34.56 14.933333-34.56 33.28v202.666666l-146.346667 2.56c8.96-34.986667 13.226667-70.826667 13.226667-107.093333v-259.413333h729.173333V836.266667c0 33.706667 3.84 67.84 11.52 99.84h-133.546666zM931.84 486.4H91.733333V372.906667H456.96v-251.733334c0-27.733333 33.28-30.72 47.786667-30.72h16.213333c14.506667 0 47.786667 2.986667 47.786667 30.72v253.866667h363.093333V486.4z"
                       fill="#bfbfbf" p-id="12613"></path>
-                  </svg>
-                  一键已读
+                  </svg> 一键已读
                 </div>
+
               </div>
             </div>
           </div>
+
         </span>
       </div>
+
     </div>
+
   </div>
+
 
   <!-- 聊天 -->
   <div class="platform_chat" style="display: none;">
@@ -630,7 +632,7 @@
           <textarea placeholder="信息太多记不住？写这里吧！"></textarea>
         </div>
         <div class="toolBar">
-          <div class="tool copyText" id="copyText" >
+          <div class="tool copyText" id="copyText">
             <svg t="1602597539989" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
               p-id="9757" width="23" height="23">
               <path
