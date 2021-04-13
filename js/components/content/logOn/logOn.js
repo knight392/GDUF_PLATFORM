@@ -2,7 +2,8 @@
 //忘记密码 验证码验证 重置密码 没有与后端交互
 
 import { displayTipPane_warn, tipInfo } from "../tipPane.js";
-import {logon} from './tools.js'
+import {logon} from './tools.js';
+
 
 // import CheckPassWord from './tools.js';
     // 点击表单 表单本身的提示语句span.tip 缩小上移

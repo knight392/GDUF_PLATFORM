@@ -52,7 +52,8 @@ function removeLocalUser() {
  * @param {Object} user 
  */
 function setLocalUser(user) {
-    cookieUtil.set('localUser', JSON.stringify(user), 24 * 60 * 60, '/', '', true);
+  // 保存在当前服务器域名下
+    cookieUtil.set('localUser', JSON.stringify(user), 0, '/', '', true);
 }
 
 export { loginRequest, getLocalUser, removeLocalUser, setLocalUser }

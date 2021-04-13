@@ -5,40 +5,10 @@ import { displayTipPane, displayTipPane_warn, tipInfo } from '../tipPane.js'
 import { getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
 
-window.onload = function() {
-    //#region 清空搜索框内的内容 √
-    $(".search .searchBar").val("");
-    //#endregion
-
-    //#region 远安增加代码，实现加载判断是否最近登录过
-    // console.log("加载用户信息");
-    if (isLogin()) {                
-        $('.modal_bg').fadeOut();  // 其实就是css 的过渡+ display
-                
-        $('.modal').css({
-            transform: 'translate(-50%,-50%) scale(0.7)'
-        });        
-        $('.personal').hide(100);
-        $('.logonHeadPortrait').show(100);         // console.log(res);
-                
-        $('.ResUserName').text(user.userName);
-        $('.ResUserName').prop(user.userName);
-        $('.ResMarkNumber').text(user.userNumber);
-        $('.ResMarkNumber').prop("title", user.userNumber);         // console.log(res.markNumber);
-                
-        // USERID = user.userNumber;
-        $('.ResMessagePojoMajor').text(user.major);
-        $('.ResMessagePojoMajor').prop(user.major);         // if (res.messagePojo.face != null) {
-                
-        let ResMessageFaceScr = '../' + user.userFace.substring(2);
-        $('.ResMessageFace').prop("src", ResMessageFaceScr);
-        $('.navHPY').prop('src', ResMessageFaceScr);
-        initialWebSocket();
-    } else {
-        $('.personal').show(100);    
-    }    
-    //#endregion
-}
+// 清空搜索栏
+(function() {
+  $(".search .searchBar").val("");
+})()
 
 //头像那边的二级导航 ：0 没显示  1 表示已经显示
 
