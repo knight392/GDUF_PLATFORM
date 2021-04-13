@@ -43,11 +43,12 @@ export function insertImgVideo(type) {
     }
     const formdata = new FormData();
     formdata.append(0, this.files[0]);
-    let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
     const reader = getImgBase64(this.files[0]);
     reader.onload = function() {
         let src = this.result;
+
         if (type === 'img') {
+            let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
             let img = $('<img>');
             $(img).attr("src", src);
             $(div).prepend(img);
@@ -57,6 +58,7 @@ export function insertImgVideo(type) {
             }
             sendImgVideo(formdata, $(img)); //发送图片
         } else {
+            let div = $("<div class='develVideoY'><b class='removevideo removeImgVideo' title='删除'>&times;</b></div>");
             let video = $('<video muted autoplay loop></video>');
             $(div).prepend(video);
             $(this).find(".addfileY").hide();
@@ -69,12 +71,13 @@ export function insertImgVideo(type) {
             sendImgVideo(formdata, $(video)); //发送视频
         }
         //×出现与消失
-        $(".removeImgVideo").on({
+        $(".develimgY").on({
             mouseover: function() {
                 console.log("movein");
                 $(this).find(".removeImgVideo").stop().show(200);
             },
             mouseout: function() {
+                console.log("moveout");
                 $(this).find(".removeImgVideo").stop().hide(200);
             }
         })
@@ -98,6 +101,8 @@ export function insertImgVideo(type) {
             }
         })
     }
+
+
 }
 // 发布信息
 export function sendDevel() {
