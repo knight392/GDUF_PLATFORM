@@ -1,5 +1,5 @@
 import { getLocalUser, setLocalUser, removeLocalUser, loginRequest } from './tools.js'
-import { createWebSocket, closeWebSocket } from '../../components/content/inform/index.js'
+import { createWebSocket, closeWebSocket } from '../../components/content/inform/listner/index.js'
 import { baseWsURL } from '../baseRequestInfo.js'
 import {dealWithUserPane} from '../../components/content/logOn/tools.js'
 // user为null,表示没有登录

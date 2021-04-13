@@ -14,7 +14,6 @@ export function CheckPassWord(password) {
   }
   return true;
 }
-
 //登录
 let option = 1;
 
