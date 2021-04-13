@@ -1,5 +1,5 @@
  // 物品类型
- import {readFile_lost, submit_lost, searchFound} from './tool.js'
+ import {readFile_lost, submit_lost, searchFound, selectObject} from './tool.js'
  import {initCalendar, bindSelectDayEvent} from '../calendar/calendar.js'
  import debounce from '../../../util/debounce.js'
  
@@ -9,13 +9,7 @@
 $(".modal_bg_lost .objClass_entrance").on("mouseleave",function(){
     $(this).find(".objClassPane").stop().fadeOut(200);
 })
-$(".modal_bg_lost .objClass .item").on("click",function(){
-    $(this).parents(".objClassPane").stop().fadeOut(200);
-    $(this).parents(".value").find(".text").html($(this).html())
-    // 物品分类
-    objectDetailType = $(this).html();
-    objectType = $(this).parents(".row_objClass").find(".title_row").html();
-});
+$(".modal_bg_lost .objClass .item").on("click", selectObject);
 // 初始化一个日历
 initCalendar('#calendar_lost');
 // 绑定选择时间事件
