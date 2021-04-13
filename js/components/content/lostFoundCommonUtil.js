@@ -1,4 +1,6 @@
-import {displayTipPane_warn} from './tipPane.js'
+import { displayTipPane_warn } from './tipPane.js'
+import {baseHttpURL} from '../../common/baseRequestInfo.js'
+import request from '../../util/request.js'
 // 获取时间
 /**
  * 
@@ -42,15 +44,9 @@ function valueIsEmpty(value, tip) {
 
 // 提交请求
 function submitRequest(data) {
-  return new Promise((resolve, reject) => {
-    request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
-      method: 'post',
-      body: data
-    }).then(res => {
-      resolve(res)
-    }, err => {
-      reject(err)
-    })
+  return request(baseHttpURL + '/Servlet/LostAndFoundServlet', {
+    method: 'post',
+    body: data
   })
 }
 export { getTime, getImgsRemoteURL, valueIsEmpty, submitRequest }

@@ -15,7 +15,7 @@ let columHeight;
 let t_img;
 let isLoad = true;
 // 加载渲染全部的item
-function loadAllItem(parentBox, item = '.item', itemWidth, gap) {
+function loadAllItem(parentBox, itemWidth, gap, item = '.item',) {
   //计算列数
   let items = parentBox.children(item);
   totalNum = 0;//容器中的总数
@@ -80,4 +80,4 @@ function isImgLoad(callback, img) {
   }
 }
 
-export { loadAllItem, isImgLoad }
+export { loadAllItem, isImgLoad, loadItem }

@@ -105,6 +105,7 @@ function submit_found() {
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
     }
     // 提交请求
+    console.log(data);
     submitRequest(data).then(res => {
       displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_found").fadeOut();

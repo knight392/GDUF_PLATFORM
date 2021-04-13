@@ -501,6 +501,9 @@
 }
 /* 80% */
 @media(max-width:1789px){
+    .modal_bg_lost .search_display ul{
+      height: 368px;
+    }
     .modal_bg_lost .row{
         height: 56px;
         justify-content: space-between;
@@ -658,16 +661,16 @@
         height: 85px;
     }
     .modal_bg_lost .search_display ul li .name{
-        font-size:20px;
+        font-size:16px;
         left:100px;
     }
     .modal_bg_lost .search_display ul li .detail{
-        font-size:16px;
+        font-size:14px;
         left:100px;
         top:40px;
     }
     .modal_bg_lost .search_display ul li .type{
-        font-size:16px;
+        font-size:14px;
     }
     .modal_bg_lost .search_display ul li{
         height: 97px;

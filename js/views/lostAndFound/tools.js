@@ -1,7 +1,7 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import request from '../../util/request.js'
 import {tipInfo, displayTipPane,displayTipPane_warn} from '../../components/content/tipPane.js'
-import { loadAllItem } from './masonry/myMasonry.js'
+import { loadAllItem, loadItem } from './masonry/myMasonry.js'
 import { isLogin } from '../../common/user/index.js'
 import template from '../../util/template.js'
 // 主要是筛选物品，主要访问的是LostAndFoundServlet,
@@ -438,7 +438,8 @@ function selectGoods() {
     requestGoods(data).then(res => {
       haveMore = res.next;
       scrollId = res.scrollId;
-      let dataList = transfromTime(res.dataList, "lostTime");
+      transfromTime(res.dataList, "lostTime");
+      let dataList = res.dataList;
       //把键名进行统一,时间已经在被转换的时间改名了
       // time location describe name objectDetailType
       for (let i = 0; i < dataList.length; i++) {
@@ -460,7 +461,8 @@ function selectGoods() {
       scrollId = res.scrollId;
       haveMore = res.next;
       canLoading = true;
-      let dataList = transfromTime(res.dataList, "foundTime");
+      transfromTime(res.dataList, "foundTime");
+      let dataList = res.dataList;
       //把键名进行统一,时间已经在被转换的时间改名了
       // time location describe name objectDetailType
       for (let i = 0; i < dataList.length; i++) {
@@ -541,7 +543,6 @@ function selectTime(calendarId) {
     foundTime = `${nowYear}-${month}-${day}`;
   }
   let displayTime = `${nowYear}-${month}-${day}`;//展示在筛选栏上的文字
-  console.log(displayTime);
   $(".timeSelect .toolText").html(displayTime);
   $(".timeSelect").addClass("toolSelected");
   $(".timeSelectPane").stop().fadeOut(230);

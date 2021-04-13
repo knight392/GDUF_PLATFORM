@@ -127,20 +127,32 @@ function submit_lost() {
       data["lostLocation"] = lostLocation;
     }
     const imgs = getImgsRemoteURL('.modal_bg_lost');
+    if (imgs.length == 0) {
+      displayTipPane_warn("至少附带一张照片哦~");
+      return 
+    }
     if (imgs.length != 0) {
       data["imgs"] = imgs;
       let imgsArr = $(".modal_bg_lost .imgBox").children();
       data["imgHeight"] = $(imgsArr[0]).attr("prevLoadHeight");
-
     }
+    console.log(data);
     submitRequest(data).then(res => {
       displayTipPane_success(tipInfo.submit.succees);
       $(".modal_bg_lost").fadeOut();
       clearModalLost();
     }, err => {
+      console.log(err);
       displayTipPane_err(tipInfo.submit.err);
     })
   }
+}
+function selectObject(){
+  $(this).parents(".objClassPane").stop().fadeOut(200);
+  $(this).parents(".value").find(".text").html($(this).html())
+  // 物品分类
+  objectDetailType = $(this).html();
+  objectType = $(this).parents(".row_objClass").find(".title_row").html();
 }
 
 function clearModalLost() {
@@ -168,4 +180,4 @@ function clearModalLost() {
   //奖励
   $(".modal_bg_lost .award .value_box").val("");
 }
-export { readFile_lost, submit_lost, searchFound }
+export { readFile_lost, submit_lost, searchFound, selectObject }
