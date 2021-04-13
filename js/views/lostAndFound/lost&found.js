@@ -55,7 +55,7 @@ $(".nav .toolRow .toolBox .tool").on("mouseleave", function () {
 $('#loginBtn').click(function() {
   $(".logOn").siblings().fadeOut();
   $(".logOn").fadeIn();
-  $(".modal_bg_logon").fadeIn(); //远安修改代码 解决类名冲突
+  $(".modal_bg_logon").fadeIn(); 
   $('.modal').css({
       transform: 'translate(-50%,-50%) scale(1)'
   })
