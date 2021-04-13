@@ -705,8 +705,8 @@ input {
     margin: 0 auto;
     height: 100%;
     margin-top: 15px;
-    background-color: #f5f6f7;
-    border-radius: 8px;
+    /* background-color: #f5f6f7; */
+    border-radius: 15px;
 }
 
 
@@ -800,6 +800,7 @@ input {
     border-radius: 16px;
     position: relative;
     border: 1px solid #35c0cd;
+    background-color: #f5f6f7;
 }
 
 .dynamicsY [class^="trendsY"]::before {
