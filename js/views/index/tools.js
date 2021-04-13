@@ -5,10 +5,12 @@ import template from '../../util/template.js';
 import { displayTipPane, displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
 
 import { mainScrollid1, LoadNextPage1, mainScrollid2, LoadNextPage2 } from './info.js'
-import { sendingImg, sendingVideo } from './index.js'
 import { isLogin } from '../../common/user/index.js';
 import inputTextFilter from '../../components/content/inputTextFilter.js';
 import sendFile from '../../components/content/fileHandler.js';
+import { getContentItem } from '../../components/content/questionPane/tool.js'
+import { getImgBase64, isImage, isVideo } from '../../util/imgHandler.js';
+let sendingImgVideo = false;
 // 时间转换为时间戳
 export const totime = function(time) {
     //直接用 new Date(时间戳) 格式转化获得当前时间
@@ -140,76 +142,67 @@ export function loadingNextPART2() {
 }
 
 // 发送图片 视频
-function sendImgVideo(formdata, obj, sendingImgVideo) { //imgObj是jq对象
+function sendImgVideo(formdata, obj) { //imgObj是jq对象
     sendingImgVideo = true;
+    console.log(formdata);
     sendFile(formdata).then(res => {
-            obj.attr("remoteURL", res);
-            sendImgVideo = false;
-        }, err => {
-            obj.remove();
-            sendImgVideo = false;
-            displayTipPane_err("文件上传失败了哦~");
-        })
-        // $.ajax({
-        //     url: baseHttpURL + '/Servlet/ReceiveFileServlet',
-        //     type: 'post',
-        //     data: formdata,
-        //     dataType: 'json',
-        //     processData: false, //用FormData传fd时需有这两项
-        //     contentType: false,
-        //     success: function(data) {
-        //         // console.log(data);
-        //         // console.log(formdata);
-        //         obj.attr("remoteURL", data.message);
-        //         sendingImgVideo = false;
-        //     },
-        //     error: function() {
-        //         obj.remove();
-        //         sendingImgVideo = false;
-        //         displayTipPane_err('文件上传失败了哦~');
-        //     },
-        //     timeout: function() {
-        //         obj.remove();
-        //         sendingImgVideo = false;
-        //         displayTipPane_err('文件上传失败了哦~');
-        //     }
-        // })
+        obj.attr("remoteURL", res);
+        sendingImgVideo = false;
+    }, err => {
+        console.log(err);
+        obj.remove();
+        sendingImgVideo = false;
+        displayTipPane_err("文件上传失败了哦~");
+    })
 }
 
 // 添加视频/img  删除
-export function insertImgVideo(e, type) {
-    let formdata = new FormData();
-    let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
-    let url = window.URL || window.webkitURL || window.mozURL;
-    let obj = e.currentTarget.files[0]; //图片资源对象
-    // console.log(obj);
-    // console.log(e.currentTarget);
-    formdata.append(0, obj);
-    // console.log(formdata);
-    let src = url.createObjectURL(obj);
-    if (type === 'img') {
-        let img = $('<img>');
-        $(div).prepend(img);
-        $(img).attr("src", src);
-
-        $(this).parents(".addfileY").before(div);
-        sendImgVideo(formdata, $(img), sendingImg); //发送图片
-        if ($(".develimgY").length > 8) {
-            $(this).parent().hide();
-        }
-
-    } else {
-        let video = $('<video muted autoplay loop></video>');
-        $(div).prepend(video);
-        $(this).find(".addfileY").hide();
-        $(video).attr("src", src);
-        $(this).parents(".addfileY").before(div);
-        $(video).css({
-            'width': $(this).find('video').css('width') + 'px',
-            'margin': '0 auto'
-        });
-        sendImgVideo(formdata, $(video), sendingVideo); //发送视频
+export function insertImgVideo(type) {
+    if (sendingImgVideo) {
+        displayTipPane_warn("有图片/视频正在上传哦~");
+        return;
     }
+    if (type == 'img' && !isImage(this.files[0].name)) {
+        displayTipPane_warn(tipInfo.img.format_warn);
+        return;
+    }
+    if (type == 'video' && !isVideo(this.files[0].name)) {
+        displayTipPane_warn(tipInfo.video.format_warn);
+        return;
+    }
+    console.log(this.files[0]);
+    const formdata = new FormData();
+    formdata.append(0, this.files[0]);
+    console.log(formdata);
+    let div = $("<div class='develimgY'><b class='removeimg removeImgVideo' title='删除'>&times;</b></div>");
+    const reader = getImgBase64(this.files[0]);
+    reader.onload = function() {
+        let src = this.result;
+        if (type === 'img') {
+            let img = $('<img>');
+            $(div).prepend(img);
+            $(img).attr("src", src);
+            $(this).parents(".addfileY").before(div);
+            if ($(".develimgY").length > 8) {
+                $(this).parent().hide();
+            }
+            console.log(formdata);
+            sendImgVideo(formdata, $(img)); //发送图片
+        } else {
+            let video = $('<video muted autoplay loop></video>');
+            $(div).prepend(video);
+            $(this).find(".addfileY").hide();
+            $(video).attr("src", src);
+            $(this).parents(".addfileY").before(div);
+            $(video).css({
+                'width': $(this).find('video').css('width') + 'px',
+                'margin': '0 auto'
+            });
+            console.log(formdata);
+            sendImgVideo(formdata, $(video)); //发送视频
+        }
+    }
+
 
     //×出现与消失
     $(".removeImgVideo").on({
@@ -240,9 +233,12 @@ export function insertImgVideo(e, type) {
         }
     })
 }
-
 // 发布信息
 export function sendDevel() {
+    if (!isLogin()) {
+        displayTipPane_warn(tipInfo.login.no_login);
+        return;
+    }
     if (sendingImg) {
         displayTipPane_warn(tipInfo.img.upLoading);
         return;
@@ -262,28 +258,18 @@ export function sendDevel() {
     let contents = [];
     let contents_order = 0;
 
-    function addContentItem1(order, type, content) {
-        return {
-            "contentOrder": order,
-            "contentType": type,
-            "contentMain": content
-        }
-    }
 
     if ($('.develimgY').length > 0) {
         const imgArr = $(".issuePersonalDY .addpicY .addpicSon .develimgY img");
-
         for (let i = 0; i < imgArr.length; i++) {
-
             const url = $(imgArr[i]).attr("remoteurl");
-            // console.log("url=" + url);
-            contents[i] = addContentItem1(++contents_order, "img", url);
+            contents[i] = getContentItem(++contents_order, "img", url);
         }
     } else if ($('.develvideoY').length > 0) {
         const videoArr = $(".issuePersonalDY .addvideoY .addvideoSon .develvideoY video");
         for (let i = 0; i < videoArr.length; i++) {
             let url = $(videoArr[i]).attr("remoteurl");
-            contents[0] = addContentItem1(++contents_order, "video", url);
+            contents[0] = getContentItem(++contents_order, "video", url);
         }
     }
 
@@ -301,30 +287,30 @@ export function sendDevel() {
 
     //获取内容 发送内容
     function sendD() {
-        if (isLogin()) {
-            request(baseHttpURL + '/Servlet/QuestionServlet', {
-                method: "post",
-                body: {
-                    requestType: "post",
-                    title,
-                    questionType: "Dynamic",
-                    authorMarkNumber: user.markNumber,
-                    contents,
-                }
-            }).then(res => {
-                displayTipPane_success(tipInfo.submit.succees);
-                //清空title,detail
-                $(".issuePersonalDY textarea").val("");
 
-                //清空图片
-                $(".addpicY .develimgY").remove();
-                $(".addpicY .addfileY").show();
-                $(".addvideoY .develvideoY").remove();
-                $(".addvideoY .addfileY").show();
-                // console.log(res);
-            })
-        } else {
-            displayTipPane_warn(tipInfo.login.no_login);
-        }
+        request(baseHttpURL + '/Servlet/QuestionServlet', {
+            method: "post",
+            body: {
+                requestType: "post",
+                title,
+                questionType: "Dynamic",
+                authorMarkNumber: user.markNumber,
+                contents,
+            }
+        }).then(res => {
+            displayTipPane_success(tipInfo.submit.succees);
+            //清空title,detail
+            $(".issuePersonalDY textarea").val("");
+
+            //清空图片
+            $(".addpicY .develimgY").remove();
+            $(".addpicY .addfileY").show();
+            $(".addvideoY .develvideoY").remove();
+            $(".addvideoY .addfileY").show();
+        }, err => {
+            displayTipPane_err(tipInfo.submit.err);
+            console.log(err);
+        })
     }
+
 }

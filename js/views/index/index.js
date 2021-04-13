@@ -178,28 +178,19 @@ $('.issueWidgetY li').on({
 });
 //#endregion
 
-//#region 图片
-export var sendingImg = false;
+
 $(".addimgsY").on({
-    change: function(e) {
-        if (sendingImg) {
-            displayTipPane_success(tipInfo.img.upLoading);
-            return;
-        }
-        insertImgVideo(e, 'img');
+    change: function() {
+        insertImgVideo.call(this, 'img');
     }
 });
 //#endregion  
 
 //#region 视频
-export var sendingVideo = false;
+
 $(".addvideoY").on({
-    change: function(e) {
-        if (sendingVideo) {
-            displayTipPane_success(tipInfo.video.upLoading);
-            return;
-        }
-        insertImgVideo(e, 'video');
+    change: function() {
+        insertImgVideo.call(this, 'video');
     }
 });
 
