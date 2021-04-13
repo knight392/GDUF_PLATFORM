@@ -19,6 +19,7 @@ export default function sendFile(formdata) { //imgObj是jq对象
   })
 }
  
+// formdata特殊请求
 function request(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
