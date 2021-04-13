@@ -44,7 +44,7 @@ $(".nav").find(".searchBar").on({
     }
 })
 
-//#region 节流
+//#region 搜索框内容
 $(".nav").find(".searchBar").bind("keyup", debounce(function() {
     //键盘抬起事件 + val() 非空 发送请求 
     // console.log($(this).val());
@@ -72,6 +72,13 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
         $(this).parent().siblings(".searchContent").hide(200);
     }
 }, 250, true));
+
+
+// $('.searchContent>li').on({
+//   click: function () {
+//     window.open($(this).);
+//         }
+//     })
 //#endregion
 
 //#endregion
@@ -98,11 +105,6 @@ $('.fadeout').click(function() {
 
 //#endregion
 
-//#region 用户名/密码 与后端交互 √
-
-//登录
-
-//#endregion
 
 //#region 消息通知 √ 
 
@@ -184,8 +186,7 @@ $('#hoverBox_interest').click(function() {
 
 //#region 节流
 
-let page = 1; //可以写在list的属性中
-let num = 6;
+
 //用到节流防抖，先不做
 $('.itemList_box').scroll(debounce(getData, 300));
 
@@ -273,7 +274,7 @@ $(".exitLogonY").on({
         $(".mycollection").html("");
         doLogOff();
         displayTipPane("已退出登录~")
-        //问题页面判断是否登录
+            //问题页面判断是否登录
     }
 });
 //#endregion
@@ -340,4 +341,4 @@ $(".hpSecondSecond").on({
     }
 })
 
-//#endregion 
+//#endregion

@@ -28,6 +28,7 @@ function sendImgVideo(formdata, obj) { //imgObj是jq对象
 
 // 添加视频/img  删除
 export function insertImgVideo(type) {
+    const that = $(this);
     if (sendingImgVideo) {
         displayTipPane_warn("有图片/视频正在上传哦~");
         return;
@@ -48,10 +49,9 @@ export function insertImgVideo(type) {
         let src = this.result;
         if (type === 'img') {
             let img = $('<img>');
-
             $(img).attr("src", src);
             $(div).prepend(img);
-            $(this).parents(".addfileY").before(div);
+            that.parents(".addfileY").before(div);
             if ($(".develimgY").length > 8) {
                 $(this).parent().hide();
             }
@@ -68,37 +68,36 @@ export function insertImgVideo(type) {
             });
             sendImgVideo(formdata, $(video)); //发送视频
         }
-    }
-
-
-    //×出现与消失
-    $(".removeImgVideo").on({
-        mouseover: function() {
-            $(this).find(".removeImgVideo").stop().show(200);
-        },
-        mouseout: function() {
-            $(this).find(".removeImgVideo").stop().hide(200);
-        }
-    })
-
-    //删除图片 
-    $(".removeimg").on({
-        click: function() {
-            if ($(".develimgY").length <= 9) {
-                $('.addpicY').find(".addfileY").show();
+        //×出现与消失
+        $(".removeImgVideo").on({
+            mouseover: function() {
+                console.log("movein");
+                $(this).find(".removeImgVideo").stop().show(200);
+            },
+            mouseout: function() {
+                $(this).find(".removeImgVideo").stop().hide(200);
             }
-            $(this).parent().remove();
-        }
-    })
+        })
 
-    //删除视频
-    $(".removevideo").on({
-        click: function() {
-            $(this).parents('.addvideo').find(".addfileY").show();
+        //删除图片 
+        $(".removeimg").on({
+            click: function() {
+                if ($(".develimgY").length <= 9) {
+                    $('.addpicY').find(".addfileY").show();
+                }
+                $(this).parent().remove();
+            }
+        })
 
-            $(this).parent().remove();
-        }
-    })
+        //删除视频
+        $(".removevideo").on({
+            click: function() {
+                $(this).parents('.addvideo').find(".addfileY").show();
+
+                $(this).parent().remove();
+            }
+        })
+    }
 }
 // 发布信息
 export function sendDevel() {
