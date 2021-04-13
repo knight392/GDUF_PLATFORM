@@ -41,7 +41,6 @@ $(".nav").find(".searchBar").on({
 
         //失去焦点 清空li的内容
         // $(this).parent().siblings(".searchContent").find("li").remove();
-
     }
 })
 
@@ -74,6 +73,11 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
     }
 }, 250, true));
 
+
+// 绑定打开提问面板事件
+$(".cueY").on('click', function(){
+  $('.quizModal_bg').fadeIn(); // 其实就是css 的过渡+ display
+})
 
 // $('.searchContent>li').on({
 //   click: function () {
