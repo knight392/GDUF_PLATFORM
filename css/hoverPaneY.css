@@ -16,14 +16,14 @@
     height: 100%;
     /* transform: translate(-50%, -50%); */
     background-color: #fff;
-    border-radius: 22px;
+    border-radius: 22px 0 0 22px;
     font-family: 'Arial Normal', 'Arial', 'sans-serif';
     color: #666;
     box-sizing: border-box;
     font-size: 13px;
     box-shadow: -5px 0 20px 0 rgba(43, 51, 59, 0.08);
-    border:1px solid #5ec4cd
-}   
+    /* border: 1px solid #5ec4cd */
+}
 
 
 /* 标题 */
@@ -86,8 +86,6 @@
     border-radius: 100px/10px;
     background-color: #028e9b;
 }
-
-
 
 .hoverBox .mode_selection .toLeft {
     left: 47px;
@@ -386,7 +384,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    color:#666;
+    color: #666;
 }
 
 .hoverBox .contentBox_subscribe .item .status {
@@ -399,14 +397,10 @@
     color: #666;
     line-height: 28px;
 }
-.logonHeadPortrait .headPortrait .hpSecond  .hpPersonalAttributes em b{
-    color:#666;
+
+.logonHeadPortrait .headPortrait .hpSecond .hpPersonalAttributes em b {
+    color: #666;
 }
-
-
-
-
-
 
 
 /* 学校信息 */
@@ -440,26 +434,30 @@
     cursor: pointer;
     /* line-height: 23px; */
 }
-.hoverBox .contentBox_subscribe .item .subscribe svg{
+
+.hoverBox .contentBox_subscribe .item .subscribe svg {
     height: 26px;
-    width:26px
-}
-.hoverBox .contentBox_subscribe .item .sendText svg{
-    width: 29px;
-    height:29px;
+    width: 26px
 }
 
+.hoverBox .contentBox_subscribe .item .sendText svg {
+    width: 29px;
+    height: 29px;
+}
 
 
 /* 已关注状态 */
-.hoverBox .contentBox_subscribe .item .subscribe_on path{
-    fill:#ff7800;
-}
-/* 未关注状态 */
-.hoverBox .contentBox_subscribe .item .subscribe_off path{
-    fill:#ccc;
+
+.hoverBox .contentBox_subscribe .item .subscribe_on path {
+    fill: #ff7800;
 }
 
+
+/* 未关注状态 */
+
+.hoverBox .contentBox_subscribe .item .subscribe_off path {
+    fill: #ccc;
+}
 
 
 /* 私信 */
@@ -572,7 +570,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    color:#666;
+    color: #666;
 }
 
 
@@ -580,21 +578,18 @@
 
 
 /* 消息通知模式切换按钮 */
+
 .hoverBox .mode_selection #hoverBox_dynamicMessage {
     left: 37px;
     font-size: 27px;
-    color:#666;
+    color: #666;
 }
 
 .hoverBox .mode_selection #hoverBox_privateMessage {
     right: 37px;
     font-size: 27px;
-    color:#666;
+    color: #666;
 }
-
-
-
-
 
 .hoverBox .contentBox_information .item .item_info {
     position: absolute;
@@ -645,699 +640,656 @@
     cursor: pointer;
 }
 
+
 /* 70% */
-@media(max-width:1960px){
-    .hoverBox .mode_selection{
+
+@media(max-width:1960px) {
+    .hoverBox .mode_selection {
         height: 65px;
     }
-    .hoverBox .mode_selection .mode{
-        top:13px;
+    .hoverBox .mode_selection .mode {
+        top: 13px;
     }
-    .hoverBox .mode_selection #hoverBox_dynamicMessage{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_dynamicMessage {
+        font-size: 23px;
     }
-    .hoverBox .mode_selection #hoverBox_privateMessage{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_privateMessage {
+        font-size: 23px;
     }
-    .hoverBox .mode_selection #hoverBox_interest{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_interest {
+        font-size: 23px;
     }
-    .hoverBox .mode_selection #hoverBox_fans{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_fans {
+        font-size: 23px;
     }
-    .hoverBox .mode_selection #hoverBox_request{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_request {
+        font-size: 23px;
     }
-     .hoverBox .mode_selection #hoverBox_answer{
-        font-size:23px;
+    .hoverBox .mode_selection #hoverBox_answer {
+        font-size: 23px;
     }
-    .hoverBox .contentBox_subscribe{
-        border-width:1px;
-        width:90%;
-        height:321px;
-        margin-top:0;
+    .hoverBox .contentBox_subscribe {
+        border-width: 1px;
+        width: 90%;
+        height: 321px;
+        margin-top: 0;
         border-radius: 11px;
-        padding:5px 0 5px 8px;
+        padding: 5px 0 5px 8px;
     }
     .hoverBox .contentBox_request {
         height: 321px;
-        border-width:1px;
-        width:90%;
-        margin-top:0;
-        padding:5px 0 5px 8px;
+        border-width: 1px;
+        width: 90%;
+        margin-top: 0;
+        padding: 5px 0 5px 8px;
         border-radius: 11px;
     }
-    .hoverBox .contentBox_collection{
+    .hoverBox .contentBox_collection {
         height: 380px;
-        border-width:1px;
-        width:90%;
-        padding:5px 0 5px 8px;
-        
+        border-width: 1px;
+        width: 90%;
+        padding: 5px 0 5px 8px;
     }
-    .hpSecond .hoverBox .itemList .item{
+    .hpSecond .hoverBox .itemList .item {
         height: 85px;
     }
-    .hpSecond .hoverBox .item .problem_title{
-        font-size:19px;
-        width:276px;
+    .hpSecond .hoverBox .item .problem_title {
+        font-size: 19px;
+        width: 276px;
     }
-    .hpSecond .hoverBox .item .problem_remark_answer{
-        font-size:17px;
-        bottom:0;
-        width:215px;
+    .hpSecond .hoverBox .item .problem_remark_answer {
+        font-size: 17px;
+        bottom: 0;
+        width: 215px;
     }
-    .hpSecond .hoverBox .item .time_box .time{
-        font-size:17px;
+    .hpSecond .hoverBox .item .time_box .time {
+        font-size: 17px;
     }
-    .hpSecond .hpSecond .hoverBox .item .time_box{
-        width:60px;
+    .hpSecond .hpSecond .hoverBox .item .time_box {
+        width: 60px;
     }
-    .hoverBox .contentBox_information{
-        height:426px;
+    .hoverBox .contentBox_information {
+        height: 426px;
     }
     .hoverBox .contentBox_information
-
-
     /* 消息通知面板 */
-    .messageNotification .hoverBox .contentBox_information .item img{
-        width:68px;
+    .messageNotification .hoverBox .contentBox_information .item img {
+        width: 68px;
         height: 68px;
     }
-    .hoverBox .contentBox_information .item .itemTitle{
-        left:87px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        left: 87px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        left:87px;
+    .hoverBox .contentBox_information .item .item_info {
+        left: 87px;
     }
-
-
     /* 消息通知 */
-        .messageNotification .hoverBox .mode_selection .activeLine{
-            width:110px;
-        }
-        .messageNotification .hoverBox .mode_selection .toLeft{
-            left:57px;
-        }
-        .messageNotification .hoverBox .mode_selection .toRight{
-            left:233px;
-        }
-
-        /* 二级面板 */
-        .hpSecond .hoverBox .mode_selection .activeLine{
-            width:110px;
-        }
-        .hpSecond .hoverBox .mode_selection .toLeft{
-            left:57px;
-        }
-        .hpSecond .hoverBox .mode_selection .toRight{
-            left:212px;
-        }
-
-        .hoverBox .contentBox_subscribe .item .img_link{
-            width:65px;
-            height: 65px;
-        }
-        .hoverBox .contentBox_subscribe .item .userName{
-            left:84px;
-        }
-        .hoverBox .contentBox_subscribe .item .school_info{
-            left:84px;
-            width:150px;
-            font-size:18px;
-        }
-        .hoverBox .contentBox_subscribe .item .subscribe svg{
-            height: 24px;
-            width:24px
-        }
-        .hoverBox .contentBox_subscribe .item .subscribe {
-            left:250px;
-        }
-        .hoverBox .contentBox_subscribe .item .status{
-            left:286px;
-            font-size:18px
-        }
-        .hoverBox .contentBox_subscribe .item .sendText svg{
-            width: 26px;
-            height:26px;
-        }
-        .hoverBox .contentBox_subscribe .item .sendText{
-            right:10px
-        }
-
-
+    .messageNotification .hoverBox .mode_selection .activeLine {
+        width: 110px;
+    }
+    .messageNotification .hoverBox .mode_selection .toLeft {
+        left: 57px;
+    }
+    .messageNotification .hoverBox .mode_selection .toRight {
+        left: 233px;
+    }
+    /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine {
+        width: 110px;
+    }
+    .hpSecond .hoverBox .mode_selection .toLeft {
+        left: 57px;
+    }
+    .hpSecond .hoverBox .mode_selection .toRight {
+        left: 212px;
+    }
+    .hoverBox .contentBox_subscribe .item .img_link {
+        width: 65px;
+        height: 65px;
+    }
+    .hoverBox .contentBox_subscribe .item .userName {
+        left: 84px;
+    }
+    .hoverBox .contentBox_subscribe .item .school_info {
+        left: 84px;
+        width: 150px;
+        font-size: 18px;
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe svg {
+        height: 24px;
+        width: 24px
+    }
+    .hoverBox .contentBox_subscribe .item .subscribe {
+        left: 250px;
+    }
+    .hoverBox .contentBox_subscribe .item .status {
+        left: 286px;
+        font-size: 18px
+    }
+    .hoverBox .contentBox_subscribe .item .sendText svg {
+        width: 26px;
+        height: 26px;
+    }
+    .hoverBox .contentBox_subscribe .item .sendText {
+        right: 10px
+    }
 }
-/* 80% */
-@media(max-width:1789px){
 
-    .hoverBox .title{
-        font-size:26px;
+
+/* 80% */
+
+@media(max-width:1789px) {
+    .hoverBox .title {
+        font-size: 26px;
     }
-    .hoverBox .mode_selection #hoverBox_dynamicMessage{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_dynamicMessage {
+        font-size: 20px;
     }
-    .hoverBox .mode_selection #hoverBox_privateMessage{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_privateMessage {
+        font-size: 20px;
     }
-    .hoverBox .mode_selection #hoverBox_interest{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_interest {
+        font-size: 20px;
     }
-    .hoverBox .mode_selection #hoverBox_fans{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_fans {
+        font-size: 20px;
     }
-    .hoverBox .mode_selection #hoverBox_request{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_request {
+        font-size: 20px;
     }
-    .hoverBox .mode_selection #hoverBox_answer{
-        font-size:20px;
+    .hoverBox .mode_selection #hoverBox_answer {
+        font-size: 20px;
     }
-   
-    .hpSecond .hoverBox{
-        padding:15px 10px 10px 10px;
+    .hpSecond .hoverBox {
+        padding: 15px 10px 10px 10px;
     }
-    .hoverBox .mode_selection{
-        height:56px;
+    .hoverBox .mode_selection {
+        height: 56px;
     }
-    .hpSecond .hoverBox .contentBox_information .item img{
-        width:62px;
+    .hpSecond .hoverBox .contentBox_information .item img {
+        width: 62px;
         height: 62px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
-        font-size:18px;
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 18px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .item_info{
-        font-size:16px;
+    .hpSecond .hoverBox .contentBox_information .item .item_info {
+        font-size: 16px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .time{
-        font-size:16px;
+    .hpSecond .hoverBox .contentBox_information .item .time {
+        font-size: 16px;
     }
     .hpSecond .hoverBox .itemList_box::-webkit-scrollbar {
         width: 2px;
         height: 2px;
     }
-    
     .hpSecond .hoverBox .itemList_box::-webkit-scrollbar-thumb {
         border-radius: 2px;
         background-color: rgba(0, 0, 0, 0.2);
     }
-    
     .hpSecond .hoverBox .itemList_box::-webkit-scrollbar-track {
         border-radius: 0;
         background-color: transparent;
     }
-    .hpSecond .hoverBox .itemList .item{
+    .hpSecond .hoverBox .itemList .item {
         height: 83px;
     }
-   .hoverBox .contentBox_information{
+    .hoverBox .contentBox_information {
         height: 352px;
-        border-width:1px;
+        border-width: 1px;
         border-radius: 18px;
-        margin-top:0;
+        margin-top: 0;
     }
-    .hoverBox .contentBox_subscribe{
-        width:85%;
-        height:324px;
-       
+    .hoverBox .contentBox_subscribe {
+        width: 85%;
+        height: 324px;
     }
     .hoverBox .contentBox_request {
         height: 324px;
-        width:85%;
-        
+        width: 85%;
     }
-    .hoverBox .contentBox_collection{
+    .hoverBox .contentBox_collection {
         height: 313px;
-        width:85%;
-        padding:3px 0 3px 6px;
+        width: 85%;
+        padding: 3px 0 3px 6px;
     }
-    .hoverBox .item .problem_title{
-        font-size:20px;
-        width:257px;
+    .hoverBox .item .problem_title {
+        font-size: 20px;
+        width: 257px;
     }
-    .hoverBox .item .problem_remark_answer{
-        font-size:16px;
+    .hoverBox .item .problem_remark_answer {
+        font-size: 16px;
         height: 29px;
         width: 210px;
     }
-    .hpSecond .hoverBox .itemList .item{
+    .hpSecond .hoverBox .itemList .item {
         height: 75px;
     }
-    .hpSecond .hoverBox .item .time_box .time{
-        font-size:15px;
+    .hpSecond .hoverBox .item .time_box .time {
+        font-size: 15px;
     }
-
     /* 消息通知面板 */
-    
-    .hoverBox .contentBox_information .item .item_info{
-        font-size:18px;
+    .hoverBox .contentBox_information .item .item_info {
+        font-size: 18px;
     }
-    .messageNotification .hoverBox .contentBox_information .item img{
-        width:63px;
+    .messageNotification .hoverBox .contentBox_information .item img {
+        width: 63px;
         height: 63px;
     }
-   
-    .hoverBox .contentBox_information .item .time{
-        font-size:18px;
+    .hoverBox .contentBox_information .item .time {
+        font-size: 18px;
     }
-    .hoverBox .contentBox_information .itemList .item{
+    .hoverBox .contentBox_information .itemList .item {
         height: 83px;
     }
-    .hoverBox .contentBox_information .item .itemTitle{
-        font-size:19px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 19px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        font-size:17px;
+    .hoverBox .contentBox_information .item .item_info {
+        font-size: 17px;
     }
-    .hoverBox .contentBox_information .item .time{
-        font-size:17px;
+    .hoverBox .contentBox_information .item .time {
+        font-size: 17px;
     }
-
-    .hoverBox .contentBox_information .item .itemTitle{
-        left:80px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        left: 80px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        left:80px;
+    .hoverBox .contentBox_information .item .item_info {
+        left: 80px;
     }
-
-    .messageNotification .hoverBox .mode_selection .activeLine{
-        width:110px;
+    .messageNotification .hoverBox .mode_selection .activeLine {
+        width: 110px;
     }
-    .messageNotification .hoverBox .mode_selection .toLeft{
-        left:53px;
+    .messageNotification .hoverBox .mode_selection .toLeft {
+        left: 53px;
     }
-    .messageNotification .hoverBox .mode_selection .toRight{
-        left:201px;
+    .messageNotification .hoverBox .mode_selection .toRight {
+        left: 201px;
     }
-
-      /* 二级面板 */
-    .hpSecond .hoverBox .mode_selection .activeLine{
-        width:100px;
+    /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine {
+        width: 100px;
     }
-    .hpSecond .hoverBox .mode_selection .toLeft{
-        left:62px;
+    .hpSecond .hoverBox .mode_selection .toLeft {
+        left: 62px;
     }
-    .hpSecond .hoverBox .mode_selection .toRight{
-        left:207px;
+    .hpSecond .hoverBox .mode_selection .toRight {
+        left: 207px;
     }
-    .hoverBox .mode_selection .activeLine{
-        height:3px;
+    .hoverBox .mode_selection .activeLine {
+        height: 3px;
     }
-    
-
     /* 我的关注 */
-    .hoverBox .contentBox_subscribe .item .img_link{
-        width:60px;
+    .hoverBox .contentBox_subscribe .item .img_link {
+        width: 60px;
         height: 60px;
     }
-    .hoverBox .contentBox_subscribe .item .userName{
-        left:80px;
+    .hoverBox .contentBox_subscribe .item .userName {
+        left: 80px;
     }
-    .hoverBox .contentBox_subscribe .item .school_info{
-        left:80px;
-        width:130px;
-        font-size:16px;
+    .hoverBox .contentBox_subscribe .item .school_info {
+        left: 80px;
+        width: 130px;
+        font-size: 16px;
     }
-    .hoverBox .contentBox_subscribe .item .subscribe svg{
+    .hoverBox .contentBox_subscribe .item .subscribe svg {
         height: 22px;
-        width:22px
+        width: 22px
     }
     .hoverBox .contentBox_subscribe .item .subscribe {
-        left:230px;
-        bottom:5px;
+        left: 230px;
+        bottom: 5px;
     }
-    .hoverBox .contentBox_subscribe .item .status{
-        left:267px;
-        font-size:16px;
+    .hoverBox .contentBox_subscribe .item .status {
+        left: 267px;
+        font-size: 16px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText svg{
+    .hoverBox .contentBox_subscribe .item .sendText svg {
         width: 24px;
-        height:24px;
+        height: 24px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText{
-        right:8px;
-        bottom:5px;
+    .hoverBox .contentBox_subscribe .item .sendText {
+        right: 8px;
+        bottom: 5px;
     }
-
-     
-    
-
-   
-
 }
+
+
 /* 90% */
-@media(max-width:1549px){
-    .hoverBox .title{
-        font-size:23px;
+
+@media(max-width:1549px) {
+    .hoverBox .title {
+        font-size: 23px;
     }
-    .hoverBox .mode_selection #hoverBox_dynamicMessage{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_dynamicMessage {
+        font-size: 18px;
     }
-    .hoverBox .mode_selection #hoverBox_privateMessage{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_privateMessage {
+        font-size: 18px;
     }
-  
-    .hoverBox .mode_selection #hoverBox_interest{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_interest {
+        font-size: 18px;
     }
-    .hoverBox .mode_selection #hoverBox_fans{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_fans {
+        font-size: 18px;
     }
-    .hoverBox .mode_selection #hoverBox_request{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_request {
+        font-size: 18px;
     }
-    .hoverBox .mode_selection #hoverBox_answer{
-        font-size:18px;
+    .hoverBox .mode_selection #hoverBox_answer {
+        font-size: 18px;
     }
-    .hoverBox{
-        padding:13px 8px 8px 8px;
+    .hoverBox {
+        padding: 13px 8px 8px 8px;
     }
-  
-    .hpSecond .hoverBox .contentBox_information .item img{
-        width:52px;
+    .hpSecond .hoverBox .contentBox_information .item img {
+        width: 52px;
         height: 52px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
-        font-size:16px;
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 16px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .item_info{
-        font-size:15px;
+    .hpSecond .hoverBox .contentBox_information .item .item_info {
+        font-size: 15px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .time{
-        font-size:14px;
+    .hpSecond .hoverBox .contentBox_information .item .time {
+        font-size: 14px;
     }
-    .hpSecond .hoverBox .itemList .item{
+    .hpSecond .hoverBox .itemList .item {
         height: 70px;
     }
-    .hoverBox .contentBox_information{
+    .hoverBox .contentBox_information {
         height: 337px;
     }
-   
-    .hoverBox .contentBox_subscribe{
-        width:82%;
-        height:301px;
+    .hoverBox .contentBox_subscribe {
+        width: 82%;
+        height: 301px;
     }
     .hoverBox .contentBox_request {
         height: 301px;
-        width:82%;
+        width: 82%;
     }
-    .hoverBox .contentBox_collection{
+    .hoverBox .contentBox_collection {
         height: 349px;
-        width:82%;
+        width: 82%;
     }
-
-    .hpSecond .hoverBox .item .problem_title{
-        font-size:15px;
-        width:228px;
+    .hpSecond .hoverBox .item .problem_title {
+        font-size: 15px;
+        width: 228px;
     }
-    .hpSecond .hoverBox .item .problem_remark_answer{
-        font-size:13px;
+    .hpSecond .hoverBox .item .problem_remark_answer {
+        font-size: 13px;
         height: 26px;
         width: 190px;
     }
-   
-    .hpSecond .hoverBox .item .time_box .time{
-        font-size:13px;
+    .hpSecond .hoverBox .item .time_box .time {
+        font-size: 13px;
     }
-    .hpSecond .hoverBox .item .time_box{
-        width:48px;
+    .hpSecond .hoverBox .item .time_box {
+        width: 48px;
     }
-    .messageNotification .hoverBox .contentBox_information .item img{
-        width:58px;
+    .messageNotification .hoverBox .contentBox_information .item img {
+        width: 58px;
         height: 58px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        left:73px;
-        font-size:16px;
+    .hoverBox .contentBox_information .item .item_info {
+        left: 73px;
+        font-size: 16px;
     }
-    .hoverBox .contentBox_information .item .itemTitle{
-        font-size:18px;
-        left:73px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 18px;
+        left: 73px;
     }
-    .hoverBox .mode_selection .toLeft{
+    .hoverBox .mode_selection .toLeft {
         height: 3px;
     }
-    .hoverBox .mode_selection .toRight{
+    .hoverBox .mode_selection .toRight {
         height: 3px;
     }
-    .hoverBox .contentBox_information .item .time{
-        font-size:16px;
+    .hoverBox .contentBox_information .item .time {
+        font-size: 16px;
     }
-    .hoverBox .contentBox_information .itemList .item{
+    .hoverBox .contentBox_information .itemList .item {
         height: 79px;
     }
-
-    .messageNotification .hoverBox .mode_selection .activeLine{
-        width:95px;
+    .messageNotification .hoverBox .mode_selection .activeLine {
+        width: 95px;
     }
-    .messageNotification .hoverBox .mode_selection .toLeft{
-        left:66px;
+    .messageNotification .hoverBox .mode_selection .toLeft {
+        left: 66px;
     }
-    .messageNotification .hoverBox .mode_selection .toRight{
-        left:204px;
+    .messageNotification .hoverBox .mode_selection .toRight {
+        left: 204px;
     }
-
-      /* 二级面板 */
-    .hpSecond .hoverBox .mode_selection .activeLine{
-        width:90px;
+    /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine {
+        width: 90px;
     }
-    .hpSecond .hoverBox .mode_selection .toLeft{
-        left:67px;
+    .hpSecond .hoverBox .mode_selection .toLeft {
+        left: 67px;
     }
-    .hpSecond .hoverBox .mode_selection .toRight{
-        left:180px;
+    .hpSecond .hoverBox .mode_selection .toRight {
+        left: 180px;
     }
-
     /* 我的关注 */
-    .hoverBox .contentBox_subscribe .item .img_link{
-        width:54px;
+    .hoverBox .contentBox_subscribe .item .img_link {
+        width: 54px;
         height: 54px;
     }
-    .hoverBox .contentBox_subscribe .item .userName{
-        left:74px;
-        font-size:17px;
+    .hoverBox .contentBox_subscribe .item .userName {
+        left: 74px;
+        font-size: 17px;
     }
-    .hoverBox .contentBox_subscribe .item .school_info{
-        left:74px;
-        width:110px;
-        font-size:15px;
+    .hoverBox .contentBox_subscribe .item .school_info {
+        left: 74px;
+        width: 110px;
+        font-size: 15px;
     }
-    .hoverBox .contentBox_subscribe .item .subscribe svg{
+    .hoverBox .contentBox_subscribe .item .subscribe svg {
         height: 20px;
-        width:20px
+        width: 20px
     }
     .hoverBox .contentBox_subscribe .item .subscribe {
-        left:200px;
-        bottom:5px;
+        left: 200px;
+        bottom: 5px;
     }
-    .hoverBox .contentBox_subscribe .item .status{
-        left:230px;
-        font-size:15px;
+    .hoverBox .contentBox_subscribe .item .status {
+        left: 230px;
+        font-size: 15px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText svg{
+    .hoverBox .contentBox_subscribe .item .sendText svg {
         width: 22px;
-        height:22px;
+        height: 22px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText{
-        right:8px;
-        bottom:5px;
+    .hoverBox .contentBox_subscribe .item .sendText {
+        right: 8px;
+        bottom: 5px;
     }
-
-
-
-   
-   
-    
 }
+
+
 /* 100% */
-@media(max-width:1280px){
-    .hoverBox .title{
-        font-size:21px;
+
+@media(max-width:1280px) {
+    .hoverBox .title {
+        font-size: 21px;
     }
-    .hoverBox .mode_selection #hoverBox_dynamicMessage{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_dynamicMessage {
+        font-size: 17px;
     }
-    .hoverBox .mode_selection #hoverBox_privateMessage{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_privateMessage {
+        font-size: 17px;
     }
-    .hoverBox .mode_selection #hoverBox_interest{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_interest {
+        font-size: 17px;
     }
-    .hoverBox .mode_selection #hoverBox_fans{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_fans {
+        font-size: 17px;
     }
-    .hoverBox .mode_selection #hoverBox_request{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_request {
+        font-size: 17px;
     }
-    .hoverBox .mode_selection #hoverBox_answer{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_answer {
+        font-size: 17px;
     }
-    .hoverBox{
-        padding:7px 3px 3px 3px;
+    .hoverBox {
+        padding: 7px 3px 3px 3px;
     }
-  
-    .hpSecond .hoverBox .contentBox_information .item img{
-        width:46px;
+    .hpSecond .hoverBox .contentBox_information .item img {
+        width: 46px;
         height: 46px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .itemTitle{
-        font-size:15px;
+    .hpSecond .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 15px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .item_info{
-        font-size:14px;
+    .hpSecond .hoverBox .contentBox_information .item .item_info {
+        font-size: 14px;
     }
-    .hpSecond .hoverBox .contentBox_information .item .time{
-        font-size:13px;
+    .hpSecond .hoverBox .contentBox_information .item .time {
+        font-size: 13px;
     }
-    
-    
-    .hoverBox .contentBox_information{
-        margin-top:0px;
-        width:89%;
-        border-width:1px ;
+    .hoverBox .contentBox_information {
+        margin-top: 0px;
+        width: 89%;
+        border-width: 1px;
         border-radius: 6px;
-        height:308px;
+        height: 308px;
     }
-    .hoverBox .mode_selection .mode{
-        width:125px;
+    .hoverBox .mode_selection .mode {
+        width: 125px;
     }
-    .hoverBox .mode_selection .activeLine{
+    .hoverBox .mode_selection .activeLine {
         height: 3px;
     }
-    .hoverBox .mode_selection .mode{
-        top:19px;
+    .hoverBox .mode_selection .mode {
+        top: 19px;
     }
-    .hoverBox .contentBox_information .item .info_point{
-        height:8px;
+    .hoverBox .contentBox_information .item .info_point {
+        height: 8px;
     }
-    .hoverBox .contentBox_subscribe{
-        width:80%;
-        height:241px;
-        padding:3px 0 3px 6px;
+    .hoverBox .contentBox_subscribe {
+        width: 80%;
+        height: 241px;
+        padding: 3px 0 3px 6px;
     }
     .hoverBox .contentBox_request {
         height: 241px;
-        width:80%;
-        padding:3px 0 3px 6px;
+        width: 80%;
+        padding: 3px 0 3px 6px;
     }
-    .hoverBox .contentBox_collection{
+    .hoverBox .contentBox_collection {
         height: 291px;
-        width:80%;
+        width: 80%;
     }
-
-    .hoverBox .item .problem_title{
-        font-size:15px;
-        width:228px;
+    .hoverBox .item .problem_title {
+        font-size: 15px;
+        width: 228px;
     }
-    .hoverBox .item .problem_remark_answer{
-        font-size:13px;
+    .hoverBox .item .problem_remark_answer {
+        font-size: 13px;
         height: 26px;
         width: 188px;
     }
-    .hpSecond .hoverBox .itemList .item{
+    .hpSecond .hoverBox .itemList .item {
         height: 55px;
-        padding:0;
-        
+        padding: 0;
     }
-    .hoverBox .itemList .item{
+    .hoverBox .itemList .item {
         border-width: 1px;
     }
-    .hpSecond .hoverBox .item .time_box .time{
-        font-size:13px;
+    .hpSecond .hoverBox .item .time_box .time {
+        font-size: 13px;
     }
-    .hpSecond .hoverBox .item .time_box{
-        width:48px;
+    .hpSecond .hoverBox .item .time_box {
+        width: 48px;
     }
-    .hoverBox .mode_selection #hoverBox_request{
-        font-size:17px;
+    .hoverBox .mode_selection #hoverBox_request {
+        font-size: 17px;
     }
-
-
-    .messageNotification .hoverBox .contentBox_information .item img{
-        width:52px;
-        height:52px;
+    .messageNotification .hoverBox .contentBox_information .item img {
+        width: 52px;
+        height: 52px;
     }
-    .hoverBox .contentBox_information .item .itemTitle{
-        font-size:17px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        font-size: 17px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        font-size:14px;
-        width:180px;
+    .hoverBox .contentBox_information .item .item_info {
+        font-size: 14px;
+        width: 180px;
     }
-    .hoverBox .contentBox_information .item .time{
-        font-size:14px;
+    .hoverBox .contentBox_information .item .time {
+        font-size: 14px;
     }
-    .hoverBox .contentBox_information .item .itemTitle{
-        left:60px;
+    .hoverBox .contentBox_information .item .itemTitle {
+        left: 60px;
     }
-    .hoverBox .contentBox_information .item .item_info{
-        left:60px;
+    .hoverBox .contentBox_information .item .item_info {
+        left: 60px;
     }
-    .hoverBox .contentBox_information .itemList .item{
-        height: 72px;;
+    .hoverBox .contentBox_information .itemList .item {
+        height: 72px;
+        ;
     }
-
-    .messageNotification .hoverBox .mode_selection .activeLine{
-        width:80px;
+    .messageNotification .hoverBox .mode_selection .activeLine {
+        width: 80px;
     }
-    .messageNotification .hoverBox .mode_selection .toLeft{
-        left:59px;
+    .messageNotification .hoverBox .mode_selection .toLeft {
+        left: 59px;
     }
-    .messageNotification .hoverBox .mode_selection .toRight{
-        left:191px;
+    .messageNotification .hoverBox .mode_selection .toRight {
+        left: 191px;
     }
-    .hoverBox .mode_selection .activeLine{
+    .hoverBox .mode_selection .activeLine {
         height: 2px;
     }
-
-      /* 二级面板 */
-    .hpSecond .hoverBox .mode_selection .activeLine{
-        width:85px;
+    /* 二级面板 */
+    .hpSecond .hoverBox .mode_selection .activeLine {
+        width: 85px;
     }
-    .hpSecond .hoverBox .mode_selection .toLeft{
-        left:57px;
+    .hpSecond .hoverBox .mode_selection .toLeft {
+        left: 57px;
     }
-    .hpSecond .hoverBox .mode_selection .toRight{
-        left:167px;
+    .hpSecond .hoverBox .mode_selection .toRight {
+        left: 167px;
     }
-
     /* 我的关注 */
-    .hoverBox .contentBox_subscribe .item .img_link{
-        width:48px;
+    .hoverBox .contentBox_subscribe .item .img_link {
+        width: 48px;
         height: 48px;
     }
-    .hoverBox .contentBox_subscribe .item .userName{
-        left:60px;
-        font-size:16px;
+    .hoverBox .contentBox_subscribe .item .userName {
+        left: 60px;
+        font-size: 16px;
         line-height: 16px;
     }
-    .hoverBox .contentBox_subscribe .item .school_info{
-        left:60px;
-        width:100px;
-        font-size:13px;
-        bottom:3px;
+    .hoverBox .contentBox_subscribe .item .school_info {
+        left: 60px;
+        width: 100px;
+        font-size: 13px;
+        bottom: 3px;
     }
-    .hoverBox .contentBox_subscribe .item .subscribe svg{
+    .hoverBox .contentBox_subscribe .item .subscribe svg {
         height: 17px;
-        width:17px
+        width: 17px
     }
     .hoverBox .contentBox_subscribe .item .subscribe {
-        left:170px;
-        bottom:-5px;
+        left: 170px;
+        bottom: -5px;
     }
-    .hoverBox .contentBox_subscribe .item .status{
-        left:200px;
-        font-size:14px;
-        top:3px;
+    .hoverBox .contentBox_subscribe .item .status {
+        left: 200px;
+        font-size: 14px;
+        top: 3px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText svg{
+    .hoverBox .contentBox_subscribe .item .sendText svg {
         width: 19px;
-        height:19px;
+        height: 19px;
     }
-    .hoverBox .contentBox_subscribe .item .sendText{
-        right:12px;
-        bottom:-5px;
+    .hoverBox .contentBox_subscribe .item .sendText {
+        right: 12px;
+        bottom: -5px;
     }
-    .hoverBox .contentBox_subscribe .item .img_link img{
-        top:0;
+    .hoverBox .contentBox_subscribe .item .img_link img {
+        top: 0;
     }
-  
 }
-

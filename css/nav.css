@@ -279,8 +279,6 @@ input {
 
 /* #region 提问 */
 
-
-
 .quizModal_bg .fadeout {
     float: right;
 }
@@ -665,7 +663,8 @@ input {
     display: none;
     z-index: 1;
     background-color: #fff;
-    border: 1px solid #5ec4cd;
+    border-radius: 22px 0 0 22px;
+    /* border: 1px solid #5ec4cd; */
     border-right: none;
     /* transition: all 0.5s; */
 }
@@ -681,16 +680,10 @@ input {
     right: 5px;
     top: 50%;
     transform: translate(0, -50%);
-    height: 90%;
+    height: 100%;
     width: 1px;
     background-color: #ccc;
 }
-
-
-/* .hpSecond>div:hover .hpSecondSecond {
-    right: 465px;
-    z-index: 999;
-} */
 
 
 /* #endregion */

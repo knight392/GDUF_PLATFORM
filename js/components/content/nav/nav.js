@@ -1,13 +1,14 @@
 import debounce from '../../../util/debounce.js'
 // import { baseHttpURL } from '../../../common/baseRequestInfo.js';
-import { displayTipPane, displayTipPane_warn, tipInfo } from '../tipPane.js'
+import { displayTipPane_warn, tipInfo } from '../tipPane.js'
 
-import { getSearchMessageY, messageInf, goRightY, messageChat, goLeftY, attentionMajor, attentionPass, QAcue, QAanswer } from './tools.js'
+import { getSearchMessageY, messageInf, messageChat } from './tools.js'
 import { doLogOff, isLogin, user } from '../../../common/user/index.js';
+import { goLeftY, goRightY } from '../userPane/tools.js';
 
 // 清空搜索栏
 (function() {
-  $(".search .searchBar").val("");
+    $(".search .searchBar").val("");
 })()
 
 //头像那边的二级导航 ：0 没显示  1 表示已经显示
@@ -134,7 +135,7 @@ $(".message").on({
 //右边:私信
 $('.message #hoverBox_privateMessage').on({
     click: function() {
-        goRightY(".system", ".private");
+        goRightY($(this), ".system", ".private");
         messageChat();
     }
 })
@@ -142,148 +143,16 @@ $('.message #hoverBox_privateMessage').on({
 //左边:动态
 $('.message #hoverBox_dynamicMessage').on({
     click: function() {
-        goLeftY(".private", ".system");
+        goLeftY($(this), ".private", ".system");
         messageInf();
     }
 });
 //#endregion
 
-//#region 我的关注 √
-$(".attention").on({
-    click: function() {
-        // 获取我的关注 √ 
-        if (isLogin()) {
-            attentionMajor();
-        } else {
-            displayTipPane_warn(tipInfo.login.no_login);
-        }
-    }
-})
-
-// 右边:关注我的 √
-$('#hoverBox_fans').click(function() {
-    goRightY(".myAttention", ".attentionMe");
-    // 发送请求 获取关注我的
-    if (isLogin()) {
-        attentionPass();
-    } else {
-        displayTipPane_warn(tipInfo.login.no_login);
-    }
-
-})
-
-//左边:我的关注
-$('#hoverBox_interest').click(function() {
-    goLeftY(".attentionMe", ".myAttention");
-    // 获取我的关注 √ 
-    if (isLogin()) {
-        attentionMajor();
-    } else {
-        displayTipPane_warn(tipInfo.login.no_login);
-    }
-});
-//#endregion
-
-//#region 节流
-
-
-//用到节流防抖，先不做
-$('.itemList_box').scroll(debounce(getData, 300));
-
-//获取数据函数
-function getData() {
-    const scrollTop = Math.ceil($(this).scrollTop()); //滚动条到顶部的高度
-    const curHeight = $(this).height(); //窗口高度
-    const totalHeight = $('.itemList').height(); //整个文档高度
-    // console.log("拖拽滚动条");
-    if (scrollTop + curHeight > totalHeight) { //滚动条到底
-        page++;
-        // console.log(page)
-        // console.log("到达了底部")
-        // getData();//获取数据的方法
-    }
-}
-//#endregion
-
-//#region 我的收藏 × 
-
-$(".myCollY").on({
-    click: function() {
-        //先清空上次请求创建的信息
-        $(".myCollY .contentBox_collection").find("ul.mycollection").html("");
-
-        if (isLogin()) {
-
-        } else {
-            displayTipPane_warn(tipInfo.login.no_login);
-        }
-
-    }
-})
 
 //#endregion
 
-//#region 我的问答 √
-$(".myQAY").on({
-    click: function() {
-        if (isLogin()) {
-            QAcue();
-        } else {
-            displayTipPane_warn(tipInfo.login.no_login);
-        }
-    }
-})
-
-// 右边:问答 
-$('#hoverBox_answer').click(function() {
-    goRightY(".myCue", ".myAns");
-    //发送请求
-    if (isLogin()) {
-        QAanswer();
-    } else {
-        displayTipPane_warn(tipInfo.login.no_login);
-    }
-})
-
-// 左边:提问
-$('#hoverBox_request').click(function() {
-    goLeftY(".myAns", ".myCue");
-    //发送请求
-    if (isLogin()) {
-        QAcue();
-    } else {
-        displayTipPane_warn(tipInfo.login.no_login);
-
-    }
-})
-
-//#endregion
-
-//#region 退出登录 √
-$(".exitLogonY").on({
-    click: function() {
-        // USERID = null;
-        $(".personal").show(100);
-        $(".logonHeadPortrait").hide(100);
-        $(".system").html("");
-        $(".private").html("");
-        $(".myAttention").html("");
-        $(".attentionMe").html("");
-        $(".myCue").html("");
-        $(".myAns").html("");
-        $(".mycollection").html("");
-        doLogOff();
-        displayTipPane("已退出登录~")
-            //问题页面判断是否登录
-    }
-});
-//#endregion
-
-//#endregion
-
-
-
-// 二级面板的位置动态给变
+//#region 二级面板的位置动态变化
 $(window).on("resize", function() {
     // console.log($(".hpSecond").css("width"));
     $(".hpSecondSecond").css("right", $(".hpSecond").css("width"))
@@ -336,7 +205,7 @@ $(".hpSecond .secondPane_entrance").on({
 $(".hpSecondSecond").on({
     click: function(e) {
         e.stopPropagation();
-        count = 0;
+        // count = 0;
         $(this).css("display", "block");
     }
 })
