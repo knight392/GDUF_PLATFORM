@@ -52,9 +52,21 @@ $(".nav .toolRow .toolBox .tool").on("mouseleave", function () {
 
 
 // 点击登录按钮进行登录
+$('#loginBtn').click(function() {
+  $(".logOn").siblings().fadeOut();
+  $(".logOn").fadeIn();
+  $(".modal_bg_logon").fadeIn(); //远安修改代码 解决类名冲突
+  $('.modal').css({
+      transform: 'translate(-50%,-50%) scale(1)'
+  })
+})
 
-// $('#loginBtn').click()
-
+$('.fadeout').click(function() {
+  $(this).parent().parent().parent().fadeOut(); // 其实就是css 的过渡+ display
+  $(this).parent().parent().css({
+      transform: 'translate(-50%,-50%) scale(0.7)'
+  })
+})
 
 
 

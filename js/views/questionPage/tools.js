@@ -5,7 +5,7 @@ import sendFile from '../../components/content/fileHandler.js'
 import { user, isLogin } from '../../common/user/index.js'
 import {questionId } from './info.js'
 import {tipInfo, displayTipPane, displayTipPane_err, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
-import {defaultStudentFace, defaultTeacherFace} from '../../common/user/defaultInfo.js'
+import {defaultStudentFace} from '../../common/user/defaultInfo.js'
 import inputTextFilter from '../../components/content/inputTextFilter.js'
 import {sendInfoWs} from '../../components/content/inform/index.js'
 let sendingImg = false; // 判断是否正在发送图片，如果是就不能点击发表文章
