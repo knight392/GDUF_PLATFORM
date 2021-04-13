@@ -1,4 +1,4 @@
-import { user, isLogin } from '../../common/user/index.js'
+import { isLogin } from '../../common/user/index.js'
 import { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
 import {tipInfo, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'

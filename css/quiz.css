@@ -30,7 +30,7 @@ button {
 /* #region 模态框关闭按钮*/
 
 .quizModal_bg {
-    display: none;
+    /* display: none; */
     background-color: #00000066;
     position: fixed;
     width: 100%;

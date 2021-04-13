@@ -1,6 +1,5 @@
 
 import {baseHttpURL} from '../../common/baseRequestInfo.js'
-import request from '../../util/request.js'
 
 let url = baseHttpURL + '/Servlet/ReceiveFileServlet'
 //文件上传
@@ -11,10 +10,7 @@ let url = baseHttpURL + '/Servlet/ReceiveFileServlet'
  */
 export default function sendFile(formdata) { //imgObj是jq对象
   return new Promise((resolve, reject) => {
-    request(url, {
-      method:'post',
-      body:formdata
-    }).then(res => {
+    request(formdata).then(res => {
       // 返回远程的url
       resolve(res.message)
     }, err => {
@@ -23,3 +19,21 @@ export default function sendFile(formdata) { //imgObj是jq对象
   })
 }
  
+function request(data) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url,
+      type:'post',
+      data,
+      dataType: 'json',
+      processData: false, //用FormData传fd时需有这两项
+      contentType: false,
+      success(res) {
+        resolve(res)
+      },
+      error(e) {
+        reject(e)
+      }
+    })
+  })
+}
