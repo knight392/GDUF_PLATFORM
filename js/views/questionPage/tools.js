@@ -799,7 +799,6 @@ function setAuthorInfoPane(data) {
   //是否关注作者
   //判断作者是否匿名
   //头像默认 用户名改匿名
-  console.log(data);
   let src;
   if (data.userType == "student") {
     setAuthor(data.student);

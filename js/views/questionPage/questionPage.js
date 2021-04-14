@@ -148,7 +148,8 @@ $('.question_info_main .like_btn .icon').click(agreeQuestion)
 
 
 $(".author_info_box .subscribe_btn").click(function () {
-  if (isLogin()) {
+  console.log('关注');
+  if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login);
     return;
   }
