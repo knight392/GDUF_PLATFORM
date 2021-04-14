@@ -44,7 +44,7 @@ function getLocalUser() {
  * 清除本地User数据
  */
 function removeLocalUser() {
-    cookieUtil.unset('localUser')
+    cookieUtil.unset('localUser', '/','',true)
 }
 
 /**
