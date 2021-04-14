@@ -1,9 +1,9 @@
 
 // 当有用户登录后就要启动
+import { user } from '../../../../common/user/index.js';
 import { receiveInfo } from '../notification.js'
 
 let ws;
-let COMMONINFO = 1;
 
 // 连接方法, 可以在dologin中调用
 function createWebSocket(wsUrl) {
@@ -25,8 +25,15 @@ function createWebSocket(wsUrl) {
 /**
  * 外部调用，只需通知接收方有新信息
  */
-function sendInfoWs(receiver) {
-  ws.send(JSON.stringify({ type: COMMONINFO, receiver }))
+function sendInfoWs(message,receiver) {
+  ws.send(JSON.stringify({
+    senderName: user.userName,
+    senderFace: user.face,
+    senderMarkNumber:user.markNumber,
+    receiverMarkNumber: receiver.markNumber,
+    receiverName: receiver.userName,
+    content: message
+  }))
 }
 
 // 接收消息时间

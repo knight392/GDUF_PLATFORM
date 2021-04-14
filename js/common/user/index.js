@@ -53,7 +53,6 @@ function doLogin(loginData) {
 
 // 判断是否用户登录了
 function isLogin() {
-    console.log(user);
     return user == null ? false : true
 }
 
