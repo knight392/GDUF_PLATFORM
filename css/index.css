@@ -269,6 +269,10 @@ input {
     display: block;
     width: 100%;
     height: 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 3em;
 }
 
 .maincontent .indexQuizList .queY>h3>a {
@@ -289,7 +293,7 @@ input {
     float: left;
     height: 1.5em;
     padding: 3px 12px;
-    margin: 0 10px 0 5px;
+    margin: 10px 10px 0 5px;
     color: #028e9b;
     border: 1px solid #ccc;
     border-radius: 16px;
@@ -1196,7 +1200,7 @@ input {
     }
     .maincontent .indexQuizList .queY>h3>span {
         font-size: 12px;
-        margin: 0 3px 0 5px;
+        margin: 10px 3px 0 5px;
     }
     .maincontent .indexQuizList .queY .queImgY p {
         font-size: 16px;

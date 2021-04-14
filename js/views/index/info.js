@@ -32,6 +32,9 @@ export function infoIndexPART1() {
             $('.studyPartY').append(queY);
             if (res.dataList[i].tag != null) {
                 for (let j = 0; j < res.dataList[i].tag.length; j++) {
+                    if (j >= 5) {
+                        break;
+                    }
                     if (res.dataList[i].tag[j] != null) {
                         $('.queY').eq($('.queY').length - 1).find('h3').append('<span># ' + res.dataList[i].tag[j] + '</span>')
                     }
@@ -178,7 +181,7 @@ export function loadingNextPART1() {
                     }
                 }
             }
-            $('.maincontent').css('height', $('.studyPartY').outerHeight(true) + 'px');
+            $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
 
         }, 'json')
     } else {
