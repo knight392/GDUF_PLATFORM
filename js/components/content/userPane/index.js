@@ -20,7 +20,6 @@ $('.IntoPersonCenter').on({
 //#region 我的关注 √
 $(".attention").on({
     click: function() {
-        console.log("at");
         if (isLogin()) {
             attentionMajor();
         } else {
@@ -101,7 +100,7 @@ $('#hoverBox_request').click(function() {
 
 //#region 节流
 //用到节流防抖，先不做
-$('.itemList_box').scroll(debounce(getData, 300));
+// $('.itemList_box').scroll(debounce(getData, 300));
 //#endregion
 
 //#region 退出登录 √
