@@ -495,11 +495,11 @@
       <div class="lostFoundBtn">
         <div class="lostBtn">
           <span class="text">寻找物品</span>
-          <img src ='../icon/lostFound/add.svg' class='icon'>
+          <img src='../icon/lostFound/add.svg' class='icon'>
         </div>
         <div class="foundBtn">
           <span class="text">寻找失主</span>
-          <img src ='../icon/lostFound/add.svg' class='icon'>
+          <img src='../icon/lostFound/add.svg' class='icon'>
         </div>
       </div>
       <!-- 刷新按钮 -->
@@ -513,7 +513,7 @@
   <!-- 物品展示区 -->
   <div class="platform">
     <div class="item_containner">
-      
+
     </div>
   </div>
 
@@ -775,7 +775,7 @@
           <div class="pictureBox">
             <span class="tip">添加图片：</span>
             <div class="addPic">
-              <div class="imgBox">
+              <div class="imgBox" id='imgBox_lost'>
 
               </div>
               <div class="addBtn">
@@ -1074,7 +1074,7 @@
           <div class="pictureBox">
             <span class="tip">添加图片：</span>
             <div class="addPic">
-              <div class="imgBox">
+              <div class="imgBox" id='imgBox_found'>
 
               </div>
               <div class="addBtn">
@@ -1102,9 +1102,10 @@
 
 
   <script type="text/html" id="templateAddImage">
-            <div class="imgItem">
-                <img src="{{base64}}" alt="{{name}}" type="img">
-            </div>
+    <div class="imgItem">
+        <i class='removePicture'>&times;</i>
+        <img src="{{base64}}" alt="{{name}}" type="img">
+    </div>
   </script>
   <!-- 展示的物品模板 -->
   <script type="text/html" id="templateFoundItem">

@@ -1,5 +1,7 @@
 import {selectObjectType, submit_found, readFile_found} from './tool.js'
 import {initCalendar, bindSelectDayEvent} from '../calendar/calendar.js'
+import BindRmoveItemEvent from '../imgRemoveHandler.js'
+
  $(".modal_bg_found .objClass_entrance").on("mouseenter",function(){
     $(this).find(".objClassPane").stop().fadeIn(200);
 })
@@ -51,6 +53,11 @@ $(".modal_bg_found .addPic .addBtn").on("click",function(){
     $(this).parents(".addPic").find("input").click();
 })
 
+// 绑定移除图片事件
+
+BindRmoveItemEvent('imgBox_found', 'removePicture', function() {
+  $(this).parent('.imgItem').remove();
+})
 
 $('.modal_bg_found .addPic input').change(readFile_found);
 

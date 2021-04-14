@@ -356,8 +356,10 @@
     display: flex;
     justify-content: space-between;
     max-width: 300px;
+    overflow-x: auto;
 }
 .modal_bg_found .addPic .imgBox .imgItem{
+    position: relative;
     margin-right:20px;
     float: left;
     width:130px;
@@ -369,6 +371,18 @@
     justify-content: center;
     align-items: center;
 }
+.imgBox .imgItem .removePicture{
+  display: none;
+  position: absolute;
+  top:8px;
+  right:8px;
+  font-size:14px;
+}
+.imgBox .imgItem:hover .removePicture{
+  display: inline-block;
+  color:rgb(243, 98, 98);
+}
+
 .modal_bg_found .addPic .imgBox .imgItem img{
     width: auto;
     height: auto;

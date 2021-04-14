@@ -17,7 +17,7 @@ function getLocation_lost() {
   return $(".modal_bg_lost .lostArea .value .text").html() + "" + $(".modal_bg_lost .lostArea .value .areaDetail").val();
 }
 
-//插入图片：现在就只能插入到输入框的最后
+//插入图片
 function readFile_lost() {
   if (!isImage(this.files[0].name)) {　　 //判断上传文件格式
     return displayTipPane_warn(tipInfo.img.format_warn);

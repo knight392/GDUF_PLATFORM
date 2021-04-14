@@ -41,14 +41,6 @@ function displayLabels(labels) {
     // rebindLabel.call($(this));
 }
 
-// 对父容器使用事件委派来处理删除item
-function BindrRmoveItemEvent(containerId, btnClassName, handler) {
-    $(containerId).on('click', function(e) {
-        if (e.target.className = btnClassName) {
-            handler.call(e.target)
-        }
-    })
-}
 
 // // 应该可以是使用事件委派来解决
 
@@ -250,4 +242,4 @@ function clearPane() {
 
 
 
-export { getContentItem, textInputHandler, addImage, addLableManually, getKeyword, sendQuestion, BindrRmoveItemEvent }
+export { getContentItem, textInputHandler, addImage, addLableManually, getKeyword, sendQuestion }

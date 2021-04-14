@@ -1,4 +1,5 @@
-import {textInputHandler, getKeyword, addImage, addLableManually, sendQuestion, BindrRmoveItemEvent } from './tool.js'
+import {textInputHandler, getKeyword, addImage, addLableManually, sendQuestion} from './tool.js'
+import BindRmoveItemEvent from '../imgRemoveHandler.js'
 // 作用是点击空白处能关闭模态框
 $(".quizModal_bg").on({
   click: function () {
@@ -22,7 +23,7 @@ $('.quizModal .fadeout').click(function () {
 $(".quizModal_bg_askQuestion textarea").on("change", textInputHandler)
 
 // 绑定删除图片事件
-BindrRmoveItemEvent('#picture_container', 'removePicture', function () {
+BindRmoveItemEvent('#picture_container', 'removePicture', function () {
   $(this).parent('.picture').remove();
 })
 
