@@ -1,6 +1,6 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js'
 import { isLogin, user } from '../../common/user/index.js'
-import { displayTipPane_success, tipInfo } from '../../components/content/tipPane.js'
+import { displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import { loadingNextPART1, loadingNextPART2, infoIndexPART1, infoIndexPART2 } from './info.js'
 import { insertImgVideo, sendDevel } from './tools.js'
@@ -157,9 +157,14 @@ $(".copyurlY").on({
 $('.issueWidgetY li').on({
     click: function(e) {
         e.stopPropagation();
+        if ($(this).find('.issWidgetSonY').length == 0) {
+            displayTipPane_warn(tipInfo.dev.mes);
+            return;
+        }
         $(this).find('.issWidgetSonY').slideDown(300);
         $(this).find('.iconfont').css('color', '#028e9b');
         $(this).find('em').css('color', '#028e9b');
+
         $(this).siblings('li').find('.issWidgetSonY').slideUp(300);
         $(this).siblings('li').find('.iconfont').css('color', '#000');
         $(this).siblings('li').find('em').css('color', '#000');

@@ -37,9 +37,6 @@ export function getData() {
     // console.log("拖拽滚动条");
     if (scrollTop + curHeight > totalHeight) { //滚动条到底
         page++;
-        // console.log(page)
-        // console.log("到达了底部")
-        // getData();//获取数据的方法
     }
 }
 

@@ -127,7 +127,7 @@ input {
     line-height: 50px;
     cursor: pointer;
     transition: all 0.1s;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .nav .functionNav li:hover {
@@ -318,28 +318,30 @@ input {
 }
 
 .QAndM>.cueY {
-    margin-right: 120px;
+    margin-right: 100px;
+    margin-left: 20px;
     border: 2px solid #fff;
     padding: 0 10px 0 30px;
     border-radius: 16px;
 }
 
 .QAndM>.cueY>.fadeinQuiz {
-    font-size: 21px;
+    font-size: 19px;
     width: 50px;
     position: relative;
 }
 
 .QAndM>.cueY>.fadeinQuiz>.iconyumao {
     position: absolute;
-    left: -26px;
-    font-size: 31px;
+    left: -28px;
+    top: 2px;
+    font-size: 30px;
 }
 
 .QAndM span.message,
 .QAndM span.cueY {
     float: left;
-    width: 40px;
+    width: 38px;
     height: 41px;
     /* margin-right: 35px; */
     /* line-height: 120px; */
@@ -499,7 +501,7 @@ input {
     margin-top: 19px;
     width: 120px;
     float: right;
-    height: 90px;
+    /* height: 90px; */
     box-sizing: border-box;
 }
 
@@ -663,7 +665,7 @@ input {
     display: none;
     z-index: 1;
     background-color: #fff;
-    border-radius: 22px 0 0 22px;
+    border-radius: 22px;
     /* border: 1px solid #5ec4cd; */
     border-right: none;
     /* transition: all 0.5s; */
@@ -677,10 +679,10 @@ input {
     content: "";
     display: block;
     position: absolute;
-    right: 5px;
+    right: 0px;
     top: 50%;
     transform: translate(0, -50%);
-    height: 100%;
+    height: 93%;
     width: 1px;
     background-color: #ccc;
 }
@@ -811,7 +813,7 @@ input {
         width: 180px;
     }
     .nav .functionNav li {
-        font-size: 18px;
+        font-size: 17px;
     }
     .nav .search form {
         height: 50px;
