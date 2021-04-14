@@ -1,3 +1,4 @@
+import { isLogin } from '../../../common/user/index.js';
 import debounce from '../../../util/debounce.js'
 import { getSearchMessageY } from './tools.js'
 
@@ -72,7 +73,7 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
 $('.cueY').click(function() {
     if (isLogin()) {
         $('.quizModal_bg').fadeIn();
-        $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
+        // $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
         // $('.modal').fadeIn();
         $('.quizModal').css({
             transform: 'translate(-50%,-50%) scale(1)'
