@@ -974,19 +974,29 @@ input {
     position: absolute;
     top: 151px;
     right: -21px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     color: #fff;
-    width: 40px;
     padding: 10px;
     cursor: pointer;
     transition: all ease-in 0.1s;
     border-radius: 50%;
     text-align: center;
-    line-height: 40px;
+    line-height: 60px;
     background-color: #5ec4cd;
     border: 2px solid rgba(94, 196, 205, 0.9)
 }
-
+.modalDisplayPane:hover .text{
+  display: none;
+}
+.modalDisplayPane .icon{
+  position: relative;
+  display: none;
+  top:13px;
+}
+.modalDisplayPane:hover .icon{
+  display: inline-block;
+}
 .modalDisplayPane::after {
     width: 1.5px;
     height: 50px;
@@ -1000,7 +1010,7 @@ input {
 }
 
 .modalDisplayPane .name {
-    font-size: 26px;
+    font-size: 24px;
     font-family: "宋体";
 }
 
@@ -1043,8 +1053,26 @@ input {
     width: 3em;
     letter-spacing: 3px;
 }
+.lostFoundBtn .icon{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-
+.lostFoundBtn .lostBtn:hover .text{
+  display: none;
+}
+.lostFoundBtn .lostBtn:hover .icon{
+  display: inline-block;
+}
+.lostFoundBtn .foundBtn:hover .text{
+  display: none;
+}
+.lostFoundBtn .foundBtn:hover .icon{
+  display: inline-block;
+}
 /* @keyframes btnActive{
     from{
         border-color:rgb(136, 222, 230)
@@ -1072,7 +1100,7 @@ input {
 .refreshBtn {
     position: absolute;
     top: 263px;
-    right: -21px;
+    right: -8px;
     background-color: rgb(255, 209, 111);
     font-size: 20px;
     text-align: center;
@@ -1086,13 +1114,19 @@ input {
     cursor: pointer;
 }
 
-.refreshBtn:hover {
-    text-decoration: underline;
+.refreshBtn:hover .text{
+    display: none;
 }
 
-.refreshBtn:hover {
-    text-decoration: underline;
+.refreshBtn .icon{
+  position: relative;
+  top:8px;
 }
+
+.refreshBtn:hover .icon{
+  display: inline-block;
+}
+
 
 
 /* 筛选条件信息盒 */

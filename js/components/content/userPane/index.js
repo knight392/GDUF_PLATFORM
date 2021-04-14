@@ -1,7 +1,6 @@
 // 用户信息面板放这里
 
-import { isLogin } from "../../../common/user/index.js";
-import { doLogOff } from "../../../common/user/index.js";
+import { isLogin, doLogOff } from "../../../common/user/index.js";
 import debounce from "../../../util/debounce.js";
 import { displayTipPane, displayTipPane_warn, tipInfo } from "../tipPane.js";
 import { getData, attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY } from "./tools.js";

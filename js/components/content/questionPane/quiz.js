@@ -3,9 +3,6 @@ import {textInputHandler, getKeyword, addImage, addLableManually, sendQuestion, 
 $(".quizModal_bg").on({
   click: function () {
     $('.quizModal_bg').fadeOut(); // 其实就是css 的过渡+ display
-    $('.quizModal').css({
-      transform: 'translate(-50%,-50%) scale(0.7)'
-    })
   }
 })
 $(".quizModal").on({

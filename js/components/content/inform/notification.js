@@ -100,8 +100,7 @@ function messageChat() {
             type: "chat",
         }
     }).then(res => {
-        $(".private").html("");
-        // console.log(res);
+        $(".private").html("")
         pindex = 0;
         for (let i = res.dataList.length - 1; i > 0; i--) {
             const item = $("<li class='item chatBtn' target='" + res.dataList[i].senderMarkNumber + "' targetName='" + res.dataList[i].senderName + "' data-pindex='" + pindex + "'></li>");
@@ -138,7 +137,14 @@ function messageChat() {
             lastTarget = $(this).attr("targetName");
             $(".platform_chat").fadeIn();
             //这次的webSocket是有发送目标的
-            createWebSocket();
+            // createWebSocket();
         });
     })
 }
+
+// 接收通知时触发的函数，出现小红点，请求新的信息
+function receiveInfo() {
+  console.log('收到通知');
+}
+
+export {receiveInfo}

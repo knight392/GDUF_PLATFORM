@@ -261,7 +261,7 @@ function changeMode() {
   if ($(this).attr("nextAction") == "seeFoundGoods") {
     //先清空，再加载
     // console.log("查看失物招领");
-    $(this).find(".name").html("招");
+    $(this).find(".name").html("招领");
     $(this).attr("title", "点击查看寻物启事");
     display_modal = "found";
     getInfWay = "all";
@@ -274,7 +274,7 @@ function changeMode() {
     // console.log("查看寻物启事");
     display_modal = "lost";
     getInfWay = "all";
-    $(this).find(".name").html("寻");
+    $(this).find(".name").html("寻物");
     $(this).attr("title", "点击查看失物招领")
     // scrollId = null;
     // modechanging = true; //loadGoods也有写

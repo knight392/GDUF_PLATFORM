@@ -13,8 +13,8 @@ function getQueryletiable(letiable) {
   return (false);
 }
 
-function setAuthorInfo(author) {
+function setAuthor(author) {
   oAuthor = author
 }
 
-export {oAuthor, questionId, setAuthorInfo}
+export {oAuthor, questionId, setAuthor}

@@ -35,7 +35,6 @@ $(".nav").find(".searchBar").on({
         $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
         $(this).parent().siblings(".searchContent").hide(200);
 
-
     }
 })
 
@@ -67,6 +66,27 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
         $(this).parent().siblings(".searchContent").hide(200);
     }
 }, 250, true));
+
+
+// 打开提问模态框
+$('.cueY').click(function() {
+    if (isLogin()) {
+        $('.quizModal_bg').fadeIn();
+        $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
+        // $('.modal').fadeIn();
+        $('.quizModal').css({
+            transform: 'translate(-50%,-50%) scale(1)'
+        })
+    } else {
+        displayTipPane_warn("只有登录了才能提问哦~");
+    }
+})
+
+// $('.searchContent>li').on({
+//   click: function () {
+//     window.open($(this).);
+//         }
+//     })
 //#endregion
 
 

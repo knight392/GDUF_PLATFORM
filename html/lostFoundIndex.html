@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>失物招领</title>
-
   <link rel="stylesheet" href="../css/iconfont.css" type="text/css">
   <link rel="stylesheet" href="../css/logOn.css" type="text/css">
   <link rel="stylesheet" href="../css/hoverPaneY.css" type="text/css">
@@ -488,21 +487,25 @@
       </div>
       <!-- 模式提示板 -->
       <div class="modalDisplayPane" nextAction="seeLostGoods" title="点击查看寻物启事">
-        <span class="name">招</span>
+        <span class="name text">招领</span>
+        <img src="../icon/lostFound/change.svg" class="icon" width='36px'>
       </div>
 
       <!-- 发起失物招领和寻物启事 -->
       <div class="lostFoundBtn">
         <div class="lostBtn">
           <span class="text">寻找物品</span>
+          <img src ='../icon/lostFound/add.svg' class='icon'>
         </div>
         <div class="foundBtn">
           <span class="text">寻找失主</span>
+          <img src ='../icon/lostFound/add.svg' class='icon'>
         </div>
       </div>
       <!-- 刷新按钮 -->
-      <div class="refreshBtn">
-        刷新
+      <div class="refreshBtn" title="点击刷新">
+        <span class="text">刷新</span>
+        <img src="../icon/lostFound/reflesh.svg" class="icon">
       </div>
     </div>
   </nav>
@@ -510,302 +513,7 @@
   <!-- 物品展示区 -->
   <div class="platform">
     <div class="item_containner">
-      <!-- <a href="#" style="background-color: #94abea;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1007.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" style="background-color: #ffd16f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1008.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #88dee6;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1009.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#"  style="background-color:  #ffc5c5;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1012.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" style="background-color: #ffb36f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1011.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #94abea;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1010.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" style="background-color: #ffd16f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1008.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #88dee6;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1007.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#"  style="background-color: #ffc5c5;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1012.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#"  style="background-color: #ffb36f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1012.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #94abea;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1010.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" style="background-color: #ffd16f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1008.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #88dee6;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1007.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color: #ffd16f;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1008.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-            <a href="#" style="background-color:  #ffc5c5;;" class="item">
-                <div class="imgBox">
-                    <img src="../img/bg1007.jpg">
-                </div>
-                <div class="textBox">
-                    <div class="item_title">
-                        笔记本电脑
-                    </div>
-                    <span class="label">数码</span>
-                    <div class="detail">
-                        <span class="area">
-                            北极D305
-                        </span>
-                        <div class="time">
-                            2020/11/15
-                        </div>
-                    </div>
-    
-                </div>
-            </a>
-             -->
+      
     </div>
   </div>
 
@@ -1431,10 +1139,9 @@
 
                 </div>
             </a>
-        </script>
+  </script>
   <!-- 提示信息弹框 -->
   <div class="tipPane">
-    请先完成登录！
   </div>
 
   <!-- 图片提交的高度获取器 -->
@@ -1645,6 +1352,8 @@
   <script src='../js/components/content/lostPane/lostPane.js' type='module'></script>
   <script src='../js/components/content/foundPane/foundPane.js' type='module'></script>
   <script src="../js/components/content/logOn/logOn.js" type="module"></script>
+  <script src='../js/components/content/inform/notification.js' type="module"></script>
+  <script src="../js/components/content/userPane/index.js" type='module'></script>
 </body>
 
 </html>

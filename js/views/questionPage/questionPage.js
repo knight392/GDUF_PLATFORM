@@ -1,14 +1,11 @@
 import { isLogin } from '../../common/user/index.js'
-import { fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
+import {scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
 import {tipInfo, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import debounce from '../../util/debounce.js'
 import  bindImageSacningEvent from '../../components/content/imgDisplayTemplate.js'
 
-//一进入之后加载一些
-let answerPage = 1;
-//  滑到底部加载更多回答
-let isNoMoreAnswer = false;
+
 // 页面初始化
 (function() {
   loadQuestion();
@@ -42,7 +39,9 @@ $('#copyText').on('click',function () {
 
 // 获取当前文本链接
 $(".copyurlY").on({
-  click: getLink
+  click: () => {
+    getLink(location.href)
+  }
 })
 
 //#endregion
@@ -137,24 +136,7 @@ $("#sendAnswerBtn").click(function () {
 //获取回答，发送请求，获取相应，动态添加
 
 
-$(window).on("scroll", debounce(function () {
-  //滚动条到顶部的高度
-  let scrollTop = Math.ceil($(this).scrollTop());
-  //窗口高度
-  let curHeight = $(this).height();
-  //整个文档高度
-  let totalHeight = $(document).height();
-  //滚动条到底
-  if (scrollTop + curHeight >= totalHeight) {
-    //还要根据是否有下一页判断可进行发送请求
-    if (isNoMoreAnswer) {
-      displayTipPane_warn("没有更多回答了哦！");
-      return;
-    }
-    getAnswer(++answerPage);
-    //console.log(123);
-  }
-}, 10, true));
+$(window).on("scroll", debounce(scrollHandler, 10, true));
 
 
 //获取某个回答的评论
@@ -168,7 +150,8 @@ $('.question_info_main .like_btn .icon').click(agreeQuestion)
 
 
 $(".author_info_box .subscribe_btn").click(function () {
-  if (isLogin()) {
+  console.log('关注');
+  if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login);
     return;
   }
@@ -182,19 +165,6 @@ $(".author_info_box .subscribe_btn").click(function () {
   }
 })
 
-// 打开提问模态框
-$('.cueY').click(function () {
-  if (isLogin()) {
-    $('.quizModal_bg').fadeIn();
-    $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
-    // $('.modal').fadeIn();
-    $('.quizModal').css({
-      transform: 'translate(-50%,-50%) scale(1)'
-    })
-  } else {
-    displayTipPane_warn("只有登录了才能提问哦~");
-  }
-})
 
 
 //渲染问题
