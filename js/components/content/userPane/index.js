@@ -1,9 +1,8 @@
 // 用户信息面板放这里
 
 import { isLogin, doLogOff } from "../../../common/user/index.js";
-import debounce from "../../../util/debounce.js";
-import { displayTipPane, displayTipPane_warn, tipInfo } from "../tipPane.js";
-import { getData, attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY } from "./tools.js";
+import { displayTipPane_warn, tipInfo } from "../tipPane.js";
+import { attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY } from "./tools.js";
 
 //#region 个人中心 提示正在开发
 $('.IntoPersonCenter').on({
@@ -117,7 +116,7 @@ $(".exitLogonY").on({
         $(".myAns").html("");
         $(".mycollection").html("");
         doLogOff();
-        displayTipPane("已退出登录~")
+        displayTipPane_warn("已退出登录~")
             //问题页面判断是否登录
     }
 });
@@ -173,6 +172,11 @@ $(".hpSecond .secondPane_entrance").on({
         let secondPane = $("." + $(this).attr("target"));
         let generalPane = $(this).parents(".hpSecond_general");
         if (secondPane.length == 0) {
+            $(".hpSecondSecond").animate({
+                right: "0",
+                borderRadius: "22px",
+            }, 300);
+            generalPane.css("borderRadius", "22px");
             // generalPane.css("borderRadius", "22px");
             return;
         }

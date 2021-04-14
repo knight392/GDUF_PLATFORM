@@ -1,3 +1,4 @@
+import debounce from '../../util/debounce.js';
 import { chart, rcnextp } from './info.js';
 import { lostfoundYOpacityPosition, inschoolNewsYCssPosition } from './tools.js'
 
@@ -65,26 +66,28 @@ $(function() {;
     //#region 滚轮事件 
 
     let index = parseInt($(document).scrollTop() / window.innerHeight);
-    window.addEventListener("wheel", function(e) {
-        let evt = e || window.event;
-        evt.preventDefault();
-        if (evt.deltaY > 0 || evt.wheelDelta > 0) {
-            if (index >= 4) {
-                index = 4;
-            } else {
-                index++;
+    window.addEventListener("wheel",
+        debounce(function(e) {
+            let evt = e || window.event;
+            evt.preventDefault();
+            if (evt.deltaY > 0 || evt.wheelDelta < 0) {
+                if (index >= 4) {
+                    index = 4;
+                } else {
+                    index++;
+                }
+            } else if (evt.deltaY < 0 || evt.wheelDelta > 0) {
+                if (index <= 0) {
+                    index = 0;
+                } else {
+                    index--;
+                }
             }
-        } else if (evt.deltaY < 0 || evt.wheelDelta < 0) {
-            if (index <= 0) {
-                index = 0;
-            } else {
-                index--;
-            }
-        }
-        $('body, html').stop().animate({
-            scrollTop: window.innerHeight * index + 'px',
-        }, 500)
-    }, { passive: false });
+            console.log(evt.deltaY, evt.wheelDelta);
+            $('body, html').stop().animate({
+                scrollTop: window.innerHeight * index + 'px',
+            }, 500)
+        }, 200, true), { passive: false });
 
     //#endregion
 
