@@ -356,7 +356,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 300px;
-    overflow-x: auto;
+
 }
 .modal_bg_found .addPic .imgBox .imgItem{
     position: relative;
@@ -374,9 +374,11 @@
 .imgBox .imgItem .removePicture{
   display: none;
   position: absolute;
-  top:8px;
-  right:8px;
-  font-size:14px;
+  top:0px;
+  right:0px;
+  cursor: pointer;
+  font-size:20px;
+  z-index:2
 }
 .imgBox .imgItem:hover .removePicture{
   display: inline-block;

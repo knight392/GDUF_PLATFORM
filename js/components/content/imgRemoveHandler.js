@@ -7,7 +7,8 @@
  */
 export default function BindRmoveItemEvent(containerId, btnClassName, handler) {
   $(containerId).on('click', function(e) {
-      if (e.target.className = btnClassName) {
+      if (e.target.className == btnClassName) {
+        console.log(e.target);
           handler.call(e.target)
       }
   })

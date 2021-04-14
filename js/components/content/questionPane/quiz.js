@@ -28,7 +28,7 @@ BindRmoveItemEvent('#picture_container', 'removePicture', function () {
 })
 
 // 绑定删除标签事件
-BindrRmoveItemEvent('#label_container', 'removeLabel', function () {
+BindRmoveItemEvent('#label_container', 'removeLabel', function () {
   $(this).parent('.labelItem').remove();
 })
 

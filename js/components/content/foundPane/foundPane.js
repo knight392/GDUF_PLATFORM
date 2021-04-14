@@ -55,7 +55,7 @@ $(".modal_bg_found .addPic .addBtn").on("click",function(){
 
 // 绑定移除图片事件
 
-BindRmoveItemEvent('imgBox_found', 'removePicture', function() {
+BindRmoveItemEvent('#imgBox_found', 'removePicture', function() {
   $(this).parent('.imgItem').remove();
 })
 

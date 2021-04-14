@@ -55,7 +55,7 @@ $('.modal_bg_lost .addPic input').change(readFile_lost);
 
 // 绑定移除图片事件
 
-BindRmoveItemEvent('imgBox_lost', 'removePicture', function() {
+BindRmoveItemEvent('#imgBox_lost', 'removePicture', function() {
   $(this).parent('.imgItem').remove();
 })
 
