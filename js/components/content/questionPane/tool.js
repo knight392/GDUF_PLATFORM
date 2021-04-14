@@ -36,7 +36,7 @@ function getKeyword() {
 function displayLabels(labels) {
     $('.quizModal_bg_askQuestion .label .nodeBoard').html("");
     for (let i = 0; i < labels.length && i < 5; i++) {
-        $('.quizModal_bg_askQuestion .label .nodeBoard').append('<span><div class="text">' + labels[i] + '</div><i class="removeLabel">&times;</i></span>');
+        $('.quizModal_bg_askQuestion .label .nodeBoard').append('<span class="labelItem"><div class="text">' + labels[i] + '</div><i class="removeLabel">&times;</i></span>');
     }
     // rebindLabel.call($(this));
 }
@@ -182,7 +182,8 @@ function getSubmitData() {
     //添加图片
     let imgArr = $(".quizModal_bg_askQuestion .insertPicture .picture_containner").children();
     for (let i = 0; i < imgArr.length; i++) {
-        let url = $(imgArr[i]).find("img").attr("remoteurl");
+        let url = $(imgArr[i]).attr("remoteurl");
+        console.log(url);
         contents[i + 1] = getContentItem(++contents_order, "img", url);
     }
 
