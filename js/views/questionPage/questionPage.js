@@ -39,7 +39,9 @@ $('#copyText').on('click',function () {
 
 // 获取当前文本链接
 $(".copyurlY").on({
-  click: getLink
+  click: () => {
+    getLink(location.href)
+  }
 })
 
 //#endregion
