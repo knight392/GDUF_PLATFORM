@@ -3,9 +3,9 @@
 import { baseHttpURL } from "../../../common/baseRequestInfo.js";
 import { isLogin, user } from "../../../common/user/index.js";
 import request from "../../../util/request.js";
+import { displayTipPane_warn, tipInfo } from "../tipPane.js";
 import { goLeftY, goRightY } from "../userPane/tools.js";
 import { createWebSocket } from "./listner/index.js";
-
 
 //#region 消息通知 √ 
 
@@ -35,8 +35,9 @@ $(".message").on({
 //右边:私信
 $('.message #hoverBox_privateMessage').on({
     click: function() {
-        goRightY($(this), ".system", ".private");
-        messageChat();
+        displayTipPane_warn(tipInfo.dev.mes);
+        // goRightY($(this), ".system", ".private");
+        // messageChat();
     }
 })
 
@@ -47,8 +48,40 @@ $('.message #hoverBox_dynamicMessage').on({
         messageInf();
     }
 });
+
+// 处理小红点
+if (!hasRedPoint()) {
+    $(".icondian").hide(200);
+} else {
+    $(".icondian").show();
+}
+
+$(".messageSystemItem").on({
+    click: function() {
+        displayTipPane_warn(tipInfo.dev.mes);
+        $(this).find(".info_point").find("path").attr("fill", '#fff');
+        if (!hasRedPoint()) {
+            $(".icondian").hide(200);
+        } else {
+            $(".icondian").show();
+        }
+    }
+});
 //#endregion
 
+/**
+ * 
+ * @returns 自动遍历动态 返回是否有未读消息
+ */
+function hasRedPoint() {
+    for (let i = 0; i < $(".messageSystemItem").length; i++) {
+        console.log($(".messageSystemItem").eq(i).find(".info_point").find("path").attr("fill"));
+        if ($(".messageSystemItem").eq(i).find(".info_point").find("path").attr("fill") === '#E6A23C') {
+            return true;
+        }
+    }
+    return false;
+}
 
 // 动态通知
 function messageInf() {
@@ -66,7 +99,7 @@ function messageInf() {
         // console.log(res);
         $(".system").html("");
         for (let i = res.dataList.length - 1; i > 0; i--) {
-            const item = $("<li class='item'></li>");
+            const item = $("<li class='item messageSystemItem'></li>");
             const src = '../' + res.dataList[i].senderFace.substring(2);
             const img = $("<img src='" + src + "'>");
             const svg = $("<svg class='info_point' class='icon' height='10' p-id='12380' t='1602330426902' version='1.1' viewBox='0 0 1024 1024' width='10' xmlns='https://www.w3.org/2000/svg'><path d='M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z' fill='#E6A23C' p-id='12381'></svg>");
@@ -81,10 +114,24 @@ function messageInf() {
             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(information);
             $(".message .contentBox_information").find(".system").find(".item").eq(0).append(time);
         }
+        //动态获取的信息 去掉小红点后再次获取过来 还会不会显示小红点
+        $(".messageSystemItem").on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+                $(this).find(".info_point").find("path").attr("fill", '#fff');
+                if (!hasRedPoint()) {
+                    $(".icondian").hide(200);
+                } else {
+                    $(".icondian").show();
+                }
+            }
+        });
     })
 }
 
-// 私信通知
+// receiveInfo();
+
+// 私信通知 先不做 提示正在开发中
 function messageChat() {
     let send = new Array();
     let pindex;
@@ -144,7 +191,8 @@ function messageChat() {
 
 // 接收通知时触发的函数，出现小红点，请求新的信息
 function receiveInfo() {
-  console.log('收到通知');
+    $(".icondian").show();
+    messageInf();
 }
 
-export {receiveInfo}
+export { receiveInfo }
