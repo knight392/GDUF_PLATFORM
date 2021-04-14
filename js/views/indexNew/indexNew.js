@@ -1,3 +1,4 @@
+import { displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js';
 import debounce from '../../util/debounce.js';
 import { chart, rcnextp } from './info.js';
 import { lostfoundYOpacityPosition, inschoolNewsYCssPosition } from './tools.js'
@@ -64,7 +65,6 @@ $(function() {;
     //#endregion
 
     //#region 滚轮事件 
-
     let index = parseInt($(document).scrollTop() / window.innerHeight);
     window.addEventListener("wheel",
         debounce(function(e) {
@@ -83,7 +83,6 @@ $(function() {;
                     index--;
                 }
             }
-            console.log(evt.deltaY, evt.wheelDelta);
             $('body, html').stop().animate({
                 scrollTop: window.innerHeight * index + 'px',
             }, 500)
@@ -183,6 +182,14 @@ $(function() {;
         sourceNews[i].title = sourceNews[i].innerText;
     };
     //#endregion
+
+    //#region 点击新闻 提示在开发
+    $(".schoolNews a").on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        })
+        //#endregion
 
     //#endregion
 
