@@ -1,10 +1,5 @@
 import debounce from '../../../util/debounce.js'
-// import { baseHttpURL } from '../../../common/baseRequestInfo.js';
-import { displayTipPane_warn, tipInfo } from '../tipPane.js'
-
 import { getSearchMessageY } from './tools.js'
-import { doLogOff, isLogin, user } from '../../../common/user/index.js';
-
 
 // 清空搜索栏
 (function() {
@@ -25,6 +20,7 @@ $("body").on({
 })
 
 //#region 搜索框 √ 点击 + 得失焦点 + 节流 √ 
+$('.searchContent').css("width", $('.searchBar').innerWidth() + $('.searchBtn').innerWidth() + "px");
 $(".search").on({
     click: function(e) {
         e.stopPropagation();
@@ -39,15 +35,13 @@ $(".nav").find(".searchBar").on({
         $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
         $(this).parent().siblings(".searchContent").hide(200);
 
-        //失去焦点 清空li的内容
-        // $(this).parent().siblings(".searchContent").find("li").remove();
     }
 })
 
 //#region 搜索框内容
 $(".nav").find(".searchBar").bind("keyup", debounce(function() {
     //键盘抬起事件 + val() 非空 发送请求 
-    // console.log($(this).val());
+
     if ($(this).val() != null || $(this).val() != "") {
         //搜索框获得焦点 bar/btn 的边框圆角 变化 + bar 的背景 变白 + 联想内容 显示
         $(".searchBar").css("borderRadius", "16px 0 0 0");
@@ -75,17 +69,17 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
 
 
 // 打开提问模态框
-$('.cueY').click(function () {
-  if (isLogin()) {
-    $('.quizModal_bg').fadeIn();
-    $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
-    // $('.modal').fadeIn();
-    $('.quizModal').css({
-      transform: 'translate(-50%,-50%) scale(1)'
-    })
-  } else {
-    displayTipPane_warn("只有登录了才能提问哦~");
-  }
+$('.cueY').click(function() {
+    if (isLogin()) {
+        $('.quizModal_bg').fadeIn();
+        $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
+        // $('.modal').fadeIn();
+        $('.quizModal').css({
+            transform: 'translate(-50%,-50%) scale(1)'
+        })
+    } else {
+        displayTipPane_warn("只有登录了才能提问哦~");
+    }
 })
 
 // $('.searchContent>li').on({
@@ -95,7 +89,7 @@ $('.cueY').click(function () {
 //     })
 //#endregion
 
-//#endregion
+
 
 //#region 点击登录button进入登录弹框 √
 

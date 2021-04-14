@@ -6,7 +6,6 @@ import { displayTipPane, displayTipPane_warn, tipInfo } from "../tipPane.js";
 import { getData, attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY } from "./tools.js";
 
 //#region 个人中心 提示正在开发
-
 $('.IntoPersonCenter').on({
     click: function() {
         if (isLogin()) {
@@ -51,7 +50,6 @@ $('#hoverBox_interest').click(function() {
 });
 //#endregion
 
-
 //#region 我的收藏 提示正在开发
 $(".myCollY").on({
     click: function() {
@@ -64,7 +62,6 @@ $(".myCollY").on({
     }
 });
 //#endregion
-
 
 //#region 我的问答 √
 $(".myQAY").on({
@@ -107,8 +104,6 @@ $('#hoverBox_request').click(function() {
 $('.itemList_box').scroll(debounce(getData, 300));
 //#endregion
 
-
-
 //#region 退出登录 √
 $(".exitLogonY").on({
     click: function() {
@@ -129,62 +124,102 @@ $(".exitLogonY").on({
 });
 //#endregion
 
-
 //#region 二级面板的位置动态变化
 $(window).on("resize", function() {
     // console.log($(".hpSecond").css("width"));
     $(".hpSecondSecond").css("right", $(".hpSecond").css("width"))
 })
 
+$('.headPortrait').on({
+    mouseenter: function(e) {
+        e.stopPropagation();
+        $(".hpSecond").stop().fadeIn(200);
+    },
+    mouseleave: function(e) {
+        e.stopPropagation();
+        $(".hpSecond").stop().fadeOut(200);
+        $('.hpSecondSecond').stop().fadeOut(200);
+        $('.hpSecond_general').css("borderRadius", "22px");
+        $('.secondPane_entrance').addClass("gohovercolor");
+        $('.secondPane_entrance').find(".iconfont").css('color', '#666');
+        $('.secondPane_entrance').find("em").css('color', '#666');
+    },
+    mouseover: function(e) {
+        e.stopPropagation();
+        $(".hpSecond").stop().fadeIn(200);
+    },
+    mouseout: function(e) {
+        e.stopPropagation();
+        $(".hpSecond").stop().fadeOut(200);
+        $('.hpSecondSecond').stop().fadeOut(200);
+        $('.hpSecond_general').css("borderRadius", "22px");
+        $('.secondPane_entrance').addClass("gohovercolor");
+        $('.secondPane_entrance').find(".iconfont").css('color', '#666');
+        $('.secondPane_entrance').find("em").css('color', '#666');
+    }
+})
+
 $(".hpSecond .secondPane_entrance").on({
     click: function(e) {
-        //出现二二级导航：字体icon变蓝 + 二级导航的边框变
         e.stopPropagation();
+        $(this).removeClass("gohovercolor");
+        $(this).siblings().addClass("gohovercolor");
         $(this).siblings().find(".iconfont").css('color', '#666');
         $(this).find(".iconfont").css('color', '#028e9b');
         $(this).siblings().find("em").css('color', '#666');
         $(this).find('em').css('color', '#028e9b');
+        //出现二二级导航：字体icon变蓝 + 二级导航的边框变
+
         //根据target自定义属性名再通过类名来获取对应的二级面板
         let secondPane = $("." + $(this).attr("target"));
-        if (secondPane == null || secondPane == undefined) {
+        let generalPane = $(this).parents(".hpSecond_general");
+        if (secondPane.length == 0) {
+            // generalPane.css("borderRadius", "22px");
             return;
         }
-        let generalPane = $(this).parents(".hpSecond_general");
-        // $(".hpSecond").css("borderRadius", "0 22px 22px 0");
-        //打开二级面板的左边圆角
-        //每次打开之前恢复原来状态
-        $(".hpSecondSecond").fadeOut();
+
+        //原面板的右边圆角
+        secondPane.css("borderRadius", "22px 0 0 22px");
+        generalPane.css("borderRadius", "0 22px 22px 0");
+
+        secondPane.css("display", "block");
         $(".hpSecondSecond").animate({
-            right: "0"
+            right: "0",
+            borderRadius: "22px ",
         }, 100);
-        secondPane.css("borderRadius", "22px");
-        generalPane.css("borderRadius", "22px");
 
-        if (isLogin()) {
-            //count是实现点击一次按钮打开二级面板，再次点击就关闭
-            // 原面板的右边圆角
-            secondPane.css("borderRadius", "22px 0 0 22px");
-            generalPane.css("borderRadius", "0 22px 22px 0");
-            // 所有的二级面板消失
-            // $(this).siblings().find(".hpSecondSecond").css("display", "none");
-            secondPane.css("display", "block");
-            // 不能写死，应该获取个人中心面板的宽度
-            let right = $(".hpSecond_general").outerWidth();
-            secondPane.animate({
-                right: right + "px",
-            }, 300);
-        } else {
-            displayTipPane_warn(tipInfo.login.no_login);
+        // 不能写死，应该获取个人中心面板的宽度
+        let right = $(".hpSecond_general").outerWidth();
+        secondPane.animate({
+            right: right + "px",
+            borderRadius: "22px 0 0 22px",
+        }, 300);
+
+
+        const that = $(this);
+        $(this).siblings().on({
+            click: function() {
+                that.find(".hpSecondSecond").fadeOut();
+                secondPane.css("borderRadius", "22px")
+            }
+        })
+    },
+    mouseover: function() {
+
+        $(this).siblings(".gohovercolor").find(".iconfont").css('color', '#666');
+        $(this).siblings(".gohovercolor").find("em").css('color', '#666');
+        if ($(this).hasClass("gohovercolor")) {
+            $(this).find(".iconfont").css('color', '#4eb0b9');
+            $(this).find('em').css('color', '#4eb0b9');
         }
-
-    }
-})
-
-$(".hpSecondSecond").on({
-    click: function(e) {
+    },
+    mouseleave: function(e) {
         e.stopPropagation();
-        // count = 0;
-        $(this).css("display", "block");
+
+    },
+    mouseout: function(e) {
+        e.stopPropagation();
+
     }
 })
 

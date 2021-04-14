@@ -16,7 +16,7 @@
     height: 100%;
     /* transform: translate(-50%, -50%); */
     background-color: #fff;
-    border-radius: 22px 0 0 22px;
+    border-radius: 22px;
     font-family: 'Arial Normal', 'Arial', 'sans-serif';
     color: #666;
     box-sizing: border-box;
@@ -508,7 +508,7 @@
 .hoverBox .contentBox_information {
     margin: 15px auto 0;
     width: 92%;
-    height: 400px;
+    height: 71%;
     padding: 10px 0 5px 10px;
     border: 2px #ccc solid;
     border-radius: 22px;
@@ -709,7 +709,7 @@
         width: 60px;
     }
     .hoverBox .contentBox_information {
-        height: 426px;
+        /* height: 426px; */
     }
     .hoverBox .contentBox_information
     /* 消息通知面板 */
@@ -835,7 +835,7 @@
         height: 83px;
     }
     .hoverBox .contentBox_information {
-        height: 352px;
+        /* height: 352px; */
         border-width: 1px;
         border-radius: 18px;
         margin-top: 0;
@@ -999,7 +999,7 @@
         height: 70px;
     }
     .hoverBox .contentBox_information {
-        height: 337px;
+        /* height: 337px; */
     }
     .hoverBox .contentBox_subscribe {
         width: 82%;
@@ -1153,7 +1153,7 @@
         width: 89%;
         border-width: 1px;
         border-radius: 6px;
-        height: 308px;
+        /* height: 308px; */
     }
     .hoverBox .mode_selection .mode {
         width: 125px;
@@ -1162,7 +1162,7 @@
         height: 3px;
     }
     .hoverBox .mode_selection .mode {
-        top: 19px;
+        /* top: 19px; */
     }
     .hoverBox .contentBox_information .item .info_point {
         height: 8px;
