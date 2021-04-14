@@ -74,9 +74,18 @@ $(".nav").find(".searchBar").bind("keyup", debounce(function() {
 }, 250, true));
 
 
-// 绑定打开提问面板事件
-$(".cueY").on('click', function(){
-  $('.quizModal_bg').fadeIn(); // 其实就是css 的过渡+ display
+// 打开提问模态框
+$('.cueY').click(function () {
+  if (isLogin()) {
+    $('.quizModal_bg').fadeIn();
+    $('.fadeinQuiz').find(".iconfont").css("top", "-10px");
+    // $('.modal').fadeIn();
+    $('.quizModal').css({
+      transform: 'translate(-50%,-50%) scale(1)'
+    })
+  } else {
+    displayTipPane_warn("只有登录了才能提问哦~");
+  }
 })
 
 // $('.searchContent>li').on({

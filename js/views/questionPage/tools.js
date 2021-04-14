@@ -327,12 +327,12 @@ function getAnswer(curPage) {
     requestType: "get",
     getAnswerType: "question",
     questionId, // 进入该页面后应该会有questionId
-    markNumber: user.markNumber, // 用户者的学号
+    // markNumber: user.markNumber, // 用户者的学号
     currentPage: curPage //当前页面
   }
-  // if (user) {
-  //   data["viewerMarkNumber"] = user.markNumber;
-  // }
+  if (isLogin()) {
+    data["viewerMarkNumber"] = user.markNumber;
+  }
   request(baseHttpURL + '/Servlet/AnswerServlet', {
     method: 'get',
     body: data

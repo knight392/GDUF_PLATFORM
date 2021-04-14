@@ -141,3 +141,10 @@ function messageChat() {
         });
     })
 }
+
+// 接收通知时触发的函数，出现小红点，请求新的信息
+function receiveInfo() {
+  console.log('收到通知');
+}
+
+export {receiveInfo}
