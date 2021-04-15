@@ -21,7 +21,11 @@ $("body").on({
 })
 
 //#region 搜索框 √ 点击 + 得失焦点 + 节流 √ 
-$('.searchContent').css("width", $('.searchBar').innerWidth() + $('.searchBtn').innerWidth() + "px");
+$(window).on({
+    change: function() {
+        // $('.searchContent').css("width", $('.searchBar').innerWidth() + $('.searchBtn').innerWidth() + "px");
+    }
+})
 $(".search").on({
     click: function(e) {
         e.stopPropagation();

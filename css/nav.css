@@ -204,10 +204,10 @@ input {
 
 .nav .searchContent {
     position: absolute;
-    width: 100%;
+    width: 600px;
     /* height: 350px; */
     background-color: #fff;
-    top: 62px;
+    top: 85px;
     /* left: 17px; */
     border-radius: 0 0 16px 16px;
     padding: 10px 30px;
@@ -366,7 +366,7 @@ input {
 }
 
 .QAndM .message>.icondian {
-    color: brown;
+    color: #E6A23C;
     font-size: 50px;
     display: none;
     /* position: relative; */
@@ -378,7 +378,7 @@ input {
 }
 
 .QAndM .message>.icondian {
-    color: brown;
+    color: #E6A23C;
     font-size: 40px;
     /* position: relative; */
     top: -13px;
@@ -562,9 +562,11 @@ input {
     font-size: 18px;
 }
 
+
+/* 
 .logonHeadPortrait .headPortrait:hover .hpSecond {
     display: block;
-}
+} */
 
 .logonHeadPortrait .headPortrait .hpSecond .hpSecond_general>div {
     height: 85px;
@@ -825,6 +827,10 @@ input {
     .nav .search .searchBtn {
         width: 80px;
     }
+    .nav .search .searchContent {
+        top: 85px;
+        width: 500px;
+    }
     .nav .search .iconsousuo {
         font-size: 35px;
     }
@@ -939,6 +945,11 @@ input {
     .nav .search .searchBtn {
         width: 62px;
     }
+    .nav .search .searchContent {
+        top: 62px;
+        /* top: 85px; */
+        width: 338px;
+    }
     .nav .search .iconsousuo {
         font-size: 32px;
         right: 20px;
@@ -960,6 +971,9 @@ input {
     }
     .nav .search {
         width: 429px;
+    }
+    .nav .search .searchContent {
+        width: 427px;
     }
     .QAndM .message .messageNotification {
         width: 379PX;
@@ -1075,6 +1089,9 @@ input {
     }
     .nav .search {
         width: 350px;
+    }
+    .nav .search .searchContent {
+        width: 338px;
     }
     .QAndM .message .messageNotification {
         width: 337PX;

@@ -45,9 +45,9 @@ $('.trendsMuted').on({
 });
 //#endregion
 
-// $('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
-// $('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
-// $('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
+$('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
+$('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
+$('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
 
 $('body').on({
     click: function() {
@@ -149,10 +149,23 @@ $(".copyurlY").on({
         }
         // console.log(url);
         getLink(url);
+        displayTipPane_success(tipInfo.copy.link_success);
     }
 })
 
 //#endregion
+
+//#region  收藏 提示开发img
+$('.collectionY').on({
+        click: function() {
+            if (!isLogin()) {
+                displayTipPane_warn(tipInfo.login.no_login);
+            } else {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        }
+    })
+    //#endregion
 
 //#region 发动态
 

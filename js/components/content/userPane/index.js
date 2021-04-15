@@ -36,6 +36,7 @@ $('#hoverBox_fans').click(function() {
         displayTipPane_warn(tipInfo.login.no_login);
     }
 });
+
 //左边:我的关注
 $('#hoverBox_interest').click(function() {
     goLeftY($(this), ".attentionMe", ".myAttention");
@@ -56,7 +57,6 @@ $(".myCollY").on({
         } else {
             displayTipPane_warn(tipInfo.login.no_login);
         }
-
     }
 });
 //#endregion
@@ -91,7 +91,6 @@ $('#hoverBox_request').click(function() {
         QAcue();
     } else {
         displayTipPane_warn(tipInfo.login.no_login);
-
     }
 })
 
@@ -127,33 +126,20 @@ $(window).on("resize", function() {
     // console.log($(".hpSecond").css("width"));
     $(".hpSecondSecond").css("right", $(".hpSecond").css("width"))
 })
-
+$(document).on({
+    click: function() {
+        $(".hpSecond").stop().fadeOut(200);
+        $('.hpSecondSecond').stop().fadeOut(200);
+        $('.hpSecond_general').css("borderRadius", "22px");
+        $('.secondPane_entrance').addClass("gohovercolor");
+        $('.secondPane_entrance').find(".iconfont").css('color', '#666');
+        $('.secondPane_entrance').find("em").css('color', '#666');
+    }
+})
 $('.headPortrait').on({
-    mouseenter: function(e) {
+    click: function(e) {
         e.stopPropagation();
         $(".hpSecond").stop().fadeIn(200);
-    },
-    mouseleave: function(e) {
-        e.stopPropagation();
-        $(".hpSecond").stop().fadeOut(200);
-        $('.hpSecondSecond').stop().fadeOut(200);
-        $('.hpSecond_general').css("borderRadius", "22px");
-        $('.secondPane_entrance').addClass("gohovercolor");
-        $('.secondPane_entrance').find(".iconfont").css('color', '#666');
-        $('.secondPane_entrance').find("em").css('color', '#666');
-    },
-    mouseover: function(e) {
-        e.stopPropagation();
-        $(".hpSecond").stop().fadeIn(200);
-    },
-    mouseout: function(e) {
-        e.stopPropagation();
-        $(".hpSecond").stop().fadeOut(200);
-        $('.hpSecondSecond').stop().fadeOut(200);
-        $('.hpSecond_general').css("borderRadius", "22px");
-        $('.secondPane_entrance').addClass("gohovercolor");
-        $('.secondPane_entrance').find(".iconfont").css('color', '#666');
-        $('.secondPane_entrance').find("em").css('color', '#666');
     }
 })
 
@@ -198,31 +184,21 @@ $(".hpSecond .secondPane_entrance").on({
             borderRadius: "22px 0 0 22px",
         }, 300);
 
-
         const that = $(this);
         $(this).siblings().on({
             click: function() {
-                that.find(".hpSecondSecond").fadeOut();
+                // that.find(".hpSecondSecond").fadeOut();
                 secondPane.css("borderRadius", "22px")
             }
         })
     },
     mouseover: function() {
-
         $(this).siblings(".gohovercolor").find(".iconfont").css('color', '#666');
         $(this).siblings(".gohovercolor").find("em").css('color', '#666');
         if ($(this).hasClass("gohovercolor")) {
             $(this).find(".iconfont").css('color', '#4eb0b9');
             $(this).find('em').css('color', '#4eb0b9');
         }
-    },
-    mouseleave: function(e) {
-        e.stopPropagation();
-
-    },
-    mouseout: function(e) {
-        e.stopPropagation();
-
     }
 })
 
