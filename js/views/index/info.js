@@ -2,7 +2,7 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import { displayTipPane_success, displayTipPane_warn } from '../../components/content/tipPane.js';
 import request from '../../util/request.js';
 import template from '../../util/template.js';
-
+import {agreeQuestion} from './tools.js';
 export let mainScrollid1; //存scrollId 用来加载下一页
 export let LoadNextPage1; //存next 用来判断是否有下一页
 export let mainScrollid2; //存scrollId 用来加载下一页
@@ -26,10 +26,12 @@ export function infoIndexPART1() {
                 queYtitle: res.dataList[i].title,
                 queYkind: res.dataList[i].questionType,
                 queYremarks: res.dataList[i].contents[0].contentMain,
+                queId:res.dataList[i].id
             }
 
             const queY = template("campusIntercommunicationQueY_template", json);
             $('.studyPartY').append(queY);
+            queY.find('.icondianzan').click(agreeQuestion)
             if (res.dataList[i].tag != null) {
                 for (let j = 0; j < res.dataList[i].tag.length; j++) {
                     if (j >= 5) {

@@ -738,7 +738,7 @@
 
   <!-- 渲染校区互通问题 -->
   <script id="campusIntercommunicationQueY_template" type="text/html">
-        <div class="queY">
+        <div class="queY" data-que-id="{{queId}}">
             <h3>
                 <a target='_blank' href="{{queYurl}}" class="">{{queYtitle}}</a>
                 <span class="quekind">{{queYkind}}</span>
@@ -756,7 +756,7 @@
             </div>
 
             <div class="queControlY ">
-                <span><i class="iconfont icondianzan"></i>点赞</span>
+                <span class="link_btn"><i class="iconfont icondianzan"></i>点赞</span>
                 <span onclick="window.location='{{queYurl}}'"><i class="iconfont iconchakan"></i>查看回答</span>
                 <span><i class="iconfont iconshoucang"></i>收藏</span>
                 <span class="copyurlY"><i class="iconfont"></i>复制链接</span>
