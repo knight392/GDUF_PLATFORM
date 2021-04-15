@@ -11,8 +11,9 @@ let PART = 1; //校区互通 1 校园动态 2
     infoIndexPART1();
 
     infoIndexPART2();
-
-    messageInf();
+    if(isLogin()){
+      messageInf();
+    }
 
     //#region 清空搜索框内的内容 √
 
@@ -34,7 +35,6 @@ $('.trendsMuted').on({
         $(this).siblings('video').attr('autoplay', 'autoplay');
         $(this).siblings('video')[0].play();
         $(this).hide();
-
         $(this).siblings('video').on({
             click: function() {
                 $(this)[0].pause();

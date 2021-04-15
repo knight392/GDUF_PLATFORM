@@ -182,6 +182,7 @@ export function sendDevel() {
 
 // 文章点赞
 export function agreeQuestion() {
+  console.log('点赞');
   //当前点击状态
   if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login);
@@ -221,7 +222,19 @@ export function agreeQuestion() {
         obj.parents(".like_btn").addClass("agree");
         obj.parents(".like_btn").removeClass("no_agree");
         obj.attr("changing", "false");
-        // 不做通知了
+        const receiverMarkNumber = obj.parents('.queY').data('markNumber');
+        let data = {
+          "senderMarkNumber": user.markNumber,
+          "receiverMarkNumber": receiverMarkNumber,
+          "content": '点赞了你的问题"' + $(".question_info_box .questionTitle").html() + '"',
+          // "additionContent": "额外内容 可以为空",
+          "type": "inf",
+          "senderName": user.userName,
+          "isRead": false,
+          "senderFace": user.face,
+          "requestType": "post"
+        }
+        sendInfo(data);
         console.log('点赞');
       }
     },err => console.log)

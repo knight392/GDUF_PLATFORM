@@ -878,4 +878,4 @@ function sendInfo(data) {
 }
 
 
-export {addImgHandler,scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion, agreeQuestion }
+export {addImgHandler,scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion, agreeRequest, sendInfo }

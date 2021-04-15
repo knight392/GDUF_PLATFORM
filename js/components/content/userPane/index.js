@@ -2,7 +2,7 @@
 
 import { isLogin, doLogOff } from "../../../common/user/index.js";
 import { displayTipPane_warn, tipInfo } from "../tipPane.js";
-import { attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY } from "./tools.js";
+import { attentionMajor, attentionPass, QAanswer, QAcue, goLeftY, goRightY, readImg } from "./tools.js";
 
 //#region 个人中心 提示正在开发
 $('.IntoPersonCenter').on({
@@ -16,6 +16,19 @@ $('.IntoPersonCenter').on({
 });
 //#endregion
 
+// 上传头像
+$('.ResMessageFace').on({
+  mouseenter: function(){
+    $(this).find('.cover').fadeIn(200)
+  },
+  mouseleave: function(){
+    $(this).find('.cover').fadeOut(200)
+  }
+})
+$('#uploadBtn').click(function(){
+  $('#readFileBtn').click()
+})
+$('#readFileBtn').change(readImg)
 //#region 我的关注 √
 $(".attention").on({
     click: function() {

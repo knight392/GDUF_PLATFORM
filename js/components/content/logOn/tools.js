@@ -1,7 +1,7 @@
 
-import { doLogin, user, isLogin } from "../../../common/user/index.js";
+import { doLogin, isLogin } from "../../../common/user/index.js";
 import { displayTipPane_err, displayTipPane_success, displayTipPane_warn } from "../tipPane.js";
-
+import {setUserPaneInfo} from '../userPane/tools.js';
 //必须为字母加数字且长度不小于8位
 export function CheckPassWord(password) {
   const str = password;
@@ -64,22 +64,11 @@ export async function logon() {
     }
   }
 }
-function setUserPaneInfo() {
 
-  $('.ResUserName').text(user.userName);
-  $('.ResUserName').prop("title", user.userName);
-  $('.ResMarkNumber').text(user.markNumber);
-  $('.ResMarkNumber').prop("title", user.markNumber);
-  // USERID = res.markNumber;
-  if (user.major) {
-    $('.ResMessagePojoMajor').text(user.major);
-    $('.ResMessagePojoMajor').prop("title", user.major);
-  }
-  $('.ResMessageFace').prop("src", user.face);
-  $('.navHPY').prop('src', user.face);
-}
-
+// 处理用户页面的显示与否
 export function dealWithUserPane() {
+  // setUserPaneInfo();
+  // $('.logonHeadPortrait').show();
   if (isLogin()) {
     setUserPaneInfo();
     $('.logonHeadPortrait').show();

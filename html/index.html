@@ -2,213 +2,213 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>校区互通</title>
-    <link rel="stylesheet" href="../css/iconfont.css">
-    <link rel="stylesheet" href="../css/logOn.css">
-    <link rel="stylesheet" href="../css/quiz.css">
-    <link rel="stylesheet" href="../css/hoverPaneY.css">
-    <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/tipPane.css">
-    <link rel="stylesheet" href="../css/chat.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel='icon' href='../img/gduf-logo_1.ico' type='image/x-ico' />
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>校区互通</title>
+  <link rel="stylesheet" href="../css/iconfont.css">
+  <link rel="stylesheet" href="../css/logOn.css">
+  <link rel="stylesheet" href="../css/quiz.css">
+  <link rel="stylesheet" href="../css/hoverPaneY.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/tipPane.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel='icon' href='../img/gduf-logo_1.ico' type='image/x-ico' />
 </head>
 
 <body>
-    <!-- 配合一键回到顶部使用 -->
-    <div class='top'></div>
-    <!--                          登录页面                            -->
-    <div class="logonBody">
-        <div class="modal_bg_logon modal_bg">
-            <div class="modal logonYmadal">
-                <!-- 模态框 头部 一个×按钮 + 一个学校 icon -->
-                <div class="modal_head">
-                    <button class="fadeout">&times;</button>
-                    <!-- <i class="iconfont icondibudaohanglan-"></i> -->
-                    <b class="logonTitle">用户登录</b>
-                </div>
+  <!-- 配合一键回到顶部使用 -->
+  <div class='top'></div>
+  <!--                          登录页面                            -->
+  <div class="logonBody">
+    <div class="modal_bg_logon modal_bg">
+      <div class="modal logonYmadal">
+        <!-- 模态框 头部 一个×按钮 + 一个学校 icon -->
+        <div class="modal_head">
+          <button class="fadeout">&times;</button>
+          <!-- <i class="iconfont icondibudaohanglan-"></i> -->
+          <b class="logonTitle">用户登录</b>
+        </div>
 
-                <!-- 模态框 内容 ->登录页面logOn -> 忘记密码页面forgetPas -> 重置密码页面resetPas -->
-                <div class="modal_content">
+        <!-- 模态框 内容 ->登录页面logOn -> 忘记密码页面forgetPas -> 重置密码页面resetPas -->
+        <div class="modal_content">
 
-                    <!-- ->登录页面logOn -->
-                    <div class="logOn">
-                        <!-- ->登录页面logOn 学生part 文字 + 表单  -->
-                        <div class="student logOnDisplay">
-                            <h2>学生<b></b></h2>
-                            <div class="logOnStudent">
-                                <form action="">
-                                    <div class="confirm value">
-                                        <span class="tip">用户名/学号</span>
-                                        <input class="input account" id="stu_account" type="text" value="">
-                                        <span class="active_line"></span>
-                                    </div>
-                                    <div class="confirm value">
-                                        <span class="tip">密码</span>
-                                        <input class="input pas" id='stu_pwd' type="password" value="">
-                                        <span class="active_line"></span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+          <!-- ->登录页面logOn -->
+          <div class="logOn">
+            <!-- ->登录页面logOn 学生part 文字 + 表单  -->
+            <div class="student logOnDisplay">
+              <h2>学生<b></b></h2>
+              <div class="logOnStudent">
+                <form action="">
+                  <div class="confirm value">
+                    <span class="tip">用户名/学号</span>
+                    <input class="input account" id="stu_account" type="text" value="">
+                    <span class="active_line"></span>
+                  </div>
+                  <div class="confirm value">
+                    <span class="tip">密码</span>
+                    <input class="input pas" id='stu_pwd' type="password" value="">
+                    <span class="active_line"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
 
-                        <!-- ->登录页面logOn 老师part 文字 + 表单  -->
-                        <div class="teacher">
-                            <h2>教师<b></b></h2>
-                            <div class="logOnTeacher">
-                                <form action="">
-                                    <div class="confirm value">
-                                        <span class="tip">用户名/教工号</span>
-                                        <input class="input account" id="teacher_account" type="text" value="">
-                                        <span class="active_line"></span>
-                                    </div>
-                                    <div class="confirm value">
-                                        <span class="tip">密码</span>
-                                        <input class="input pas" id='teacher_pwd' type="password" value="">
-                                        <span class="active_line"></span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- ->登录页面logOn 登录按钮 -->
-                        <button class="btnRegister">注册</button>
-                        <button class="btnLogon logon_btn">登录</button>
+            <!-- ->登录页面logOn 老师part 文字 + 表单  -->
+            <div class="teacher">
+              <h2>教师<b></b></h2>
+              <div class="logOnTeacher">
+                <form action="">
+                  <div class="confirm value">
+                    <span class="tip">用户名/教工号</span>
+                    <input class="input account" id="teacher_account" type="text" value="">
+                    <span class="active_line"></span>
+                  </div>
+                  <div class="confirm value">
+                    <span class="tip">密码</span>
+                    <input class="input pas" id='teacher_pwd' type="password" value="">
+                    <span class="active_line"></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- ->登录页面logOn 登录按钮 -->
+            <button class="btnRegister">注册</button>
+            <button class="btnLogon logon_btn">登录</button>
 
-                        <!-- ->登录页面logOn 注册页面 忘记密码页面 跳转 -->
-                        <!-- <b href="" class="aForgetPas">忘记密码？</b> -->
+            <!-- ->登录页面logOn 注册页面 忘记密码页面 跳转 -->
+            <!-- <b href="" class="aForgetPas">忘记密码？</b> -->
 
-                    </div>
+          </div>
 
-                    <!-- -> 忘记密码页面forgetPas -->
-                    <div class="forgetPas">
-                        <!-- -> 忘记密码页面forgetPas 单选框 学生/教师  -->
-                        <div class="teacherOrStudent">
-                            <form action="">
-                                <span>请选择身份: </span>
-                                <label for="">
+          <!-- -> 忘记密码页面forgetPas -->
+          <div class="forgetPas">
+            <!-- -> 忘记密码页面forgetPas 单选框 学生/教师  -->
+            <div class="teacherOrStudent">
+              <form action="">
+                <span>请选择身份: </span>
+                <label for="">
                   <input type="radio" class="chooseStudent" name="chooseTeacherOrStudent" style="zoom:2;">
                   学生</label>
-                                <label for="">
+                <label for="">
                   <input type="radio" class="chooseTeacher" name="chooseTeacherOrStudent" style="zoom:2;"> 教师</label>
-                            </form>
-                        </div>
-
-                        <!-- -> 忘记密码页面forgetPas 文本框:输入邮箱 span:邮箱后缀  -->
-                        <div class="writeEmail">
-                            <form action="">
-                                <span>请输入邮箱:</span>
-                                <input type="text" class="inEmail">
-                                <i>@</i>
-                                <em class="emailSuffix ">m.gduf.edu.cn</em>
-                            </form>
-                        </div>
-
-                        <!-- -> 忘记密码页面forgetPas 文本框:验证码  按钮:发送验证码-->
-                        <div class="verificationCode ">
-                            <form action=" ">
-                                <span>验证码:</span>
-                                <input type="text" class="vCode">
-                            </form>
-                            <button class="sendVerificationCode logon_btn">发送验证码</button>
-                        </div>
-
-                        <!-- -> 忘记密码页面forgetPas 按钮:下一步 跳转重设密码 -->
-                        <button class="forgetPasLast logon_btn">上一步</button>
-                        <button class="forgetPasNext logon_btn">下一步</button>
-                    </div>
-
-                    <!-- -> 重置密码页面resetPas -->
-                    <div class="resetPas ">
-                        <!-- -> 重置密码页面resetPas 文本框:重设密码 -->
-                        <div class="toResetPas ">
-                            <form action=" ">
-                                <span>重设密码: </span>
-                                <input type="password" class="reset " placeholder="输入新密码 ">
-                            </form>
-                        </div>
-                        <!-- -> 重置密码页面resetPas 文本框:确认密码 -->
-                        <div class="confirmPas ">
-                            <form action=" ">
-                                <span>确认密码: </span>
-                                <input type="password" class="confirm " placeholder="确认新密码 ">
-                            </form>
-                        </div>
-                        <!-- -> 重置密码页面resetPas 按钮:确定 返回登录页面 -->
-                        <button class="resetPasConfirm logon_btn">确定</button>
-                    </div>
-                </div>
-                <div class="modal_foot "></div>
+              </form>
             </div>
+
+            <!-- -> 忘记密码页面forgetPas 文本框:输入邮箱 span:邮箱后缀  -->
+            <div class="writeEmail">
+              <form action="">
+                <span>请输入邮箱:</span>
+                <input type="text" class="inEmail">
+                <i>@</i>
+                <em class="emailSuffix ">m.gduf.edu.cn</em>
+              </form>
+            </div>
+
+            <!-- -> 忘记密码页面forgetPas 文本框:验证码  按钮:发送验证码-->
+            <div class="verificationCode ">
+              <form action=" ">
+                <span>验证码:</span>
+                <input type="text" class="vCode">
+              </form>
+              <button class="sendVerificationCode logon_btn">发送验证码</button>
+            </div>
+
+            <!-- -> 忘记密码页面forgetPas 按钮:下一步 跳转重设密码 -->
+            <button class="forgetPasLast logon_btn">上一步</button>
+            <button class="forgetPasNext logon_btn">下一步</button>
+          </div>
+
+          <!-- -> 重置密码页面resetPas -->
+          <div class="resetPas ">
+            <!-- -> 重置密码页面resetPas 文本框:重设密码 -->
+            <div class="toResetPas ">
+              <form action=" ">
+                <span>重设密码: </span>
+                <input type="password" class="reset " placeholder="输入新密码 ">
+              </form>
+            </div>
+            <!-- -> 重置密码页面resetPas 文本框:确认密码 -->
+            <div class="confirmPas ">
+              <form action=" ">
+                <span>确认密码: </span>
+                <input type="password" class="confirm " placeholder="确认新密码 ">
+              </form>
+            </div>
+            <!-- -> 重置密码页面resetPas 按钮:确定 返回登录页面 -->
+            <button class="resetPasConfirm logon_btn">确定</button>
+          </div>
         </div>
+        <div class="modal_foot "></div>
+      </div>
     </div>
+  </div>
 
-    <!--                          提问页面                           -->
-    <div class="quizModal_bg quizModal_bg_askQuestion">
-        <div class="quizModal">
-            <!-- 头部 -->
-            <div class="quizModal_head">
-                <button class="fadeout">&times;</button>
-            </div>
-            <!-- 内容 -->
-            <div class="quizModal_content">
-                <!-- 问题输入 -->
-                <div class="mainQuestion">
-                    <textarea maxlength="30" name="" id="" cols="30" rows="10" class="mainQ" placeholder="请输入问题"></textarea>
-                    <span><b class="nowNum">0</b><b>/</b><b class="maxNum">30</b></span>
-                </div>
-                <!-- 图片插入 -->
-                <div class="insertPicture">
-                    <div class="picture_containner" id='picture_container'></div>
-                    <i class="file iconfont iconjiahao1">
+  <!--                          提问页面                           -->
+  <div class="quizModal_bg quizModal_bg_askQuestion">
+    <div class="quizModal">
+      <!-- 头部 -->
+      <div class="quizModal_head">
+        <button class="fadeout">&times;</button>
+      </div>
+      <!-- 内容 -->
+      <div class="quizModal_content">
+        <!-- 问题输入 -->
+        <div class="mainQuestion">
+          <textarea maxlength="30" name="" id="" cols="30" rows="10" class="mainQ" placeholder="请输入问题"></textarea>
+          <span><b class="nowNum">0</b><b>/</b><b class="maxNum">30</b></span>
+        </div>
+        <!-- 图片插入 -->
+        <div class="insertPicture">
+          <div class="picture_containner" id='picture_container'></div>
+          <i class="file iconfont iconjiahao1">
             <input type="file" class="insertP" accept="image/*">
           </i>
-                </div>
-                <!-- 问题详情 -->
-                <div class="questionNote">
-                    <textarea maxlength="80" name="" id="" cols="30" rows="10" class="queN" placeholder="问题备注"></textarea>
-                    <span><b class="nowNum">0</b><b>/</b><b class="maxNum">80</b></span>
-                </div>
-                <!-- 标签栏 -->
-                <div class="label">
-                    <b class="labelFont">标签栏</b>
-                    <div class="nodeBoard" id="label_container">
+        </div>
+        <!-- 问题详情 -->
+        <div class="questionNote">
+          <textarea maxlength="80" name="" id="" cols="30" rows="10" class="queN" placeholder="问题备注"></textarea>
+          <span><b class="nowNum">0</b><b>/</b><b class="maxNum">80</b></span>
+        </div>
+        <!-- 标签栏 -->
+        <div class="label">
+          <b class="labelFont">标签栏</b>
+          <div class="nodeBoard" id="label_container">
 
-                    </div>
-                    <div class="addLabel">
-                        <input maxlength="6" type="text" placeholder="自行输入标签"> <i class="iconfont">&#xe720;</i>
-                        <button class="add_btn">添加</button>
-                    </div>
+          </div>
+          <div class="addLabel">
+            <input maxlength="6" type="text" placeholder="自行输入标签"> <i class="iconfont">&#xe720;</i>
+            <button class="add_btn">添加</button>
+          </div>
 
-                </div>
-                <!-- 文章类型，邀请回答  -->
-                <div class="rowBox">
-                    <div class="questionType">
-                        <span class="cur_val" value="null">请选择文章类型</span>
-                        <svg class="icon" height="23" p-id="6815" t="1601959179699" version="1.1" viewBox="0 0 1024 1024" width="23" xmlns="http://www.w3.org/2000/svg">
+        </div>
+        <!-- 文章类型，邀请回答  -->
+        <div class="rowBox">
+          <div class="questionType">
+            <span class="cur_val" value="null">请选择文章类型</span>
+            <svg class="icon" height="23" p-id="6815" t="1601959179699" version="1.1" viewBox="0 0 1024 1024" width="23"
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M539.9 631.25c-6.3 6.3-14.85 12.15-22.95 10.35-8.1 1.35-15.75-4.95-22.05-10.35L300.05 435.5c-9.9-9.9-9.9-26.1 0-36s26.1-9.9 36 0L517.4 585.8l181.8-186.3c9.9-9.9 26.1-9.9 36 0s9.9 26.1 0 36L539.9 631.25z"
                 p-id="6816"></path>
             </svg>
-                        <ul class="list">
-                            <li>学习篇</li>
-                            <li>期末篇</li>
-                            <li>宿舍篇</li>
-                            <li>食堂篇</li>
-                            <li>考证篇</li>
-                            <li>其他</li>
-                        </ul>
-                    </div>
-                    <div class="invite">
-                        邀请好友回答
-                    </div>
-                </div>
-                <!-- 提交请求 -->
-                <button class="publish">立即发表</button>
-                <!-- 匿名选项 -->
-                <div class="anonymity" anonymity="false">
-                    <button class="btn">
+            <ul class="list">
+              <li>学习篇</li>
+              <li>期末篇</li>
+              <li>宿舍篇</li>
+              <li>食堂篇</li>
+              <li>考证篇</li>
+              <li>其他</li>
+            </ul>
+          </div>
+          <div class="invite">
+            邀请好友回答
+          </div>
+        </div>
+        <!-- 提交请求 -->
+        <button class="publish">立即发表</button>
+        <!-- 匿名选项 -->
+        <div class="anonymity" anonymity="false">
+          <button class="btn">
             <svg t="1603548623411" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
               p-id="5481" width="32" height="32">
               <path
@@ -216,142 +216,149 @@
                 p-id="5482" fill="#02839b"></path>
             </svg>
           </button>匿名
-                </div>
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!--                           导航栏                           -->
-    <div class="nav beforeNav">
-        <div class="w">
-            <!--        校徽        -->
-            <div class="logo">
-                <img src="../img/gduf-logo.png" alt="" title="广东金融学院">
-            </div>
+  <!--                           导航栏                           -->
+  <div class="nav beforeNav">
+    <div class="w">
+      <!--        校徽        -->
+      <div class="logo">
+        <img src="../img/gduf-logo.png" alt="" title="广东金融学院">
+      </div>
 
-            <!-- 首页+校区互通+失物招领+提问 功能页面 -->
-            <div class="functionNav">
-                <ul>
-                    <li title="首页" class="index-li" onclick='location.assign("../index.html")'>首页</li>
-                    <!-- <li title="校区互通" class="campus-li">校区互通</li> -->
-                    <li title="失物招领" class="lostAndFound-li" onclick='location.assign("./lostFoundIndex.html")'>失物招领</li>
-                    <!-- <li title="提问" class="quiz-li">提问</li> -->
-                </ul>
-            </div>
+      <!-- 首页+校区互通+失物招领+提问 功能页面 -->
+      <div class="functionNav">
+        <ul>
+          <li title="首页" class="index-li" onclick='location.assign("../index.html")'>首页</li>
+          <!-- <li title="校区互通" class="campus-li">校区互通</li> -->
+          <li title="失物招领" class="lostAndFound-li" onclick='location.assign("./lostFoundIndex.html")'>失物招领</li>
+          <!-- <li title="提问" class="quiz-li">提问</li> -->
+        </ul>
+      </div>
 
-            <!--         搜索框         -->
-            <div class="search">
-                <form action="">
-                    <input type="text" class="searchBar">
-                    <input type="button" class="searchBtn">
-                    <i class="iconfont iconsousuo"></i>
-                </form>
-                <ul class="searchContent" style="display: none;">
-                </ul>
-            </div>
+      <!--         搜索框         -->
+      <div class="search">
+        <form action="">
+          <input type="text" class="searchBar">
+          <input type="button" class="searchBtn">
+          <i class="iconfont iconsousuo"></i>
+        </form>
+        <ul class="searchContent" style="display: none;">
+        </ul>
+      </div>
 
-            <!--         登录注册按钮      -->
-            <div class="personal">
-                <button class="signUpBtn">
+      <!--         登录注册按钮      -->
+      <div class="personal">
+        <button class="signUpBtn">
           <em class="fadein">登录</em>
           |
           <em class="toRegister" onclick="location.assign('./register.html')">注册</em>
         </button>
+      </div>
+
+      <!--         头像            -->
+      <div class="logonHeadPortrait">
+
+        <!-- 头像 -->
+        <div class="headPortrait">
+
+          <!-- 导航栏上的头像 -->
+          <img class="navHPY userFace" src="" alt=" " title="个人中心 ">
+
+          <div class="hpSecond">
+            <!-- 头像的二级导航 -->
+            <div class="hpSecond_general">
+
+              <!-- 小三角 -->
+              <b class="triangle"></b>
+              <!-- 个人属性part -->
+              <!-- 用户头像 用户名 -->
+              <div class="hpPersonalAttributes">
+                <div class="ResMessageFace" >
+                  <img class="userFace" src="" alt=" ">
+                  <div class="cover">
+                    <img src="../icon/common/camera.svg" title="点击更换头像" id='uploadBtn'>
+                    <input type="file" style="display: none;" accept="image/*" id='readFileBtn'>
+                  </div>
+                </div>
+                <em> <b class="ResUserName"></b></em>
+                <em> <b class="ResMarkNumber"></b></em>
+                <em> <b class="ResMessagePojoMajor"></b> </em>
+              </div>
+              <!-- 进入个人中心 -->
+              <div class="IntoPersonCenter secondPane_entrance gohovercolor"><i
+                  class="iconfont iconjinru2"></i><em>进入个人中心</em> </div>
+              <!-- 我的关注 -->
+              <div class="attention secondPane_entrance gohovercolor" target="concernsY">
+                <i class="iconfont iconwodeguanzhu"></i>
+                <em>我的关注</em>
+
+              </div>
+              <!-- 我的问答 -->
+              <div class="myQAY secondPane_entrance gohovercolor" target="QandAY">
+                <i class="iconfont iconV "></i>
+                <em>我的问答</em>
+              </div>
+
+              <!-- 我的收藏 -->
+              <div class="myCollY secondPane_entrance gohovercolor" target="collectionY">
+                <i class="iconfont iconwodeshoucang "></i><em>我的收藏</em>
+              </div>
+
+              <!-- 退出登录 -->
+              <div class="exitLogonY secondPane_entrance gohovercolor"><i
+                  class="iconfont icontuichudenglu "></i><em>退出登录</em></div>
             </div>
 
-            <!--         头像            -->
-            <div class="logonHeadPortrait">
-
-                <!-- 头像 -->
-                <div class="headPortrait">
-
-                    <!-- 导航栏上的头像 -->
-                    <img class="navHPY" src="../img/InitialPortrait.jpg" alt=" " title="个人中心 ">
-
-                    <div class="hpSecond">
-                        <!-- 头像的二级导航 -->
-                        <div class="hpSecond_general">
-
-                            <!-- 小三角 -->
-                            <b class="triangle"></b>
-                            <!-- 个人属性part -->
-                            <!-- 用户头像 用户名 -->
-                            <div class="hpPersonalAttributes">
-                                <img class="ResMessageFace" src="../img/InitialPortrait.jpg " alt=" ">
-                                <em> <b class="ResUserName"></b></em>
-                                <em> <b class="ResMarkNumber"></b></em>
-                                <em> <b class="ResMessagePojoMajor"></b> </em>
-
-                            </div>
-                            <!-- 进入个人中心 -->
-                            <div class="IntoPersonCenter secondPane_entrance gohovercolor"><i class="iconfont iconjinru2"></i><em>进入个人中心</em> </div>
-                            <!-- 我的关注 -->
-                            <div class="attention secondPane_entrance gohovercolor" target="concernsY">
-                                <i class="iconfont iconwodeguanzhu"></i>
-                                <em>我的关注</em>
-
-                            </div>
-                            <!-- 我的问答 -->
-                            <div class="myQAY secondPane_entrance gohovercolor" target="QandAY">
-                                <i class="iconfont iconV "></i>
-                                <em>我的问答</em>
-                            </div>
-
-                            <!-- 我的收藏 -->
-                            <div class="myCollY secondPane_entrance gohovercolor" target="collectionY">
-                                <i class="iconfont iconwodeshoucang "></i><em>我的收藏</em>
-                            </div>
-
-                            <!-- 退出登录 -->
-                            <div class="exitLogonY secondPane_entrance gohovercolor"><i class="iconfont icontuichudenglu "></i><em>退出登录</em></div>
-                        </div>
-
-                        <!-- 我的关注打开面板 -->
-                        <div class="hpSecondSecond concernsY">
-                            <div class="hoverBox">
-                                <div class="title">我的关注</div>
-                                <div class="mode_selection">
-                                    <span class="mode active" id="hoverBox_interest">我关注的人</span>
-                                    <span class="mode" id="hoverBox_fans">关注我的人</span>
-                                    <span class="activeLine toLeft"></span>
-                                </div>
+            <!-- 我的关注打开面板 -->
+            <div class="hpSecondSecond concernsY">
+              <div class="hoverBox">
+                <div class="title">我的关注</div>
+                <div class="mode_selection">
+                  <span class="mode active" id="hoverBox_interest">我关注的人</span>
+                  <span class="mode" id="hoverBox_fans">关注我的人</span>
+                  <span class="activeLine toLeft"></span>
+                </div>
 
 
-                                <!-- 内容框 -->
-                                <div class="contentBox_subscribe">
-                                    <div class="itemList_box">
-                                        <ul class="itemList myAttention" style="display: block;">
-                                        </ul>
-                                        <ul class="itemList attentionMe"></ul>
-                                    </div>
-                                </div>
+                <!-- 内容框 -->
+                <div class="contentBox_subscribe">
+                  <div class="itemList_box">
+                    <ul class="itemList myAttention" style="display: block;">
+                    </ul>
+                    <ul class="itemList attentionMe"></ul>
+                  </div>
+                </div>
 
-                            </div>
+              </div>
 
-                        </div>
-                        <!-- 我的回答打开面板 -->
-                        <div class="hpSecondSecond QandAY">
-                            <div class="hoverBox">
-                                <div class="title">我的问答</div>
-                                <div class="mode_selection">
-                                    <span class="mode active" id="hoverBox_request">我的提问</span>
-                                    <span class="mode" id="hoverBox_answer">我的回答</span>
-                                    <span class="activeLine toLeft"></span>
-                                </div>
-                                <!-- 内容框 -->
-                                <div class="contentBox_request ">
-                                    <div class="itemList_box ">
-                                        <ul class="itemList myCue" style="display: block;">
-                                            <!-- 我的提问和我的回答框架一样 -->
-                                        </ul>
-                                        <ul class="itemList myAns"></ul>
-                                    </div>
-                                </div>
+            </div>
+            <!-- 我的回答打开面板 -->
+            <div class="hpSecondSecond QandAY">
+              <div class="hoverBox">
+                <div class="title">我的问答</div>
+                <div class="mode_selection">
+                  <span class="mode active" id="hoverBox_request">我的提问</span>
+                  <span class="mode" id="hoverBox_answer">我的回答</span>
+                  <span class="activeLine toLeft"></span>
+                </div>
+                <!-- 内容框 -->
+                <div class="contentBox_request ">
+                  <div class="itemList_box ">
+                    <ul class="itemList myCue" style="display: block;">
+                      <!-- 我的提问和我的回答框架一样 -->
+                    </ul>
+                    <ul class="itemList myAns"></ul>
+                  </div>
+                </div>
 
-                            </div>
-                        </div>
-                        <!-- 我的收藏打开面板 -->
-                        <!--
+              </div>
+            </div>
+            <!-- 我的收藏打开面板 -->
+            <!--
                         <div class="hpSecondSecond collectionY ">
                             <div class="hoverBox ">
                                 <div class="title ">我的收藏</div>
@@ -410,21 +417,20 @@
 
                         </div>
 -->
-                    </div>
-                </div>
-            </div>
+          </div>
+        </div>
+      </div>
 
 
-            <!-- 提问 + 消息通知 -->
-            <div class="QAndM">
-
-                <!-- 提问 -->
-                <span class="cueY" title="提问">
+      <!-- 提问 + 消息通知 -->
+      <div class="QAndM">
+        <!-- 提问 -->
+        <span class="cueY" title="提问">
           <i class="iconfont fadeinQuiz"><i class="iconfont iconyumao"></i> 提问</i>
         </span>
 
-                <!-- 消息 -->
-                <span class="message">
+        <!-- 消息 -->
+        <span class="message">
           <i class="iconfont iconxiaoxitongzhitixinglingshenglingdang-xianxing "></i>
 
           <i class="iconfont icondian"></i>
@@ -436,12 +442,12 @@
                 <span class="mode active" id="hoverBox_dynamicMessage">动态通知</span>
                 <span class="mode" id="hoverBox_privateMessage">私信通知</span>
                 <span class="activeLine toLeft"></span>
-            </div>
-            <!-- 内容框 -->
-            <div class="contentBox_information">
+              </div>
+              <!-- 内容框 -->
+              <div class="contentBox_information">
                 <div class="itemList_box">
-                    <ul class="itemList system" style="display: block;">
-                        <!-- <li class='item messageSystemItem'>
+                  <ul class="itemList system" style="display: block;">
+                    <!-- <li class='item messageSystemItem'>
                             <img src='../img/gzwx.png'>
                             <svg class='info_point' class='icon' height='10' p-id='12380' t='1602330426902' version='1.1' viewBox='0 0 1024 1024' width='10' xmlns='https://www.w3.org/2000/svg'><path d='M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z' fill='#E6A23C' p-id='12381'></svg>
                             <span class='userName itemTitle' title='senderName'>senderName</span>
@@ -477,54 +483,54 @@
                             <span class='time'>timeUpToNow</span>
                         </li> -->
 
-                    </ul>
-                    <ul class="itemList private"></ul>
+                  </ul>
+                  <ul class="itemList private"></ul>
                 </div>
-            </div>
+              </div>
 
 
-            <div class="foot">
+              <div class="foot">
                 <div class="clearAllPoint">
-                    <!-- <svg height="25" title="一键已读" viewBox="0 0 1024 1024" width="25">
+                  <!-- <svg height="25" title="一键已读" viewBox="0 0 1024 1024" width="25">
                                         <path
                                             d="M965.12 286.293333H657.493333V108.8C657.493333 48.64 605.013333 0 540.586667 0H482.56C418.56 0.426667 366.506667 49.066667 366.506667 108.8V285.866667H58.453333C26.026667 285.866667 0 310.613333 0 341.333333v176.213334c0 30.293333 26.453333 55.466667 58.453333 55.466666v253.866667c-0.426667 46.933333-6.826667 93.44-18.346666 135.253333l-0.853334 6.4c0 30.72 26.453333 55.466667 58.453334 55.466667H926.293333c30.293333 0 57.6-22.613333 59.733334-49.493333l-0.853334-7.253334c-12.8-46.933333-19.2-96-19.626666-145.066666v-248.32l19.2-3.84c22.613333-7.68 38.4-28.16 38.4-52.053334V341.76c0.426667-30.72-26.026667-55.466667-58.026667-55.466667z m-210.773333 650.24V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813334c-19.2 0-34.56 14.933333-34.56 33.28v202.666666h-113.92V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813333c-19.2 0-34.56 14.933333-34.56 33.28v202.666666H359.253333V733.866667c0-18.346667-15.786667-33.28-34.56-33.28h-9.813333c-19.2 0-34.56 14.933333-34.56 33.28v202.666666l-146.346667 2.56c8.96-34.986667 13.226667-70.826667 13.226667-107.093333v-259.413333h729.173333V836.266667c0 33.706667 3.84 67.84 11.52 99.84h-133.546666zM931.84 486.4H91.733333V372.906667H456.96v-251.733334c0-27.733333 33.28-30.72 47.786667-30.72h16.213333c14.506667 0 47.786667 2.986667 47.786667 30.72v253.866667h363.093333V486.4z"
                                             fill="#bfbfbf" p-id="12613"></path>
                                     </svg> 一键已读 -->
                 </div>
 
+              </div>
             </div>
-        </div>
-    </div>
+          </div>
 
-    </span>
-    </div>
-
-    </div>
+        </span>
+      </div>
 
     </div>
 
+  </div>
 
-    <!--                          主要内容                           -->
-    <div class="maincontent">
-        <div class="w">
 
-            <!-- <h1>校区互通</h1> -->
+  <!--                          主要内容                           -->
+  <div class="maincontent">
+    <div class="w">
 
-            <!-- 切换校区互通 和 校园动态 -->
-            <div class="switchY">
-                <!-- title： 切换成校区互通/校园动态 -->
-                <b class="change" title="切换校园动态">
+      <!-- <h1>校区互通</h1> -->
+
+      <!-- 切换校区互通 和 校园动态 -->
+      <div class="switchY">
+        <!-- title： 切换成校区互通/校园动态 -->
+        <b class="change" title="切换校园动态">
           <i class="iconfont iconqiehuan-"></i>
           校园动态
         </b>
-                <!-- <i class="iconfont iconxiala2 switchbtnY"></i> -->
-            </div>
+        <!-- <i class="iconfont iconxiala2 switchbtnY"></i> -->
+      </div>
 
-            <!-- 校区互通 -->
-            <div class="indexQuizList">
-                <h1>校 区 互 通</h1>
-                <div class="studyPartY " data-part-index='0'>
-                    <!--   <div class="queY " data-list-index="0">
+      <!-- 校区互通 -->
+      <div class="indexQuizList">
+        <h1>校 区 互 通</h1>
+        <div class="studyPartY " data-part-index='0'>
+          <!--   <div class="queY " data-list-index="0">
                         <h3>
                             <a href="111111" class="">主要问题主要问题主要问题主要问题主要问题主要问题主要问题主要问题主要问题</a>
                             <span class="quekind">学习篇</span>
@@ -547,87 +553,87 @@
                         </div>
                         <span class="active_line"></span>
                     </div> -->
-                </div>
+        </div>
 
-            </div>
+      </div>
 
-            <!-- 校园动态 -->
-            <div class="schoolDevelopmentY">
-                <h1>校 园 动 态</h1>
+      <!-- 校园动态 -->
+      <div class="schoolDevelopmentY">
+        <h1>校 园 动 态</h1>
 
-                <!-- 发表动态 文本域 -->
-                <div class="issuePersonalDY">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="分享你的校园生活吧~"></textarea>
-                    <h2>
-                        <ul class="issueWidgetY">
+        <!-- 发表动态 文本域 -->
+        <div class="issuePersonalDY">
+          <textarea name="" id="" cols="30" rows="10" placeholder="分享你的校园生活吧~"></textarea>
+          <h2>
+            <ul class="issueWidgetY">
 
-                            <!-- 表情 -->
-                            <li class="biaoqingY">
-                                <i class="iconfont iconbiaoqing"></i><em>表情</em>
-                                <!-- <div class="biaoqingSon issWidgetSonY">
+              <!-- 表情 -->
+              <li class="biaoqingY">
+                <i class="iconfont iconbiaoqing"></i><em>表情</em>
+                <!-- <div class="biaoqingSon issWidgetSonY">
                                     <b class="triangle"></b>
                                     <b class="sonout" title="收起">&times;</b>
                                     <em>添加表情</em>
                                 </div> -->
-                            </li>
+              </li>
 
-                            <!-- 图片 -->
-                            <li class="addpicY">
-                                <i class="iconfont icontupian1"></i><em>图片</em>
-                                <div class="addpicSon issWidgetSonY">
-                                    <b class="triangle"></b>
-                                    <b class="sonout" title="收起">&times;</b>
-                                    <em>添加图片</em>
-                                    <!-- <div class="develimgY">
+              <!-- 图片 -->
+              <li class="addpicY">
+                <i class="iconfont icontupian1"></i><em>图片</em>
+                <div class="addpicSon issWidgetSonY">
+                  <b class="triangle"></b>
+                  <b class="sonout" title="收起">&times;</b>
+                  <em>添加图片</em>
+                  <!-- <div class="develimgY">
                                         <img src="../img/gduf3.jpg" alt="">
                                         <b class="removeimg" title="删除">&times;</b>
                                     </div> -->
 
-                                    <i class="addfileY add iconfont iconhao" title="添加图片">
+                  <i class="addfileY add iconfont iconhao" title="添加图片">
                     <input type="file" class="addimgsY" accept="image/*" title="添加图片">
                   </i>
 
-                                </div>
-                            </li>
+                </div>
+              </li>
 
-                            <!-- 视频 -->
-                            <li class="addvideoY">
-                                <i class="iconfont iconshipin2"></i><em>视频</em>
-                                <div class="addvideoSon issWidgetSonY">
-                                    <b class="triangle"></b>
-                                    <b class="sonout" title="收起">&times;</b>
-                                    <em>添加视频</em>
-                                    <!-- <div class="develvideoY">
+              <!-- 视频 -->
+              <li class="addvideoY">
+                <i class="iconfont iconshipin2"></i><em>视频</em>
+                <div class="addvideoSon issWidgetSonY">
+                  <b class="triangle"></b>
+                  <b class="sonout" title="收起">&times;</b>
+                  <em>添加视频</em>
+                  <!-- <div class="develvideoY">
                                         <video src="../../img/vdo/5.mp4" alt="" muted autoplay loop>
                                         <b class="removevideo" title="删除">&times;</b>
                                     </div> -->
-                                    <i class="addfileY iconfont iconhao" title="添加视频">
+                  <i class="addfileY iconfont iconhao" title="添加视频">
                     <input type="file" class="addvideoY" accept="video/*" name="" id="">
                   </i>
 
-                                </div>
-                            </li>
-
-                        </ul>
-                        <button class="issuebtnY">发表</button>
-                    </h2>
                 </div>
-                <div class="hb">
-                    <!-- 动态分类栏  -->
-                    <div class="dclassifyY">
-                        <ul class="">
-                            <li class="allD-li" data-part-index="0">全部</li>
-                            <li class="personalD-li" data-part-index="1">个人动态</li>
-                            <li class="organizationD-li" data-part-index="2">组织动态</li>
-                            <li class="associationD-li" data-part-index="3">社团动态</li>
-                        </ul>
-                    </div>
+              </li>
 
-                    <!-- 动态 -->
-                    <div class="kindSDevelopmentY">
+            </ul>
+            <button class="issuebtnY">发表</button>
+          </h2>
+        </div>
+        <div class="hb">
+          <!-- 动态分类栏  -->
+          <div class="dclassifyY">
+            <ul class="">
+              <li class="allD-li" data-part-index="0">全部</li>
+              <li class="personalD-li" data-part-index="1">个人动态</li>
+              <li class="organizationD-li" data-part-index="2">组织动态</li>
+              <li class="associationD-li" data-part-index="3">社团动态</li>
+            </ul>
+          </div>
 
-                        <!-- 全部动态 -->
-                        <!-- <div class="dynamicsY allD-div">
+          <!-- 动态 -->
+          <div class="kindSDevelopmentY">
+
+            <!-- 全部动态 -->
+            <!-- <div class="dynamicsY allD-div">
                             <div class="trendsY-person">
                                 <div class="trendsUser">
                                     <img src="../img/defaultStudentFace.jpg" alt="" class="userface">
@@ -643,7 +649,7 @@
                                 </div>
                                 <b class="trendsTime">1天前</b>
                             </div> -->
-                        <!-- <div class="trendsY-person">
+            <!-- <div class="trendsY-person">
                                 <div class="trendsUser">
                                     <img src="../img/defaultStudentFace.jpg" alt="" class="userface">
                                     <p class="username"><em>冯某某</em></p>
@@ -664,43 +670,43 @@
                                 <b class="trendsTime">1天前</b>
                             </div> -->
 
-                    </div>
+          </div>
 
-                    <!-- 个人动态 -->
-                    <div class="dynamicsY personalD-div">
+          <!-- 个人动态 -->
+          <div class="dynamicsY personalD-div">
 
-                    </div>
+          </div>
 
-                    <!-- 组织动态 -->
-                    <div class="dynamicsY organzationD-div">
+          <!-- 组织动态 -->
+          <div class="dynamicsY organzationD-div">
 
-                    </div>
+          </div>
 
-                    <!-- 社团动态 -->
-                    <div class="dynamicsY associationD-div">
+          <!-- 社团动态 -->
+          <div class="dynamicsY associationD-div">
 
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-
+      </div>
     </div>
 
-
-    <!-- 返回顶部  -->
-    <div class=" bottomRightSidebar ">
-        <ul>
-            <li class="returnTop "><i class="iconfont iconfanhuidingbu "></i></li>
-        </ul>
-    </div>
-
-    <!-- 提示信息弹框 -->
-    <div class="tipPane">
-    </div>
+  </div>
 
 
-    <!-- 我的关注item模板引擎 -->
-    <script id="attentionItem_template" type="text/html ">
+  <!-- 返回顶部  -->
+  <div class=" bottomRightSidebar ">
+    <ul>
+      <li class="returnTop "><i class="iconfont iconfanhuidingbu "></i></li>
+    </ul>
+  </div>
+
+  <!-- 提示信息弹框 -->
+  <div class="tipPane">
+  </div>
+
+
+  <!-- 我的关注item模板引擎 -->
+  <script id="attentionItem_template" type="text/html ">
         <li class="item">
             <a class="img_link " href="# " title="进入主页 ">
                 <img src="{{userFace}} ">
@@ -735,7 +741,7 @@
 
   <!-- 渲染校区互通问题 -->
   <script id="campusIntercommunicationQueY_template" type="text/html">
-        <div class="queY" data-que-id="{{queId}}">
+        <div class="queY" data-que-id="{{queId}}" data-mark-number='{{markNumber}}'>
             <h3>
                 <a target='_blank' href="{{queYurl}}" class="">{{queYtitle}}</a>
                 <span class="quekind">{{queYkind}}</span>
@@ -753,7 +759,7 @@
             </div>
 
             <div class="queControlY ">
-                <span class="like_btn"><i class="iconfont icondianzan"></i>点赞</span>
+                <span class="like_btn" status='{{agree}}'><i class="iconfont icondianzan"></i>点赞</span>
                 <span onclick="window.location='{{queYurl}}'"><i class="iconfont iconchakan"></i>查看回答</span>
                 <span class="collectionY"><i class="iconfont iconshoucang "></i>收藏</span>
                 <span class="copyurlY"><i class="iconfont"></i>复制链接</span>
@@ -762,8 +768,8 @@
         </div>
     </script>
 
-    <!-- 渲染校园动态的动态 -->
-    <script id="schoolDevelopmentTrendsY-template" type="text/html">
+  <!-- 渲染校园动态的动态 -->
+  <script id="schoolDevelopmentTrendsY-template" type="text/html">
         <div class="{{divkind}}">
             <div class="trendsUser">
                 <img src="{{userface}}" alt="" class="userface">
@@ -780,13 +786,13 @@
             <b class="trendsTime">{{trendsTime}}</b>
         </div>
     </script>
-    <script src="../js/util/jquery-3.5.1.js"></script>
-    <script src="../js/components/content/nav/nav.js" type="module"></script>
-    <script src='../js/components/content/questionPane/quiz.js' type="module"></script>
-    <script src="../js/components/content/logOn/logOn.js" type="module"></script>
-    <script src="../js/components/content/userPane/index.js" type="module"></script>
-    <script src="../js/components/content/inform/notification.js" type="module"></script>
-    <script src="../js/views/index/index.js" type="module"></script>
+  <script src="../js/util/jquery-3.5.1.js"></script>
+  <script src="../js/components/content/nav/nav.js" type="module"></script>
+  <script src='../js/components/content/questionPane/quiz.js' type="module"></script>
+  <script src="../js/components/content/logOn/logOn.js" type="module"></script>
+  <script src="../js/components/content/userPane/index.js" type="module"></script>
+  <script src="../js/components/content/inform/notification.js" type="module"></script>
+  <script src="../js/views/index/index.js" type="module"></script>
 
 </body>
 
