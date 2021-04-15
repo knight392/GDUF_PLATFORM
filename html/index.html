@@ -702,7 +702,7 @@
     <!-- 我的关注item模板引擎 -->
     <script id="attentionItem_template" type="text/html ">
         <li class="item">
-            <a class="img_link " href="# " title="进入主页 ">
+            <a class="img_link" href="javascript:void(0);" title="进入主页 ">
                 <img src="{{userFace}} ">
             </a>
             <span class="userName ">{{userName}}</span>
@@ -737,8 +737,8 @@
     <script id="campusIntercommunicationQueY_template" type="text/html">
         <div class="queY">
             <h3>
-                <a target='_blank' href="{{queYurl}}" class="">{{queYtitle}}</a>
-                <span class="quekind">{{queYkind}}</span>
+                <a target='_blank' href="{{queYurl}}" class="" title="{{queYtitle}}">{{queYtitle}}</a>
+                <span class="quekind" title="{{queYkind}}">{{queYkind}}</span>
                 <!-- <span>#{{queYtag0}}</span>
                 <span>#{{queYtag1}}</span>
                 <span>#{{queYtag2}}</span>
@@ -749,7 +749,7 @@
                 <!-- <img src="{{queYimgsrc1}}" alt="">
                 <img src="{{queYimgsrc2}}" alt="">
                 <img src="{{queYimgsrc3}}" alt=""> -->
-                <p>{{queYremarks}}</p>
+                <p title="{{queYremarks}}">{{queYremarks}}</p>
             </div>
 
             <div class="queControlY ">
@@ -767,17 +767,17 @@
         <div class="{{divkind}}">
             <div class="trendsUser">
                 <img src="{{userface}}" alt="" class="userface">
-                <p class="username"><em>{{username}}</em></p>
+                <p class="username" title="{{username}}"><em>{{username}}</em></p>
                 <!-- <p class="major"><em>专业 : </em><em>{{major}}</em></p>
                 <p class="grade"><em>年级 : </em><em>{{grade}}</em></p> -->
                 <!-- <i class="iconfont {{iconzuzhi&shetuan}}"></i>
                 <p class="oaname"><em>{{emzuzhi&shetuan}} 名称 : </em><em>{{oaname}}</em></p> -->
             </div>
             <div class="trendsContent">
-                <p class="content">{{content}}</p>
+                <p class="content" title="{{content}}">{{content}}</p>
 
             </div>
-            <b class="trendsTime">{{trendsTime}}</b>
+            <b class="trendsTime" title="{{trendsTime}}">{{trendsTime}}</b>
         </div>
     </script>
     <script src="../js/util/jquery-3.5.1.js"></script>

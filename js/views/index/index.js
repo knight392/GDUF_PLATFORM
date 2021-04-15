@@ -8,6 +8,10 @@ import { insertImgVideo, sendDevel } from './tools.js'
 let PART = 1; //校区互通 1 校园动态 2
 
 (function() {
+    $('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
+    $('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
+    $('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
+    // console.log(window.innerHeight);
     infoIndexPART1();
 
     infoIndexPART2();
@@ -25,6 +29,8 @@ let PART = 1; //校区互通 1 校园动态 2
     $('.addpicSon').find('.develimgY').remove();
     $('.addpicSon').find('.develvideoY').remove();
     //#endregion
+
+
 })()
 
 //#region 内容中视频的播放暂停
@@ -45,9 +51,6 @@ $('.trendsMuted').on({
 });
 //#endregion
 
-$('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
-$('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
-$('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
 
 $('body').on({
     click: function() {
