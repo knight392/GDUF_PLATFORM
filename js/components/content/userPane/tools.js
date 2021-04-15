@@ -4,7 +4,7 @@ import request from "../../../util/request.js";
 import template from "../../../util/template.js";
 import sendFile from '../fileHandler.js';
 import {isImage} from '../../../util/imgHandler.js';
-import { displayTipPane_err, displayTipPane_success, tipInfo } from "../tipPane.js";
+import { displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from "../tipPane.js";
 
 const changeFaceErr = '修改头像失败！';
 const changeFaceSuccess = '修改头像成功！';
@@ -46,6 +46,7 @@ function changeFaceRequest(face) {
       requestType: 'put',
       condition: 'markNumber',
       userType: user.userType,
+      markNumber:user.markNumber,
       face
     }
   })
@@ -60,14 +61,15 @@ function changeUserFace(face) {
     .then(res => {
       if (res.statusCode == 200) {
         // 修改本地user数据
-        return resetUserInfo(new Map('face', face));
+        return resetUserInfo(new Map([['face', face]])).catch(err => console.log(err));
       }
-    }, () => displayTipPane_err(changeFaceErr))
-    .then(() => {
+    }, err => 
+      displayTipPane_warn(changeFaceErr))
+    .then(res => {
       // 重新渲染
       setUserPaneInfo();
       displayTipPane_success(changeFaceSuccess)
-    }, () => displayTipPane_err(changeFaceErr))
+    }, err => cdisplayTipPane_warn(changeFaceErr))
 }
 
 /**

@@ -232,7 +232,6 @@ $('.submit_btn').click(() => {
       return;
     }
     markNumber = $('#markNumber_student input').val();
-    console.log(markNumber);
     //用户名判空
     if ($('.userName input').eq(0).val() == '') {
       displayTipPane_warn('请输入您的用户名！');

@@ -13,7 +13,6 @@ let user = null;
     user = getLocalUser();
     if (user != null) {
         try {
-          console.log('本地有用户数据',user);
           createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
         } catch (e) {
             console.log(e);

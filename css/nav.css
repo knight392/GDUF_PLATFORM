@@ -611,6 +611,8 @@ input {
 .ResMessageFace{
   position: relative;
   overflow: hidden;
+  float: left;
+  margin-right: 15px;
   width: 130px;
   height: 130px;
   border-radius: 100%;

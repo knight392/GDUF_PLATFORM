@@ -375,7 +375,7 @@ input {
 }
 
 
-.maincontent .indexQuizList .queY .queControlY .like_btn .agree{
+.maincontent .indexQuizList .queY .queControlY  .agree i{
     color: #f37335 !important;
 }
 

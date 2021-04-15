@@ -1,7 +1,7 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import request from '../../util/request.js';
 import { displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
-import {agreeRequest} from '../questionPage/tools.js';
+import {agreeRequest, sendInfo} from '../questionPage/tools.js';
 import { isLogin, user } from '../../common/user/index.js';
 import inputTextFilter from '../../components/content/inputTextFilter.js';
 import sendFile from '../../components/content/fileHandler.js';
