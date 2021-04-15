@@ -188,7 +188,7 @@ button {
 
 .quizModal_bg_askQuestion .quizModal .quizModal_content>.insertPicture .removePicture {
     display: none;
-    cursor: pointer;
+    
     position: absolute;
     right: -2px;
     top: -4px;
@@ -198,7 +198,8 @@ button {
     text-align: center;
     line-height: 30px;
     top: 0;
-    color: #f00
+    cursor: pointer;
+    color: rgb(243, 83, 83)
 }
 
 

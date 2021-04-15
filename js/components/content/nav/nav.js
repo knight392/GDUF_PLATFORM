@@ -1,7 +1,7 @@
 import { isLogin } from '../../../common/user/index.js';
 import debounce from '../../../util/debounce.js'
 import { getSearchMessageY } from './tools.js'
-
+import {displayTipPane_warn} from '../tipPane.js'
 // 清空搜索栏
 (function() {
     $(".search .searchBar").val("");

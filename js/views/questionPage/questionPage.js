@@ -1,10 +1,10 @@
 import { isLogin } from '../../common/user/index.js'
-import {scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
+import {addImgHandler, scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion } from './tools.js'
 import {tipInfo, displayTipPane_warn, displayTipPane_success} from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import debounce from '../../util/debounce.js'
 import  bindImageSacningEvent from '../../components/content/imgDisplayTemplate.js'
-
+import scrollUp from '../../components/content/scrollToTop.js'
 
 // 页面初始化
 (function() {
@@ -32,6 +32,7 @@ $('.textAnswer .slideUp').click(() => {
 
 //复制便利签文本
 $('#copyText').on('click',function () {
+  if($('.note .content textarea').val().trim() == ''){return displayTipPane_warn("没有复制内容!")}
   $('.note .content textarea').select();
   document.execCommand("copy"); // 执行浏览器复制命令
   displayTipPane_success(tipInfo.copy.note_success)
@@ -46,11 +47,13 @@ $(".copyurlY").on({
 
 //#endregion
 
+// 一键回答
 $('.note .writeAnswer').click(function () {
-  if (isLogin()) {
+  if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login)
     return;
   }
+  if($('.note .content textarea').val().trim() == ''){return displayTipPane_warn("便利签空空如也~")}
   scrollUp();
   $('.textAnswer').slideDown();
   $('.textAnswer').find(".edit-div").eq(0).html($('.note .content textarea').val());
@@ -70,7 +73,6 @@ $(".modal").on({
     e.stopPropagation();
   }
 })
-
 //#endregion
 
 // 窗口缩放
@@ -97,13 +99,7 @@ $('.fadeout').click(function () {
 // 评论区点击按钮添加图片,把图片显示到输入框中
 
 //点击"+"相当于点击input[type=file]
-$('.addImageBtn').click(() => {
-  if (sendingImg) {
-    displayTipPane_warn(tipInfo.img.upLoading);
-  } else {
-    $('.file_input').click();
-  }
-})
+$('.addImageBtn').click(addImgHandler)
 // 什么是否提取文字，不能在选择图片之后就提取，应该要最终再提取，最后遍历所有节点，遍历到图片后，断开
 //在本节点的下一个节点插入一个新的div,并且把光标给下一个div
 
@@ -163,6 +159,14 @@ $(".author_info_box .subscribe_btn").click(function () {
   } else {
     displayTipPane_warn("作者匿名，关注已禁用！")
   }
+})
+
+
+// 未开发
+
+// 分享
+$('.dev').click(function() {
+  displayTipPane_warn(tipInfo.dev.mes)
 })
 
 

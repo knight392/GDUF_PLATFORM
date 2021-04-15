@@ -46,7 +46,8 @@ const tipInfo = {
     },
     submit: {
         succees: '发布成功！',
-        err: '发布失败了哦~'
+        err: '发布失败了哦~',
+        tooFrequent: '操作太频繁了哦~'
     },
     login: {
         no_login: '请先完成登录哦~'

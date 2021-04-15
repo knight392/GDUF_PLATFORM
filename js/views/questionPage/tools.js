@@ -1,4 +1,5 @@
 import { isImage, getImgBase64 } from '../../util/imgHandler.js'
+import template from '../../util/template.js'
 import request from '../../util/request.js'
 import { baseHttpURL, baseWsURL } from '../../common/baseRequestInfo.js'
 import sendFile from '../../components/content/fileHandler.js'
@@ -14,6 +15,14 @@ let sendingImg = false; // 判断是否正在发送图片，如果是就不能�
 let answerPage = 1;
 //  滑到底部加载更多回答
 let isNoMoreAnswer = false;
+
+function addImgHandler() {
+  if (sendingImg) {
+    displayTipPane_warn(tipInfo.img.upLoading);
+  } else {
+    $('.file_input').click();
+  }
+}
 
 function scrollHandler() {
   //滚动条到顶部的高度
@@ -83,8 +92,7 @@ function inputText(e) {
 
 // 读取图片
 function readFile() {
-  const oinput = document.getElementById("file_input");
-  if (!isImage(oinput[value])) {　　 //判断上传文件格式
+  if (!isImage(this.files[0].name)) {　　 //判断上传文件格式
     return displayTipPane_warn(tipInfo.img.format_warn);
   }
   const formdata = new FormData(); // 用来发送数据
@@ -227,7 +235,7 @@ function bindAnswerItemEvent(framObj) {
   });
   //添加评论
   framObj.find(".comment_btn").on("click", function () {
-    if (isLogin()) {
+    if (!isLogin()) {
       displayTipPane_warn(tipInfo.login.no_login);
       return;
     }
@@ -236,9 +244,6 @@ function bindAnswerItemEvent(framObj) {
   //查看评论
   // oItem.attr("answerId",arr[i].contents[0]["answerId"]);
 
-  framObj.find(".seeComment").on("click", function () {
-    seeComment.call($(this), 1); //初始化加载数据
-  });
   framObj.find(".loadmore").click(loadMoreComment);
 
 
@@ -258,12 +263,16 @@ function bindAnswerItemEvent(framObj) {
   //点赞
   framObj.find(".like_btn .icon").attr("changing", "false");
   framObj.find(".like_btn .icon").click(function () {
+    console.log('点赞');
     if (!isLogin()) {
       displayTipPane_warn(tipInfo.login.no_login);
       return;
     }
     agreeAnswer.call($(this), framObj.attr("marknumber"));
   });
+  framObj.find('.dev').click(function(){
+    displayTipPane_warn(tipInfo.dev.mes)
+  })
 }
 
 
@@ -292,7 +301,7 @@ function loadMyNewAnswer(answerContents, answerId) {
   let framData = {
     agreeCount: 0,
     commentCount: 0,
-    userType: type,
+    userType: user.userType,
     agree: "no_agree",
     time: date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate(),
     face: user.face,
@@ -373,7 +382,7 @@ function displayAnswers(arr) {
       commentCount: arr[i].commentCount,
       userType: type,
       agree: isAgree,
-      time: "2020/11/1",
+      time: "2021/4/10",
       face: src,
       userName: authorObj.userName,
       schoolInfo: school_info,
@@ -389,7 +398,7 @@ function displayAnswers(arr) {
     // oItem.attr("answerId",arr[i].contents[0]["answerId"]);
     oItem.find(".seeComment").attr("loadingAbility", "true"); //有加载数据能力
     oItem.find(".commentList").attr("nextPage", 1);
-    bindAnserItemEvent(oItem);
+    bindAnswerItemEvent(oItem);
     oItem.find(".like_btn").attr("status", isAgree);
     let contentText = addAnswerContentText(arr[i].contents);
     oItem.find(".contentText").append(contentText);
@@ -430,7 +439,7 @@ function seeComment(nextPage) {
 function displayComment(dataList) {
   for (let i = 0; i < dataList.length; i++) {
     let item = dataList[i];
-    data = item.student != null ? item.student : item.teacher;
+    let data = item.student != null ? item.student : item.teacher;
     data.content = item.content;
     let commentItem = template("template_commentItem", data);
     $(this).parents(".answerItem").find(".commentList .contentBox").append(commentItem);
@@ -487,6 +496,7 @@ function sendComment() {
   //判断敏感词
   inputTextFilter(text).then(res => {
     text = res;
+    console.log(data_1);
     send()
   }, err => {
     if (err.isErr) {
@@ -502,7 +512,7 @@ function sendComment() {
   function send() {
     request(baseHttpURL + "/Servlet/CommentServlet", {
       method: 'post',
-      body: JSON.stringify(data_1)
+      body: data_1
     }).then(res => {
       if (res.statusCode == 200) {
         answerItem.find(".addComment .textBox").val("");
@@ -555,20 +565,23 @@ function sendComment() {
 
 // 点赞请求
 function agreeRequest(data) {
+  let method = data.requestType == 'post' ? 'post' : 'get'
   return request(baseHttpURL + '/Servlet/AgreeServlet', {
-    method: 'get',
+    method,
     body: data
   })
 }
+
 
 // 文章点赞
 function agreeQuestion() {
   //当前点击状态
   if (!isLogin()) {
-    displayTipPane(tipInfo.login.no_login);
+    displayTipPane_warn(tipInfo.login.no_login);
     return;
   }
   if ($(this).attr("changing") == "true") {
+    displayTipPane_warn(tipInfo.submit.tooFrequent)
     return;
   }
   $(this).attr("changing", "true");
@@ -587,7 +600,8 @@ function agreeQuestion() {
       let oAgreeCount = obj.parents(".like_btn").find(".num");
       oAgreeCount.html(parseInt(oAgreeCount.html()) - 1);
       obj.attr("changing", "false");
-    })
+      console.log('取消点赞');
+    },err => console.log)
   } else if (status == "no_agree") {
     agreeRequest({
       requestType: "post",
@@ -613,18 +627,18 @@ function agreeQuestion() {
           "senderFace": user.face,
           "requestType": "post"
         }
+        console.log('点赞');
         sendInfo(data);
       }
-    })
+    },err => console.log)
+  }else{
+    console.log('不处理');
   }
 }
 
 // 回答点赞
 // 回答点赞
 //加载回答的时候 初始化自己是否有点赞
-//初始化changing = false
-//绑定函数 $('.answerItem .like_btn .icon').click();
-//  $('.answerItem .like_btn .icon').click();
 //回答点赞函数
 function agreeAnswer(receiverMarkNumber) {
   //当前点击状态
@@ -651,11 +665,12 @@ function agreeAnswer(receiverMarkNumber) {
       let oAgreeCount = obj.parents(".like_btn").find(".num");
       oAgreeCount.html(parseInt(oAgreeCount.html()) - 1);
       obj.attr("changing", "false");
+      
     })
   } else if (status == "no_agree") {
     //点赞
     agreeRequest({
-      requestType: "delete",
+      requestType: "post",
       agreeType: "answer",
       markNumber: user.markNumber,
       answerId: $(this).parents(".answerItem").attr("answerId")
@@ -681,6 +696,8 @@ function agreeAnswer(receiverMarkNumber) {
         sendInfo(data);
       }
     })
+  }else{
+    console.log('不处理');
   }
 }
 
@@ -721,10 +738,12 @@ function subscribeAuthor() {
   })
 }
 
+// 取消关注
 function cancelSubscribeAuthor() {
   attentionRequest({
-    "passMarkNumber": oAuthor.markNumber,
-    "requestType": "delete"
+    majorMarkNumber:user.markNumber,
+    passMarkNumber: oAuthor.markNumber,
+    requestType: "delete"
   }).then(res => {
     if (res.statusCode == 200) {
       $(".author_info_box .subscribe_btn").removeClass("subscribe");
@@ -735,7 +754,6 @@ function cancelSubscribeAuthor() {
         "senderMarkNumber": user.markNumber,
         "receiverMarkNumber": oAuthor.markNumber,
         "content": "取消对你的关注。",
-        // "additionContent": "额外内容 可以为空",
         "type": "inf",
         "senderName": user.userName,
         "isRead": false,
@@ -754,7 +772,7 @@ function loadQuestion() {
     questionId, 
   }
   if (isLogin()) {
-    data1["viewerMarkNumber"] = user.markNumber;
+    data1["ViewerMarkNumber"] = user.markNumber;
   }
   request(baseHttpURL+'/Servlet/QuestionServlet', {
     method: 'get',
@@ -790,6 +808,7 @@ function setQuestionMain(data) {
     $('.question_info_main .like_btn').attr("status", "no_agree");
     $('.question_info_main .like_btn').addClass("no_agree");
   }
+  console.log(data);
   //点赞数目
   $('.question_info_main .like_btn .num').html(data.agreeCount);
 }
@@ -852,10 +871,11 @@ function sendInfo(data) {
     body: data
   }).then(() => createWebSocket(`${baseWsURL}/${user.markNumber}/${data.receiverMarkNumber}`),err => {console.log(err);})
   .then(() => {
-    sendInfoWs('newMessage...');
+    // user.name不重要，就不获取接受者的用户名了
+    sendInfoWs('message...', {markNumber: data.receiverMarkNumber, userName: user.userName});
     console.log('通知成功');
   })
 }
 
 
-export {scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion }
+export {addImgHandler,scrollHandler, fixed, inputText, readFile, sendAnswer, getAnswer, agreeQuestion, subscribeAuthor, cancelSubscribeAuthor, loadQuestion }
