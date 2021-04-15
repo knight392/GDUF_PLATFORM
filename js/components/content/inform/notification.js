@@ -82,7 +82,7 @@ export function messageInf() {
         method: "get",
         body: {
             currentPage: "1",
-            receiverMarkNumber: user.userNumber,
+            receiverMarkNumber: user.markNumber,
             order: "sendTime",
             direction: "desc",
             requestType: 'get',
@@ -168,7 +168,7 @@ function messageChat() {
         method: "get",
         body: {
             currentPage: "1",
-            receiverMarkNumber: user.userNumber,
+            receiverMarkNumber: user.markNumber,
             order: "sendTime",
             direction: "desc",
             requestType: 'get',
