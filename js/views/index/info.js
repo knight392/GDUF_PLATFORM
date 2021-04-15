@@ -2,7 +2,7 @@ import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import { displayTipPane_success, displayTipPane_warn } from '../../components/content/tipPane.js';
 import request from '../../util/request.js';
 import template from '../../util/template.js';
-
+import {agreeQuestion} from './tools.js';
 export let mainScrollid1; //存scrollId 用来加载下一页
 export let LoadNextPage1; //存next 用来判断是否有下一页
 export let mainScrollid2; //存scrollId 用来加载下一页
@@ -20,16 +20,23 @@ export function infoIndexPART1() {
     }).then(res => {
         mainScrollid1 = res.scrollId;
         LoadNextPage1 = res.next;
+        console.log(res.dataList[0]);
         for (let i = 0; i < res.dataList.length; i++) {
+            let agree = res.dataList[i].agree ? 'agree' : 'no_agree'
             const json = {
                 queYurl: 'questionPage.html?id=' + res.dataList[i].id,
                 queYtitle: res.dataList[i].title,
                 queYkind: res.dataList[i].questionType,
                 queYremarks: res.dataList[i].contents[0].contentMain,
+                queId:res.dataList[i].id,
+                agree,
+                markNumber: res.dataList[i].authorMarkNumber
             }
 
-            const queY = template("campusIntercommunicationQueY_template", json);
+            const queY = $(template("campusIntercommunicationQueY_template", json));
             $('.studyPartY').append(queY);
+            console.log(queY);
+            queY.find('.icondianzan').click(agreeQuestion)
             if (res.dataList[i].tag != null) {
                 for (let j = 0; j < res.dataList[i].tag.length; j++) {
                     if (j >= 5) {

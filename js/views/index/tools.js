@@ -1,14 +1,13 @@
 import { baseHttpURL } from '../../common/baseRequestInfo.js';
 import request from '../../util/request.js';
 import { displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
-
+import {agreeRequest} from '../questionPage/tools.js';
 import { isLogin, user } from '../../common/user/index.js';
 import inputTextFilter from '../../components/content/inputTextFilter.js';
 import sendFile from '../../components/content/fileHandler.js';
 import { getContentItem } from '../../components/content/questionPane/tool.js'
 import { getImgBase64, isImage, isVideo } from '../../util/imgHandler.js';
 let sendingImgVideo = false;
-
 
 // 发送图片 视频
 function sendImgVideo(formdata, obj) { //imgObj是jq对象
@@ -179,4 +178,67 @@ export function sendDevel() {
     })
   }
 
+}
+
+// 文章点赞
+export function agreeQuestion() {
+  console.log('点赞');
+  //当前点击状态
+  if (!isLogin()) {
+    displayTipPane_warn(tipInfo.login.no_login);
+    return;
+  }
+  if ($(this).attr("changing") == "true") {
+    displayTipPane_warn(tipInfo.submit.tooFrequent)
+    return;
+  }
+  $(this).attr("changing", "true");
+  let status = $(this).parents(".like_btn").attr("status");
+  let obj = $(this);
+  let questionId = $(this).parents('.queY').data('queId');
+  console.log(questionId);
+  if (status == "agree") { //再次点击为取消点赞
+    agreeRequest({
+      requestType: "delete",
+      agreeType: "question",
+      markNumber: user.markNumber,
+      questionId 
+    }).then(res => {
+      obj.parents(".like_btn").attr("status", "no_agree");
+      obj.parents(".like_btn").addClass("no_agree");
+      obj.parents(".like_btn").removeClass("agree");
+      obj.attr("changing", "false");
+      console.log('取消点赞');
+    },err => console.log)
+  } else if (status == "no_agree") {
+    agreeRequest({
+      requestType: "post",
+      agreeType: "question",
+      markNumber: user.markNumber,
+      questionId
+    }).then(res => {
+      if (res.statusCode == 200) {
+        obj.parents(".like_btn").attr("status", "agree");
+        obj.parents(".like_btn").addClass("agree");
+        obj.parents(".like_btn").removeClass("no_agree");
+        obj.attr("changing", "false");
+        const receiverMarkNumber = obj.parents('.queY').data('markNumber');
+        let data = {
+          "senderMarkNumber": user.markNumber,
+          "receiverMarkNumber": receiverMarkNumber,
+          "content": '点赞了你的问题"' + $(".question_info_box .questionTitle").html() + '"',
+          // "additionContent": "额外内容 可以为空",
+          "type": "inf",
+          "senderName": user.userName,
+          "isRead": false,
+          "senderFace": user.face,
+          "requestType": "post"
+        }
+        sendInfo(data);
+        console.log('点赞');
+      }
+    },err => console.log)
+  }else{
+    console.log('不处理');
+  }
 }

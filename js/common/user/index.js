@@ -14,7 +14,7 @@ let user = null;
     if (user != null) {
         try {
           console.log('本地有用户数据',user);
-            // createWebSocket(baseWsURL)
+          createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
         } catch (e) {
             console.log(e);
             user = null;
@@ -32,7 +32,7 @@ function doLogOff() {
 /**
  * 
  * @param {*} loginData (可以是{loginValue, password, requestType, userType}对象 或 不发，此时用token验证)
- * @returns 
+ * @returns {Promise}
  */
 
 // 登录
@@ -56,4 +56,30 @@ function isLogin() {
     return user == null ? false : true
 }
 
-export { user, doLogOff, doLogin, isLogin }
+/**
+ * 重新设置用户信息，当修改用户信息后调用
+ * @param {Map} infoMap 
+ */
+function resetUserInfo(infoMap){
+  return new Promise((resolve, reject) => {
+    try{
+      if(!isLogin()){throw new Error('用户没登录，不能修改信息！')}
+      // 修改
+      infoMap.forEach((value, key) => {
+        // 如有user里有该键就修改
+        if(user[key]){
+          user[key] = value;
+        }
+      })
+      // 重新设置本地cookie
+      removeLocalUser();
+      setLocalUser(user);
+      resolve();
+    }catch(e){
+      console.log(e);
+      reject(e);
+    }
+  })
+}
+
+export { user, doLogOff, doLogin, isLogin, resetUserInfo }

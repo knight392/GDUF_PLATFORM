@@ -375,10 +375,9 @@ input {
 }
 
 
-/* .maincontent .indexQuizList .queY .queControlY span:nth-of-type(1):hover,
-.maincontent .indexQuizList .queY .queControlY span:hover .icondianzan {
-    color: #f37335;
-} */
+.maincontent .indexQuizList .queY .queControlY .like_btn .agree{
+    color: #f37335 !important;
+}
 
 
 /* #endregion */
