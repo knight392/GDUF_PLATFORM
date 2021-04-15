@@ -16,19 +16,28 @@ $('.IntoPersonCenter').on({
 });
 //#endregion
 
+//#region 点击item 里面的a标签 提示正在开发中
+$(".item a").on({
+    click: function() {
+        displayTipPane_warn(tipInfo.dev.mes);
+    }
+});
+//#endregion
+
 // 上传头像
 $('.ResMessageFace').on({
-  mouseenter: function(){
-    $(this).find('.cover').fadeIn(200)
-  },
-  mouseleave: function(){
-    $(this).find('.cover').fadeOut(200)
-  }
+    mouseenter: function() {
+        $(this).find('.cover').fadeIn(200)
+    },
+    mouseleave: function() {
+        $(this).find('.cover').fadeOut(200)
+    }
 })
-$('#uploadBtn').click(function(){
-  $('#readFileBtn').click()
+$('#uploadBtn').click(function() {
+    $('#readFileBtn').click()
 })
 $('#readFileBtn').change(readImg)
+
 //#region 我的关注 √
 $(".attention").on({
     click: function() {
@@ -98,16 +107,15 @@ $('#hoverBox_answer').click(function() {
 
 // 左边:提问
 $('#hoverBox_request').click(function() {
-    goLeftY($(this), ".myAns", ".myCue");
-    //发送请求
-    if (isLogin()) {
-        QAcue();
-    } else {
-        displayTipPane_warn(tipInfo.login.no_login);
-    }
-})
-
-//#endregion
+        goLeftY($(this), ".myAns", ".myCue");
+        //发送请求
+        if (isLogin()) {
+            QAcue();
+        } else {
+            displayTipPane_warn(tipInfo.login.no_login);
+        }
+    })
+    //#endregion
 
 //#region 节流
 //用到节流防抖，先不做
