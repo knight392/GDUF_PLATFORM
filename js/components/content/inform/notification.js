@@ -89,6 +89,7 @@ export function messageInf() {
             type: "inf",
         }
     }).then(res => {
+        
         console.log(res);
         $(".system").html("");
         for (let i = res.dataList.length - 1; i > 0; i--) {
@@ -219,6 +220,7 @@ function messageChat() {
 
 // 接收通知时触发的函数，出现小红点，请求新的信息  在请求新的动态信息的时候会判断是否有小红点
 function receiveInfo() {
+  console.log('收到通知');
     // $(".icondian").show();
     messageInf();
 }

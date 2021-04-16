@@ -222,11 +222,13 @@ export function agreeQuestion() {
         obj.parents(".like_btn").addClass("agree");
         obj.parents(".like_btn").removeClass("no_agree");
         obj.attr("changing", "false");
-        const receiverMarkNumber = obj.parents('.queY').data('markNumber');
+        const que = obj.parents('.queY');
+        const receiverMarkNumber = que.data('markNumber');
+
         let data = {
           "senderMarkNumber": user.markNumber,
           "receiverMarkNumber": receiverMarkNumber,
-          "content": '点赞了你的问题"' + $(".question_info_box .questionTitle").html() + '"',
+          "content": `点赞了你的问题"${que.find('.questionTitle').html() }"`,
           // "additionContent": "额外内容 可以为空",
           "type": "inf",
           "senderName": user.userName,
