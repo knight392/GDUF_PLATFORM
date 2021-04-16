@@ -182,7 +182,11 @@ $('.pwd_confirm svg').click(function () {
 // 学号是否有效
 $('#markNumber_student input').blur(function() {
   if($(this).val().trim() != ''){
-    dataIsExiste('markNumber', $(this).val(), '该学号已存在！');
+    dataIsExiste('markNumber', $(this).val(), userType).then(res => {
+      if(res == true){
+        displayTipPane_warn("该学号已存在哦~")
+      }
+    })
   }else{
     displayTipPane_warn("学号不能为空哦~")
   }
@@ -190,7 +194,11 @@ $('#markNumber_student input').blur(function() {
 // 教工号是否有效
 $('#markNumber_teacher input').blur(function() {
   if($(this).val().trim() != ''){
-    dataIsExiste('markNumber', $(this).val(), '该教工号已存在！');
+    dataIsExiste('markNumber', $(this).val(), userType).then(res => {
+      if(res){
+        displayTipPane_warn("该教工号已存在哦~")
+      }
+    })
   }else{
     displayTipPane_warn("教工号不能为空哦~")
   }
@@ -203,7 +211,11 @@ $('.userName input').blur(function () {
   if (!userNameIsAvailable($(this).val())) {
     displayTipPane_warn('用户名格式有误！');
   } else {
-    dataIsExiste('userName', $(this).val(), '该用户名已存在！');
+    dataIsExiste('userName', $(this).val(), userType).then(res => {
+      if(res){
+        displayTipPane_warn("该用户名已存在哦~")
+      }
+    })
   }
 })
 
@@ -223,8 +235,8 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn("请填写您的教工号！");
       return;
     }
-    if (await dataIsExiste('markNumber',$('#markNumber_teacher input').val()), '教工号已存在，请重新填写！') {
-      return;
+    if (await dataIsExiste('markNumber',$('#markNumber_teacher input').val(), userType), '教工号已存在，请重新填写！') {
+      return displayTipPane_warn('输入的教工号已被注册！');
     }
     markNumber = $('#markNumber_teacher input').val();
     //用户名判空
@@ -232,8 +244,8 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn('请输入您的用户名！');
       return;
     }
-    if (await dataIsExiste('userName',$('#userName_teacher input').val()), '用户名已存在，请重新填写！') {
-      return;
+    if (await dataIsExiste('userName',$('#userName_teacher input').val()), userType) {
+      return displayTipPane_warn("输入的用户名已被注册！");
     }
 
     //性别判空
@@ -253,8 +265,8 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn("请填写您的学号！");
       return;
     }
-    if (await dataIsExiste('markNumber',$('#markNumber_student input').val()), '学号已存在，请重新填写！') {
-      return;
+    if (await dataIsExiste('markNumber',$('#markNumber_student input').val()), userType) {
+      return displayTipPane_warn("输入的学号已被注册！");
     }
     markNumber = $('#markNumber_student input').val();
     //用户名判空
@@ -262,9 +274,10 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn('请输入您的用户名！');
       return;
     }
-    if (await dataIsExiste('userName',$('#userName_student input').val()), '用户名已存在，请重新填写！') {
-      return;
+    if (await dataIsExiste('userName',$('#userName_student input').val()), userType) {
+      return displayTipPane_warn("输入的用户名已被注册！");
     }
+
     //性别判空
     if ($('.sex .value').eq(0).attr('data') == '') {
       displayTipPane_warn('请选择您的性别！');
