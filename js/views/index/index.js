@@ -1,6 +1,5 @@
-import { baseHttpURL } from '../../common/baseRequestInfo.js'
+
 import { isLogin, user } from '../../common/user/index.js'
-import { messageInf } from '../../components/content/inform/notification.js'
 import { displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import { loadingNextPART1, loadingNextPART2, infoIndexPART1, infoIndexPART2 } from './info.js'

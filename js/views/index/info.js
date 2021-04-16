@@ -98,7 +98,7 @@ export function infoIndexPART2() {
         json["grade"] = res.dataList[i].teacher.level;
       }
       const trend = template("schoolDevelopmentTrendsY-template", json);
-      $('.dynamicsY').prepend(trend);
+      $('#dynamicsY_container').prepend(trend);
 
       if (res.dataList[i].contents != null) {
         if (res.dataList[i].contents.length == 1 && res.dataList[i].contents[0].contentType === "video") {
