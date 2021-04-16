@@ -1,7 +1,7 @@
 import { isLogin } from '../../../common/user/index.js';
 import debounce from '../../../util/debounce.js'
 import { getSearchMessageY } from './tools.js'
-import {displayTipPane_warn} from '../tipPane.js'
+import { displayTipPane_warn } from '../tipPane.js'
 // 清空搜索栏
 (function() {
     $(".search .searchBar").val("");
@@ -12,7 +12,7 @@ import {displayTipPane_warn} from '../tipPane.js'
 $("body").on({
     click: function() {
         //#region 搜索框：searchContent不显示+ 清空里面的内容 +清空搜索框内容 
-        $(this).parent().siblings(".searchContent").hide(200);
+        $(".searchContent").hide(200);
         $(".searchContent").find('li').remove();
         $(".search").find(".searchBar").val("");
         //#endregion
@@ -21,16 +21,12 @@ $("body").on({
 })
 
 //#region 搜索框 √ 点击 + 得失焦点 + 节流 √ 
-$(window).on({
-    change: function() {
-        // $('.searchContent').css("width", $('.searchBar').innerWidth() + $('.searchBtn').innerWidth() + "px");
-    }
-})
-$(".search").on({
-    click: function(e) {
-        e.stopPropagation();
-    }
-})
+
+// $(".search").on({
+//     click: function(e) {
+//         e.stopPropagation();
+//     }
+// })
 
 $(".nav").find(".searchBar").on({
     blur: function() {
@@ -38,7 +34,7 @@ $(".nav").find(".searchBar").on({
         $(".searchBar").css("borderRadius", "40px 0 0 40px");
         $(".searchBtn").css("borderRadius", "0 40px 40px 0");
         $(this).css("backgroundColor", "rgba(255, 255, 255, 0.5)");
-        $(this).parent().siblings(".searchContent").hide(200);
+        // $(this).parent().siblings(".searchContent").hide();
 
     }
 })

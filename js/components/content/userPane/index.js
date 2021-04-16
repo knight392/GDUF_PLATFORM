@@ -15,15 +15,6 @@ $('.IntoPersonCenter').on({
     }
 });
 //#endregion
-
-//#region 点击item 里面的a标签 提示正在开发中
-$(".item a").on({
-    click: function() {
-        displayTipPane_warn(tipInfo.dev.mes);
-    }
-});
-//#endregion
-
 // 上传头像
 $('.ResMessageFace').on({
     mouseenter: function() {

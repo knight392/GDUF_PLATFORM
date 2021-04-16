@@ -17,9 +17,9 @@ export function getSearchMessageY(val) {
             getType: "explore",
             exploreContent: val,
         }
-    }).then(res => { 
+    }).then(res => {
         $('.search .searchContent li').remove();
-        let indexli = 0;
+
         let url;
         let icon;
         for (let i = 0; i < res.dataList.length && i < 5; i++) {
@@ -39,12 +39,9 @@ export function getSearchMessageY(val) {
             }
             url = 'questionPage.html?id=' + res.dataList[i].id;
 
-            if (indexli < 5) {
-                const li = $('<li><span><i class="iconfont ' + icon + ' "></i></span><a target="_blank" href=" ' + url + ' ">' + res.dataList[i].title + '</a></li>');
-                $(".search .searchContent").prepend(li);
-                $(".search .searchContent").find("li").eq(i).html(res.dataList[i].title);
-                indexli++;
-            }
+            const li = $('<li><span><i class="iconfont ' + icon + ' "></i></span><a target="_blank" href=" ' + url + ' ">' + res.dataList[i].title + '</a></li>');
+            $(".search .searchContent").prepend(li);
+            // $(".search .searchContent").find("li").eq(i).html(res.dataList[i].title);
         }
     })
 

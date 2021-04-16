@@ -1,7 +1,7 @@
 import { getLocalUser, setLocalUser, removeLocalUser, loginRequest } from './tools.js'
 import { createWebSocket, closeWebSocket } from '../../components/content/inform/listner/index.js'
 import { baseWsURL } from '../baseRequestInfo.js'
-import {dealWithUserPane} from '../../components/content/logOn/tools.js'
+import { dealWithUserPane } from '../../components/content/logOn/tools.js'
 // user为null,表示没有登录
 /**
  *  { userType, markNumber, email, face, college, sex, userName, area, graduatedUniversity, degree, major }
@@ -13,10 +13,10 @@ let user = null;
     user = getLocalUser();
     if (user != null) {
         try {
-          createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
-          
+            createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
+
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             user = null;
         }
     }
@@ -60,25 +60,25 @@ function isLogin() {
  * 重新设置用户信息，当修改用户信息后调用
  * @param {Map} infoMap 
  */
-function resetUserInfo(infoMap){
-  return new Promise((resolve, reject) => {
-    try{
-      if(!isLogin()){throw new Error('用户没登录，不能修改信息！')}
-      // 修改
-      infoMap.forEach((value, key) => {
-        // 如有user里有该键就修改
-        if(user[key]){
-          user[key] = value;
+function resetUserInfo(infoMap) {
+    return new Promise((resolve, reject) => {
+        try {
+            if (!isLogin()) { throw new Error('用户没登录，不能修改信息！') }
+            // 修改
+            infoMap.forEach((value, key) => {
+                    // 如有user里有该键就修改
+                    if (user[key]) {
+                        user[key] = value;
+                    }
+                })
+                // 重新设置本地cookie
+            removeLocalUser();
+            setLocalUser(user);
+            resolve();
+        } catch (e) {
+            reject(e);
         }
-      })
-      // 重新设置本地cookie
-      removeLocalUser();
-      setLocalUser(user);
-      resolve();
-    }catch(e){
-      reject(e);
-    }
-  })
+    })
 }
 
 export { user, doLogOff, doLogin, isLogin, resetUserInfo }

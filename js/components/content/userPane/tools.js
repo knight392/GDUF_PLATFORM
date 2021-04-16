@@ -167,6 +167,14 @@ export function attentionMajor() {
                 displayTipPane_warn(tipInfo.dev.mes);
             }
         })
+
+        //#region 点击item 里面的a标签 提示正在开发中
+        $(".item a").on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        });
+        //#endregion
     })
 
 }
@@ -212,6 +220,14 @@ export function attentionPass() {
                 displayTipPane_warn(tipInfo.dev.mes);
             }
         })
+
+        //#region 点击item 里面的a标签 提示正在开发中
+        $(".item a").on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        });
+        //#endregion
     })
 }
 
