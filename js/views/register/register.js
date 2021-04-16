@@ -179,6 +179,22 @@ $('.pwd_confirm svg').click(function () {
   $pwd_confirm_view = $pwd_confirm_view == false ? true : false;
 })
 
+// 学号是否有效
+$('#markNumber_student input').blur(function() {
+  if($(val).val().trim() != ''){
+    dataIsExiste('markNumber', $(this).val(), '该学号已存在！');
+  }else{
+    displayTipPane_warn("学号不能为空哦~")
+  }
+})
+// 教工号是否有效
+$('#markNumber_teacher input').blur(function() {
+  if($(val).val().trim() != ''){
+    dataIsExiste('markNumber', $(this).val(), '该教工号已存在！');
+  }else{
+    displayTipPane_warn("教工号不能为空哦~")
+  }
+})
 
 
 //用户名合法性判断
@@ -197,7 +213,7 @@ $('.fadeOut').click(function () {
 })
 
 //数据提交
-$('.submit_btn').click(() => {
+$('.submit_btn').click(async () => {
   //学号是自动填充，但是教工号用户自己写的，根据userType来进行选择，
   //学号或教工号，待定。。
   let markNumber
@@ -207,10 +223,16 @@ $('.submit_btn').click(() => {
       displayTipPane_warn("请填写您的教工号！");
       return;
     }
+    if (await dataIsExiste('markNumber',$('#markNumber_teacher input').val()), '教工号已存在，请重新填写！') {
+      return;
+    }
     markNumber = $('#markNumber_teacher input').val();
     //用户名判空
     if ($('.userName input').eq(1).val() == '') {
       displayTipPane_warn('请输入您的用户名！');
+      return;
+    }
+    if (await dataIsExiste('userName',$('#userName_teacher input').val()), '用户名已存在，请重新填写！') {
       return;
     }
 
@@ -231,10 +253,16 @@ $('.submit_btn').click(() => {
       displayTipPane_warn("请填写您的学号！");
       return;
     }
+    if (await dataIsExiste('markNumber',$('#markNumber_student input').val()), '学号已存在，请重新填写！') {
+      return;
+    }
     markNumber = $('#markNumber_student input').val();
     //用户名判空
     if ($('.userName input').eq(0).val() == '') {
       displayTipPane_warn('请输入您的用户名！');
+      return;
+    }
+    if (await dataIsExiste('userName',$('#userName_student input').val()), '用户名已存在，请重新填写！') {
       return;
     }
     //性别判空
