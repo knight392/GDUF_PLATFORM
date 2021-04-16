@@ -207,7 +207,8 @@ $(".addimgsY").on({
 
 $(".addvideoY").on({
     change: function() {
-        insertImgVideo.call(this, 'video');
+      displayTipPane_warn(tipInfo.dev.mes)
+        // insertImgVideo.call(this, 'video');
     }
 });
 
