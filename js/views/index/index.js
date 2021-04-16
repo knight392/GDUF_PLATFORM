@@ -14,9 +14,7 @@ let PART = 1; //校区互通 1 校园动态 2
     infoIndexPART1();
 
     infoIndexPART2();
-    if(isLogin()){
-      messageInf();
-    }
+   
 
     //#region 清空搜索框内的内容 √
 
@@ -112,6 +110,7 @@ $('.switchY .change').on({
             $('.change').attr('title', '切换校园动态');
             $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
             PART = 1;
+            
         } else {
             $('.switchY .change').html(' <i class="iconfont iconqiehuan-"></i>校区互通');
             $('.indexQuizList').slideUp(1000);
@@ -131,6 +130,7 @@ $('.switchY .change').on({
             'backgroundColor': '#fff',
             'color': '#028e9b'
         })
+        displayTipPane_warn("正在加载数据...");
     }
 });
 //#endregion

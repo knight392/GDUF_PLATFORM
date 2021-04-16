@@ -218,29 +218,18 @@ input {
     top: 0;
 }
 
-.QAndM .message>.icondian {
-    color: brown;
-    font-size: 50px;
-    display: none;
-    /* position: relative; */
-}
 
-.QAndM .message:hover .iconfont,
-.QAndM .cueY:hover .iconfont {
-    top: -10px;
-    /* margin-top: -10px; */
-}
+
 
 .QAndM .message>.icondian {
-    color: brown;
+    color: #E6A23C;
     font-size: 40px;
     /* position: relative; */
-    top: -13px;
+    top: -56px;
     right: -11px;
 }
-
-.QAndM .message:hover .icondian {
-    top: -23px;
+.QAndM .message:hover .icondian{
+  top: -68px;
 }
 
 .QAndM .message .messageNotification {
@@ -325,7 +314,7 @@ input {
     float: right;
     color: #028e9b;
     font-size: 22px;
-    width: 3em;
+    width: 2.5em;
     position: relative;
     transition: all 0.3s;
     border-radius: 0 38px 38px 0;

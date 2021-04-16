@@ -181,7 +181,7 @@ $('.pwd_confirm svg').click(function () {
 
 // 学号是否有效
 $('#markNumber_student input').blur(function() {
-  if($(val).val().trim() != ''){
+  if($(this).val().trim() != ''){
     dataIsExiste('markNumber', $(this).val(), '该学号已存在！');
   }else{
     displayTipPane_warn("学号不能为空哦~")
@@ -189,7 +189,7 @@ $('#markNumber_student input').blur(function() {
 })
 // 教工号是否有效
 $('#markNumber_teacher input').blur(function() {
-  if($(val).val().trim() != ''){
+  if($(this).val().trim() != ''){
     dataIsExiste('markNumber', $(this).val(), '该教工号已存在！');
   }else{
     displayTipPane_warn("教工号不能为空哦~")
