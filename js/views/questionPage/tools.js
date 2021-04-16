@@ -38,6 +38,7 @@ function scrollHandler() {
       displayTipPane_warn("没有更多回答了哦！");
       return;
     }
+    displayTipPane_warn("正在加载更多回答...")
     getAnswer(++answerPage);
   }
 }

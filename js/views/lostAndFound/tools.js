@@ -392,6 +392,7 @@ function scrollHandler() {
   //滚动条到底
   if (scrollTop + curHeight >= (totalHeight - 80)) {
     if (haveMore) {
+      displayTipPane_warn("正在加载更多物品...")
       if (canLoading) {
         loadMoreGoods();
       }
