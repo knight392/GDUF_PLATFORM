@@ -831,7 +831,7 @@ input {
         width: 420px;
     }
     .QAndM .message .messageNotification {
-        /* width: 440px; */
+        width: 440px;
     }
 }
 
@@ -870,7 +870,7 @@ input {
     }
     /*消息通知  */
     .QAndM .message .messageNotification {
-        /* width: 409PX; */
+        width: 409PX;
         height: 547px;
         right: -96px;
     }
@@ -1007,7 +1007,7 @@ input {
         width: 427px;
     }
     .QAndM .message .messageNotification {
-        /* width: 379PX; */
+        width: 379PX;
         height: 490px;
         right: -96px;
         top: 63px
@@ -1125,7 +1125,7 @@ input {
         width: 338px;
     }
     .QAndM .message .messageNotification {
-        /* width: 337PX; */
+        width: 337PX;
         height: 452px;
         right: -66px;
         top: 55px
