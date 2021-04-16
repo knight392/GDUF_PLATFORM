@@ -188,7 +188,7 @@ export function agreeQuestion() {
     return;
   }
   $(this).attr("changing", "true");
-  let status = $(this).parents(".like_btn").attr("status");
+  let status = $(this).attr("status");
   let obj = $(this);
   let questionId = $(this).parents('.queY').data('queId');
   if (status == "agree") { //再次点击为取消点赞
@@ -198,9 +198,9 @@ export function agreeQuestion() {
       markNumber: user.markNumber,
       questionId 
     }).then(res => {
-      obj.parents(".like_btn").attr("status", "no_agree");
-      obj.parents(".like_btn").addClass("no_agree");
-      obj.parents(".like_btn").removeClass("agree");
+      obj.attr("status", "no_agree");
+      obj.addClass("no_agree");
+      obj.removeClass("agree");
       obj.attr("changing", "false");
     },err => console.log)
   } else if (status == "no_agree") {
@@ -211,9 +211,9 @@ export function agreeQuestion() {
       questionId
     }).then(res => {
       if (res.statusCode == 200) {
-        obj.parents(".like_btn").attr("status", "agree");
-        obj.parents(".like_btn").addClass("agree");
-        obj.parents(".like_btn").removeClass("no_agree");
+        obj.attr("status", "agree");
+        obj.addClass("agree");
+        obj.removeClass("no_agree");
         obj.attr("changing", "false");
         const que = obj.parents('.queY');
         const receiverMarkNumber = que.data('markNumber');

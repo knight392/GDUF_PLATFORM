@@ -90,7 +90,6 @@ export function messageInf() {
         }
     }).then(res => {
         
-        console.log(res);
         $(".system").html("");
         for (let i = res.dataList.length - 1; i > 0; i--) {
             const item = $("<li class='item messageSystemItem'></li>");

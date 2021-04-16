@@ -39,7 +39,7 @@ export function infoIndexPART1() {
 
       const queY = $(template("campusIntercommunicationQueY_template", json));
       $('.studyPartY').append(queY);
-      queY.find('.icondianzan').click(agreeQuestion)
+      queY.find('.like_btn').click(agreeQuestion)
       if (res.dataList[i].tag != null) {
         for (let j = 0; j < res.dataList[i].tag.length; j++) {
           if (j >= 5) {
@@ -179,7 +179,7 @@ export function loadingNextPART1() {
 
         const queY = $(template("campusIntercommunicationQueY_template", json));
         $('.studyPartY').append(queY);
-        queY.find('.icondianzan').click(agreeQuestion)
+        queY.find('.like_btn').click(agreeQuestion)
         $('.studyPartY').append(queY);
         if (res.dataList[i].tag != null) {
           for (let j = 0; j < res.dataList[i].tag.length; j++) {
