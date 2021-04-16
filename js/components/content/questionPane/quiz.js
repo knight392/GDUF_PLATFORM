@@ -24,13 +24,11 @@ $(".quizModal_bg_askQuestion textarea").on("change", textInputHandler)
 
 // 绑定删除图片事件
 BindRmoveItemEvent('#picture_container', 'removePicture', function () {
-  console.log('删除');
   $(this).parent('.picture').remove();
 })
 
 // 绑定删除标签事件
 BindRmoveItemEvent('#label_container', 'removeLabel', function () {
-  console.log('删除');
   $(this).parent('.labelItem').remove();
 })
 

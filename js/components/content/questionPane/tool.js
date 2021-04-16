@@ -183,7 +183,6 @@ function getSubmitData() {
     let imgArr = $(".quizModal_bg_askQuestion .insertPicture .picture_containner").children();
     for (let i = 0; i < imgArr.length; i++) {
         let url = $(imgArr[i]).attr("remoteurl");
-        console.log(url);
         contents[i + 1] = getContentItem(++contents_order, "img", url);
     }
 

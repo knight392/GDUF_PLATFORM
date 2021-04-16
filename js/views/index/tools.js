@@ -16,7 +16,6 @@ function sendImgVideo(formdata, obj) { //imgObj是jq对象
     obj.attr("remoteURL", res);
     sendingImgVideo = false;
   }, err => {
-    console.log(err);
     obj.remove();
     sendingImgVideo = false;
     displayTipPane_err("文件上传失败了哦~");
@@ -70,11 +69,9 @@ export function insertImgVideo(type) {
     //×出现与消失
     $(".develimgY").on({
       mouseover: function () {
-        console.log("movein");
         $(this).find(".removeImgVideo").stop().show(200);
       },
       mouseout: function () {
-        console.log("moveout");
         $(this).find(".removeImgVideo").stop().hide(200);
       }
     })
@@ -174,7 +171,6 @@ export function sendDevel() {
       $(".addvideoY .addfileY").show();
     }, err => {
       displayTipPane_err(tipInfo.submit.err);
-      console.log(err);
     })
   }
 
@@ -182,7 +178,6 @@ export function sendDevel() {
 
 // 文章点赞
 export function agreeQuestion() {
-  console.log('点赞');
   //当前点击状态
   if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login);
@@ -196,7 +191,6 @@ export function agreeQuestion() {
   let status = $(this).parents(".like_btn").attr("status");
   let obj = $(this);
   let questionId = $(this).parents('.queY').data('queId');
-  console.log(questionId);
   if (status == "agree") { //再次点击为取消点赞
     agreeRequest({
       requestType: "delete",
@@ -208,7 +202,6 @@ export function agreeQuestion() {
       obj.parents(".like_btn").addClass("no_agree");
       obj.parents(".like_btn").removeClass("agree");
       obj.attr("changing", "false");
-      console.log('取消点赞');
     },err => console.log)
   } else if (status == "no_agree") {
     agreeRequest({
@@ -237,7 +230,6 @@ export function agreeQuestion() {
           "requestType": "post"
         }
         sendInfo(data);
-        console.log('点赞');
       }
     },err => console.log)
   }else{

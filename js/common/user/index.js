@@ -75,7 +75,6 @@ function resetUserInfo(infoMap){
       setLocalUser(user);
       resolve();
     }catch(e){
-      console.log(e);
       reject(e);
     }
   })

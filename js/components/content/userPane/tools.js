@@ -103,7 +103,6 @@ export function getData() {
     const scrollTop = Math.ceil($(this).scrollTop()); //滚动条到顶部的高度
     const curHeight = $(this).height(); //窗口高度
     const totalHeight = $('.itemList').height(); //整个文档高度
-    // console.log("拖拽滚动条");
     if (scrollTop + curHeight > totalHeight) { //滚动条到底
         page++;
     }
@@ -122,9 +121,7 @@ export function attentionMajor() {
             order: "id"
         }
     }).then(res => {
-        // console.log(res);
         $(".myAttention").html("");
-        console.log(res);
         for (let i = 0; i < res.dataList.length; i++) {
             const json = {
                 userFace: res.dataList[i].userFace,
@@ -180,9 +177,7 @@ export function attentionPass() {
             order: "id",
         }
     }).then(res => {
-        console.log(res);
         $(".attentionMe").html("");
-        // console.log(res);
         for (let i = 0; i < res.dataList.length; i++) {
             const json = {
                 userFace: res.dataList[i].userFace,

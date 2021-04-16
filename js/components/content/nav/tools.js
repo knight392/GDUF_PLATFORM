@@ -17,8 +17,7 @@ export function getSearchMessageY(val) {
             getType: "explore",
             exploreContent: val,
         }
-    }).then(res => {
-        // console.log(res);  
+    }).then(res => { 
         $('.search .searchContent li').remove();
         let indexli = 0;
         let url;

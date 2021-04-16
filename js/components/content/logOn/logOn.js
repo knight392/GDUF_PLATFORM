@@ -30,7 +30,6 @@ import {logon} from './tools.js';
 
     $(".fadein").on({
         click: function() {
-            console.log('fadein');
             $(".tip").css({
                 bottom: "5%"
             })

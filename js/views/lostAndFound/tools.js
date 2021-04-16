@@ -129,7 +129,6 @@ function loadGoods(type) {
 //展示物品
 //动态添加的方法就是先把新生成的元素添加到容器中
 //然后再使用isImgLoad(function(){
-// console.log("图片加载完")
 //     loadItem(items,itemWidth,gap);
 // },".item_containner .item img")
 
@@ -173,7 +172,6 @@ function displayGoods_first(arr) {
 
 // 加载更多使用
 function displayGoods(arr) {
-  // console.log(arr);
   let items = [];//是dom对象, width itemOuterWidth
   for (let i = 0; i < arr.length; i++) {
     let oItem = $(template("templateGoodsItem", arr[i]));
@@ -203,7 +201,6 @@ function displayGoods(arr) {
     items[i] = oItem;
   }
   // isImgLoad(function () {
-  //     // console.log("图片加载完");
   //     setTimeout(function () {
   loadItem(items, itemOuterWidth, itemGap);
   //     }, 300);
@@ -260,7 +257,6 @@ function changeMode() {
   $(".refreshBtn").css("top", "263px")
   if ($(this).attr("nextAction") == "seeFoundGoods") {
     //先清空，再加载
-    // console.log("查看失物招领");
     $(this).find(".name").html("招领");
     $(this).attr("title", "点击查看寻物启事");
     display_modal = "found";
@@ -271,7 +267,6 @@ function changeMode() {
     $(this).attr("nextAction", "seeLostGoods");
   } else {
     //先清空，再加载
-    // console.log("查看寻物启事");
     display_modal = "lost";
     getInfWay = "all";
     $(this).find(".name").html("寻物");

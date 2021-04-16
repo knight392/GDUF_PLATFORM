@@ -84,7 +84,6 @@ function dataIsExiste(field, value, userType) {
 
 //设置发送验证的按钮的样式
 function setSendBtn() {
-  //console.log("定时器");
   if (time == 0) {
     clearInterval(timer);
     $('.send_btn').removeAttr('disabled');

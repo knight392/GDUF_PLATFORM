@@ -30,7 +30,7 @@ export function infoLostHTML() {
             id
         }
     }).then(res => {
-        // console.log(res);
+
         //物品详情
         $(".YitemName").find("em").eq(1).text(res.lostObjectName);
         $(".YitemCategory").find("em").eq(1).text(res.objectType);

@@ -11,7 +11,6 @@ let PART = 1; //校区互通 1 校园动态 2
     $('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
     $('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
     $('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
-    // console.log(window.innerHeight);
     infoIndexPART1();
 
     infoIndexPART2();
@@ -86,8 +85,6 @@ $(window).scroll(function() {
 
     //#region   加载更多
     if ($('html, body').scrollTop() + window.innerHeight >= Math.floor($('html').outerHeight(true))) {
-        // console.log('底部');
-        // console.log(PART);
         if (PART == 1) {
             loadingNextPART1();
         } else if (PART == 2) {
@@ -101,7 +98,6 @@ $(window).scroll(function() {
 //#region 点击切换 校园动态/校区互通
 $('.switchY .change').on({
     click: function() {
-        console.log('click');
         $('.switchY').animate({
             'top': '-50px',
         }, 500)
@@ -144,13 +140,11 @@ $('.switchY .change').on({
 $(".copyurlY").on({
     click: function() {
         let url;
-        // console.log(window.location.href);
         if (window.location.href.indexOf('?') == -1) {
             url = window.location.href.substring(0, window.location.href.length - 10) + $(this).parents(".queY").find("a").attr("href");
         } else {
             url = window.location.href;
         }
-        // console.log(url);
         getLink(url);
         displayTipPane_success(tipInfo.copy.link_success);
     }

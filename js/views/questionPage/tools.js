@@ -72,7 +72,6 @@ function inputText(e) {
     } else {
       ev.returnValue = false;
     }
-    // console.log($(this));
     let otextDiv = $('<div class="textarea edit-div" type="text" contenteditable="true" id="edit-div"></div>');
     otextDiv.keydown(function () {
       let arg = arguments;
@@ -127,7 +126,6 @@ function sendImage(formdata, imgObj) { //imgObj是jq对象
     sendingImg = false;
   }, err => {
     sendingImg = false;
-    console.log(err);
     displayTipPane_err(tipInfo.img.upLoading)
   })
 }
@@ -263,7 +261,6 @@ function bindAnswerItemEvent(framObj) {
   //点赞
   framObj.find(".like_btn .icon").attr("changing", "false");
   framObj.find(".like_btn .icon").click(function () {
-    console.log('点赞');
     if (!isLogin()) {
       displayTipPane_warn(tipInfo.login.no_login);
       return;
@@ -308,7 +305,6 @@ function loadMyNewAnswer(answerContents, answerId) {
     userName: user.userName,
     schoolInfo: school_info
   }
-  // console.log()
   framObj.append(template("template_answerItem", framData));
   //添加answerId
   framObj.attr("answerId", answerId);
@@ -331,7 +327,6 @@ function loadMyNewAnswer(answerContents, answerId) {
 
 // 获取回答
 function getAnswer(curPage) {
-  // console.log("加载回答");
   const data = {
     requestType: "get",
     getAnswerType: "question",
@@ -391,7 +386,6 @@ function displayAnswers(arr) {
     // 添加回答者的学号
     oItem.attr('markNumber', markNumber);
     //添加answerId
-    // console.log(arr[i].contents);
     if (arr[i].contents[0]) {
       oItem.attr("answerId", arr[i].contents[0]["answerId"]);
     }
@@ -449,11 +443,8 @@ function displayComment(dataList) {
 
 //加载更多评论，加载的更旧的评论
 function loadMoreComment() {
-  // console.log("加载更多评论")
   let obj = $(this);
   let commentList = $(this).parents(".commentList");
-  // console.log("commentList.attr(nextPage)");
-  // console.log(commentList.attr("nextPage"));
   let nextPage = parseInt(commentList.attr("nextPage")) + 1;
   commentList.attr("nextPage", nextPage);
 
@@ -496,7 +487,6 @@ function sendComment() {
   //判断敏感词
   inputTextFilter(text).then(res => {
     text = res;
-    console.log(data_1);
     send()
   }, err => {
     if (err.isErr) {
@@ -600,7 +590,6 @@ function agreeQuestion() {
       let oAgreeCount = obj.parents(".like_btn").find(".num");
       oAgreeCount.html(parseInt(oAgreeCount.html()) - 1);
       obj.attr("changing", "false");
-      console.log('取消点赞');
     },err => console.log)
   } else if (status == "no_agree") {
     agreeRequest({
@@ -627,12 +616,9 @@ function agreeQuestion() {
           "senderFace": user.face,
           "requestType": "post"
         }
-        console.log('点赞');
         sendInfo(data);
       }
     },err => console.log)
-  }else{
-    console.log('不处理');
   }
 }
 
@@ -696,8 +682,6 @@ function agreeAnswer(receiverMarkNumber) {
         sendInfo(data);
       }
     })
-  }else{
-    console.log('不处理');
   }
 }
 
@@ -808,7 +792,6 @@ function setQuestionMain(data) {
     $('.question_info_main .like_btn').attr("status", "no_agree");
     $('.question_info_main .like_btn').addClass("no_agree");
   }
-  console.log(data);
   //点赞数目
   $('.question_info_main .like_btn .num').html(data.agreeCount);
 }
@@ -873,7 +856,6 @@ function sendInfo(data) {
   .then(() => {
     // user.name不重要，就不获取接受者的用户名了
     sendInfoWs('message...', {markNumber: data.receiverMarkNumber, userName: user.userName});
-    console.log('通知成功');
   })
 }
 

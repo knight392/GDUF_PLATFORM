@@ -144,7 +144,6 @@ $(".exitLogonY").on({
 
 //#region 二级面板的位置动态变化
 $(window).on("resize", function() {
-    // console.log($(".hpSecond").css("width"));
     $(".hpSecondSecond").css("right", $(".hpSecond").css("width"))
 })
 $(document).on({

@@ -25,7 +25,6 @@ export function infoIndexPART1() {
   }).then(res => {
     mainScrollid1 = res.scrollId;
     LoadNextPage1 = res.next;
-    console.log(res.dataList[0]);
     for (let i = 0; i < res.dataList.length; i++) {
       let status = res.dataList[i].agree ? 'agree' : 'no_agree'
       const json = {
@@ -63,8 +62,6 @@ export function infoIndexPART1() {
       }
     }
     $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
-    // console.log("$('.indexQuizList').outerHeight(true)" + $('.indexQuizList').outerHeight(true));
-    // console.log("$('.maincontent').outerHeight(true)" + $('.maincontent').outerHeight(true));
 
   }, err => {
     console.log(err);
@@ -80,7 +77,6 @@ export function infoIndexPART2() {
       type: "all",
     }
   }).then(res => {
-    // console.log(res);
     mainScrollid2 = res.scrollId;
     LoadNextPage2 = res.next;
     for (let i = 0; i < res.dataList.length; i++) {
@@ -223,7 +219,6 @@ export function loadingNextPART2() {
         pojoType: 'question'
       }
     }).then(res => {
-      console.log(res);
       mainScrollid2 = res.scrollId;
       LoadNextPage2 = res.next;
       for (let i = 0; i < res.dataList.length; i++) {
@@ -248,9 +243,7 @@ export function loadingNextPART2() {
           } else {
             for (let j = 0; j < res.dataList[i].contents.length; j++) {
               if (res.dataList[i].contents[j].contentMain != null) {
-                console.log(1);
                 let img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
-
                 $(".trendsY-person").eq($(".trendsY-person").length - 1).find('.trendsContent').append(img);
               }
             }
