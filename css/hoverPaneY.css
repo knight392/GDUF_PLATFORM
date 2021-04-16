@@ -446,20 +446,6 @@
 }
 
 
-/* 已关注状态 */
-
-.hoverBox .contentBox_subscribe .item .subscribe_on path {
-    fill: #ff7800;
-}
-
-
-/* 未关注状态 */
-
-.hoverBox .contentBox_subscribe .item .subscribe_off path {
-    fill: #ccc;
-}
-
-
 /* 私信 */
 
 .hoverBox .contentBox_subscribe .item .sendText {

@@ -3,7 +3,7 @@ import { user, resetUserInfo } from "../../../common/user/index.js";
 import request from "../../../util/request.js";
 import template from "../../../util/template.js";
 import sendFile from '../fileHandler.js';
-import {isImage} from '../../../util/imgHandler.js';
+import { isImage } from '../../../util/imgHandler.js';
 import { displayTipPane_err, displayTipPane_success, displayTipPane_warn, tipInfo } from "../tipPane.js";
 
 const changeFaceErr = '修改头像失败！';
@@ -40,36 +40,38 @@ export function readImg() {
 
 // 发送更改图片请求
 function changeFaceRequest(face) {
-  return request(baseHttpURL + '/Servlet/UserServlet', {
-    method: 'post',
-    body: {
-      requestType: 'put',
-      condition: 'markNumber',
-      userType: user.userType,
-      markNumber:user.markNumber,
-      face
-    }
-  })
+    return request(baseHttpURL + '/Servlet/UserServlet', {
+        method: 'post',
+        body: {
+            requestType: 'put',
+            condition: 'markNumber',
+            userType: user.userType,
+            markNumber: user.markNumber,
+            face
+        }
+    })
 }
 /**
  * 修改用户头像
  * @param {String} face 
  */
 function changeUserFace(face) {
-  // 发送修改请求
-  changeFaceRequest(face)
-    .then(res => {
-      if (res.statusCode == 200) {
-        // 修改本地user数据
-        return resetUserInfo(new Map([['face', face]])).catch(err => console.log(err));
-      }
-    }, err => 
-      displayTipPane_warn(changeFaceErr))
-    .then(res => {
-      // 重新渲染
-      setUserPaneInfo();
-      displayTipPane_success(changeFaceSuccess)
-    }, err => cdisplayTipPane_warn(changeFaceErr))
+    // 发送修改请求
+    changeFaceRequest(face)
+        .then(res => {
+                if (res.statusCode == 200) {
+                    // 修改本地user数据
+                    return resetUserInfo(new Map([
+                        ['face', face]
+                    ])).catch(err => console.log(err));
+                }
+            }, err =>
+            displayTipPane_warn(changeFaceErr))
+        .then(res => {
+            // 重新渲染
+            setUserPaneInfo();
+            displayTipPane_success(changeFaceSuccess)
+        }, err => cdisplayTipPane_warn(changeFaceErr))
 }
 
 /**
@@ -127,7 +129,8 @@ export function attentionMajor() {
                 userFace: res.dataList[i].userFace,
                 userName: res.dataList[i].userName,
                 action: "turnOff",
-                isSubscribe: "subscribe_on"
+                isSubscribe: "subscribe_on",
+                attentionColor: "#ff7800"
             }
             if (res.dataList[i].userType == "student") {
                 json["status"] = "学生";
@@ -184,6 +187,12 @@ export function attentionPass() {
                 userName: res.dataList[i].userName,
                 action: "turnOn",
                 isSubscribe: "subscribe_off"
+            }
+            console.log(res.dataList[i].mutual);
+            if (res.dataList[i].mutual) {
+                json["attentionColor"] = "#ff7800";
+            } else {
+                json["attentionColor"] = "#bfbfbf";
             }
             if (res.dataList[i].userType == "student") {
                 json["status"] = "学生";
