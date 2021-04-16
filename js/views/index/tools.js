@@ -178,7 +178,6 @@ export function sendDevel() {
 
 // 文章点赞
 export function agreeQuestion() {
-<<<<<<< HEAD
   //当前点击状态
   if (!isLogin()) {
     displayTipPane_warn(tipInfo.login.no_login);
@@ -236,63 +235,4 @@ export function agreeQuestion() {
   }else{
     console.log('不处理');
   }
-=======
-    //当前点击状态
-    if (!isLogin()) {
-        displayTipPane_warn(tipInfo.login.no_login);
-        return;
-    }
-    if ($(this).attr("changing") == "true") {
-        displayTipPane_warn(tipInfo.submit.tooFrequent)
-        return;
-    }
-    $(this).attr("changing", "true");
-    let status = $(this).parents(".like_btn").attr("status");
-    let obj = $(this);
-    let questionId = $(this).parents('.queY').data('queId');
-    if (status == "agree") { //再次点击为取消点赞
-        agreeRequest({
-            requestType: "delete",
-            agreeType: "question",
-            markNumber: user.markNumber,
-            questionId
-        }).then(res => {
-            obj.parents(".like_btn").attr("status", "no_agree");
-            obj.parents(".like_btn").addClass("no_agree");
-            obj.parents(".like_btn").removeClass("agree");
-            obj.attr("changing", "false");
-        }, err => console.log)
-    } else if (status == "no_agree") {
-        agreeRequest({
-            requestType: "post",
-            agreeType: "question",
-            markNumber: user.markNumber,
-            questionId
-        }).then(res => {
-            if (res.statusCode == 200) {
-                obj.parents(".like_btn").attr("status", "agree");
-                obj.parents(".like_btn").addClass("agree");
-                obj.parents(".like_btn").removeClass("no_agree");
-                obj.attr("changing", "false");
-                const que = obj.parents('.queY');
-                const receiverMarkNumber = que.data('markNumber');
-
-                let data = {
-                    "senderMarkNumber": user.markNumber,
-                    "receiverMarkNumber": receiverMarkNumber,
-                    "content": `点赞了你的问题"${que.find('.questionTitle').html() }"`,
-                    // "additionContent": "额外内容 可以为空",
-                    "type": "inf",
-                    "senderName": user.userName,
-                    "isRead": false,
-                    "senderFace": user.face,
-                    "requestType": "post"
-                }
-                sendInfo(data);
-            }
-        }, err => console.log)
-    } else {
-        console.log('不处理');
-    }
->>>>>>> f656e32934aeaba7324951a6360cedfebe5268f8
 }
