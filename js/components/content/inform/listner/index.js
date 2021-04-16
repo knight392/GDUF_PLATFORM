@@ -3,6 +3,7 @@
 import { user } from '../../../../common/user/index.js';
 import { receiveInfo } from '../notification.js'
 
+
 let ws;
 
 // 连接方法, 可以在dologin中调用
@@ -14,6 +15,7 @@ function createWebSocket(wsUrl) {
       receiveInfo(e.data);
     }
     ws.onopen = function(){
+      receiveInfo()
       resolve(true)
     }
     ws.onerror = function (){

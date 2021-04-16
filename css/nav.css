@@ -119,8 +119,8 @@ input {
     position: relative;
     overflow: hidden;
     height: 50px;
-    padding: 0 10px;
-    margin: 0 22px 0 15px;
+    padding: 0px;
+    margin: 0 22px 0 0px;
     text-align: center;
     color: #fff;
     font-size: 18px;

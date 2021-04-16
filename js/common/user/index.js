@@ -14,6 +14,7 @@ let user = null;
     if (user != null) {
         try {
           createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
+          
         } catch (e) {
             console.log(e);
             user = null;
@@ -39,7 +40,7 @@ function doLogin(loginData) {
     return new Promise((resolve, reject) => {
         loginRequest(loginData).then(res => {
             user = res
-            // createWebSocket(baseWsURL)
+            createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
             setLocalUser(user)
             resolve(true)
         }, err => {
