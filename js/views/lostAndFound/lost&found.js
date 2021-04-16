@@ -2,6 +2,7 @@
 import {initCalendar, bindSelectDayEvent} from '../../components/content/calendar/calendar.js'
 import {changeMode, scrollHandler, resizeHandler, selectGoods, selectObject, selectObjectDetail, selectTime, selectLocation, reSelect, openLostPane, openFoundPane } from './tools.js'
 import debounce from '../../util/debounce.js'
+import { displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js';
 // 创建一个日历
 initCalendar('#calendar_main');
 
@@ -50,6 +51,9 @@ $(".nav .toolRow .toolBox .tool").on("mouseleave", function () {
   $(this).find(".selectPane").stop().fadeOut(230);
 })
 
+$(".dev").click(function(){
+  displayTipPane_warn(tipInfo.dev.mes)
+})
 
 // 点击登录按钮进行登录
 $('#loginBtn').click(function() {

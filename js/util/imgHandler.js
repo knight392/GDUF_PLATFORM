@@ -16,7 +16,7 @@ function getImgBase64(img) {
  * @returns {Boolean}
  */
 function isImage(fileName) {
-    if (!fileName.match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　 //判断上传文件格式
+    if (!fileName.match(/.jpg|.gif|.png|.jpeg|.bmp|webp|svg/i)) {　　 //判断上传文件格式
         return false;
     }
     return true;
