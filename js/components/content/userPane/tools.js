@@ -162,7 +162,11 @@ export function attentionMajor() {
                 });
             }
         })
-
+        $('.sendText').on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        })
     })
 
 }
@@ -188,7 +192,6 @@ export function attentionPass() {
                 action: "turnOn",
                 isSubscribe: "subscribe_off"
             }
-            console.log(res.dataList[i].mutual);
             if (res.dataList[i].mutual) {
                 json["attentionColor"] = "#ff7800";
             } else {
@@ -204,6 +207,11 @@ export function attentionPass() {
             const item = template("attentionItem_template", json);
             $("ul.attentionMe").append(item);
         }
+        $('.sendText').on({
+            click: function() {
+                displayTipPane_warn(tipInfo.dev.mes);
+            }
+        })
     })
 }
 
