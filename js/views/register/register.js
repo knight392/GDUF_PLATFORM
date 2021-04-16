@@ -235,7 +235,7 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn("请填写您的教工号！");
       return;
     }
-    if (await dataIsExiste('markNumber',$('#markNumber_teacher input').val(), userType), '教工号已存在，请重新填写！') {
+    if (await dataIsExiste('markNumber',$('#markNumber_teacher input').val(), userType)) {
       return displayTipPane_warn('输入的教工号已被注册！');
     }
     markNumber = $('#markNumber_teacher input').val();
@@ -244,7 +244,7 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn('请输入您的用户名！');
       return;
     }
-    if (await dataIsExiste('userName',$('#userName_teacher input').val()), userType) {
+    if (await dataIsExiste('userName',$('#userName_teacher input').val(),userType)) {
       return displayTipPane_warn("输入的用户名已被注册！");
     }
 
@@ -265,7 +265,7 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn("请填写您的学号！");
       return;
     }
-    if (await dataIsExiste('markNumber',$('#markNumber_student input').val()), userType) {
+    if (await dataIsExiste('markNumber',$('#markNumber_student input').val(), userType)) {
       return displayTipPane_warn("输入的学号已被注册！");
     }
     markNumber = $('#markNumber_student input').val();
@@ -274,7 +274,7 @@ $('.submit_btn').click(async () => {
       displayTipPane_warn('请输入您的用户名！');
       return;
     }
-    if (await dataIsExiste('userName',$('#userName_student input').val()), userType) {
+    if (await dataIsExiste('userName',$('#userName_student input').val(),userType)) {
       return displayTipPane_warn("输入的用户名已被注册！");
     }
 
