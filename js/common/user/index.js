@@ -11,7 +11,7 @@ let user = null;
 // 每次加载页面都看看有没有token,可自动登录
 (function() {
     user = getLocalUser();
-    if (user != null) {
+    if (user != null && user != undefined) {
         try {
             createWebSocket(`${baseWsURL}/${user.markNumber}/12345678`)
 

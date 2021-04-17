@@ -13,7 +13,7 @@ export default class CookieUtil {
     }
     return cookieValue;
   }
-  static set(name, value, expires, path, domain, secure) {
+  static set(name, value, expires, path, domain, secure = false) {
     let cookieText =
       `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
     if (expires instanceof Date) {
@@ -31,6 +31,6 @@ export default class CookieUtil {
     document.cookie = cookieText;
   }
   static unset(name, path, domain, secure) {
-    CookieUtil.set(name, "", new Date(0), path, domain, secure);
+    CookieUtil.set(name, '', new Date(0), path, domain, secure);
   }
 };
