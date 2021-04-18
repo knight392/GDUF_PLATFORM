@@ -10,10 +10,8 @@ let PART = 1; //校区互通 1 校园动态 2
     $('.maincontent').css('min-height', window.innerHeight - 80 + 'px');
     $('.maincontent .indexQuizList').css('min-height', window.innerHeight - 80 + 'px');
     $('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
+    // 初始化校区互通
     infoIndexPART1();
-
-    infoIndexPART2();
-   
 
     //#region 清空搜索框内的内容 √
 
@@ -109,7 +107,9 @@ $('.switchY .change').on({
             $('.change').attr('title', '切换校园动态');
             $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
             PART = 1;
-            
+           
+            $('.studyPartY').html('');
+            infoIndexPART1();
         } else {
             $('.switchY .change').html(' <i class="iconfont iconqiehuan-"></i>校区互通');
             $('.indexQuizList').slideUp(1000);
@@ -118,6 +118,9 @@ $('.switchY .change').on({
             $('.hb').css('height', $('.allD-div').outerHeight(true) + 'px');
             $('.maincontent').css('height', $('.schoolDevelopmentY').css('height'));
             PART = 2;
+            $('#dynamicsY_container').html();
+            infoIndexPART2();
+            
         }
         $("body, html").stop().animate({
             scrollTop: 0
