@@ -15,8 +15,7 @@ import scrollUp from '../../components/content/scrollToTop.js'
 $(window).bind("scroll", fixed);
 
 // 绑定放大图片事件，凡是有fadeIn_img都可以放大
-bindImageSacningEvent('#content_main', 'fadeIn_img');
-bindImageSacningEvent('#question_main', 'fadeIn_img');
+bindImageSacningEvent('#content_main', 'fadein_img');
 
 // 写回答板块的打开的与关闭
 $('.question_info_main .answer_btn').click(() => {

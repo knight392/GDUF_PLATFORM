@@ -1,5 +1,6 @@
 
 import { isLogin, user } from '../../common/user/index.js'
+import bindImageSacningEvent from '../../components/content/imgDisplayTemplate.js'
 import { displayTipPane_success, displayTipPane_warn, tipInfo } from '../../components/content/tipPane.js'
 import getLink from '../../util/copyLink.js'
 import { loadingNextPART1, loadingNextPART2, infoIndexPART1, infoIndexPART2 } from './info.js'
@@ -12,7 +13,7 @@ let PART = 1; //校区互通 1 校园动态 2
     $('.schoolDevelopmentY').css('min-height', window.innerHeight - 80 + 'px');
     // 初始化校区互通
     infoIndexPART1();
-
+    infoIndexPART2();
     //#region 清空搜索框内的内容 √
 
     $(".search .searchBar").val("");
@@ -63,6 +64,9 @@ $('body').on({
     }
 })
 
+// 绑定放大图片事件
+bindImageSacningEvent('#dynamicsY_container', 'fadein_img')
+
 //#region 卷去页面  返回顶部 √ + 滚到底部 加载更多(校区互通) √
 $(window).scroll(function() {
     //#region  返回顶部
@@ -107,9 +111,7 @@ $('.switchY .change').on({
             $('.change').attr('title', '切换校园动态');
             $('.maincontent').css('height', $('.indexQuizList').outerHeight(true) + 'px');
             PART = 1;
-           
-            $('.studyPartY').html('');
-            infoIndexPART1();
+          
         } else {
             $('.switchY .change').html(' <i class="iconfont iconqiehuan-"></i>校区互通');
             $('.indexQuizList').slideUp(1000);
@@ -118,8 +120,7 @@ $('.switchY .change').on({
             $('.hb').css('height', $('.allD-div').outerHeight(true) + 'px');
             $('.maincontent').css('height', $('.schoolDevelopmentY').css('height'));
             PART = 2;
-            $('#dynamicsY_container').html();
-            infoIndexPART2();
+          
             
         }
         $("body, html").stop().animate({

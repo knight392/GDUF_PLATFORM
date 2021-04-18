@@ -1,7 +1,7 @@
 
 export default function bindImageSacningEvent(containerId, imgTargetClassName) {
   $(containerId).on('click', function (e) {
-    if (e.target.className == imgTargetClassName) {
+    if (e.target.classList.contains(imgTargetClassName)) {
       $('.modal_bg_img .modal_content img').attr("src", $(e.target).attr("src"));
       $('.modal_bg_img').fadeIn();
       $('.modal_bg_img .modal').css({

@@ -108,7 +108,7 @@ export function infoIndexPART2() {
           for (let j = 0; j < res.dataList[i].contents.length; j++) {
             if (res.dataList[i].contents[j].contentMain != null) {
 
-              const img = $('<img src="' + res.dataList[i].contents[j].contentMain + '">')
+              const img = $('<img class="fadein_img" src="' + res.dataList[i].contents[j].contentMain + '">')
 
               $(".trendsY-person").eq(0).find('.trendsContent').append(img);
             }
