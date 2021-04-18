@@ -95,38 +95,38 @@ $(function() {;
     //#endregion
 
     //#region 失物招领
-    $('.lostFoundY').on({
-        mouseenter: function() {
-            lostfoundYOpacityPosition(1, 0);
-            $(window).scroll(function() {
-                lostfoundYOpacityPosition(0, '-20%');
-            })
-        },
-        mouseover: function() {
-            lostfoundYOpacityPosition(1, 0);
-            $(window).scroll(function() {
-                lostfoundYOpacityPosition(0, '-20%');
-            })
-        },
-    });
+    // $('.lostFoundY').on({
+    //     mouseenter: function() {
+    //         lostfoundYOpacityPosition(1, 0);
+    //         $(window).scroll(function() {
+    //             lostfoundYOpacityPosition(0, '-20%');
+    //         })
+    //     },
+    //     mouseover: function() {
+    //         lostfoundYOpacityPosition(1, 0);
+    //         $(window).scroll(function() {
+    //             lostfoundYOpacityPosition(0, '-20%');
+    //         })
+    //     },
+    // });
 
     //#endregion
 
     //#region 校内通知
-    $('.inschoolNewsY').on({
-        mouseenter: function() {
-            inschoolNewsYCssPosition(0);
-            $(window).scroll(function() {
-                inschoolNewsYCssPosition('-150%');
-            })
-        },
-        mouseover: function() {
-            inschoolNewsYCssPosition(0);
-            $(window).scroll(function() {
-                inschoolNewsYCssPosition('-150%');
-            })
-        },
-    });
+    // $('.inschoolNewsY').on({
+    //     mouseenter: function() {
+    //         inschoolNewsYCssPosition(0);
+    //         $(window).scroll(function() {
+    //             inschoolNewsYCssPosition('-150%');
+    //         })
+    //     },
+    //     mouseover: function() {
+    //         inschoolNewsYCssPosition(0);
+    //         $(window).scroll(function() {
+    //             inschoolNewsYCssPosition('-150%');
+    //         })
+    //     },
+    // });
     //#endregion
 
     //#region 页脚前面
